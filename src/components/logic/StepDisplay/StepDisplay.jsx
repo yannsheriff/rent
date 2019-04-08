@@ -2,6 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './StepDisplay.scss';
 
+// components
+
+import Ads from '../../complexe/Ads/Ads';
+import Adventure from '../../complexe/Adventure/Adventure';
+import Event from '../../complexe/Event/Event';
+import Question from '../../complexe/Question/Question';
+import Skill from '../../complexe/Skill/Skill';
+import Visit from '../../complexe/Visit/Visit';
+
 
 class Header extends Component {
   constructor(props) {
@@ -43,6 +52,34 @@ class Header extends Component {
     }
   }
 
+
+  returnActualComponent = () => {
+    const childProps = { win: this.winStep, loose: this.failStep };
+
+    switch (this.state.actualStep) {
+      case 'annonces':
+        return <Ads {...childProps} />;
+
+      case 'visite':
+        return <Visit {...childProps} />;
+
+      case 'peripethie':
+        return <Adventure {...childProps} />;
+
+      case 'skill':
+        return <Skill {...childProps} />;
+
+      case 'question':
+        return <Question {...childProps} />;
+
+      case 'event':
+        return <Event {...childProps} />;
+
+      default:
+        return <Ads {...childProps} />;
+    }
+  }
+
   winStep = () => {
     const nextStep = this.returnNextStep(true);
     this.setState({ actualStep: nextStep });
@@ -54,13 +91,11 @@ class Header extends Component {
   }
 
   render() {
-    // const actualStep = this.returnActualStep()
+    const component = this.returnActualComponent();
 
     return (
       <div id="steps">
-        <h2>{this.state.actualStep}</h2>
-        <button onClick={this.winStep}>Win</button>
-        <button onClick={this.failStep}>loose</button>
+        {component}
       </div>
     );
   }

@@ -8,6 +8,8 @@ class Question extends Component {
     return (
       <div id="question">
         <p>Question</p>
+        <button onClick={this.props.win}>Win</button>
+        <button onClick={this.props.loose}>loose</button>
       </div>
     );
   }

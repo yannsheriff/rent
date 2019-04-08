@@ -8,6 +8,8 @@ class Event extends Component {
     return (
       <div id="event">
         <p>Event</p>
+        <button onClick={this.props.win}>Win</button>
+        <button onClick={this.props.loose}>loose</button>
       </div>
     );
   }

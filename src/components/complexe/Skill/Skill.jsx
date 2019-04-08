@@ -8,6 +8,8 @@ class Skill extends Component {
     return (
       <div id="skill">
         <p>Skill</p>
+        <button onClick={this.props.win}>Win</button>
+        <button onClick={this.props.loose}>loose</button>
       </div>
     );
   }

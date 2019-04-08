@@ -1,5 +1,5 @@
-import React, { Component } from './node_modules/react';
-import { connect } from './node_modules/react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './Ads.scss';
 
 
@@ -8,6 +8,8 @@ class Ads extends Component {
     return (
       <div id="ads">
         <p>Ads</p>
+        <button onClick={this.props.win}>Win</button>
+        <button onClick={this.props.loose}>loose</button>
       </div>
     );
   }

@@ -8,6 +8,8 @@ class Adventure extends Component {
     return (
       <div id="adventure">
         <p>Adventure</p>
+        <button onClick={this.props.win}>Win</button>
+        <button onClick={this.props.loose}>loose</button>
       </div>
     );
   }
