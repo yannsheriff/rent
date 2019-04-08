@@ -12,15 +12,7 @@ class EthanServices {
 
 
   async get(itemKey) {
-    try {
-      const dataSaved = await AsyncStorage.getItem(itemKey);
-      if (dataSaved !== null && dataSaved) {
-        return JSON.parse(dataSaved);
-      }
-      return false;
-    } catch (error) {
-      throw error;
-    }
+
   }
 }
 
