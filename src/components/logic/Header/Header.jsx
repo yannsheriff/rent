@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Header.scss';
@@ -6,7 +5,6 @@ import './Header.scss';
 
 class Header extends Component {
   render() {
-
     return (
       <div id="header">
         <p>header</p>
@@ -19,15 +17,13 @@ class Header extends Component {
   ======================= REDUX CONNECTION =======================
   ================================================================ */
 
-  const mapStateToProps = state => ({
-    mainState: state.mainReducer,
-  });
-  
+const mapStateToProps = state => ({
+  mainState: state.mainReducer,
+});
 
-  
-  const componentContainer = connect(
-    mapStateToProps,
-  )(Header);
-  
-  export default componentContainer;
 
+const componentContainer = connect(
+  mapStateToProps,
+)(Header);
+
+export default componentContainer;

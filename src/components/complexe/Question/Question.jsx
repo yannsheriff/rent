@@ -1,21 +1,15 @@
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './PlayScreen.scss';
-
-// components
-import Header from '../../components/logic/Header/Header';
-import Profile from '../../components/logic/Profile/Profile';
-import StepDisplay from '../../components/logic/StepDisplay/StepDisplay';
+import './Question.scss';
 
 
-class PlayScreen extends Component {
+class Question extends Component {
   render() {
     return (
-      <div className="App">
-        <Header />
-        <StepDisplay />
-        <Profile />
+      <div id="question">
+        <p>Question</p>
+        <button onClick={this.props.next}>next</button>
+        <button onClick={this.props.fail}>fail</button>
       </div>
     );
   }
@@ -32,6 +26,6 @@ const mapStateToProps = state => ({
 
 const componentContainer = connect(
   mapStateToProps,
-)(PlayScreen);
+)(Question);
 
 export default componentContainer;
