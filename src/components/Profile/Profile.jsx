@@ -1,22 +1,17 @@
 
+
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './PlayScreen.scss';
-
-// components 
-import Header from "../../components/Header/Header";
-import Profile from "../../components/Profile/Profile";
-import StepDisplay from "../../components/StepDisplay/StepDisplay";
+import './Profile.scss';
 
 
-class PlayScreen extends Component {
+class Header extends Component {
   render() {
-    console.log(this.props.mainState)
+
     return (
-      <div className="App">
-        <Header />
-        <StepDisplay />
-        <Profile />
+      <div id="profile">
+        <p>profile</p>
       </div>
     );
   }
@@ -34,7 +29,7 @@ class PlayScreen extends Component {
   
   const componentContainer = connect(
     mapStateToProps,
-  )(PlayScreen);
+  )(Header);
   
   export default componentContainer;
 
