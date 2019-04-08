@@ -17,59 +17,62 @@ class Header extends Component {
     super(props);
 
     this.state = {
-      actualStep: 'annonces',
+      actualStep: 'ads',
+      round: 0,
     };
   }
 
   //  ---- STEPS ----
-  // - annonces
-  // - visite
+  // - ads
+  // - visit
   // - peripethie
   // - skill
-  // - remise en question
+  // - reassessment
   // - event
 
 
-  returnNextStep = (win) => {
-    switch (this.state.actualStep) {
-      case 'annonces':
-        return win ? 'visite' : 'visite';
+  returnNextStep = (next) => {
+    const { actualStep } = this.state;
+    switch (actualStep) {
+      case 'ads':
+        return next ? 'visit' : 'visit';
 
-      case 'visite':
-        return win ? 'peripethie' : 'annonces';
+      case 'visit':
+        return next ? 'adventure' : 'ads';
 
-      case 'peripethie':
-        return win ? 'skill' : 'question';
+      case 'adventure':
+        return next ? 'skill' : 'reassessment';
 
-      case 'question':
-        return win ? 'event' : 'event';
+      case 'reassessment':
+        return next ? 'event' : 'event';
 
       case 'event':
-        return win ? 'annonces' : 'annonces';
+        return next ? 'ads' : 'ads';
 
       default:
-        return 'annonces';
+        return 'ads';
     }
   }
 
 
   returnActualComponent = () => {
-    const childProps = { win: this.winStep, loose: this.failStep };
+    const { actualStep, round } = this.state;
+    const childProps = { next: this.nextStep, fail: this.failStep, round };
 
-    switch (this.state.actualStep) {
-      case 'annonces':
+    switch (actualStep) {
+      case 'ads':
         return <Ads {...childProps} />;
 
-      case 'visite':
+      case 'visit':
         return <Visit {...childProps} />;
 
-      case 'peripethie':
+      case 'adventure':
         return <Adventure {...childProps} />;
 
       case 'skill':
         return <Skill {...childProps} />;
 
-      case 'question':
+      case 'reassessment':
         return <Question {...childProps} />;
 
       case 'event':
@@ -80,21 +83,30 @@ class Header extends Component {
     }
   }
 
-  winStep = () => {
+  nextStep = () => {
+    const { round } = this.state;
     const nextStep = this.returnNextStep(true);
-    this.setState({ actualStep: nextStep });
+    const addRound = nextStep === 'ads' ? 1 : 0;
+
+    this.setState({ actualStep: nextStep, round: round + addRound });
   }
 
   failStep = () => {
+    const { round } = this.state;
     const nextStep = this.returnNextStep(false);
-    this.setState({ actualStep: nextStep });
+    const addRound = nextStep === 'ads' ? 1 : 0;
+
+    this.setState({ actualStep: nextStep, round: round + addRound });
   }
 
   render() {
     const component = this.returnActualComponent();
+    const { round } = this.state;
 
     return (
+
       <div id="steps">
+        <p>{round}</p>
         {component}
       </div>
     );

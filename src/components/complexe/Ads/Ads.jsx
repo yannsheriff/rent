@@ -8,8 +8,7 @@ class Ads extends Component {
     return (
       <div id="ads">
         <p>Ads</p>
-        <button onClick={this.props.win}>Win</button>
-        <button onClick={this.props.loose}>loose</button>
+        <button onClick={this.props.next}>next</button>
       </div>
     );
   }
