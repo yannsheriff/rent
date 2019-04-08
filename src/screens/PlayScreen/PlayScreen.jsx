@@ -3,15 +3,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './PlayScreen.scss';
 
-// components 
-import Header from "../../components/Header/Header";
-import Profile from "../../components/Profile/Profile";
-import StepDisplay from "../../components/StepDisplay/StepDisplay";
+// components
+import Header from '../../components/logic/Header/Header';
+import Profile from '../../components/logic/Profile/Profile';
+import StepDisplay from '../../components/logic/StepDisplay/StepDisplay';
 
 
 class PlayScreen extends Component {
   render() {
-    console.log(this.props.mainState)
     return (
       <div className="App">
         <Header />
@@ -26,15 +25,13 @@ class PlayScreen extends Component {
   ======================= REDUX CONNECTION =======================
   ================================================================ */
 
-  const mapStateToProps = state => ({
-    mainState: state.mainReducer,
-  });
-  
+const mapStateToProps = state => ({
+  mainState: state.mainReducer,
+});
 
-  
-  const componentContainer = connect(
-    mapStateToProps,
-  )(PlayScreen);
-  
-  export default componentContainer;
 
+const componentContainer = connect(
+  mapStateToProps,
+)(PlayScreen);
+
+export default componentContainer;
