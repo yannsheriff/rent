@@ -23,23 +23,38 @@ class Header extends Component {
   // - event 
 
 
-  returnActualStep = () => {
-    return 'A'
-  }
+  
 
-  returnActualStep = () => {
+  returnNextStep = (win) => {
     switch (this.state.actualStep) {
-      case "value":
-        
-        break;
+      case "annonces":
+        return win ? 'visite' : 'visite'
+
+      case "visite":
+        return win ? 'peripethie' : 'annonces'
+
+      case "peripethie":
+        return win ? 'skill' : 'question'
+
+      case "question":
+        return win ? 'event' : 'event'
+
+      case "event":
+        return win ? 'annonces' : 'annonces'
     
       default:
-        break;
+        return 'annonces';
     }
   }
   
-  failStep = () => {
+  winStep = () => {
+    let nextStep = this.returnNextStep(true)
+    this.setState({ actualStep: nextStep })
+  }
 
+  failStep = () => {
+    let nextStep = this.returnNextStep(false)
+    this.setState({ actualStep: nextStep })
   }
 
   render() {
@@ -47,7 +62,9 @@ class Header extends Component {
 
     return (
       <div id="steps">
-        <p>{this.state.actualStep}</p>
+        <h2>{this.state.actualStep}</h2>
+        <button onClick={this.winStep}>Win</button>
+        <button onClick={this.failStep}>loose</button>
       </div>
     );
   }
