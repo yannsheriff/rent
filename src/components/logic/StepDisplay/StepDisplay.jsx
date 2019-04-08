@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './StepDisplay.scss';
+import EthanServices from '../../../services/EthanServices';
 
 // components
 
@@ -15,7 +16,7 @@ import Visit from '../../complexe/Visit/Visit';
 class Header extends Component {
   constructor(props) {
     super(props);
-
+  
     this.state = {
       actualStep: 'ads',
       round: 0,
