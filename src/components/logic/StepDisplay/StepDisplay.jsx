@@ -11,6 +11,7 @@ import Event from '../../complexe/Event/Event';
 import Question from '../../complexe/Question/Question';
 import Skill from '../../complexe/Skill/Skill';
 import Visit from '../../complexe/Visit/Visit';
+import Reject from '../../complexe/Reject/Reject';
 
 
 class Header extends Component {
@@ -25,6 +26,7 @@ class Header extends Component {
 
   //  ---- STEPS ----
   // - ads
+  // - reject
   // - visit
   // - peripethie
   // - skill
@@ -33,12 +35,15 @@ class Header extends Component {
 
 
   getCardData = (step) => {
-    EthanService.get(step, {
-      status: '',
-      origin: '',
-      budget: '',
-      skills: '',
+    const data = EthanService.get(step, {
+      status: { title: 'coloc', value: 0 },
+      origin: { title: 'franco-français', value: 2 },
+      budget: { title: '€€', value: 0 },
+      skills: [{ title: 'chatch', id: 0 }, { title: 'psycho', id: 0 }],
+      premium: false,
     });
+    console.log(data);
+    return data;
   }
 
   returnNextStep = (next) => {
@@ -48,13 +53,16 @@ class Header extends Component {
         return next ? 'visit' : 'visit';
 
       case 'visit':
-        return next ? 'adventure' : 'ads';
+        return next ? 'adventure' : 'reject';
 
       case 'adventure':
         return next ? 'skill' : 'reassessment';
 
       case 'reassessment':
         return next ? 'event' : 'event';
+
+      case 'reject':
+        return next ? 'ads' : 'ads';
 
       case 'event':
         return next ? 'ads' : 'ads';
@@ -86,6 +94,9 @@ class Header extends Component {
 
       case 'skill':
         return <Skill {...childProps} />;
+
+      case 'reject':
+        return <Reject {...childProps} />;
 
       case 'reassessment':
         return <Question {...childProps} />;
