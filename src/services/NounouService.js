@@ -1,20 +1,23 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable class-methods-use-this */
+let instance = null;
 
 class NounouServices {
   constructor() {
+    this.totalSeenAds = 0;
+    this.visits = [];
+    this.adventure = [];
+    this.actualVisit = 'Avec une tache de sang';
+    this.acutalFlat = {};
+
     if (!instance) {
       instance = this;
-      this.totalSeenAds = 0;
-      this.visits = [];
-      this.adventure = [];
-      this.actualVisit = 'Avec une tache de sang';
-      this.acutalFlat = {};
     }
     return instance;
   }
 
   newAd(ad) {
+    console.log('TCL: NounouServices -> newAd -> ad', ad);
     this.totalSeenAds++;
     this.actualAd = ad;
   }
