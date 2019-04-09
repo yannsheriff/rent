@@ -62,23 +62,23 @@ class EthanServices {
 
     getVisit = (profil) => {
       const use = profil;
-      return [{ title: 'lourd' }, { title: 'bo' }];
+      return {};
     }
 
     getAdventure = (profil) => {
       const use = profil;
-      return [{ title: 'lourd' }, { title: 'bo' }];
+      return {};
     }
 
     getReassessment = (profil) => {
       const use = profil;
-      return [{ title: 'lourd' }, { title: 'bo' }];
+      return {};
     }
 
     getEvent = (profil) => {
       const use = profil;
-      return [{ title: 'lourd' }, { title: 'bo' }];
+      return {};
     }
 }
 
-export const storeService = new EthanServices();
+export const EthanService = new EthanServices();

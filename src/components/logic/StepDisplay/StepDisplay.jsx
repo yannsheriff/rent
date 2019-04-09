@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './StepDisplay.scss';
-import EthanServices from '../../../services/EthanServices';
+import { EthanService } from '../../../services/EthanServices';
 
 // components
 
@@ -16,10 +16,10 @@ import Visit from '../../complexe/Visit/Visit';
 class Header extends Component {
   constructor(props) {
     super(props);
-  
     this.state = {
       actualStep: 'ads',
       round: 0,
+      data: this.getCardData('ads'),
     };
   }
 
@@ -31,6 +31,15 @@ class Header extends Component {
   // - reassessment
   // - event
 
+
+  getCardData = (step) => {
+    EthanService.get(step, {
+      status: '',
+      origin: '',
+      budget: '',
+      skills: '',
+    });
+  }
 
   returnNextStep = (next) => {
     const { actualStep } = this.state;
@@ -57,8 +66,13 @@ class Header extends Component {
 
 
   returnActualComponent = () => {
-    const { actualStep, round } = this.state;
-    const childProps = { next: this.nextStep, fail: this.failStep, round };
+    const { actualStep, round, data } = this.state;
+    const childProps = {
+      next: this.nextStep,
+      fail: this.failStep,
+      round,
+      data,
+    };
 
     switch (actualStep) {
       case 'ads':
@@ -87,17 +101,19 @@ class Header extends Component {
   nextStep = () => {
     const { round } = this.state;
     const nextStep = this.returnNextStep(true);
+    const cardData = this.getCardData(nextStep);
     const addRound = nextStep === 'ads' ? 1 : 0;
 
-    this.setState({ actualStep: nextStep, round: round + addRound });
+    this.setState({ actualStep: nextStep, round: round + addRound, data: cardData });
   }
 
   failStep = () => {
     const { round } = this.state;
     const nextStep = this.returnNextStep(false);
+    const cardData = this.getCardData(nextStep);
     const addRound = nextStep === 'ads' ? 1 : 0;
 
-    this.setState({ actualStep: nextStep, round: round + addRound });
+    this.setState({ actualStep: nextStep, round: round + addRound, data: cardData });
   }
 
   render() {
