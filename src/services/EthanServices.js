@@ -50,6 +50,9 @@ class EthanServices {
         case 'event':
           return this.getEvent(profil);
 
+        case 'reject':
+          return this.getReject(profil);
+
         default:
           return 'ads';
       }
@@ -76,6 +79,11 @@ class EthanServices {
     }
 
     getEvent = (profil) => {
+      const use = profil;
+      return {};
+    }
+
+    getReject = (profil) => {
       const use = profil;
       return {};
     }
