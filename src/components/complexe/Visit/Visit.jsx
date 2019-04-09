@@ -9,8 +9,9 @@ class Visit extends Component {
     return (
       <div id="visit">
         <p>Visit</p>
-        <button onClick={this.props.next}>next</button>
         <button onClick={this.props.fail}>fail</button>
+        { this.props.round > 0
+        && <button onClick={this.props.next}>next</button> }
       </div>
     );
   }
