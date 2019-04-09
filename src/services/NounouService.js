@@ -17,7 +17,6 @@ class NounouServices {
   }
 
   newAd(ad) {
-    console.log('TCL: NounouServices -> newAd -> ad', ad);
     this.totalSeenAds++;
     this.actualAd = ad;
   }
