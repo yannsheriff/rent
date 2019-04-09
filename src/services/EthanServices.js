@@ -5,14 +5,19 @@ import * as contentful from 'contentful';
 
 let instance = null;
 
-const client = contentful.createClient({
-  space: 'w1j59qz3nacc',
-  accessToken:
-      '5f17d0d58028f245cf2e3d2a2144f90c2a5e7afcbe246c28161921c2be4df156',
-});
-
 class EthanServices {
   constructor() {
+    this.client = contentful.createClient({
+      space: 'w1j59qz3nacc',
+      accessToken:
+        '5f17d0d58028f245cf2e3d2a2144f90c2a5e7afcbe246c28161921c2be4df156',
+    });
+
+    this.ad = [];
+    this.adventure = [];
+    this.event = [];
+    this.question = [];
+    this.visit = [];
     this.init();
 
     if (!instance) {
@@ -22,71 +27,75 @@ class EthanServices {
   }
 
   init = () => {
-    client.getEntries({
-      content_type: 'adventure',
-    }).then((entries) => {
-      entries.items.forEach((entry) => {
-        if (entry.fields) {
-          console.log(entry.fields);
-        }
-      });
-    });
-  }
+    const list = ['ad', 'adventure', 'event', 'question', 'visit'];
 
-    get = (step, profil) => {
-      switch (step) {
-        case 'ads':
-          return this.getAds(profil);
 
-        case 'visit':
-          return this.getVisit(profil);
-
-        case 'adventure':
-          return this.getAdventure(profil);
-
-        case 'reassessment':
-          return this.getReassessment(profil);
-
-        case 'event':
-          return this.getEvent(profil);
-
-        case 'reject':
-          return this.getReject(profil);
-
-        default:
-          return 'ads';
-      }
+    for (let i = 0; i < list.length; i += 1) {
+      this.client
+        .getEntries({ content_type: list[i] })
+        .then((datas) => {
+          datas.items.forEach((item) => {
+            this[list[i]].push(item.fields);
+          });
+        })
+        .catch(console.error);
     }
+  };
 
-    getAds = (profil) => {
-      const use = profil;
-      return [{ title: 'lourd' }, { title: 'bo' }];
-    }
+  get = (step, profile) => {
+    switch (step) {
+      case 'ads':
+        return this.getAds(profile);
 
-    getVisit = (profil) => {
-      const use = profil;
-      return {};
-    }
+      case 'visit':
+        return this.getVisit(profile);
 
-    getAdventure = (profil) => {
-      const use = profil;
-      return {};
-    }
+      case 'adventure':
+        return this.getAdventure(profile);
 
-    getReassessment = (profil) => {
-      const use = profil;
-      return {};
-    }
+      case 'reassessment':
+        return this.getReassessment(profile);
 
-    getEvent = (profil) => {
-      const use = profil;
-      return {};
-    }
+      case 'event':
+        return this.getEvent(profile);
 
-    getReject = (profil) => {
-      const use = profil;
-      return {};
+      case 'reject':
+        return this.getReject(profile);
+
+      default:
+        return 'ads';
     }
+  };
+
+  getAds = (profile) => {
+    const use = profile;
+    return this.ad;
+  };
+
+  getVisit = (profile) => {
+    const use = profile;
+    return {};
+  };
+
+  getAdventure = (profile) => {
+    const use = profile;
+    return {};
+  };
+
+  getReassessment = (profile) => {
+    const use = profile;
+    return {};
+  };
+
+  getEvent = (profile) => {
+    const use = profile;
+    return {};
+  };
+
+  getReject = (profile) => {
+    const use = profile;
+    return {};
+  };
 }
 
 export const EthanService = new EthanServices();

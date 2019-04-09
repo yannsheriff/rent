@@ -1,22 +1,16 @@
 /* eslint-disable react/prefer-stateless-function */
 
-
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import './Profile.scss';
-
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import "./Profile.scss";
 
 class Header extends Component {
   render() {
     const { profil } = this.props;
-    const {
-      budget,
-      origin,
-      status,
-      score,
-    } = profil;
+    const { budget, origin, status, score } = profil;
 
-    const grade = ((budget.value + origin.value + status.value) * 2 + score) * 5 / 21;
+    const grade =
+      (((budget.value + origin.value + status.value) * 2 + score) * 5) / 21;
 
     return (
       <div id="profile">
@@ -37,9 +31,6 @@ const mapStateToProps = state => ({
   profil: state.profilReducer,
 });
 
-
-const componentContainer = connect(
-  mapStateToProps,
-)(Header);
+const componentContainer = connect(mapStateToProps)(Header);
 
 export default componentContainer;

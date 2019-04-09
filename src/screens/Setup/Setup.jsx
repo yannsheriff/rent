@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import logo from '../../logo.svg';
-import { connect } from 'react-redux';
-import { gameIsSetUp } from '../../redux/actions/steps';
-import './Setup.scss';
-
+import React, { Component } from "react";
+import logo from "../../logo.svg";
+import { connect } from "react-redux";
+import { gameIsSetUp } from "../../redux/actions/steps";
+import "./Setup.scss";
 
 class Setup extends Component {
   render() {
@@ -11,13 +10,8 @@ class Setup extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Setup Screen 
-          </p>
-          <a
-            className="App-link"
-            onClick={() => this.props.didSetUp()}
-          >
+          <p>Setup Screen</p>
+          <a className="App-link" onClick={() => this.props.didSetUp()}>
             set Up
           </a>
         </header>
@@ -26,24 +20,23 @@ class Setup extends Component {
   }
 }
 
-
 /* ===============================================================
   ======================= REDUX CONNECTION =======================
   ================================================================ */
 
-  const mapStateToProps = state => ({
-    step: state.step
-  });
-  
-  const mapDispatchToProps = dispatch => ({
-    didSetUp: () => {
-      dispatch(gameIsSetUp());
-    },
-  });
-  
-  const componentContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Setup);
-  
-  export default componentContainer;
+const mapStateToProps = state => ({
+  step: state.step
+});
+
+const mapDispatchToProps = dispatch => ({
+  didSetUp: () => {
+    dispatch(gameIsSetUp());
+  },
+});
+
+const componentContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Setup);
+
+export default componentContainer;
