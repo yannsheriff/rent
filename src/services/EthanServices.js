@@ -1,19 +1,19 @@
 /* eslint-disable import/prefer-default-export */
-/* eslint-disable */
+/* eslint-disable class-methods-use-this */
 
-import * as contentful from "contentful";
+import * as contentful from 'contentful';
 
 let instance = null;
 
-let client = contentful.createClient({
-  space: "w1j59qz3nacc",
+const client = contentful.createClient({
+  space: 'w1j59qz3nacc',
   accessToken:
-    "5f17d0d58028f245cf2e3d2a2144f90c2a5e7afcbe246c28161921c2be4df156"
+      '5f17d0d58028f245cf2e3d2a2144f90c2a5e7afcbe246c28161921c2be4df156',
 });
 
 class EthanServices {
   constructor() {
-    this.init()
+    this.init();
 
     if (!instance) {
       instance = this;
@@ -23,9 +23,9 @@ class EthanServices {
 
   init = () => {
     client.getEntries({
-      'content_type': 'adventure'
-    }).then(entries => {
-      entries.items.forEach(entry => {
+      content_type: 'adventure',
+    }).then((entries) => {
+      entries.items.forEach((entry) => {
         if (entry.fields) {
           console.log(entry.fields);
         }
@@ -33,7 +33,52 @@ class EthanServices {
     });
   }
 
-  async get(itemKey) {}
+    get = (step, profil) => {
+      switch (step) {
+        case 'ads':
+          return this.getAds(profil);
+
+        case 'visit':
+          return this.getVisit(profil);
+
+        case 'adventure':
+          return this.getAdventure(profil);
+
+        case 'reassessment':
+          return this.getReassessment(profil);
+
+        case 'event':
+          return this.getEvent(profil);
+
+        default:
+          return 'ads';
+      }
+    }
+
+    getAds = (profil) => {
+      const use = profil;
+      return [{ title: 'lourd' }, { title: 'bo' }];
+    }
+
+    getVisit = (profil) => {
+      const use = profil;
+      return [{ title: 'lourd' }, { title: 'bo' }];
+    }
+
+    getAdventure = (profil) => {
+      const use = profil;
+      return [{ title: 'lourd' }, { title: 'bo' }];
+    }
+
+    getReassessment = (profil) => {
+      const use = profil;
+      return [{ title: 'lourd' }, { title: 'bo' }];
+    }
+
+    getEvent = (profil) => {
+      const use = profil;
+      return [{ title: 'lourd' }, { title: 'bo' }];
+    }
 }
 
 export const storeService = new EthanServices();
