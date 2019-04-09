@@ -12,6 +12,7 @@ class Ads extends Component {
   }
 
   render() {
+    // console.log(this.props.data);
     return (
       <div id="ads">
         <p>Ads</p>

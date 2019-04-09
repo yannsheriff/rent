@@ -5,7 +5,6 @@ import './Header.scss';
 
 import { endGame } from '../../../redux/actions/steps';
 
-
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -42,14 +41,17 @@ class Header extends Component {
 
     clearInterval(this.chrono);
     end('chrono');
-  }
+  };
 
   render() {
     const { second, percentage } = this.state;
     return (
       <div id="header">
         <p>{chrono(second)}</p>
-        <div className="indicator" style={{ transform: `scale(${percentage}, 1)` }} />
+        <div
+          className="indicator"
+          style={{ transform: `scale(${percentage}, 1)` }}
+        />
       </div>
     );
   }
@@ -69,7 +71,6 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-
 const componentContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
@@ -79,9 +80,9 @@ export default componentContainer;
 
 export function chrono(sec_num) {
   const hours = Math.floor(sec_num / 3600);
-  let minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-  let seconds = Math.floor(sec_num - (hours * 3600) - (minutes * 60));
-  minutes = minutes > 0 ? minutes > 9 ? `${minutes}:` : `0${minutes}:` : '00:';
-  seconds = seconds > 0 ? seconds > 9 ? `${seconds}` : `0${seconds}` : '00';
+  let minutes = Math.floor((sec_num - hours * 3600) / 60);
+  let seconds = Math.floor(sec_num - hours * 3600 - minutes * 60);
+  minutes = minutes > 0 ? (minutes > 9 ? `${minutes}:` : `0${minutes}:`) : '00:';
+  seconds = seconds > 0 ? (seconds > 9 ? `${seconds}` : `0${seconds}`) : '00';
   return minutes + seconds;
 }
