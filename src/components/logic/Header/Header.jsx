@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import './Header.scss';
 
+import { endGame } from '../../../redux/actions/steps';
+
 
 class Header extends Component {
   constructor(props) {
@@ -12,11 +14,13 @@ class Header extends Component {
       second: 300,
       percentage: 100,
     };
+
+    this.timer = 300;
   }
 
   componentDidMount() {
     const endTime = moment()
-      .add(5, 'minutes')
+      .add(this.timer, 'seconds')
       .toDate()
       .getTime();
 
@@ -24,14 +28,20 @@ class Header extends Component {
       const now = new Date().getTime();
       const sub = endTime - now;
       const seconds = sub / 1000;
-      const percentage = (seconds / 300) * 1;
+      const percentage = (seconds / this.timer) * 1;
       this.setState({ second: seconds, percentage });
 
       if (sub <= 0) {
-        this.soundIsPlaying = true;
-        clearInterval(this.chrono);
+        this.endGame();
       }
     }, 200);
+  }
+
+  endGame = () => {
+    const { end } = this.props;
+
+    clearInterval(this.chrono);
+    end('chrono');
   }
 
   render() {
@@ -53,9 +63,16 @@ const mapStateToProps = state => ({
   mainState: state.mainReducer,
 });
 
+const mapDispatchToProps = dispatch => ({
+  end: (reason) => {
+    dispatch(endGame(reason));
+  },
+});
+
 
 const componentContainer = connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(Header);
 
 export default componentContainer;
