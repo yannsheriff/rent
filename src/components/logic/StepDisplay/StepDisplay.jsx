@@ -35,14 +35,8 @@ class Header extends Component {
 
 
   getCardData = (step) => {
-    const data = EthanService.get(step, {
-      status: { title: 'coloc', value: 0 },
-      origin: { title: 'franco-français', value: 2 },
-      budget: { title: '€€', value: 0 },
-      skills: [{ title: 'chatch', id: 0 }, { title: 'psycho', id: 0 }],
-      premium: false,
-    });
-    console.log(data);
+    const { profil } = this.props;
+    const data = EthanService.get(step, profil);
     return data;
   }
 
@@ -147,6 +141,7 @@ class Header extends Component {
 
 const mapStateToProps = state => ({
   mainState: state.mainReducer,
+  profil: state.profilReducer,
 });
 
 const componentContainer = connect(
