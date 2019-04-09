@@ -2,10 +2,11 @@
 // import { ACTION } from '../actions/';
 
 const defaultState = {
-  status: { title: 'coloc', value: 0 },
-  origin: { title: 'franco-français', value: 2 },
-  budget: { title: '€€', value: 0 },
+  status: { title: 'coloc', value: 1 },
+  origin: { title: 'franco-français', value: 3 },
+  budget: { title: '€€', value: 2 },
   skills: [{ title: 'chatch', id: 0 }, { title: 'psycho', id: 0 }],
+  score: 0,
   premium: false,
 };
 
