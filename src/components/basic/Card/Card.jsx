@@ -63,7 +63,6 @@ class Card extends Component {
   render() {
     const { data, children } = this.props;
     const { cardPosX, cardPosY } = this.state;
-    console.log(`translate(${cardPosX}, ${cardPosY})`);
     return (
       <div id="card" onTouchStart={this.dragStart} onTouchMove={this.drag} onTouchEnd={this.dragEnd} style={{ transform: `translate(${cardPosX}px, ${cardPosY}px)` }} ref={this.card}>
         {children}
