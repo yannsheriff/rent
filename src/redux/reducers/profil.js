@@ -4,9 +4,9 @@
 import { UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN } from '../actions/profil';
 
 const defaultState = {
-  status: { title: 'En colocation', value: 1 },
-  origin: { title: 'Franco-Français', value: 3 },
-  budget: { title: '€€', value: 2 },
+  status: { title: 'En colocation', value: 1, ref: 'collocation' },
+  origin: { title: 'Franco-Français', value: 3, ref: 'frfr' },
+  budget: { title: '€', value: 1, ref: 'poor' },
   skills: [{ title: 'tchatche', id: 0 }, { title: 'psycho', id: 0 }],
   score: 0,
   premium: false,
@@ -15,13 +15,13 @@ const defaultState = {
 function returnProfile(status) {
   switch (status) {
     case 'collocation': {
-      return { title: 'En colocation', value: 1 };
+      return { title: 'En colocation', value: 1, ref: 'collocation' };
     }
     case 'single': {
-      return { title: 'Seul', value: 2 };
+      return { title: 'Seul', value: 2, ref: 'single' };
     }
     case 'couple': {
-      return { title: 'En couple', value: 3 };
+      return { title: 'En couple', value: 3, ref: 'couple' };
     }
     default:
       return status;
@@ -30,14 +30,14 @@ function returnProfile(status) {
 
 function returnBudget(budget) {
   switch (budget) {
-    case 'cheap': {
-      return { title: '€', value: 1 };
+    case 'poor': {
+      return { title: '€', value: 1, ref: 'poor' };
     }
     case 'regular': {
-      return { title: '€€', value: 2 };
+      return { title: '€€', value: 2, ref: 'regular' };
     }
-    case 'expensive': {
-      return { title: '€€€', value: 3 };
+    case 'rich': {
+      return { title: '€€€', value: 3, ref: 'rich' };
     }
     default:
       return budget;
@@ -47,13 +47,13 @@ function returnBudget(budget) {
 function returnOrigin(origin) {
   switch (origin) {
     case 'frmc': {
-      return { title: 'Franco-Marocain', value: 1 };
+      return { title: 'Franco-Marocain', value: 1, ref: 'frmc' };
     }
     case 'frjp': {
-      return { title: 'Franco-Japonais', value: 2 };
+      return { title: 'Franco-Japonais', value: 2, ref: 'frjp' };
     }
     case 'frfr': {
-      return { title: 'Franco-Français', value: 3 };
+      return { title: 'Franco-Français', value: 3, ref: 'frfr' };
     }
     default:
       return origin;

@@ -65,7 +65,7 @@ class Question extends Component {
 
         {/* <button type="button" onClick={() => updateStatus('couple')}>couple</button>
         <button type="button" onClick={() => updateStatus('single')}>seul</button>
-        <button type="button" onClick={() => updateBudget('cheap')}>pauvre</button>
+        <button type="button" onClick={() => updateBudget('poor')}>pauvre</button>
         <button type="button" onClick={() => updateBudget('expensive')}>riche</button>
         <button type="button" onClick={() => updateOrigin('frfr')}>blanc</button>
         <button type="button" onClick={() => updateOrigin('frjp')}>asiat</button> */}

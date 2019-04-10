@@ -66,6 +66,17 @@ class EthanServices {
     }
   };
 
+  checkIfProfileMatch = (card, profile, step) => {
+    if (
+      (card[`${step}_status`] === 'all' || card[`${step}_status`] === profile.status.ref)
+      && (card[`${step}_budget`] === 'all' || card[`${step}_budget`] === profile.budget.ref)
+      && (card[`${step}_origin`] === 'all' || card[`${step}_origin`] === profile.origin.ref)
+    ) {
+      return card;
+    }
+    return false;
+  }
+
   getAds = (profile) => {
     const payload = this.ad.filter(item => item.ad_budget <= profile.budget.value);
     return payload;
@@ -74,6 +85,7 @@ class EthanServices {
   getVisit = (profile) => {
     const rand = getRandomArbitrary(0, this.visit.length);
     const payload = this.visit[rand];
+    console.log(profile);
     // supprimer visit[rand] de this.visit
     // trier en fonction de agence ou particulier
     return payload;
@@ -86,8 +98,10 @@ class EthanServices {
   };
 
   getQuestion = (profile) => {
-    const rand = getRandomArbitrary(0, this.question.length);
-    const payload = this.question[rand];
+    const matchingQuestions = this.question.filter(element => this.checkIfProfileMatch(element, profile, 'question'));
+    console.log(matchingQuestions);
+    const rand = getRandomArbitrary(0, matchingQuestions.length);
+    const payload = matchingQuestions[rand];
     return payload;
   };
 
@@ -106,5 +120,5 @@ class EthanServices {
 export const EthanService = new EthanServices();
 
 function getRandomArbitrary(min, max) {
-  return Math.round(Math.random() * (max - min) + min);
+  return Math.round(Math.random() * ((max - 1) - min) + min);
 }
