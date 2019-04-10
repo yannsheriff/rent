@@ -73,8 +73,9 @@ class EthanServices {
   };
 
   getVisit = (profile) => {
-    const use = profile;
-    return {};
+    const rand = getRandomArbitrary(0, this.visit.length);
+    const payload = this.visit[rand];
+    return payload;
   };
 
   getAdventure = (profile) => {
@@ -99,3 +100,7 @@ class EthanServices {
 }
 
 export const EthanService = new EthanServices();
+
+function getRandomArbitrary(min, max) {
+  return Math.round(Math.random() * (max - min) + min);
+}
