@@ -52,8 +52,8 @@ class EthanServices {
       case 'adventure':
         return this.getAdventure(profile);
 
-      case 'reassessment':
-        return this.getReassessment(profile);
+      case 'question':
+        return this.getQuestion(profile);
 
       case 'event':
         return this.getEvent(profile);
@@ -74,22 +74,27 @@ class EthanServices {
   getVisit = (profile) => {
     const rand = getRandomArbitrary(0, this.visit.length);
     const payload = this.visit[rand];
+    // supprimer visit[rand] de this.visit
+    // trier en fonction de agence ou particulier
     return payload;
   };
 
   getAdventure = (profile) => {
-    const use = profile;
-    return {};
+    const rand = getRandomArbitrary(0, this.adventure.length);
+    const payload = this.adventure[rand];
+    return payload;
   };
 
-  getReassessment = (profile) => {
-    const use = profile;
-    return {};
+  getQuestion = (profile) => {
+    const rand = getRandomArbitrary(0, this.question.length);
+    const payload = this.question[rand];
+    return payload;
   };
 
   getEvent = (profile) => {
-    const use = profile;
-    return {};
+    const rand = getRandomArbitrary(0, this.event.length);
+    const payload = this.event[rand];
+    return payload;
   };
 
   getReject = (profile) => {

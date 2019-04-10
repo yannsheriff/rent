@@ -37,9 +37,9 @@ class Header extends Component {
   // - ads
   // - reject
   // - visit
-  // - peripethie
+  // - adventure
   // - skill
-  // - reassessment
+  // - question
   // - event
 
 
@@ -59,9 +59,9 @@ class Header extends Component {
         return next ? 'adventure' : 'reject';
 
       case 'adventure':
-        return next ? 'skill' : 'reassessment';
+        return next ? 'skill' : 'question';
 
-      case 'reassessment':
+      case 'question':
         return next ? 'event' : 'event';
 
       case 'reject':
@@ -101,7 +101,7 @@ class Header extends Component {
       case 'reject':
         return <Reject {...childProps} />;
 
-      case 'reassessment':
+      case 'question':
         return <Question {...childProps} />;
 
       case 'event':
