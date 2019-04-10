@@ -63,7 +63,7 @@ class EthanServices {
         return this.getReject(profile);
 
       default:
-        return 'ads';
+        return null;
     }
   };
 

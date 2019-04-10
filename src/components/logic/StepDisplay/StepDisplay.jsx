@@ -46,7 +46,7 @@ class Header extends Component {
   getCardData = (step) => {
     const { profil } = this.props;
     const data = EthanService.get(step, profil);
-    return data;
+    return data || this.state.data;
   }
 
   returnNextStep = (next) => {

@@ -29,7 +29,6 @@ class Visit extends Component {
     const {
       updateStatus, updateBudget, updateOrigin, fail, next, round, data,
     } = this.props;
-    console.log('TCL: render -> data', data);
 
     return (
       <div id="visit">
