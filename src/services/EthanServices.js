@@ -68,8 +68,8 @@ class EthanServices {
   };
 
   getAds = (profile) => {
-    const use = profile;
-    return this.ad;
+    const payload = this.ad.filter(item => item.ad_budget <= profile.budget.value);
+    return payload;
   };
 
   getVisit = (profile) => {
