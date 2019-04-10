@@ -29,7 +29,6 @@ class EthanServices {
   init = () => {
     const list = ['ad', 'adventure', 'event', 'question', 'visit'];
 
-
     for (let i = 0; i < list.length; i += 1) {
       this.client
         .getEntries({ content_type: list[i] })
@@ -72,9 +71,9 @@ class EthanServices {
     return payload;
   };
 
-  getVisit = (profile) => {
-    const use = profile;
-    return {};
+  getVisit = () => {
+    const payload = this.visit;
+    return payload;
   };
 
   getAdventure = (profile) => {
