@@ -85,29 +85,29 @@ class EthanServices {
   getVisit = (profile) => {
     const rand = getRandomArbitrary(0, this.visit.length);
     const payload = this.visit[rand];
-    console.log(profile);
     // supprimer visit[rand] de this.visit
     // trier en fonction de agence ou particulier
     return payload;
   };
 
   getAdventure = (profile) => {
-    const rand = getRandomArbitrary(0, this.adventure.length);
-    const payload = this.adventure[rand];
+    const matchingAdventures = this.adventure.filter(element => this.checkIfProfileMatch(element, profile, 'adventure'));
+    const rand = getRandomArbitrary(0, matchingAdventures.length);
+    const payload = matchingAdventures[rand];
     return payload;
   };
 
   getQuestion = (profile) => {
     const matchingQuestions = this.question.filter(element => this.checkIfProfileMatch(element, profile, 'question'));
-    console.log(matchingQuestions);
     const rand = getRandomArbitrary(0, matchingQuestions.length);
     const payload = matchingQuestions[rand];
     return payload;
   };
 
   getEvent = (profile) => {
-    const rand = getRandomArbitrary(0, this.event.length);
-    const payload = this.event[rand];
+    const matchingEvents = this.event.filter(element => this.checkIfProfileMatch(element, profile, 'event'));
+    const rand = getRandomArbitrary(0, matchingEvents.length);
+    const payload = matchingEvents[rand];
     return payload;
   };
 
