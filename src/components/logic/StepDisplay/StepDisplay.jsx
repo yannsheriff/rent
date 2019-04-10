@@ -14,7 +14,6 @@ import Skill from '../../complexe/Skill/Skill';
 import Visit from '../../complexe/Visit/Visit';
 import Reject from '../../complexe/Reject/Reject';
 
-
 class Header extends Component {
   static propTypes = {
     profil: PropTypes.objectOf(PropTypes.object),
@@ -27,9 +26,9 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      actualStep: 'ads',
+      actualStep: 'question',
       round: 0,
-      data: this.getCardData('ads'),
+      data: this.getCardData('question'),
     };
   }
 
