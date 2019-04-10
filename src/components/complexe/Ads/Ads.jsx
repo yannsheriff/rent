@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { NounouService } from '../../../services/NounouService';
+import Card from '../../basic/Card/Card';
 import './Ads.scss';
 
 class Ads extends Component {
@@ -24,12 +25,16 @@ class Ads extends Component {
 
   render() {
     const { data } = this.props;
-    const annonces = data.map(element => <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(element.ad_description) }} />);
+    const annonces = data.map((element, id) => (
+      <Card data={element} key={id}>
+        <h2>{element.title}</h2>
+        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(element.ad_description) }} />
+      </Card>
+    ));
     return (
       <div id="ads">
         <p>Ads</p>
         <button type="button" onClick={this.visitFlat}>next</button>
-        {/* <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(this.props.data[0].ad_description) }} /> */}
         <div className="ads">{ annonces }</div>
       </div>
     );
