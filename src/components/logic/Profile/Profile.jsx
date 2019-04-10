@@ -1,16 +1,26 @@
 /* eslint-disable react/prefer-stateless-function */
 
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import "./Profile.scss";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import './Profile.scss';
 
 class Header extends Component {
+  static propTypes = {
+    profil: PropTypes.objectOf(PropTypes.object),
+  };
+
+  static defaultProps = {
+    profil: {},
+  };
+
   render() {
     const { profil } = this.props;
-    const { budget, origin, status, score } = profil;
+    const {
+      budget, origin, status, score,
+    } = profil;
 
-    const grade =
-      (((budget.value + origin.value + status.value) * 2 + score) * 5) / 21;
+    const grade = (((budget.value + origin.value + status.value) * 2 + score) * 5) / 21;
 
     return (
       <div id="profile">

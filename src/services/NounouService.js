@@ -17,7 +17,7 @@ class NounouServices {
   }
 
   newAd(ad) {
-    this.totalSeenAds++;
+    this.totalSeenAds += 1;
     this.actualAd = ad;
   }
 

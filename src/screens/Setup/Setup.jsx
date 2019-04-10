@@ -1,17 +1,18 @@
-import React, { Component } from "react";
-import logo from "../../logo.svg";
-import { connect } from "react-redux";
-import { gameIsSetUp } from "../../redux/actions/steps";
-import "./Setup.scss";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import logo from '../../logo.svg';
+import { gameIsSetUp } from '../../redux/actions/steps';
+import './Setup.scss';
 
 class Setup extends Component {
   render() {
+    const { didSetUp } = this.props;
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>Setup Screen</p>
-          <a className="App-link" onClick={() => this.props.didSetUp()}>
+          <a className="App-link" onClick={() => didSetUp()}>
             set Up
           </a>
         </header>
@@ -25,7 +26,7 @@ class Setup extends Component {
   ================================================================ */
 
 const mapStateToProps = state => ({
-  step: state.step
+  step: state.step,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -20,9 +20,8 @@ class Event extends Component {
   ================================================================ */
 
 const mapStateToProps = state => ({
-  mainState: state.mainReducer,
+  status: state.status,
 });
-
 
 const componentContainer = connect(
   mapStateToProps,

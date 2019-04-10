@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import './StepDisplay.scss';
 import { EthanService } from '../../../services/EthanServices';
 
@@ -15,6 +16,14 @@ import Reject from '../../complexe/Reject/Reject';
 
 
 class Header extends Component {
+  static propTypes = {
+    profil: PropTypes.objectOf(PropTypes.object),
+  };
+
+  static defaultProps = {
+    profil: {},
+  };
+
   constructor(props) {
     super(props);
     this.state = {

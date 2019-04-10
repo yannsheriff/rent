@@ -29,7 +29,6 @@ const mapStateToProps = state => ({
   mainState: state.mainReducer,
 });
 
-
 const componentContainer = connect(
   mapStateToProps,
 )(PlayScreen);

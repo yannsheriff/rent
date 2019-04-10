@@ -1,9 +1,9 @@
 // import { ACTION } from '../actions/action';
 
-const defaultState =  {
-    test: 'ok',
-    ntm: '?'
-}
+const defaultState = {
+  test: 'ok',
+  ntm: '?',
+};
 
 export function mainReducer(state = defaultState, action) {
   switch (action.type) {
