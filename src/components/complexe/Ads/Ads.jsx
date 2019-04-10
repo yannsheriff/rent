@@ -10,12 +10,17 @@ class Ads extends Component {
   static propTypes = {
     data: PropTypes.arrayOf(PropTypes.object),
     next: PropTypes.func,
-  };
+  }
 
   static defaultProps = {
     data: [],
     next: () => {},
-  };
+  }
+
+  constructor(props) {
+    super(props);
+    this.visteLeft = props.data;
+  }
 
   visitFlat = () => {
     const { next } = this.props;
@@ -23,18 +28,22 @@ class Ads extends Component {
     next();
   }
 
+  removeAd = (index) => {
+    this.visteLeft.splice(index, 1);
+    this.render();
+  }
+
   render() {
-    const { data } = this.props;
-    const annonces = data.map((element, id) => (
-      <Card data={element} key={id}>
+    const annonces = this.visteLeft.map((element, id) => (
+      <Card data={element} key={id} swipLeft={() => this.removeAd(id)} swipRight={this.visitFlat}>
         <h2>{element.title}</h2>
         <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(element.ad_description) }} />
       </Card>
     ));
+
     return (
       <div id="ads">
         <p>Ads</p>
-        <button type="button" onClick={this.visitFlat}>next</button>
         <div className="ads">{ annonces }</div>
       </div>
     );

@@ -1,8 +1,6 @@
+/* eslint-disable no-unused-expressions */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import { NounouService } from '../../../services/NounouService';
 import './Card.scss';
 
 class Card extends Component {
@@ -13,24 +11,52 @@ class Card extends Component {
       cardPosX: 0,
       cardPosY: 0,
     };
+    this.lastTouch = 0;
+    this.isValidated = false;
+    this.card = React.createRef();
   }
 
   componentDidMount() {
-
+    this.myRef = React.createRef();
   }
 
   dragStart = (e) => {
+    this.card.current.classList.remove('transition');
     this.firstTouch = { x: e.touches[0].clientX, y: e.touches[0].clientY };
   }
 
   drag = (e) => {
     const translateX = e.touches[0].clientX - this.firstTouch.x;
     const translateY = e.touches[0].clientY - this.firstTouch.y;
+
+    if (translateX > 30 && e.touches[0].clientX - this.lastTouch > 0) {
+      this.isValidated = 'right';
+    } else if (translateX < -30 && this.lastTouch - e.touches[0].clientX > 0) {
+      this.isValidated = 'left';
+    } else {
+      this.isValidated = false;
+    }
+
+    this.lastTouch = e.touches[0].clientX;
     this.setState({ cardPosX: translateX, cardPosY: translateY });
   }
 
-  dragEnd = (e) => {
-    this.setState({ cardPosX: 0, cardPosY: 0 });
+  dragEnd = () => {
+    const { swipRight, swipLeft } = this.props;
+    this.card.current.classList.add('transition');
+    if (this.isValidated === 'right') {
+      this.setState({ cardPosX: 400, cardPosY: 100 });
+      swipRight
+        ? swipRight()
+        : console.warn('need swipRight to be a function');
+    } else if (this.isValidated === 'left') {
+      this.setState({ cardPosX: -400, cardPosY: 100 });
+      swipLeft
+        ? swipLeft()
+        : console.warn('need swipLeft to be a function');
+    } else {
+      this.setState({ cardPosX: 0, cardPosY: 0 });
+    }
   }
 
 
@@ -39,7 +65,7 @@ class Card extends Component {
     const { cardPosX, cardPosY } = this.state;
     console.log(`translate(${cardPosX}, ${cardPosY})`);
     return (
-      <div id="card" onTouchStart={this.dragStart} onTouchMove={this.drag} onTouchEnd={this.dragEnd} style={{ transform: `translate(${cardPosX}px, ${cardPosY}px)` }}>
+      <div id="card" onTouchStart={this.dragStart} onTouchMove={this.drag} onTouchEnd={this.dragEnd} style={{ transform: `translate(${cardPosX}px, ${cardPosY}px)` }} ref={this.card}>
         {children}
       </div>
     );
