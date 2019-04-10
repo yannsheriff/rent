@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 import './Event.scss';
 import { updateStatus, updateBudget, updateOrigin } from '../../../redux/actions/profil';
@@ -14,6 +15,7 @@ class Event extends Component {
     updateOrigin: PropTypes.func,
     fail: PropTypes.func,
     next: PropTypes.func,
+    data: PropTypes.object,
   };
 
   static defaultProps = {
@@ -22,17 +24,19 @@ class Event extends Component {
     updateOrigin: () => {},
     fail: () => {},
     next: () => {},
+    data: {},
   };
 
   render() {
     const {
-      updateStatus, updateBudget, updateOrigin, fail, next,
+      updateStatus, updateBudget, updateOrigin, fail, next, data,
     } = this.props;
+    console.log(data);
     return (
       <div id="event">
         <p>Event</p>
-        <button type="button" onClick={next}>next</button>
-        <button type="button" onClick={fail}>fail</button>
+        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.event_narration) }} />
+        <button type="button" onClick={next}>{ data.event_choice }</button>
         <br />
         <button type="button" onClick={() => updateStatus('couple')}>couple</button>
         <button type="button" onClick={() => updateStatus('single')}>seul</button>

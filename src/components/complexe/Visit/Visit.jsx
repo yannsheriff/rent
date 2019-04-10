@@ -1,20 +1,21 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { connect } from 'react-redux';
 import './Visit.scss';
 
 
 class Visit extends Component {
   static propTypes = {
-    data: PropTypes.arrayOf(PropTypes.object),
+    data: PropTypes.object,
     fail: PropTypes.func,
     next: PropTypes.func,
     round: PropTypes.number,
   };
 
   static defaultProps = {
-    data: [],
+    data: {},
     fail: () => {},
     next: () => {},
     round: 0,
@@ -24,10 +25,15 @@ class Visit extends Component {
     const {
       fail, next, round, data,
     } = this.props;
-    console.log(data);
     return (
       <div id="visit">
         <p>Visit</p>
+        { data.visit_quality }
+        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.visit_description) }} />
+        <p>
+          La visite passe par
+          { data.visit_source }
+        </p>
         <button type="button" onClick={fail}>fail</button>
         { round > 0
         && <button type="button" onClick={next}>next</button> }
