@@ -18,6 +18,7 @@ class EthanServices {
     this.event = [];
     this.question = [];
     this.visit = [];
+    this.reject = [];
     this.init();
 
     if (!instance) {
@@ -27,12 +28,13 @@ class EthanServices {
   }
 
   init = () => {
-    const list = ['ad', 'adventure', 'event', 'question', 'visit'];
+    const list = ['ad', 'adventure', 'reject', 'event', 'question', 'visit'];
 
     for (let i = 0; i < list.length; i += 1) {
       this.client
         .getEntries({ content_type: list[i] })
         .then((datas) => {
+          console.log(datas);
           datas.items.forEach((item) => {
             this[list[i]].push(item.fields);
           });
@@ -111,9 +113,10 @@ class EthanServices {
     return payload;
   };
 
-  getReject = (profile) => {
-    const use = profile;
-    return {};
+  getReject = () => {
+    const rand = getRandomArbitrary(0, this.reject.length);
+    const payload = this.reject[rand];
+    return payload;
   };
 }
 
