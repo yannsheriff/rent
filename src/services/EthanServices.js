@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable class-methods-use-this */
 
@@ -68,7 +69,6 @@ class EthanServices {
   };
 
   checkIfProfileMatch = (card, profile, step) => {
-    console.log(card);
     if (
       (card[`${step}_status`] === 'all' || card[`${step}_status`] === profile.status.ref)
       && (card[`${step}_budget`] === 'all' || card[`${step}_budget`] === profile.budget.ref)

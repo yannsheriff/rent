@@ -6,14 +6,16 @@ import PropTypes from 'prop-types';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import Card from '../../basic/Card/Card';
 import './Question.scss';
-import { updateStatus, updateBudget, updateOrigin } from '../../../redux/actions/profil';
+import {
+  updateStatus, updateBudget, updateOrigin, updateScore,
+} from '../../../redux/actions/profil';
 
 class Question extends Component {
   static propTypes = {
     updateStatus: PropTypes.func,
     updateBudget: PropTypes.func,
     updateOrigin: PropTypes.func,
-    fail: PropTypes.func,
+    updateScore: PropTypes.func,
     next: PropTypes.func,
     data: PropTypes.object,
   };
@@ -22,7 +24,7 @@ class Question extends Component {
     updateStatus: () => {},
     updateBudget: () => {},
     updateOrigin: () => {},
-    fail: () => {},
+    updateScore: () => {},
     next: () => {},
     data: {},
   };
@@ -33,6 +35,25 @@ class Question extends Component {
       haveNextCard: false,
       nextCard: undefined,
     };
+  }
+
+  updateProfile = () => {
+    const {
+      data, updateScore, updateStatus, updateBudget, updateOrigin,
+    } = this.props;
+
+    if (data.question_new_points) {
+      updateScore(data.question_new_points);
+    }
+    if (data.question_new_status) {
+      updateStatus(data.question_new_status);
+    }
+    if (data.question_new_budget) {
+      updateBudget(data.question_new_budget);
+    }
+    if (data.question_new_origin) {
+      updateOrigin(data.question_new_origin);
+    }
   }
 
   returnNextCard = (choice) => {
@@ -47,22 +68,28 @@ class Question extends Component {
   }
 
   render() {
-    const { fail, next, data } = this.props;
+    const { data } = this.props;
     const { haveNextCard, nextCard } = this.state;
-
     return (
       <div id="question">
         <p>Question</p>
         <div className="question">
-          <Card swipLeft={() => this.returnNextCard(1)} swipRight={() => this.returnNextCard(1)}>
-            <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.question_narration) }} />
+          <Card
+            swipLeft={() => { this.returnNextCard(1); this.updateProfile(); }}
+            swipRight={() => this.returnNextCard(1)}
+          >
+            <div
+              dangerouslySetInnerHTML={
+                { __html: documentToHtmlString(data.question_narration) }
+              }
+            />
           </Card>
           {haveNextCard && nextCard}
         </div>
         {!haveNextCard && (
           <div className="choices">
-            <button type="button" onClick={fail}>{ data.question_accept }</button>
-            <button type="button" onClick={next}>{ data.question_refuse }</button>
+            <button type="button" onClick={() => { this.returnNextCard(1); this.updateProfile(); }}>{ data.question_accept }</button>
+            <button type="button" onClick={() => { this.returnNextCard(1); }}>{ data.question_refuse }</button>
           </div>
         )}
       </div>
@@ -74,8 +101,9 @@ class Question extends Component {
   ======================= REDUX CONNECTION =======================
   ================================================================ */
 
+
 const mapStateToProps = state => ({
-  status: state.status,
+  profil: state.profilReducer,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -87,6 +115,9 @@ const mapDispatchToProps = dispatch => ({
   },
   updateOrigin: (e) => {
     dispatch(updateOrigin(e));
+  },
+  updateScore: (e) => {
+    dispatch(updateScore(e));
   },
 });
 
