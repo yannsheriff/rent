@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-
+import Card from '../../basic/Card/Card';
 import './Event.scss';
 import {
   updateStatus, updateBudget, updateOrigin, updateScore,
@@ -54,8 +54,11 @@ class Event extends Component {
     return (
       <div id="event">
         <p>Event</p>
-        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.event_narration) }} />
-        <button type="button" onClick={next}>{ data.event_choice }</button>
+        <div className="event">
+          <Card swipLeft={next} swipRight={next}>
+            <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.event_narration) }} />
+          </Card>
+        </div>
       </div>
     );
   }
