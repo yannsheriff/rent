@@ -41,6 +41,7 @@ class Adventure extends Component {
   render() {
     const { fail, next, data } = this.props;
     const { haveNextCard, nextCard } = this.state;
+
     return (
       <div id="adventure">
         <p>Adventure</p>
@@ -55,8 +56,7 @@ class Adventure extends Component {
             <button type="button" onClick={fail}>{ data.adventure_second_choice }</button>
             <button type="button" onClick={next}>{ data.adventure_first_choice }</button>
           </div>
-        )
-        }
+        )}
       </div>
     );
   }

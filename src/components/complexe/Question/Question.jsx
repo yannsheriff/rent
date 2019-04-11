@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-
+import Card from '../../basic/Card/Card';
 import './Question.scss';
 import { updateStatus, updateBudget, updateOrigin } from '../../../redux/actions/profil';
 
@@ -27,48 +27,44 @@ class Question extends Component {
     data: {},
   };
 
-  state = {
-    accept: false,
-    refuse: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      haveNextCard: false,
+      nextCard: undefined,
+    };
+  }
+
+  returnNextCard = (choice) => {
+    const { data, next } = this.props;
+    const content = choice ? data.question_accept_narration : data.question_refuse_narration;
+    const card = (
+      <Card swipLeft={next} swipRight={next}>
+        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(content) }} />
+      </Card>
+    );
+    this.setState({ haveNextCard: true, nextCard: card });
   }
 
   render() {
-    const {
-      updateStatus, updateBudget, updateOrigin, fail, next, data,
-    } = this.props;
-    const {
-      accept, refuse,
-    } = this.state;
-    console.log(data);
+    const { fail, next, data } = this.props;
+    const { haveNextCard, nextCard } = this.state;
+
     return (
       <div id="question">
         <p>Question</p>
-        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.question_narration) }} />
-        <button type="button" onClick={() => { this.setState({ accept: true }); }}>{ data.question_accept }</button>
-        <button type="button" onClick={() => { this.setState({ refuse: true }); }}>{ data.question_refuse }</button>
-        <br />
-        {
-          accept
-          && <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.question_accept_narration) }} />
-        }
-        {
-          refuse
-          && <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.question_refuse_narration) }} />
-        }
-        { (accept || refuse)
-          && (
-          <>
-            <button type="button" onClick={next}>next</button>
-          </>
-          )
-        }
-
-        {/* <button type="button" onClick={() => updateStatus('couple')}>couple</button>
-        <button type="button" onClick={() => updateStatus('single')}>seul</button>
-        <button type="button" onClick={() => updateBudget('poor')}>pauvre</button>
-        <button type="button" onClick={() => updateBudget('expensive')}>riche</button>
-        <button type="button" onClick={() => updateOrigin('frfr')}>blanc</button>
-        <button type="button" onClick={() => updateOrigin('frjp')}>asiat</button> */}
+        <div className="question">
+          <Card swipLeft={() => this.returnNextCard(1)} swipRight={() => this.returnNextCard(1)}>
+            <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.question_narration) }} />
+          </Card>
+          {haveNextCard && nextCard}
+        </div>
+        {!haveNextCard && (
+          <div className="choices">
+            <button type="button" onClick={fail}>{ data.question_accept }</button>
+            <button type="button" onClick={next}>{ data.question_refuse }</button>
+          </div>
+        )}
       </div>
     );
   }
