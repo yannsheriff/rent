@@ -19,7 +19,7 @@ class Ads extends Component {
 
   constructor(props) {
     super(props);
-    this.visteLeft = props.data;
+    this.visitsLeft = props.data;
   }
 
   visitFlat = () => {
@@ -29,15 +29,41 @@ class Ads extends Component {
   }
 
   removeAd = (index) => {
-    this.visteLeft.splice(index, 1);
+    this.visitsLeft.splice(index, 1);
     this.render();
   }
 
   render() {
-    const annonces = this.visteLeft.map((element, id) => (
+    console.log(this.visitsLeft);
+    const annonces = this.visitsLeft.map((element, id) => (
       <Card key={id} swipLeft={() => this.removeAd(id)} swipRight={this.visitFlat}>
-        <h2>{element.title}</h2>
+        <h1>
+          {element.title}
+          {' '}
+          {element.ad_size}
+          {' '}
+          m²
+        </h1>
+        {element.ad_source === 'agency'
+        && <h3>Agence immobilière</h3>
+        }
+        {element.ad_source === 'individual'
+        && <h3>Particulier</h3>
+        }
+
         <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(element.ad_description) }} />
+        <p>
+          Dossier recommandé :
+          {' '}
+          {element.ad_rate}
+        </p>
+        <p>
+          Déjà
+          {' '}
+          {element.ad_views}
+          {' '}
+          personnes ont visité cet appartement
+        </p>
       </Card>
     ));
 

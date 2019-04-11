@@ -43,7 +43,10 @@ class Visit extends Component {
     if (round === 0 || rand === 0) {
       const card = (
         <Card swipLeft={fail} swipRight={fail}>
-          <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.reject.reject_narration) }} />
+          <div dangerouslySetInnerHTML={
+            { __html: documentToHtmlString(data.reject.reject_narration) }
+            }
+          />
         </Card>
       );
       this.setState({ haveNextCard: true, nextCard: card });
@@ -55,18 +58,16 @@ class Visit extends Component {
   render() {
     const { fail, data } = this.props;
     const { haveNextCard, nextCard } = this.state;
-
     return (
       <div id="visit">
         <p>visite</p>
         <div className="visit">
           <Card swipLeft={fail} swipRight={this.isFileRejected}>
-            { data.visit.visit_quality }
-            <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.visit.visit_description) }} />
-            <p>
-              La visite passe par
-              { data.visit.visit_source }
-            </p>
+            <h1>{ data.visit.visit_quality }</h1>
+            <div dangerouslySetInnerHTML={
+              { __html: documentToHtmlString(data.visit.visit_description) }
+              }
+            />
           </Card>
           {haveNextCard && nextCard}
         </div>
