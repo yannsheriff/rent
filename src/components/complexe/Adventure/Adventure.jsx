@@ -21,7 +21,6 @@ class Adventure extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       haveNextCard: false,
       nextCard: undefined,
@@ -30,13 +29,11 @@ class Adventure extends Component {
 
   returnNextCard = () => {
     const { data, fail } = this.props;
-
     const card = (
       <Card swipLeft={fail} swipRight={fail}>
         <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.adventure_back) }} />
       </Card>
     );
-
     this.setState({ haveNextCard: true, nextCard: card });
   }
 
@@ -47,7 +44,6 @@ class Adventure extends Component {
     return (
       <div id="adventure">
         <p>Adventure</p>
-
         <div className="adventure">
           <Card swipLeft={this.returnNextCard} swipRight={next}>
             <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.adventure_narration) }} />

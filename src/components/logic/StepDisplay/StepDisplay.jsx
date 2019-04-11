@@ -26,9 +26,9 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      actualStep: 'adventure',
+      actualStep: 'ads',
       round: 0,
-      data: this.getCardData('adventure'),
+      data: this.getCardData('ads'),
     };
   }
 

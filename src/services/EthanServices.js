@@ -84,9 +84,15 @@ class EthanServices {
     return payload;
   };
 
-  getVisit = (profile) => {
-    const rand = getRandomArbitrary(0, this.visit.length);
-    const payload = this.visit[rand];
+  getVisit = () => {
+    const visitRand = getRandomArbitrary(0, this.visit.length);
+    const rejectRand = getRandomArbitrary(0, this.reject.length);
+    const visit = this.visit[visitRand];
+    const reject = this.reject[rejectRand];
+    const payload = {
+      visit,
+      reject,
+    };
     // supprimer visit[rand] de this.visit
     // trier en fonction de agence ou particulier
     return payload;
@@ -114,8 +120,7 @@ class EthanServices {
   };
 
   getReject = () => {
-    const rand = getRandomArbitrary(0, this.reject.length);
-    const payload = this.reject[rand];
+    const payload = 'depreciated';
     return payload;
   };
 }
