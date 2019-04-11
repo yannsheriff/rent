@@ -136,7 +136,6 @@ class Header extends Component {
     return (
 
       <div id="steps">
-        <p>{round}</p>
         {component}
       </div>
     );

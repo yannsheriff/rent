@@ -35,7 +35,7 @@ class Ads extends Component {
 
   render() {
     const annonces = this.visteLeft.map((element, id) => (
-      <Card data={element} key={id} swipLeft={() => this.removeAd(id)} swipRight={this.visitFlat}>
+      <Card key={id} swipLeft={() => this.removeAd(id)} swipRight={this.visitFlat}>
         <h2>{element.title}</h2>
         <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(element.ad_description) }} />
       </Card>
