@@ -34,8 +34,8 @@ class Event extends Component {
       data, updateScore, updateStatus, updateBudget, updateOrigin,
     } = this.props;
 
-    if (data.pointsAjouterRetirer) {
-      updateScore(data.pointsAjouterRetirer);
+    if (data.event_new_points) {
+      updateScore(data.event_new_points);
     }
     if (data.event_new_status) {
       updateStatus(data.event_new_status);
