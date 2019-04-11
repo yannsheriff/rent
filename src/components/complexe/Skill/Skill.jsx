@@ -5,7 +5,6 @@ import './Skill.scss';
 
 class Skill extends Component {
   render() {
-    console.log(this.props.data);
     return (
       <div id="skill">
         <p>Skill</p>

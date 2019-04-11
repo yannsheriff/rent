@@ -1,12 +1,14 @@
 /* eslint-disable import/prefer-default-export */
 // import { ACTION } from '../actions/';
 
-import { UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN } from '../actions/profil';
+import {
+  UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN, UPDATE_SCORE,
+} from '../actions/profil';
 
 const defaultState = {
   status: { title: 'En colocation', value: 1, ref: 'collocation' },
   origin: { title: 'Franco-Français', value: 3, ref: 'frfr' },
-  budget: { title: '€', value: 1, ref: 'poor' },
+  budget: { title: '€€', value: 2, ref: 'regular' },
   skills: [{ title: 'tchatche', id: 0 }, { title: 'psycho', id: 0 }],
   score: 0,
   premium: false,
@@ -83,6 +85,14 @@ export function profilReducer(state = defaultState, action) {
       return {
         ...state,
         origin: newOrigin,
+      };
+    }
+
+    case UPDATE_SCORE: {
+      const newScore = state.score + action.payload;
+      return {
+        ...state,
+        score: newScore,
       };
     }
 

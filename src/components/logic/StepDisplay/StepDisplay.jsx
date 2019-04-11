@@ -12,7 +12,6 @@ import Event from '../../complexe/Event/Event';
 import Question from '../../complexe/Question/Question';
 import Skill from '../../complexe/Skill/Skill';
 import Visit from '../../complexe/Visit/Visit';
-import Reject from '../../complexe/Reject/Reject';
 
 class Header extends Component {
   static propTypes = {
@@ -124,7 +123,6 @@ class Header extends Component {
 
   render() {
     const component = this.returnActualComponent();
-    const { round } = this.state;
 
     return (
 

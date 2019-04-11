@@ -1,7 +1,7 @@
-export const ACTION = 'ACTION';
 export const UPDATE_STATUS = 'UPDATE_STATUS';
 export const UPDATE_BUDGET = 'UPDATE_BUDGET';
 export const UPDATE_ORIGIN = 'UPDATE_ORIGIN';
+export const UPDATE_SCORE = 'UPDATE_SCORE';
 
 export function updateStatus(payload) {
   return {
@@ -20,6 +20,13 @@ export function updateBudget(payload) {
 export function updateOrigin(payload) {
   return {
     type: UPDATE_ORIGIN,
+    payload,
+  };
+}
+
+export function updateScore(payload) {
+  return {
+    type: UPDATE_SCORE,
     payload,
   };
 }

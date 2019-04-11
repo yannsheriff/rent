@@ -6,14 +6,16 @@ import PropTypes from 'prop-types';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import Card from '../../basic/Card/Card';
 import './Event.scss';
-import { updateStatus, updateBudget, updateOrigin } from '../../../redux/actions/profil';
+import {
+  updateStatus, updateBudget, updateOrigin, updateScore,
+} from '../../../redux/actions/profil';
 
 class Event extends Component {
   static propTypes = {
     updateStatus: PropTypes.func,
     updateBudget: PropTypes.func,
     updateOrigin: PropTypes.func,
-    fail: PropTypes.func,
+    updateScore: PropTypes.func,
     next: PropTypes.func,
     data: PropTypes.object,
   };
@@ -22,15 +24,33 @@ class Event extends Component {
     updateStatus: () => {},
     updateBudget: () => {},
     updateOrigin: () => {},
-    fail: () => {},
+    updateScore: () => {},
     next: () => {},
     data: {},
   };
 
-  render() {
+  componentDidMount() {
     const {
-      updateStatus, updateBudget, updateOrigin, next, data,
+      data, updateScore, updateStatus, updateBudget, updateOrigin,
     } = this.props;
+
+    if (data.event_new_points) {
+      updateScore(data.event_new_points);
+    }
+    if (data.event_new_status) {
+      updateStatus(data.event_new_status);
+    }
+    if (data.event_new_budget) {
+      updateBudget(data.event_new_budget);
+    }
+    if (data.event_new_origin) {
+      updateOrigin(data.event_new_origin);
+    }
+  }
+
+  render() {
+    const { next, data } = this.props;
+
     return (
       <div id="event">
         <p>Event</p>
@@ -49,7 +69,7 @@ class Event extends Component {
   ================================================================ */
 
 const mapStateToProps = state => ({
-  status: state.status,
+  profil: state.profilReducer,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -61,6 +81,9 @@ const mapDispatchToProps = dispatch => ({
   },
   updateOrigin: (e) => {
     dispatch(updateOrigin(e));
+  },
+  updateScore: (e) => {
+    dispatch(updateScore(e));
   },
 });
 

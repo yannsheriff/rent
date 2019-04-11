@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable class-methods-use-this */
 
@@ -34,7 +35,6 @@ class EthanServices {
       this.client
         .getEntries({ content_type: list[i] })
         .then((datas) => {
-          console.log(datas);
           datas.items.forEach((item) => {
             this[list[i]].push(item.fields);
           });
