@@ -26,15 +26,14 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      actualStep: 'event',
+      actualStep: 'ads',
       round: 0,
-      data: this.getCardData('event'),
+      data: this.getCardData('ads'),
     };
   }
 
   //  ---- STEPS ----
   // - ads
-  // - reject
   // - visit
   // - adventure
   // - skill
@@ -55,16 +54,13 @@ class Header extends Component {
         return next ? 'visit' : 'visit';
 
       case 'visit':
-        return next ? 'adventure' : 'reject';
+        return next ? 'adventure' : 'ads';
 
       case 'adventure':
         return next ? 'skill' : 'question';
 
       case 'question':
         return next ? 'event' : 'event';
-
-      case 'reject':
-        return next ? 'ads' : 'ads';
 
       case 'event':
         return next ? 'ads' : 'ads';
@@ -96,9 +92,6 @@ class Header extends Component {
 
       case 'skill':
         return <Skill {...childProps} />;
-
-      case 'reject':
-        return <Reject {...childProps} />;
 
       case 'question':
         return <Question {...childProps} />;
