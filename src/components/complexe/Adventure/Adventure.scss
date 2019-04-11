@@ -1,3 +1,14 @@
-#header {
+#adventure {
+    position: relative;
+    .adventure {
+        position: relative;
+        width: 300px;
+        height: 400px;
+    }
 
+    .choices {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
