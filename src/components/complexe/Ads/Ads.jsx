@@ -19,10 +19,11 @@ class Ads extends Component {
 
   constructor(props) {
     super(props);
-    this.visteLeft = props.data;
+    this.visteLeft = [...props.data];
+    this.flatRefs = [];
   }
 
-  visitFlat = () => {
+  visitFlat = (id) => {
     const { next } = this.props;
     NounouService.newAd({});
     next();
@@ -30,12 +31,24 @@ class Ads extends Component {
 
   removeAd = (index) => {
     this.visteLeft.splice(index, 1);
+
+    if (!this.visteLeft.length) {
+      this.resetCards();
+      this.visteLeft = [...this.props.data];
+    }
     this.render();
   }
 
+  resetCards = () => {
+    this.flatRefs.forEach((element, index) => {
+      setTimeout(() => { element.resetPosition(); }, index * 200);
+    });
+  }
+
+
   render() {
     const annonces = this.visteLeft.map((element, id) => (
-      <Card key={id} swipLeft={() => this.removeAd(id)} swipRight={this.visitFlat}>
+      <Card key={id} swipLeft={() => this.removeAd(id)} swipRight={() => this.visitFlat(id)} onRef={(ref) => { this.flatRefs[id] = ref; }}>
         <h2>{element.title}</h2>
         <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(element.ad_description) }} />
       </Card>

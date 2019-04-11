@@ -17,7 +17,11 @@ class Card extends Component {
   }
 
   componentDidMount() {
-    this.myRef = React.createRef();
+    this.props.onRef(this);
+  }
+
+  componentWillUnmount() {
+    this.props.onRef(undefined);
   }
 
   dragStart = (e) => {
@@ -57,6 +61,10 @@ class Card extends Component {
     } else {
       this.setState({ cardPosX: 0, cardPosY: 0 });
     }
+  }
+
+  resetPosition = () => {
+    this.setState({ cardPosX: 0, cardPosY: 0 });
   }
 
 
