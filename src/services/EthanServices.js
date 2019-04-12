@@ -124,6 +124,10 @@ class EthanServices {
     const payload = 'depreciated';
     return payload;
   };
+
+  removeData(field, id) {
+    this[field] = this[field].filter(el => el.id !== id);
+  }
 }
 
 export const EthanService = new EthanServices();

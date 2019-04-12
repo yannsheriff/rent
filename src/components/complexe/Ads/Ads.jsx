@@ -23,9 +23,9 @@ class Ads extends Component {
     this.flatRefs = [];
   }
 
-  visitFlat = (id) => {
+  visitFlat = (flat) => {
     const { next } = this.props;
-    NounouService.newAd({});
+    NounouService.newAd(flat);
     next();
   }
 
@@ -49,7 +49,7 @@ class Ads extends Component {
   render() {
     console.log(this.visitsLeft);
     const annonces = this.visitsLeft.map((element, id) => (
-      <Card key={id} swipLeft={() => this.removeAd(id)} swipRight={() => this.visitFlat(id)} onRef={(ref) => { this.flatRefs[id] = ref; }}>
+      <Card key={id} swipLeft={() => this.removeAd(id)} swipRight={() => this.visitFlat(element)} onRef={(ref) => { this.flatRefs[id] = ref; }}>
         <h1>
           {element.title}
           {' '}
