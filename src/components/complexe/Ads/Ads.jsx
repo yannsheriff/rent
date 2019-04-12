@@ -47,7 +47,6 @@ class Ads extends Component {
 
 
   render() {
-    console.log(this.visitsLeft);
     const annonces = this.visitsLeft.map((element, id) => (
       <Card key={id} swipLeft={() => this.removeAd(id)} swipRight={() => this.visitFlat(element)} onRef={(ref) => { this.flatRefs[id] = ref; }}>
         <h1>
@@ -83,7 +82,12 @@ class Ads extends Component {
     return (
       <div id="ads">
         <p>Ads</p>
-        <div className="ads">{ annonces }</div>
+        <div className="ads">
+          { annonces }
+          <Card>
+            <h1>Annonces</h1>
+          </Card>
+        </div>
       </div>
     );
   }
