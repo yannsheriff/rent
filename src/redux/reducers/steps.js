@@ -26,7 +26,7 @@ export function stepReducer(state = defaultState, action) {
       return {
         ...state,
         gameIsOver: true,
-        victory: action.payload,
+        end: action.payload,
       };
 
       // case ACTION:
