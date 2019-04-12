@@ -71,7 +71,7 @@ class Visit extends Component {
           </Card>
           {haveNextCard && nextCard}
           <Card>
-            <h1>Annonces</h1>
+            <h1>Viste</h1>
           </Card>
         </div>
       </div>
