@@ -36,7 +36,8 @@ class EthanServices {
         .getEntries({ content_type: list[i] })
         .then((datas) => {
           datas.items.forEach((item) => {
-            this[list[i]].push(item.fields);
+            const data = { id: item.sys.id, ...item.fields };
+            this[list[i]].push(data);
           });
         })
         .catch(console.error);
