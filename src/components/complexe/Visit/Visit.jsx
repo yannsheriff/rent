@@ -6,11 +6,9 @@ import { connect } from 'react-redux';
 import Card from '../../basic/Card/Card';
 import './Visit.scss';
 
-
 function getRandomArbitrary(min, max) {
   return Math.round(Math.random() * ((max - 1) - min) + min);
 }
-
 
 class Visit extends Component {
   static propTypes = {

@@ -5,6 +5,7 @@ const defaultState = {
   isSetUp: false,
   step: 'ads',
   gameIsOver: false,
+  victory: false,
 };
 
 export function stepReducer(state = defaultState, action) {
@@ -24,7 +25,8 @@ export function stepReducer(state = defaultState, action) {
     case END_GAME:
       return {
         ...state,
-        gameIsOver: action.payload,
+        gameIsOver: true,
+        victory: action.payload,
       };
 
       // case ACTION:

@@ -1,11 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { endGame } from '../../../redux/actions/steps';
 import './Skill.scss';
 
 
 class Skill extends Component {
+  static propTypes = {
+    data: PropTypes.object,
+    // winGame: PropTypes.func,
+  };
+
+  static defaultProps = {
+    // fail: () => {},
+  };
+
   constructor(props) {
     super(props);
 
@@ -17,7 +27,7 @@ class Skill extends Component {
 
   chooseSkill = (skill) => {
     const { data, winGame } = this.props;
-    if (skill !== data.adventure_skill) {
+    if (skill === data.adventure_skill) {
       this.setState({ endNaration: data.adventure_victory, didWin: true });
     } else {
       this.setState({ endNaration: data.adventure_defeat });
@@ -25,19 +35,29 @@ class Skill extends Component {
   }
 
   render() {
-    const { profil, endGame } = this.props;
+    const { profil, endGame, data } = this.props;
     const { endNaration, didWin } = this.state;
-    const skills = profil.skills.map(element => (<button onClick={() => this.chooseSkill(element.title)}>{element.title}</button>));
-
+    const skills = profil.skills.map(element => (
+      <button type="button" onClick={() => this.chooseSkill(element.title)}>
+        {element.title}
+      </button>
+    ));
     return (
       <div id="skill">
         <p>Quel skill voulez vous choisir pour Faire cette action ? </p>
+        <p>
+          (Le bon skill à avoir est
+          {' '}
+          { data.adventure_skill }
+          )
+        </p>
         {!endNaration && skills}
         {endNaration
          && (
          <div>
            <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(endNaration) }} />
-           <button onClick={() => { endGame(didWin ? 'win' : 'loose'); }}>next </button>
+           <button type="button" onClick={() => { endGame(didWin); }}>next </button>
+           {/* <button onClick={() => { endGame(didWin ? 'win' : 'loose'); }}>next </button> */}
          </div>
          )
         }
@@ -55,8 +75,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  endGame: (reason) => {
-    dispatch(endGame(reason));
+  endGame: (win) => {
+    dispatch(endGame(win));
   },
 });
 

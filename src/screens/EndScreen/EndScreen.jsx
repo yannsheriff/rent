@@ -1,35 +1,45 @@
 import React, { Component } from 'react';
-import logo from '../../logo.svg';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { NounouService } from '../../services/NounouService';
 import './EndScreen.scss';
 
 
 class App extends Component {
+  static propTypes = {
+    step: PropTypes.object,
+  };
+
+  static defaultProps = {
+    step: false,
+  };
+
   componentDidMount() {
     const recap = NounouService.getRecap();
     console.log('TCL: App -> componentDidMount -> recap', recap);
   }
 
   render() {
+    const { step } = this.props;
+    console.log(this.recap);
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            End Screen
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>
+          {step.victory ? 'Victoire !' : 'Défaite :(' }
+        </h1>
       </div>
     );
   }
 }
 
-export default App;
+/* ===============================================================
+  ======================= REDUX CONNECTION =======================
+  ================================================================ */
+
+const mapStateToProps = state => ({
+  step: state.stepReducer,
+});
+
+const componentContainer = connect(mapStateToProps)(App);
+
+export default componentContainer;

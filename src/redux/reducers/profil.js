@@ -9,7 +9,7 @@ const defaultState = {
   status: { title: 'En colocation', value: 1, ref: 'collocation' },
   origin: { title: 'Franco-Français', value: 3, ref: 'frfr' },
   budget: { title: '€€', value: 2, ref: 'regular' },
-  skills: [{ title: 'tchatche', id: 0 }, { title: 'psychopahte', id: 1 }],
+  skills: [{ title: 'tchatche', id: 0 }, { title: 'psychopathe', id: 1 }],
   score: 0,
   premium: false,
 };
