@@ -68,6 +68,9 @@ class Visit extends Component {
             />
           </Card>
           {haveNextCard && nextCard}
+          <Card>
+            <h1>Visite</h1>
+          </Card>
         </div>
       </div>
     );

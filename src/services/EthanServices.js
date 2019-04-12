@@ -36,7 +36,8 @@ class EthanServices {
         .getEntries({ content_type: list[i] })
         .then((datas) => {
           datas.items.forEach((item) => {
-            this[list[i]].push(item.fields);
+            const data = { id: item.sys.id, ...item.fields };
+            this[list[i]].push(data);
           });
         })
         .catch(console.error);
@@ -123,6 +124,10 @@ class EthanServices {
     const payload = 'depreciated';
     return payload;
   };
+
+  removeData(field, id) {
+    this[field] = this[field].filter(el => el.id !== id);
+  }
 }
 
 export const EthanService = new EthanServices();

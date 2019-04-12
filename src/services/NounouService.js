@@ -1,3 +1,5 @@
+import { EthanService } from './EthanServices';
+
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable class-methods-use-this */
 let instance = null;
@@ -7,6 +9,7 @@ class NounouServices {
     this.totalSeenAds = 0;
     this.visits = [];
     this.adventure = [];
+    this.visitedFlatIDs = [];
     this.actualVisit = 'Avec une tache de sang';
     this.acutalFlat = {};
 
@@ -18,7 +21,13 @@ class NounouServices {
 
   newAd(ad) {
     this.totalSeenAds += 1;
+    this.visitedFlatIDs.push(ad.id);
+    EthanService.removeData('ad', ad.id);
     this.actualAd = ad;
+  }
+
+  getVisitedFlat() {
+    return this.visitedFlatIDs;
   }
 
   getRecap() {
