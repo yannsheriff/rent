@@ -19,7 +19,7 @@ class NounouServices {
     return instance;
   }
 
-  newAd(ad) {
+  saveAd(ad) {
     this.totalSeenAds += 1;
     this.visitedFlatIDs.push(ad.id);
     EthanService.removeData('ad', ad.id);

@@ -25,13 +25,12 @@ class Ads extends Component {
 
   visitFlat = (flat) => {
     const { next } = this.props;
-    NounouService.newAd(flat);
+    NounouService.saveAd(flat);
     next();
   }
 
   removeAd = (index) => {
     this.visitsLeft.splice(index, 1);
-
     if (!this.visitsLeft.length) {
       this.resetCards();
       this.visitsLeft = [...this.props.data];
@@ -48,7 +47,12 @@ class Ads extends Component {
 
   render() {
     const annonces = this.visitsLeft.map((element, id) => (
-      <Card key={id} swipLeft={() => this.removeAd(id)} swipRight={() => this.visitFlat(element)} onRef={(ref) => { this.flatRefs[id] = ref; }}>
+      <Card
+        key={id}
+        swipLeft={() => this.removeAd(id)}
+        swipRight={() => this.visitFlat(element)}
+        onRef={(ref) => { this.flatRefs[id] = ref; }}
+      >
         <h1>
           {element.title}
           {' '}
@@ -100,7 +104,6 @@ class Ads extends Component {
 const mapStateToProps = state => ({
   mainState: state.mainReducer,
 });
-
 
 const componentContainer = connect(
   mapStateToProps,

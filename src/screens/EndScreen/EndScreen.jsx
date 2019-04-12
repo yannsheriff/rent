@@ -27,6 +27,13 @@ class App extends Component {
         <h1>
           {step.victory ? 'Victoire !' : 'Défaite :(' }
         </h1>
+        <div>
+          <p><u>Recap :</u></p>
+          POUR VIVRE DANS UN APPARTEMENT :
+          <ul>
+            <li />
+          </ul>
+        </div>
       </div>
     );
   }
