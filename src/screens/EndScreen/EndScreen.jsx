@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>
-          {step.victory ? 'Victoire !' : 'Défaite :(' }
+          {step.end === 'win' ? 'Victoire !' : 'Défaite :(' }
         </h1>
       </div>
     );

@@ -9,7 +9,7 @@ import './Skill.scss';
 class Skill extends Component {
   static propTypes = {
     data: PropTypes.object,
-    // winGame: PropTypes.func,
+
   };
 
   static defaultProps = {
@@ -26,7 +26,7 @@ class Skill extends Component {
   }
 
   chooseSkill = (skill) => {
-    const { data, winGame } = this.props;
+    const { data } = this.props;
     if (skill === data.adventure_skill) {
       this.setState({ endNaration: data.adventure_victory, didWin: true });
     } else {
@@ -56,8 +56,7 @@ class Skill extends Component {
          && (
          <div>
            <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(endNaration) }} />
-           <button type="button" onClick={() => { endGame(didWin); }}>next </button>
-           {/* <button onClick={() => { endGame(didWin ? 'win' : 'loose'); }}>next </button> */}
+           <button onClick={() => { endGame(didWin ? 'win' : 'loose'); }}>next </button>
          </div>
          )
         }
