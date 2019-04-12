@@ -16,8 +16,8 @@ class Skill extends Component {
   }
 
   chooseSkill = (skill) => {
-    const { data, winGame } = this.props;
-    if (skill !== data.adventure_skill) {
+    const { data } = this.props;
+    if (skill === data.adventure_skill) {
       this.setState({ endNaration: data.adventure_victory, didWin: true });
     } else {
       this.setState({ endNaration: data.adventure_defeat });
