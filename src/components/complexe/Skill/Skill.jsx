@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import { winGame, endGame } from '../../../redux/actions/steps';
+import { endGame } from '../../../redux/actions/steps';
 import './Skill.scss';
 
 
@@ -55,9 +55,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  winGame: () => {
-    dispatch(winGame());
-  },
   endGame: (reason) => {
     dispatch(endGame(reason));
   },
