@@ -60,7 +60,12 @@ class Visit extends Component {
       <div id="visit">
         <p>visite</p>
         <div className="visit">
-          <Card swipLeft={fail} swipRight={this.isFileRejected}>
+          <Card
+            swipLeft={fail}
+            swipRight={this.isFileRejected}
+            leftChoice="retourner aux annonces"
+            rightChoice="déposer un dossier"
+          >
             <h1>{ data.visit.visit_quality }</h1>
             <div dangerouslySetInnerHTML={
               { __html: documentToHtmlString(data.visit.visit_description) }
