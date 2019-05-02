@@ -8,11 +8,10 @@ class Intro extends Component {
   render() {
     const { next } = this.props;
     return (
-      <div id="intro">
-        <p>Intro</p>
-        <a onClick={() => next()}>
-            next
-        </a>
+      <div id="intro" onClick={() => next()}>
+        <h1>Rent</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Augue eget arcu dictum varius. Purus in massa tempor nec feugiat nisl pretium fusce. Elit duis tristique sollicitudin nibh sit amet commodo.</p>
+        <p className="info">Toucher pour continuer</p>
       </div>
     );
   }

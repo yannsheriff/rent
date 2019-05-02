@@ -20,6 +20,7 @@ class Setup extends Component {
   goToNextStep = () => {
     const { step } = this.state;
     const { didSetUp } = this.props;
+
     switch (step) {
       case 'intro':
         this.setState({ step: 'profil' });
