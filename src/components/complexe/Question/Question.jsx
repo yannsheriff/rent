@@ -76,7 +76,9 @@ class Question extends Component {
         <div className="question">
           <Card
             swipLeft={() => { this.returnNextCard(1); this.updateProfile(); }}
-            swipRight={() => this.returnNextCard(1)}
+            swipRight={() => this.returnNextCard()}
+            leftChoice={data.question_accept}
+            rightChoice={data.question_refuse}
           >
             <div
               dangerouslySetInnerHTML={
@@ -86,12 +88,6 @@ class Question extends Component {
           </Card>
           {haveNextCard && nextCard}
         </div>
-        {!haveNextCard && (
-          <div className="choices">
-            <button type="button" onClick={() => { this.returnNextCard(1); this.updateProfile(); }}>{ data.question_accept }</button>
-            <button type="button" onClick={() => { this.returnNextCard(1); }}>{ data.question_refuse }</button>
-          </div>
-        )}
       </div>
     );
   }
