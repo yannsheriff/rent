@@ -53,7 +53,6 @@ class Event extends Component {
 
     return (
       <div id="event">
-        <p>Event</p>
         <div className="event">
           <Card swipLeft={next} swipRight={next}>
             <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.event_narration) }} />

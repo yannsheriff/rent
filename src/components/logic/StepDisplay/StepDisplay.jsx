@@ -28,6 +28,7 @@ class Header extends Component {
       actualStep: 'ads',
       round: 0,
       data: this.getCardData('ads'),
+      bgColor: '#90d5d0',
     };
   }
 
@@ -63,6 +64,31 @@ class Header extends Component {
 
       case 'event':
         return next ? 'ads' : 'ads';
+
+      default:
+        return 'ads';
+    }
+  }
+
+  returnBackgroundColor = (step) => {
+    switch (step) {
+      case 'ads':
+        return '#90d5d0';
+
+      case 'visit':
+        return '#93da8a';
+
+      case 'adventure':
+        return '#ff9465';
+
+      case 'question':
+        return '#26a988';
+
+      case 'skill':
+        return '#ffac55';
+
+      case 'event':
+        return '#ffafaf';
 
       default:
         return 'ads';
@@ -107,25 +133,31 @@ class Header extends Component {
     const { round } = this.state;
     const nextStep = this.returnNextStep(true);
     const cardData = this.getCardData(nextStep);
+    const bgColor = this.returnBackgroundColor(nextStep);
     const addRound = nextStep === 'ads' ? 1 : 0;
 
-    this.setState({ actualStep: nextStep, round: round + addRound, data: cardData });
+    this.setState({
+      actualStep: nextStep, round: round + addRound, data: cardData, bgColor,
+    });
   }
 
   failStep = () => {
     const { round } = this.state;
     const nextStep = this.returnNextStep(false);
     const cardData = this.getCardData(nextStep);
+    const bgColor = this.returnBackgroundColor(nextStep);
     const addRound = nextStep === 'ads' ? 1 : 0;
 
-    this.setState({ actualStep: nextStep, round: round + addRound, data: cardData });
+    this.setState({
+      actualStep: nextStep, round: round + addRound, data: cardData, bgColor,
+    });
   }
 
   render() {
     const component = this.returnActualComponent();
     return (
 
-      <div id="steps">
+      <div id="steps" style={{ backgroundColor: this.state.bgColor }}>
         {component}
       </div>
     );

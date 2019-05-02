@@ -44,7 +44,6 @@ class Adventure extends Component {
 
     return (
       <div id="adventure">
-        <p>Adventure</p>
         <div className="adventure">
           <Card
             swipLeft={this.returnNextCard}

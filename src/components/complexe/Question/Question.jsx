@@ -72,7 +72,6 @@ class Question extends Component {
     const { haveNextCard, nextCard } = this.state;
     return (
       <div id="question">
-        <p>Question</p>
         <div className="question">
           <Card
             swipLeft={() => { this.returnNextCard(1); this.updateProfile(); }}

@@ -87,7 +87,6 @@ class Ads extends Component {
 
     return (
       <div id="ads">
-        <p>Ads</p>
         <div className="ads">
           { annonces }
           <Card>

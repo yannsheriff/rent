@@ -58,7 +58,6 @@ class Visit extends Component {
     const { haveNextCard, nextCard } = this.state;
     return (
       <div id="visit">
-        <p>visite</p>
         <div className="visit">
           <Card
             swipLeft={fail}
