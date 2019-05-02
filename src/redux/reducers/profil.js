@@ -2,7 +2,7 @@
 // import { ACTION } from '../actions/';
 
 import {
-  UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN, UPDATE_SCORE,
+  UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN, UPDATE_SCORE, UPDATE_SKILLS,
 } from '../actions/profil';
 
 const defaultState = {
@@ -95,6 +95,14 @@ export function profilReducer(state = defaultState, action) {
         score: newScore,
       };
     }
+
+    case UPDATE_SKILLS: {
+      return {
+        ...state,
+        skills: action.payload,
+      };
+    }
+
 
     // case ACTION:
 

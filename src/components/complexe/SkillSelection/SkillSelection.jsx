@@ -2,17 +2,75 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { updateSkills } from '../../../redux/actions/profil';
+import skills from '../../../contents/skills';
 import './SkillSelection.scss';
 
 class SkillSelection extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selected: [],
+    };
+  }
+
+  selectSkill = (skill) => {
+    const { next, updateSkill } = this.props;
+    this.setState(state => ({
+      selected: state.selected.concat(skill),
+    }), () => {
+      const { selected } = this.state;
+      if (selected.length > 1) {
+        updateSkill(selected);
+        next();
+      }
+    });
+  }
+
+  unselectSkill = (skill) => {
+    const { selected } = this.state;
+    const newArray = selected.filter(el => el.id !== skill.id);
+    this.setState({
+      selected: newArray,
+    });
+  }
+
+  returnSelectedSkill = skill => (
+    <div className="skill selected" onClick={() => this.unselectSkill(skill)}>
+      <img src={skill.img} alt="" />
+      <h3>{skill.title}</h3>
+    </div>
+  )
+
+  returnUnselectedSkill = skill => (
+    <div className="skill" onClick={() => this.selectSkill(skill)}>
+      <img src={skill.img} alt="" />
+      <h3>{skill.title}</h3>
+    </div>
+  )
+
+  isSkillSelected = (skill) => {
+    const { selected } = this.state;
+    if (selected.length) {
+      const isSelected = selected.filter(el => el.id === skill.id);
+      return !!isSelected.length;
+    }
+    return false;
+  }
+
+
   render() {
-    const { next } = this.props;
+    const skill = skills.map((skill) => {
+      const isSelected = this.isSkillSelected(skill);
+      return isSelected ? this.returnSelectedSkill(skill) : this.returnUnselectedSkill(skill);
+    });
     return (
       <div id="skillSelection">
         <p>skillSelection </p>
-        <a onClick={() => next()}>
-            next
-        </a>
+        <div className="skills">
+          {skill}
+        </div>
       </div>
     );
   }
@@ -24,8 +82,15 @@ class SkillSelection extends Component {
 
 const mapStateToProps = state => ({ mainState: state.mainReducer });
 
+const mapDispatchToProps = dispatch => ({
+  updateSkill: (e) => {
+    dispatch(updateSkills(e));
+  },
+});
+
 const componentContainer = connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(SkillSelection);
 
 export default componentContainer;

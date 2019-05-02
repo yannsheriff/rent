@@ -4,6 +4,8 @@ import logo from '../../logo.svg';
 import { gameIsSetUp } from '../../redux/actions/steps';
 import ProfilGeneration from '../../components/complexe/ProfilGeneration/ProfilGeneration';
 import SkillSelection from '../../components/complexe/SkillSelection/SkillSelection';
+import ProfileRecap from '../../components/complexe/ProfileRecap/ProfileRecap';
+import Intro from '../../components/complexe/Intro/Intro';
 import './Setup.scss';
 
 class Setup extends Component {
@@ -11,7 +13,7 @@ class Setup extends Component {
     super(props);
 
     this.state = {
-      step: 'profil',
+      step: 'intro',
     };
   }
 
@@ -19,10 +21,16 @@ class Setup extends Component {
     const { step } = this.state;
     const { didSetUp } = this.props;
     switch (step) {
+      case 'intro':
+        this.setState({ step: 'profil' });
+        break;
       case 'profil':
         this.setState({ step: 'skill' });
         break;
       case 'skill':
+        this.setState({ step: 'recap' });
+        break;
+      case 'recap':
         didSetUp();
         break;
 
@@ -35,11 +43,17 @@ class Setup extends Component {
     const { step } = this.state;
     return (
       <div className="App">
+        {step === 'intro'
+          && <Intro next={this.goToNextStep} />
+        }
         {step === 'profil'
           && <ProfilGeneration next={this.goToNextStep} />
         }
         {step === 'skill'
           && <SkillSelection next={this.goToNextStep} />
+        }
+        {step === 'recap'
+          && <ProfileRecap next={this.goToNextStep} />
         }
       </div>
     );
