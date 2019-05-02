@@ -48,9 +48,9 @@ class Card extends Component {
     const translateX = e.touches[0].clientX - this.firstTouch.x;
     const translateY = e.touches[0].clientY - this.firstTouch.y;
 
-    if (translateX > 30 && e.touches[0].clientX - this.lastTouch > 0) {
+    if (translateX > 20) {
       this.isValidated = 'right';
-    } else if (translateX < -30 && this.lastTouch - e.touches[0].clientX > 0) {
+    } else if (translateX < -20) {
       this.isValidated = 'left';
     } else {
       this.isValidated = false;
@@ -84,9 +84,10 @@ class Card extends Component {
 
   render() {
     const {
-      data, children, swipRight, swipLeft,
+      data, children, leftChoice, rightChoice,
     } = this.props;
     const { cardPosX, cardPosY } = this.state;
+
     return (
       <div
         id="card"
@@ -97,15 +98,14 @@ class Card extends Component {
         ref={this.card}
       >
         {children}
-        <div>
-          <button
-            type="button"
-            onClick={() => swipLeft()}
-          >
-            NEXT
-          </button>
-          <button type="button" onClick={() => swipRight()}>VISITER</button>
-        </div>
+        {leftChoice && rightChoice
+        && (
+          <div className="bottom">
+            <div className={`left ${this.isValidated === 'left' ? 'selected' : ''}`}>{leftChoice}</div>
+            <div className={`right ${this.isValidated === 'right' ? 'selected' : ''}`}>{rightChoice }</div>
+          </div>
+        )
+        }
       </div>
     );
   }

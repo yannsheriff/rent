@@ -52,6 +52,8 @@ class Ads extends Component {
         swipLeft={() => this.removeAd(id)}
         swipRight={() => this.visitFlat(element)}
         onRef={(ref) => { this.flatRefs[id] = ref; }}
+        leftChoice="passer"
+        rightChoice="visiter"
       >
         <h1>
           {element.title}

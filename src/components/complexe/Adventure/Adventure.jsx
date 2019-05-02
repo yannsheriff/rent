@@ -39,24 +39,23 @@ class Adventure extends Component {
 
 
   render() {
-    const { fail, next, data } = this.props;
+    const { next, data } = this.props;
     const { haveNextCard, nextCard } = this.state;
 
     return (
       <div id="adventure">
         <p>Adventure</p>
         <div className="adventure">
-          <Card swipLeft={this.returnNextCard} swipRight={next}>
+          <Card
+            swipLeft={this.returnNextCard}
+            swipRight={next}
+            leftChoice={data.adventure_second_choice}
+            rightChoice={data.adventure_first_choice}
+          >
             <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.adventure_narration) }} />
           </Card>
           {haveNextCard && nextCard}
         </div>
-        {!haveNextCard && (
-          <div className="choices">
-            <button type="button" onClick={fail}>{ data.adventure_second_choice }</button>
-            <button type="button" onClick={next}>{ data.adventure_first_choice }</button>
-          </div>
-        )}
       </div>
     );
   }
