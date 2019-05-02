@@ -20,5 +20,30 @@
         -ms-transition: .3s ease;
         -o-transition: .3s ease;
     }
+
+    .bottom {
+        display: flex;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 30px;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+
+        &> div {
+            opacity: .5;
+            transition: .2s ease;
+            -webkit-transition: .2s ease;
+            -moz-transition: .2s ease;
+            -ms-transition: .2s ease;
+            -o-transition: .2s ease;
+            
+            &.selected {
+                opacity: 1;
+            }
+        }
+    }
+
+
     
 }
