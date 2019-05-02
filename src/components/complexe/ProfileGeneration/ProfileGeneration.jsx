@@ -51,7 +51,13 @@ class ProfileGeneration extends Component {
     const budgetArray = ['poor', 'regular', 'rich'];
     const rand = getRandomArbitrary(0, budgetArray.length);
     updateBudget(budgetArray[rand]);
-    setTimeout(() => { next(); }, 1000);
+    setTimeout(() => { next(); }, 600);
+  }
+
+  generateAll = () => {
+    this.generateStatus();
+    setTimeout(() => { this.generateOrigin(); }, 300);
+    setTimeout(() => { this.generateBudget(); }, 600);
   }
 
   render() {
@@ -74,6 +80,13 @@ class ProfileGeneration extends Component {
         <br />
         <button type="button" onClick={() => this.generateBudget()}>
           Generate budget
+        </button>
+
+        {' '}
+        <br />
+
+        <button type="button" onClick={() => this.generateAll()}>
+          GENERATE ALL
         </button>
 
         <h1>{ status.title }</h1>

@@ -2,7 +2,7 @@
 // import { ACTION } from '../actions/';
 
 import {
-  UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN, UPDATE_SCORE, UPDATE_SKILLS,
+  UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN, UPDATE_BONUS, UPDATE_SKILLS,
 } from '../actions/profil';
 
 import origins from '../../contents/origins';
@@ -12,6 +12,7 @@ const defaultState = {
   origin: { title: '', value: 0, ref: '' },
   budget: { title: '', value: 0, ref: '' },
   skills: [{ title: 'tchatche', id: 0 }, { title: 'psychopathe', id: 1 }],
+  bonus: 0,
   score: 0,
   premium: false,
 };
@@ -77,33 +78,40 @@ export function profilReducer(state = defaultState, action) {
   switch (action.type) {
     case UPDATE_STATUS: {
       const newStatus = returnProfile(action.payload);
-      console.log(newStatus);
+      const newScore = ((((newStatus.value + state.origin.value + state.budget.value) * 2 + state.bonus) * 5) / 21).toFixed(2);
       return {
         ...state,
         status: newStatus,
+        score: newScore,
       };
     }
 
     case UPDATE_BUDGET: {
       const newBudget = returnBudget(action.payload);
+      const newScore = ((((state.status.value + state.origin.value + newBudget.value) * 2 + state.bonus) * 5) / 21).toFixed(2);
       return {
         ...state,
         budget: newBudget,
+        score: newScore,
       };
     }
 
     case UPDATE_ORIGIN: {
       const newOrigin = returnOrigin(action.payload);
+      const newScore = ((((state.status.value + newOrigin.value + state.budget.value) * 2 + state.bonus) * 5) / 21).toFixed(2);
       return {
         ...state,
         origin: newOrigin,
+        score: newScore,
       };
     }
 
-    case UPDATE_SCORE: {
-      const newScore = state.score + action.payload;
+    case UPDATE_BONUS: {
+      const newBonus = state.bonus + action.payload;
+      const newScore = ((((state.status.value + state.origin.value + state.budget.value) * 2 + newBonus) * 5) / 21).toFixed(2);
       return {
         ...state,
+        bonus: newBonus,
         score: newScore,
       };
     }

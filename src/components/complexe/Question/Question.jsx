@@ -7,7 +7,7 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import Card from '../../basic/Card/Card';
 import './Question.scss';
 import {
-  updateStatus, updateBudget, updateOrigin, updateScore,
+  updateStatus, updateBudget, updateOrigin, updateBonus,
 } from '../../../redux/actions/profil';
 
 class Question extends Component {
@@ -15,7 +15,7 @@ class Question extends Component {
     updateStatus: PropTypes.func,
     updateBudget: PropTypes.func,
     updateOrigin: PropTypes.func,
-    updateScore: PropTypes.func,
+    updateBonus: PropTypes.func,
     next: PropTypes.func,
     data: PropTypes.object,
   };
@@ -24,7 +24,7 @@ class Question extends Component {
     updateStatus: () => {},
     updateBudget: () => {},
     updateOrigin: () => {},
-    updateScore: () => {},
+    updateBonus: () => {},
     next: () => {},
     data: {},
   };
@@ -39,11 +39,11 @@ class Question extends Component {
 
   updateProfile = () => {
     const {
-      data, updateScore, updateStatus, updateBudget, updateOrigin,
+      data, updateBonus, updateStatus, updateBudget, updateOrigin,
     } = this.props;
 
     if (data.question_new_points) {
-      updateScore(data.question_new_points);
+      updateBonus(data.question_new_points);
     }
     if (data.question_new_status) {
       updateStatus(data.question_new_status);
@@ -112,8 +112,8 @@ const mapDispatchToProps = dispatch => ({
   updateOrigin: (e) => {
     dispatch(updateOrigin(e));
   },
-  updateScore: (e) => {
-    dispatch(updateScore(e));
+  updateBonus: (e) => {
+    dispatch(updateBonus(e));
   },
 });
 

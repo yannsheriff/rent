@@ -7,7 +7,7 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import Card from '../../basic/Card/Card';
 import './Event.scss';
 import {
-  updateStatus, updateBudget, updateOrigin, updateScore,
+  updateStatus, updateBudget, updateOrigin, updateBonus,
 } from '../../../redux/actions/profil';
 
 class Event extends Component {
@@ -15,7 +15,7 @@ class Event extends Component {
     updateStatus: PropTypes.func,
     updateBudget: PropTypes.func,
     updateOrigin: PropTypes.func,
-    updateScore: PropTypes.func,
+    updateBonus: PropTypes.func,
     next: PropTypes.func,
     data: PropTypes.object,
   };
@@ -24,18 +24,18 @@ class Event extends Component {
     updateStatus: () => {},
     updateBudget: () => {},
     updateOrigin: () => {},
-    updateScore: () => {},
+    updateBonus: () => {},
     next: () => {},
     data: {},
   };
 
   componentDidMount() {
     const {
-      data, updateScore, updateStatus, updateBudget, updateOrigin,
+      data, updateBonus, updateStatus, updateBudget, updateOrigin,
     } = this.props;
 
     if (data.event_new_points) {
-      updateScore(data.event_new_points);
+      updateBonus(data.event_new_points);
     }
     if (data.event_new_status) {
       updateStatus(data.event_new_status);
@@ -82,8 +82,8 @@ const mapDispatchToProps = dispatch => ({
   updateOrigin: (e) => {
     dispatch(updateOrigin(e));
   },
-  updateScore: (e) => {
-    dispatch(updateScore(e));
+  updateBonus: (e) => {
+    dispatch(updateBonus(e));
   },
 });
 
