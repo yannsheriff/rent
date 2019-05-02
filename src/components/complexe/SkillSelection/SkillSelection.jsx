@@ -7,6 +7,16 @@ import skills from '../../../contents/skills';
 import './SkillSelection.scss';
 
 class SkillSelection extends Component {
+  static propTypes = {
+    updateSkill: PropTypes.func,
+    next: PropTypes.func,
+  };
+
+  static defaultProps = {
+    updateSkill: () => {},
+    next: () => {},
+  };
+
   constructor(props) {
     super(props);
 

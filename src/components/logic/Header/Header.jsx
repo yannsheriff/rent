@@ -1,11 +1,20 @@
+/* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import './Header.scss';
-
 import { endGame } from '../../../redux/actions/steps';
 
 class Header extends Component {
+  static propTypes = {
+    end: PropTypes.func,
+  };
+
+  static defaultProps = {
+    end: () => {},
+  };
+
   constructor(props) {
     super(props);
 
@@ -78,10 +87,10 @@ const componentContainer = connect(
 
 export default componentContainer;
 
-export function chrono(sec_num) {
-  const hours = Math.floor(sec_num / 3600);
-  let minutes = Math.floor((sec_num - hours * 3600) / 60);
-  let seconds = Math.floor(sec_num - hours * 3600 - minutes * 60);
+export function chrono(secNum) {
+  const hours = Math.floor(secNum / 3600);
+  let minutes = Math.floor((secNum - hours * 3600) / 60);
+  let seconds = Math.floor(secNum - hours * 3600 - minutes * 60);
   minutes = minutes > 0 ? (minutes > 9 ? `${minutes}:` : `0${minutes}:`) : '00:';
   seconds = seconds > 0 ? (seconds > 9 ? `${seconds}` : `0${seconds}`) : '00';
   return minutes + seconds;
