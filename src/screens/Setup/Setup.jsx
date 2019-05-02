@@ -2,20 +2,45 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import logo from '../../logo.svg';
 import { gameIsSetUp } from '../../redux/actions/steps';
+import ProfilGeneration from '../../components/complexe/ProfilGeneration/ProfilGeneration';
+import SkillSelection from '../../components/complexe/SkillSelection/SkillSelection';
 import './Setup.scss';
 
 class Setup extends Component {
-  render() {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      step: 'profil',
+    };
+  }
+
+  goToNextStep = () => {
+    const { step } = this.state;
     const { didSetUp } = this.props;
+    switch (step) {
+      case 'profil':
+        this.setState({ step: 'skill' });
+        break;
+      case 'skill':
+        didSetUp();
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  render() {
+    const { step } = this.state;
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>Setup Screen</p>
-          <a className="App-link" onClick={() => didSetUp()}>
-            set Up
-          </a>
-        </header>
+        {step === 'profil'
+          && <ProfilGeneration next={this.goToNextStep} />
+        }
+        {step === 'skill'
+          && <SkillSelection next={this.goToNextStep} />
+        }
       </div>
     );
   }
