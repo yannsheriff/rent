@@ -9,7 +9,7 @@ class Intro extends Component {
   render() {
     const { next } = this.props;
     return (
-      <div id="intro" onClick={() => next()}>
+      <div id="intro" className="main-layout" onClick={() => next()}>
         <img className="intro--banner" src={rentBanner} alt="rent-banner" />
         <h1>LOUE MOI SI TU PEUX</h1>
         <p>

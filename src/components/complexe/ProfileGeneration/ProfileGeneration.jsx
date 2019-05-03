@@ -39,9 +39,9 @@ class ProfileGeneration extends Component {
   }
 
   generateAll = () => {
-    setTimeout(() => { this.generateStatus(); }, 300);
-    setTimeout(() => { this.generateOrigin(); }, 600);
-    setTimeout(() => { this.generateBudget(); }, 900);
+    setTimeout(() => { this.generateStatus(); }, 500);
+    setTimeout(() => { this.generateOrigin(); }, 1000);
+    setTimeout(() => { this.generateBudget(); }, 1500);
   }
 
   generateStatus = () => {
@@ -83,7 +83,7 @@ class ProfileGeneration extends Component {
       budget, origin, status,
     } = profil;
     return (
-      <div className="profile-generation" onClick={() => this.nextStep()}>
+      <div className="profile-generation main-layout" onClick={() => this.nextStep()}>
         <div className="profile-generation--container">
           <div className="profile-generation--container--item">
             {isStatus

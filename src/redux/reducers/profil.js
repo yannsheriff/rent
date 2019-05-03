@@ -8,9 +8,9 @@ import {
 import origins from '../../assets/origins';
 
 const defaultState = {
-  status: { title: '', value: 0, ref: '' },
-  origin: { title: '', value: 0, ref: '' },
-  budget: { title: '', value: 0, ref: '' },
+  status: { title: 'Couple', value: 1, ref: 'couple' },
+  origin: { title: 'Blanc', value: 1, ref: 'frfr' },
+  budget: { title: '$', value: 1, ref: 'poor' },
   skills: [{ title: 'tchatche', id: 0 }, { title: 'psychopathe', id: 1 }],
   bonus: 0,
   score: 0,

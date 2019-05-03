@@ -12,7 +12,7 @@ import StepDisplay from '../../components/logic/StepDisplay/StepDisplay';
 class PlayScreen extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="App main-layout">
         <Header />
         <StepDisplay />
         <Profile />
