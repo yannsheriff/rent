@@ -176,12 +176,7 @@ class DataHandler extends Component {
         this.setState({ isNarration: false });
         fail();
       } else if (round === 0 || rand === 0) {
-        const card = (
-          <div dangerouslySetInnerHTML={
-              { __html: documentToHtmlString(data.reject.reject_narration) }
-              }
-          />
-        );
+        const card = (<div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.reject.reject_narration) }} />);
         this.setState({ card, isNarration: true });
       } else {
         next();
@@ -199,9 +194,7 @@ class DataHandler extends Component {
     } else if (isNarration) {
       this.setState({ isNarration: false }, () => fail());
     } else {
-      const card = (
-        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.adventure_back) }} />
-      );
+      const card = (<div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.adventure_back) }} />);
       this.setState({ card, isNarration: true });
     }
   }
@@ -213,9 +206,7 @@ class DataHandler extends Component {
       this.setState({ isNarration: false }, () => next());
     } else {
       const content = choice ? data.question_accept_narration : data.question_refuse_narration;
-      const card = (
-        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(content) }} />
-      );
+      const card = (<div dangerouslySetInnerHTML={{ __html: documentToHtmlString(content) }} />);
       this.setState({ card, isNarration: true }, () => this.updateProfile());
     }
   }
@@ -225,7 +216,6 @@ class DataHandler extends Component {
     this.updateProfile();
     next();
   }
-
 
   render() {
     const { card } = this.state;

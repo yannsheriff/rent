@@ -1,18 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import { NounouService } from '../../../services/NounouService';
-import Card from '../../basic/Card/Card';
 import './Ads.scss';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class Ads extends Component {
-  constructor(props) {
-    super(props);
-    this.flatRefs = [];
-  }
-
-
   render() {
     const { data } = this.props;
     return (
