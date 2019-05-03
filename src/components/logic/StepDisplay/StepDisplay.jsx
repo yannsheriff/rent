@@ -158,6 +158,9 @@ class Header extends Component {
     return (
 
       <div id="steps" style={{ backgroundColor: this.state.bgColor }}>
+        <div className="card-placeholder-container">
+          <div className="card-placeholder" />
+        </div>
         {component}
       </div>
     );
