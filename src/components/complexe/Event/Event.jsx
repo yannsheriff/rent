@@ -49,15 +49,11 @@ class Event extends Component {
   }
 
   render() {
-    const { next, data } = this.props;
+    const { data } = this.props;
 
     return (
       <div id="event">
-        <div className="event">
-          <Card swipLeft={next} swipRight={next}>
-            <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.event_narration) }} />
-          </Card>
-        </div>
+        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.event_narration) }} />
       </div>
     );
   }

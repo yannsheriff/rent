@@ -40,14 +40,17 @@ class DataHandler extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { step } = nextProps;
-    if (step !== 'ads') {
-      const data = this.getCardData(step);
-      const card = this.returnActualComponent(data, step);
-      this.setState({ data, card });
-    } else {
-      this.setState(state => ({
-        card: this.returnActualComponent(state.ads[state.actualAd], 'ads'),
-      }));
+    const { isNarration } = this.state;
+    if (!isNarration) {
+      if (step !== 'ads') {
+        const data = this.getCardData(step);
+        const card = this.returnActualComponent(data, step);
+        this.setState({ data, card });
+      } else {
+        this.setState(state => ({
+          card: this.returnActualComponent(state.ads[state.actualAd], 'ads'),
+        }));
+      }
     }
   }
 
@@ -194,8 +197,7 @@ class DataHandler extends Component {
     if (choice) {
       next();
     } else if (isNarration) {
-      this.setState({ isNarration: false });
-      fail();
+      this.setState({ isNarration: false }, () => fail());
     } else {
       const card = (
         <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.adventure_back) }} />
@@ -208,16 +210,20 @@ class DataHandler extends Component {
     const { next } = this.props;
     const { data, isNarration } = this.state;
     if (isNarration) {
-      this.setState({ isNarration: false });
-      next();
+      this.setState({ isNarration: false }, () => next());
     } else {
       const content = choice ? data.question_accept_narration : data.question_refuse_narration;
-      if (choice) { this.updateProfile(); }
       const card = (
         <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(content) }} />
       );
-      this.setState({ card, isNarration: true });
+      this.setState({ card, isNarration: true }, () => this.updateProfile());
     }
+  }
+
+  handleEvent() {
+    const { next } = this.props;
+    this.updateProfile();
+    next();
   }
 
 

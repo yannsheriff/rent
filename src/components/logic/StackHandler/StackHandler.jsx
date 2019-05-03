@@ -42,7 +42,6 @@ class StackHandler extends Component {
     //   bgColor, show, transition, cardIsRotate,
     // } = this.state;
     const { content, reject, accept } = this.props;
-    console.log('TCL: render -> content', content);
     // const style = cardIsRotate ? { transform: 'rotate(2deg)' } : { transform: 'rotate(0deg)' };
 
     return (
