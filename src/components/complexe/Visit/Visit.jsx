@@ -6,10 +6,6 @@ import { connect } from 'react-redux';
 import Card from '../../basic/Card/Card';
 import './Visit.scss';
 
-function getRandomArbitrary(min, max) {
-  return Math.round(Math.random() * ((max - 1) - min) + min);
-}
-
 class Visit extends Component {
   static propTypes = {
     data: PropTypes.object,
@@ -33,49 +29,13 @@ class Visit extends Component {
     };
   }
 
-  isFileRejected = () => {
-    const {
-      next, round, data, fail,
-    } = this.props;
-    const rand = getRandomArbitrary(0, 10);
-    if (round === 0 || rand === 0) {
-      const card = (
-        <Card swipLeft={fail} swipRight={fail}>
-          <div dangerouslySetInnerHTML={
-            { __html: documentToHtmlString(data.reject.reject_narration) }
-            }
-          />
-        </Card>
-      );
-      this.setState({ haveNextCard: true, nextCard: card });
-    } else {
-      next();
-    }
-  }
 
   render() {
-    const { fail, data } = this.props;
-    const { haveNextCard, nextCard } = this.state;
+    const { data } = this.props;
     return (
       <div id="visit">
-        <div className="visit">
-          <Card
-            swipLeft={fail}
-            swipRight={this.isFileRejected}
-            leftChoice="retourner aux annonces"
-            rightChoice="déposer un dossier"
-          >
-            <h1>{ data.visit.visit_quality }</h1>
-            <div dangerouslySetInnerHTML={
-              { __html: documentToHtmlString(data.visit.visit_description) }
-              }
-            />
-          </Card>
-          {haveNextCard && nextCard}
-          <Card>
-            <h1>Visite</h1>
-          </Card>
-        </div>
+        <h1>{ data.visit.visit_quality }</h1>
+        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.visit.visit_description) }} />
       </div>
     );
   }

@@ -112,12 +112,12 @@ class Header extends Component {
 
   render() {
     const {
-      actualStep, bgColor,
+      actualStep, bgColor, round,
     } = this.state;
 
     return (
       <div id="steps" style={{ backgroundColor: bgColor }}>
-        <DataHandler step={actualStep} next={this.nextStep} fail={this.failStep} />
+        <DataHandler step={actualStep} round={round} next={this.nextStep} fail={this.failStep} />
 
       </div>
     );

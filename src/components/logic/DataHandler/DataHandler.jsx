@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './DataHandler.scss';
 import { CSSTransition } from 'react-transition-group';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { EthanService } from '../../../services/EthanServices';
 import { NounouService } from '../../../services/NounouService';
 import StackHandler from '../StackHandler/StackHandler';
@@ -30,6 +31,7 @@ class DataHandler extends Component {
       round: 0,
       data: this.getCardData('ads')[0],
       card: this.returnActualComponent(this.getCardData('ads')[0]),
+      isNarration: false,
     };
   }
 
@@ -40,7 +42,9 @@ class DataHandler extends Component {
       const card = this.returnActualComponent(data, step);
       this.setState({ data, card });
     } else {
-
+      this.setState(state => ({
+        card: this.returnActualComponent(state.ads[state.actualAd], 'ads'),
+      }));
     }
   }
 
@@ -136,11 +140,32 @@ class DataHandler extends Component {
   }
 
 
-  handleVisit() {
+  handleVisit(choice) {
+    const { next, fail, round } = this.props;
+    const { data, isNarration } = this.state;
+    const rand = getRandomArbitrary(0, 10);
 
+    if (choice) {
+      if (isNarration) {
+        this.setState({ isNarration: false });
+        fail();
+      } else if (round === 0 || rand === 0) {
+        const card = (
+          <div dangerouslySetInnerHTML={
+              { __html: documentToHtmlString(data.reject.reject_narration) }
+              }
+          />
+        );
+        this.setState({ card, isNarration: true });
+      } else {
+        next();
+      }
+    } else {
+      fail();
+    }
   }
 
-  refuseAdventur() {
+  handleAdventure() {
 
   }
 
