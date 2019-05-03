@@ -1,10 +1,39 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './ProfileRecap.scss';
 
 class ProfileRecap extends Component {
+  static propTypes = {
+    next: PropTypes.func,
+  };
+
+  static defaultProps = {
+    next: () => {},
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      canNext: false,
+    };
+  }
+
+  componentDidMount() {
+    setTimeout(() => { this.setState({ canNext: true }); }, 1000);
+  }
+
+  nextStep = () => {
+    const { canNext } = this.state;
+    const { next } = this.props;
+    if (canNext) {
+      next();
+    }
+  }
+
   render() {
+    const { canNext } = this.state;
     const { profil, next } = this.props;
     const {
       budget, origin, status, score, skills,
@@ -14,7 +43,7 @@ class ProfileRecap extends Component {
     };
 
     return (
-      <div id="profileRecap">
+      <div id="profile-recap" onClick={() => this.nextStep()}>
         <p>Votre profil</p>
         <h3>{ status.title }</h3>
         <h3>{ budget.title }</h3>
@@ -33,9 +62,11 @@ class ProfileRecap extends Component {
 
         <h1>{ score }</h1>
 
-        <a onClick={() => next()}>
-            Super, c'est parti
-        </a>
+        {canNext
+            && (
+            <p className="intro--info">Toucher pour continuer</p>
+            )
+        }
       </div>
     );
   }

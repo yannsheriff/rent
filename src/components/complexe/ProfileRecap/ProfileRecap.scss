@@ -1,8 +1,11 @@
-#profileRecap {
+#profile-recap {
     position: relative;
-    .visit {
-        position: relative;
-        width: 300px;
-        height: 400px;
+    height: 100%;
+
+    .intro--info {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        bottom: 15px;
     }
 }

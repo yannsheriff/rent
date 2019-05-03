@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { updateStatus, updateBudget, updateOrigin } from '../../../redux/actions/profil';
 import './ProfileGeneration.scss';
 
-
 function getRandomArbitrary(min, max) {
   return Math.round(Math.random() * ((max - 1) - min) + min);
 }
@@ -29,7 +28,20 @@ class ProfileGeneration extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isStatus: false,
+      isOrigin: false,
+      isBudget: false,
     };
+  }
+
+  componentDidMount() {
+    this.generateAll();
+  }
+
+  generateAll = () => {
+    setTimeout(() => { this.generateStatus(); }, 300);
+    setTimeout(() => { this.generateOrigin(); }, 600);
+    setTimeout(() => { this.generateBudget(); }, 900);
   }
 
   generateStatus = () => {
@@ -37,6 +49,7 @@ class ProfileGeneration extends Component {
     const statusArray = ['single', 'couple', 'collocation'];
     const rand = getRandomArbitrary(0, statusArray.length);
     updateStatus(statusArray[rand]);
+    this.setState({ isStatus: true });
   }
 
   generateOrigin = () => {
@@ -44,60 +57,76 @@ class ProfileGeneration extends Component {
     const originArray = ['frfr', 'frjp', 'frmc'];
     const rand = getRandomArbitrary(0, originArray.length);
     updateOrigin(originArray[rand]);
+    this.setState({ isOrigin: true });
   }
 
   generateBudget = () => {
-    const { updateBudget, next } = this.props;
+    const { updateBudget } = this.props;
     const budgetArray = ['poor', 'regular', 'rich'];
     const rand = getRandomArbitrary(0, budgetArray.length);
     updateBudget(budgetArray[rand]);
-    setTimeout(() => { next(); }, 600);
+    this.setState({ isBudget: true });
   }
 
-  generateAll = () => {
-    this.generateStatus();
-    setTimeout(() => { this.generateOrigin(); }, 300);
-    setTimeout(() => { this.generateBudget(); }, 600);
+  nextStep = () => {
+    const { isStatus, isBudget, isOrigin } = this.state;
+    const { next } = this.props;
+    if (isStatus && isOrigin && isBudget) {
+      next();
+    }
   }
 
   render() {
+    const { isStatus, isBudget, isOrigin } = this.state;
     const { profil } = this.props;
     const {
       budget, origin, status,
     } = profil;
     return (
-      <div id="profileGeneration">
-        <p>Profile Generation</p>
-        <button type="button" onClick={() => this.generateStatus()}>
-          Generate status
-        </button>
-        {' '}
-        <br />
-        <button type="button" onClick={() => this.generateOrigin()}>
-          Generate origin
-        </button>
-        {' '}
-        <br />
-        <button type="button" onClick={() => this.generateBudget()}>
-          Generate budget
-        </button>
-
-        {' '}
-        <br />
-
-        <button type="button" onClick={() => this.generateAll()}>
-          GENERATE ALL
-        </button>
-
-        <h1>{ status.title }</h1>
-        <h1>
-          { origin.title }
-          {' '}
-          {' '}
-          {' '}
-          { origin.flag }
-        </h1>
-        <h1>{ budget.title }</h1>
+      <div className="profile-generation" onClick={() => this.nextStep()}>
+        <div className="profile-generation--container">
+          <div className="profile-generation--container--item">
+            {isStatus
+            && (
+            <>
+              <p>Vous cherchez un appartement :</p>
+              <h2>{ status.title }</h2>
+            </>
+            )
+          }
+          </div>
+          <div className="profile-generation--container--item">
+            {isOrigin
+            && (
+            <>
+              <p>Vous êtes d'origine :</p>
+              <h2>
+                { origin.title }
+                {' '}
+                {' '}
+                {' '}
+                { origin.flag }
+              </h2>
+            </>
+            )
+          }
+          </div>
+          <div className="profile-generation--container--item">
+            {isBudget
+            && (
+            <>
+              <p>Vous avez un budget :</p>
+              <h2>{ budget.title }</h2>
+            </>
+            )
+          }
+          </div>
+          {(isStatus && isOrigin && isBudget)
+            && (
+            <p className="intro--info">Toucher pour continuer</p>
+            )
+        }
+        </div>
       </div>
     );
   }

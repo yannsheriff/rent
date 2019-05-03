@@ -1,13 +1,17 @@
 #intro {
     position: relative;
     height: 100%;
+    .intro--banner {
+        width: 100%;
+        height: auto;
+    }
     .visit {
         position: relative;
         width: 300px;
         height: 400px;
     }
 
-    .info {
+    .intro--info {
         position: absolute;
         width: 100%;
         text-align: center;

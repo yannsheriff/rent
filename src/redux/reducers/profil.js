@@ -5,7 +5,7 @@ import {
   UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN, UPDATE_BONUS, UPDATE_SKILLS,
 } from '../actions/profil';
 
-import origins from '../../contents/origins';
+import origins from '../../assets/origins';
 
 const defaultState = {
   status: { title: '', value: 0, ref: '' },
