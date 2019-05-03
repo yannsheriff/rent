@@ -39,22 +39,11 @@ class Adventure extends Component {
 
 
   render() {
-    const { next, data } = this.props;
-    const { haveNextCard, nextCard } = this.state;
+    const { data } = this.props;
 
     return (
       <div id="adventure">
-        <div className="adventure">
-          <Card
-            swipLeft={this.returnNextCard}
-            swipRight={next}
-            leftChoice={data.adventure_second_choice}
-            rightChoice={data.adventure_first_choice}
-          >
-            <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.adventure_narration) }} />
-          </Card>
-          {haveNextCard && nextCard}
-        </div>
+        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.adventure_narration) }} />
       </div>
     );
   }

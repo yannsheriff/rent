@@ -165,8 +165,20 @@ class DataHandler extends Component {
     }
   }
 
-  handleAdventure() {
-
+  handleAdventure(choice) {
+    const { next, fail } = this.props;
+    const { data, isNarration } = this.state;
+    if (choice) {
+      next();
+    } else if (isNarration) {
+      this.setState({ isNarration: false });
+      fail();
+    } else {
+      const card = (
+        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.adventure_back) }} />
+      );
+      this.setState({ card, isNarration: true });
+    }
   }
 
 
