@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './StepDisplay.scss';
+import { CSSTransition } from 'react-transition-group';
 import { EthanService } from '../../../services/EthanServices';
 
 // components
@@ -29,6 +30,9 @@ class Header extends Component {
       round: 0,
       data: this.getCardData('ads'),
       bgColor: '#90d5d0',
+      transition: false,
+      show: true,
+      cardIsRotate: false,
     };
   }
 
@@ -39,6 +43,11 @@ class Header extends Component {
   // - skill
   // - question
   // - event
+
+
+  componentDidMount() {
+    setTimeout(() => { this.setState({ transition: true }); console.log('IP'); }, 300);
+  }
 
 
   getCardData = (step) => {
@@ -137,7 +146,17 @@ class Header extends Component {
     const addRound = nextStep === 'ads' ? 1 : 0;
 
     this.setState({
-      actualStep: nextStep, round: round + addRound, data: cardData, bgColor,
+      actualStep: nextStep,
+      round: round + addRound,
+      data: cardData,
+      bgColor,
+      show: false,
+      transition: false,
+      cardIsRotate: false,
+    }, () => {
+      this.setState({ show: true }, () => {
+        setTimeout(() => { this.setState({ transition: true }); }, 800);
+      });
     });
   }
 
@@ -149,19 +168,42 @@ class Header extends Component {
     const addRound = nextStep === 'ads' ? 1 : 0;
 
     this.setState({
-      actualStep: nextStep, round: round + addRound, data: cardData, bgColor,
+      actualStep: nextStep,
+      round: round + addRound,
+      data: cardData,
+      bgColor,
+      show: false,
+      transition: false,
+      cardIsRotate: false,
+    }, () => {
+      this.setState({ show: true }, () => {
+        setTimeout(() => { this.setState({ transition: true }); }, 800);
+      });
     });
   }
 
   render() {
+    const {
+      bgColor, show, transition, cardIsRotate,
+    } = this.state;
     const component = this.returnActualComponent();
-    return (
+    const style = cardIsRotate ? { transform: 'rotate(2deg)' } : { transform: 'rotate(0deg)' };
 
-      <div id="steps" style={{ backgroundColor: this.state.bgColor }}>
+    return (
+      <div id="steps" style={{ backgroundColor: bgColor }}>
         <div className="card-placeholder-container">
-          <div className="card-placeholder" />
+          <div className="card-placeholder" style={style} />
         </div>
-        {component}
+        { show
+        && (
+        <CSSTransition in={transition} timeout={1000} classNames="trans-card" onEntered={() => this.setState({ cardIsRotate: true })}>
+          <div className="card-container">
+            {component}
+          </div>
+        </CSSTransition>
+        )
+        }
+
       </div>
     );
   }
