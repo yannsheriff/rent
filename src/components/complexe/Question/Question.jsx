@@ -69,24 +69,13 @@ class Question extends Component {
 
   render() {
     const { data } = this.props;
-    const { haveNextCard, nextCard } = this.state;
     return (
       <div id="question">
-        <div className="question">
-          <Card
-            swipLeft={() => { this.returnNextCard(1); this.updateProfile(); }}
-            swipRight={() => this.returnNextCard()}
-            leftChoice={data.question_accept}
-            rightChoice={data.question_refuse}
-          >
-            <div
-              dangerouslySetInnerHTML={
+        <div
+          dangerouslySetInnerHTML={
                 { __html: documentToHtmlString(data.question_narration) }
               }
-            />
-          </Card>
-          {haveNextCard && nextCard}
-        </div>
+        />
       </div>
     );
   }

@@ -7,6 +7,9 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { EthanService } from '../../../services/EthanServices';
 import { NounouService } from '../../../services/NounouService';
 import StackHandler from '../StackHandler/StackHandler';
+import {
+  updateStatus, updateBudget, updateOrigin, updateScore,
+} from '../../../redux/actions/profil';
 
 
 // components
@@ -106,7 +109,7 @@ class DataHandler extends Component {
         break;
 
       case 'question':
-        this.handleSkill(choice);
+        this.handleQuestion(choice);
         break;
 
       case 'event':
@@ -115,6 +118,26 @@ class DataHandler extends Component {
 
       default:
         return 'ads';
+    }
+  }
+
+  updateProfile = () => {
+    const {
+      updateScore, updateStatus, updateBudget, updateOrigin,
+    } = this.props;
+    const { data } = this.state;
+
+    if (data.question_new_points) {
+      updateScore(data.question_new_points);
+    }
+    if (data.question_new_status) {
+      updateStatus(data.question_new_status);
+    }
+    if (data.question_new_budget) {
+      updateBudget(data.question_new_budget);
+    }
+    if (data.question_new_origin) {
+      updateOrigin(data.question_new_origin);
     }
   }
 
@@ -181,6 +204,22 @@ class DataHandler extends Component {
     }
   }
 
+  handleQuestion(choice) {
+    const { next } = this.props;
+    const { data, isNarration } = this.state;
+    if (isNarration) {
+      this.setState({ isNarration: false });
+      next();
+    } else {
+      const content = choice ? data.question_accept_narration : data.question_refuse_narration;
+      if (choice) { this.updateProfile(); }
+      const card = (
+        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(content) }} />
+      );
+      this.setState({ card, isNarration: true });
+    }
+  }
+
 
   render() {
     const { card } = this.state;
@@ -197,8 +236,24 @@ const mapStateToProps = state => ({
   profil: state.profilReducer,
 });
 
+const mapDispatchToProps = dispatch => ({
+  updateStatus: (e) => {
+    dispatch(updateStatus(e));
+  },
+  updateBudget: (e) => {
+    dispatch(updateBudget(e));
+  },
+  updateOrigin: (e) => {
+    dispatch(updateOrigin(e));
+  },
+  updateScore: (e) => {
+    dispatch(updateScore(e));
+  },
+});
+
 const componentContainer = connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(DataHandler);
 
 export default componentContainer;
