@@ -17,6 +17,10 @@ import Question from '../../complexe/Question/Question';
 import Skill from '../../complexe/Skill/Skill';
 import Visit from '../../complexe/Visit/Visit';
 
+function getRandomArbitrary(min, max) {
+  return Math.round(Math.random() * ((max - 1) - min) + min);
+}
+
 class DataHandler extends Component {
   constructor(props) {
     super(props);
@@ -25,22 +29,31 @@ class DataHandler extends Component {
       actualAd: 0,
       round: 0,
       data: this.getCardData('ads')[0],
+      card: this.returnActualComponent(this.getCardData('ads')[0]),
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { step } = nextProps;
+    if (step !== 'ads') {
+      const data = this.getCardData(step);
+      const card = this.returnActualComponent(data, step);
+      this.setState({ data, card });
+    } else {
+
+    }
+  }
+
+
   getCardData = (step) => {
     const { profil } = this.props;
-    const data = EthanService.get('ads', profil);
+    const data = EthanService.get(step, profil);
     return data || this.state.data;
   }
 
 
-  returnActualComponent = () => {
-    const { round, data } = this.state;
-    const { step } = this.props;
-
+  returnActualComponent = (data, step) => {
     const childProps = {
-      round,
       data,
     };
 
@@ -68,17 +81,9 @@ class DataHandler extends Component {
     }
   }
 
-  handleVisit() {
-
-  }
-
-  refuseAdventur() {
-
-  }
-
-
   nextCard = (choice) => {
     const { step } = this.props;
+
     switch (step) {
       case 'ads':
         this.handleAd(choice);
@@ -114,20 +119,35 @@ class DataHandler extends Component {
     const { data, actualAd, ads } = this.state;
 
     if (choice) {
+      this.setState(state => ({ actualAd: state.actualAd + 1, data: state.ads[actualAd + 1] }));
       NounouService.saveAd(data);
       next();
     } else if (ads.length <= actualAd) {
-      this.setState({ actualAd: 0, data: ads[0] });
+      this.setState({
+        actualAd: 0,
+        card: this.returnActualComponent(ads[0], 'ads'),
+      });
     } else {
-      this.setState(state => ({ actualAd: state.actualAd + 1, data: state.ads[actualAd + 1] }));
+      this.setState(state => ({
+        actualAd: state.actualAd + 1,
+        card: this.returnActualComponent(ads[state.actualAd + 1], 'ads'),
+      }));
     }
   }
 
 
-  render() {
-    const component = this.returnActualComponent();
+  handleVisit() {
 
-    return <StackHandler accept={() => this.nextCard(true)} reject={() => this.nextCard(false)} content={component} />;
+  }
+
+  refuseAdventur() {
+
+  }
+
+
+  render() {
+    const { card } = this.state;
+    return <StackHandler accept={() => this.nextCard(true)} reject={() => this.nextCard(false)} content={card} />;
   }
 }
 
