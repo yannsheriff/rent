@@ -1,3 +1,4 @@
+/* eslint-disable no-lonely-if */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -171,18 +172,19 @@ class DataHandler extends Component {
     const { data, isNarration } = this.state;
     const rand = getRandomArbitrary(0, 10);
 
-    if (choice) {
-      if (isNarration) {
-        this.setState({ isNarration: false });
-        fail();
-      } else if (round === 0 || rand === 0) {
-        const card = (<div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.reject.reject_narration) }} />);
-        this.setState({ card, isNarration: true });
-      } else {
-        next();
-      }
+    if (isNarration) {
+      this.setState({ isNarration: false }, () => fail());
     } else {
-      fail();
+      if (choice) {
+        if (round === 0 || rand === 0) {
+          const card = (<div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.reject.reject_narration) }} />);
+          this.setState({ card, isNarration: true });
+        } else {
+          next();
+        }
+      } else {
+        fail();
+      }
     }
   }
 
