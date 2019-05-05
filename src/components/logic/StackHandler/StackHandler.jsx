@@ -41,7 +41,9 @@ class StackHandler extends Component {
     // const {
     //   bgColor, show, transition, cardIsRotate,
     // } = this.state;
-    const { content, reject, accept } = this.props;
+    const {
+      content, reject, accept, leftChoice, rightChoice, isNarration,
+    } = this.props;
     // const style = cardIsRotate ? { transform: 'rotate(2deg)' } : { transform: 'rotate(0deg)' };
 
     return (
@@ -57,8 +59,8 @@ class StackHandler extends Component {
       <Card
         swipLeft={reject}
         swipRight={accept}
-        leftChoice="retourner aux annonces"
-        rightChoice="déposer un dossier"
+        leftChoice={isNarration ? '' : leftChoice}
+        rightChoice={isNarration ? '' : rightChoice}
         onRef={(ref) => { this.ref = ref; }}
       >
         {content}
