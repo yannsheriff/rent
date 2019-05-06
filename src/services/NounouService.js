@@ -23,15 +23,27 @@ class NounouServices {
 
   saveAd(ad) {
     this.totalSeenAds += 1;
-    this.visitedFlatIDs.push(ad.id);
-    EthanService.removeData('ad', ad.id);
     this.actualAd = ad;
+    // this.visitedFlatIDs.push(ad.id);
+    EthanService.removeData('ad', ad.id);
+  }
+
+  saveAdventure(adventure) {
+    // sauvegarder les choix ici
+    EthanService.removeData('adventure', adventure.id);
+  }
+
+  saveEvent(event) {
+    EthanService.removeData('event', event.id);
+  }
+
+  saveQuestion(question) {
+    EthanService.removeData('question', question.id);
   }
 
   saveVisit(visit) {
-    this.visitedVisitIDs.push(visit.id);
-    EthanService.removeData('ad', visit.id);
     this.actualVisit = visit;
+    EthanService.removeData('visit', visit.id);
   }
 
   getVisitedFlat() {

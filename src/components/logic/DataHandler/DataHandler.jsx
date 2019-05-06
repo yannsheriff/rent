@@ -97,7 +97,7 @@ class DataHandler extends Component {
 
     switch (step) {
       case 'ads':
-        payload.leftChoice = 'suivant';
+        payload.leftChoice = 'Suivant';
         payload.rightChoice = 'Visiter';
         break;
 
@@ -250,7 +250,7 @@ class DataHandler extends Component {
     const { next } = this.props;
     const { data } = this.state;
     if (choice) {
-      NounouService.saveAd(data);
+      NounouService.saveAd(data.content);
       next();
     } else {
       const newData = this.getCardData('ads');
@@ -266,9 +266,13 @@ class DataHandler extends Component {
     const { next, fail, round } = this.props;
     const { data, isNarration } = this.state;
     const rand = getRandomArbitrary(0, 10);
+    // dossier refusé donc retour aux annonces
+    console.log(data.content);
     if (isNarration) {
       this.setState({ isNarration: false }, () => fail());
     } else {
+      // carte visite
+      NounouService.saveVisit(data.content.visit);
       if (choice) {
         if (round === 0 || rand === 0) {
           const card = ([<Narration data={data.content.reject.reject_narration} />]);
@@ -288,10 +292,10 @@ class DataHandler extends Component {
   handleAdventure(choice) {
     const { next, fail } = this.props;
     const { data, isNarration } = this.state;
-
     if (isNarration) {
       this.setState({ isNarration: false }, () => fail());
     } else {
+      NounouService.saveAdventure(data.content);
       if (choice) {
         next();
       } else {
@@ -329,6 +333,7 @@ class DataHandler extends Component {
     if (isNarration) {
       this.setState({ isNarration: false }, () => next());
     } else {
+      NounouService.saveQuestion(data.content);
       const content = choice ? data.content.question_accept_narration : data.content.question_refuse_narration;
       const card = ([<Narration data={content} />]);
       this.setState({ card, isNarration: true }, () => {
@@ -342,6 +347,8 @@ class DataHandler extends Component {
   //
   handleEvent() {
     const { next } = this.props;
+    const { data } = this.state;
+    NounouService.saveEvent(data.content);
     this.setState({ isNarration: false }, () => next());
   }
 
