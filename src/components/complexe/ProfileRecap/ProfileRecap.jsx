@@ -21,7 +21,7 @@ class ProfileRecap extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => { this.setState({ canNext: true }); }, 1000);
+    setTimeout(() => { this.setState({ canNext: true }); }, 100);
   }
 
   nextStep = () => {

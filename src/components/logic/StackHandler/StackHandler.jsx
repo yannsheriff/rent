@@ -21,11 +21,10 @@ class StackHandler extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => { this.setState({ transition: true }); }, 300);
+    setTimeout(() => { this.setState({ transition: true }); }, 100);
   }
 
   componentWillReceiveProps() {
-    console.log('ok');
     this.setState({ actualCard: 0 }, () => this.ref.resetPosition());
   }
 

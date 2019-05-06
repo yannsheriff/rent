@@ -17,6 +17,7 @@ export {
   Adventure,
   Event,
   Intro,
+  Narration,
   ProfileGeneration,
   ProfileRecap,
   Question,
@@ -24,6 +25,5 @@ export {
   Skill,
   SkillSelection,
   Visit,
-  Narration,
   Transition,
 };
