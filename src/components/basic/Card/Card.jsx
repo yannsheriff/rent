@@ -76,6 +76,8 @@ class Card extends Component {
     } else {
       this.setState({ cardPosX: 0, cardPosY: 0 });
     }
+    this.lastTouch = 0;
+    this.isValidated = false;
   }
 
   resetPosition = () => {
