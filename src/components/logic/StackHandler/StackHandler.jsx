@@ -20,14 +20,6 @@ class StackHandler extends Component {
     };
   }
 
-  //  ---- STEPS ----
-  // - ads
-  // - visit
-  // - adventure
-  // - skill
-  // - question
-  // - event
-
   componentDidMount() {
     setTimeout(() => { this.setState({ transition: true }); }, 300);
   }
@@ -50,9 +42,8 @@ class StackHandler extends Component {
       content, reject, accept, leftChoice, rightChoice, isNarration,
     } = this.props;
     // const style = cardIsRotate ? { transform: 'rotate(2deg)' } : { transform: 'rotate(0deg)' };
-
     const isLastCard = content.length === actualCard + 1;
-    console.log('TCL: render -> isLastCard', isLastCard);
+    const displayChoice = !isNarration && isLastCard;
 
     return (
 
@@ -64,11 +55,12 @@ class StackHandler extends Component {
     //   && (
     //   <CSSTransition in={transition} timeout={1000} classNames="trans-card" onEntered={() => this.setState({ cardIsRotate: true })}>
     //     <div className="card-container">
+
       <Card
         swipLeft={() => (isLastCard ? reject() : this.nextCard())}
         swipRight={() => (isLastCard ? accept() : this.nextCard())}
-        leftChoice={isNarration ? '' : leftChoice}
-        rightChoice={isNarration ? '' : rightChoice}
+        leftChoice={displayChoice ? leftChoice : ''}
+        rightChoice={displayChoice ? rightChoice : ''}
         onRef={(ref) => { this.ref = ref; }}
       >
         {content[actualCard]}
