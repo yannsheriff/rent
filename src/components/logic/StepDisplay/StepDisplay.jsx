@@ -2,19 +2,31 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './StepDisplay.scss';
-import { EthanService } from 'services/EthanServices';
+import { changeStep } from 'redux/actions/steps';
 
 // components
 
 import DataHandler from '../DataHandler/DataHandler';
 
-class Header extends Component {
+class StepDisplay extends Component {
+  static propTypes = {
+    changeStep: PropTypes.func,
+    updateBackgroundColor: PropTypes.func,
+    globalStep: PropTypes.objectOf(PropTypes.object),
+  };
+
+
+  static defaultProps = {
+    changeStep: () => {},
+    updateBackgroundColor: () => {},
+    globalStep: {},
+  };
+
   constructor(props) {
     super(props);
     this.state = {
       actualStep: 'ads',
       round: 0,
-      bgColor: '#90d5d0',
     };
   }
 
@@ -49,67 +61,39 @@ class Header extends Component {
     }
   }
 
-  returnBackgroundColor = (step) => {
-    switch (step) {
-      case 'ads':
-        return '#90d5d0';
-
-      case 'visit':
-        return '#93da8a';
-
-      case 'adventure':
-        return '#ff9465';
-
-      case 'question':
-        return '#26a988';
-
-      case 'skill':
-        return '#ffac55';
-
-      case 'event':
-        return '#ffafaf';
-
-      default:
-        return 'ads';
-    }
-  }
-
-
   nextStep = () => {
     const { round } = this.state;
+    const { changeStep } = this.props;
     const nextStep = this.returnNextStep(true);
-    const bgColor = this.returnBackgroundColor(nextStep);
+    changeStep(nextStep);
     const addRound = nextStep === 'ads' ? 1 : 0;
 
     this.setState({
       actualStep: nextStep,
       round: round + addRound,
-      bgColor,
     });
   }
 
   failStep = () => {
     const { round } = this.state;
+    const { changeStep } = this.props;
     const nextStep = this.returnNextStep(false);
-    const bgColor = this.returnBackgroundColor(nextStep);
+    changeStep(nextStep);
     const addRound = nextStep === 'ads' ? 1 : 0;
 
     this.setState({
       actualStep: nextStep,
       round: round + addRound,
-      bgColor,
     });
   }
 
   render() {
     const {
-      actualStep, bgColor, round,
+      actualStep, round,
     } = this.state;
-
     return (
-      <div id="steps" style={{ backgroundColor: bgColor }}>
+      <div id="steps">
         <DataHandler step={actualStep} round={round} next={this.nextStep} fail={this.failStep} />
-
       </div>
     );
   }
@@ -120,11 +104,18 @@ class Header extends Component {
   ================================================================ */
 
 const mapStateToProps = state => ({
-  mainState: state.mainReducer,
+  globalStep: state.stepReducer,
+});
+
+const mapDispatchToProps = dispatch => ({
+  changeStep: (e) => {
+    dispatch(changeStep(e));
+  },
 });
 
 const componentContainer = connect(
   mapStateToProps,
-)(Header);
+  mapDispatchToProps,
+)(StepDisplay);
 
 export default componentContainer;

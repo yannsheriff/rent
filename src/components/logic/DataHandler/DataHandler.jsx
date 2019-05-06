@@ -267,7 +267,6 @@ class DataHandler extends Component {
     const { data, isNarration } = this.state;
     const rand = getRandomArbitrary(0, 10);
     // dossier refusé donc retour aux annonces
-    console.log(data.content);
     if (isNarration) {
       this.setState({ isNarration: false }, () => fail());
     } else {

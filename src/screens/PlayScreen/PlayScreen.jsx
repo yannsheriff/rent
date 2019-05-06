@@ -4,15 +4,21 @@ import { connect } from 'react-redux';
 import './PlayScreen.scss';
 
 // components
-import Header from '../../components/logic/Header/Header';
-import Profile from '../../components/logic/Profile/Profile';
-import StepDisplay from '../../components/logic/StepDisplay/StepDisplay';
+import Header from 'components/logic/Header/Header';
+import Profile from 'components/logic/Profile/Profile';
+import StepDisplay from 'components/logic/StepDisplay/StepDisplay';
 
 
 class PlayScreen extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    const { step } = this.props;
+
     return (
-      <div className="App main-layout">
+      <div className={`App main-layout ${step.step}`}>
         <Header />
         <StepDisplay />
         <Profile />
@@ -26,7 +32,7 @@ class PlayScreen extends Component {
   ================================================================ */
 
 const mapStateToProps = state => ({
-  mainState: state.mainReducer,
+  step: state.stepReducer,
 });
 
 const componentContainer = connect(
