@@ -19,11 +19,19 @@ class NounouServices {
     return instance;
   }
 
+  // DELETE CARD THAT HAS BEEN ALREADY SEEN
+
   saveAd(ad) {
     this.totalSeenAds += 1;
     this.visitedFlatIDs.push(ad.id);
     EthanService.removeData('ad', ad.id);
     this.actualAd = ad;
+  }
+
+  saveVisit(visit) {
+    this.visitedVisitIDs.push(visit.id);
+    EthanService.removeData('ad', visit.id);
+    this.actualVisit = visit;
   }
 
   getVisitedFlat() {

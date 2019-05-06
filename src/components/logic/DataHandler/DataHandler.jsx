@@ -21,6 +21,28 @@ function getRandomArbitrary(min, max) {
 }
 
 class DataHandler extends Component {
+  static propTypes = {
+    step: PropTypes.string,
+    profil: PropTypes.objectOf(PropTypes.object),
+    next: PropTypes.func,
+    fail: PropTypes.func,
+    updateStatus: PropTypes.func,
+    updateBudget: PropTypes.func,
+    updateOrigin: PropTypes.func,
+    updateBonus: PropTypes.func,
+  };
+
+  static defaultProps = {
+    step: '',
+    profil: {},
+    next: () => {},
+    fail: () => {},
+    updateStatus: () => {},
+    updateBudget: () => {},
+    updateOrigin: () => {},
+    updateBonus: () => {},
+  };
+
   constructor(props) {
     super(props);
     this.state = {
