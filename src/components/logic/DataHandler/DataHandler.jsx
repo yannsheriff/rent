@@ -73,9 +73,9 @@ class DataHandler extends Component {
       const data = this.getCardData(step);
       const card = this.returnActualComponent(data, step, true);
       this.setState({ data, card }, () => {
+        // si c'est un evenement on veux appliquer directement la modification
         if (step === 'event') {
-          console.log('COMPONENT UPDATE PROFIL');
-          this.updateProfile();
+          this.setState({ isNarration: true }, () => this.updateProfile());
         }
       });
     }
@@ -222,8 +222,7 @@ class DataHandler extends Component {
     } = this.props;
     const { data } = this.state;
 
-    console.log(data.content);
-    console.log(data.content[`${step}_new_points`]);
+    console.log('UPDATE PROFIL', step);
 
     if (data.content[`${step}_new_points`]) {
       updateBonus(data.content[`${step}_new_points`]);
@@ -342,9 +341,8 @@ class DataHandler extends Component {
   // EVENT : Cette fonction s'occupe de du choix fait a partir d'un evenement
   //
   handleEvent() {
-    console.log('event');
     const { next } = this.props;
-    next();
+    this.setState({ isNarration: false }, () => next());
   }
 
   /* ===============================================================
