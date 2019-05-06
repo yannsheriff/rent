@@ -17,6 +17,7 @@ export {
   Adventure,
   Event,
   Intro,
+  Narration,
   ProfileGeneration,
   ProfileRecap,
   Question,
