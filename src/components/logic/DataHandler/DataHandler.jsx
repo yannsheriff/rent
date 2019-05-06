@@ -72,7 +72,7 @@ class DataHandler extends Component {
     if (!isNarration) {
       const data = this.getCardData(step);
       const card = this.returnActualComponent(data, step, true);
-      this.setState({ data, card });
+      this.setState({ data, card }, () => { if (step === 'event') { this.updateProfile(); } });
     }
   }
 
@@ -109,6 +109,11 @@ class DataHandler extends Component {
       case 'question':
         payload.leftChoice = data.question_refuse;
         payload.rightChoice = data.question_accept;
+        break;
+
+      case 'event':
+        payload.leftChoice = '';
+        payload.rightChoice = '';
         break;
 
       default:
@@ -324,7 +329,6 @@ class DataHandler extends Component {
   //
   handleEvent() {
     const { next } = this.props;
-    this.updateProfile();
     next();
   }
 
