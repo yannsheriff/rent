@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './DataHandler.scss';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import { EthanService } from 'services/EthanServices';
 import { NounouService } from 'services/NounouService';
 import {
@@ -14,7 +13,7 @@ import StackHandler from '../StackHandler/StackHandler';
 // components
 
 import {
-  Ads, Adventure, Event, Question, Skill, Visit,
+  Ads, Adventure, Event, Question, Skill, Visit, Narration, Transition,
 } from '../../complexe';
 
 function getRandomArbitrary(min, max) {
@@ -51,7 +50,7 @@ class DataHandler extends Component {
     const { isNarration } = this.state;
     if (!isNarration) {
       const data = this.getCardData(step);
-      const card = this.returnActualComponent(data, step);
+      const card = this.returnActualComponent(data, step, true);
       this.setState({ data, card });
     }
   }
@@ -105,33 +104,38 @@ class DataHandler extends Component {
   // Cette fonction return le composant qui met en forme les donnée
   // elle prend en entré, les données de contenu ainsi que la step acutel
   //
-  returnActualComponent = (data, step) => {
-    const childProps = {
-      data: data.content,
-    };
+  returnActualComponent = (data, step, isNewStep = false) => {
+    const childProps = { data: data.content };
+    const payload = [];
+
+    if (isNewStep) {
+      payload.push(<Transition data={step} />);
+    }
 
     switch (step) {
       case 'ads':
-        return <Ads {...childProps} />;
-
+        payload.push(<Ads {...childProps} />);
+        break;
       case 'visit':
-        return <Visit {...childProps} />;
-
+        payload.push(<Visit {...childProps} />);
+        break;
       case 'adventure':
-        return <Adventure {...childProps} />;
-
+        payload.push(<Adventure {...childProps} />);
+        break;
       case 'skill':
-        return <Skill {...childProps} />;
-
+        payload.push(<Skill {...childProps} />);
+        break;
       case 'question':
-        return <Question {...childProps} />;
-
+        payload.push(<Question {...childProps} />);
+        break;
       case 'event':
-        return <Event {...childProps} />;
-
+        payload.push(<Event {...childProps} />);
+        break;
       default:
-        return <Ads {...childProps} />;
+        payload.push(<Ads {...childProps} />);
     }
+
+    return payload;
   }
 
   // -----------------------------------------------------------------------
@@ -244,7 +248,7 @@ class DataHandler extends Component {
     } else {
       if (choice) {
         if (round === 0 || rand === 0) {
-          const card = (<Narration data={data.content.reject.reject_narration} />);
+          const card = ([<Narration data={data.content.reject.reject_narration} />]);
           this.setState({ card, isNarration: true });
         } else {
           next();
@@ -266,7 +270,7 @@ class DataHandler extends Component {
     } else if (isNarration) {
       this.setState({ isNarration: false }, () => fail());
     } else {
-      const card = (<Narration data={data.content.adventure_back} />);
+      const card = ([<Narration data={data.content.adventure_back} />]);
       this.setState({ card, isNarration: true });
     }
   }
@@ -281,7 +285,7 @@ class DataHandler extends Component {
       this.setState({ isNarration: false }, () => next());
     } else {
       const content = choice ? data.content.question_accept_narration : data.content.question_refuse_narration;
-      const card = (<Narration data={content} />);
+      const card = ([<Narration data={content} />]);
       this.setState({ card, isNarration: true }, () => this.updateProfile());
     }
   }
