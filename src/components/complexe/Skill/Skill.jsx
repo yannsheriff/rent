@@ -30,20 +30,21 @@ class Skill extends Component {
   }
 
   chooseSkill = (skill) => {
-    const { data } = this.props;
-    if (skill === data.adventure_skill) {
-      this.setState({ endNaration: data.adventure_victory, didWin: true });
+    const { data, next } = this.props;
+    console.log('TCL: Skill -> chooseSkill -> skill', skill);
+    console.log('TCL: Skill -> chooseSkill -> data.content.adventure_skill', data.content.adventure_skill);
+    if (skill === data.content.adventure_skill) {
+      next(true);
     } else {
-      this.setState({ endNaration: data.adventure_defeat });
+      next(false);
     }
   }
 
   render() {
     const { profil, data } = this.props;
-    console.log('TCL: Skill -> render -> data', data);
     const { endNaration, didWin } = this.state;
     const skills = profil.skills.map(element => (
-      <button type="button" onClick={() => this.chooseSkill(element.title)}>
+      <button type="button" onClick={() => this.chooseSkill(element.id)}>
         {element.title}
       </button>
     ));
@@ -53,18 +54,10 @@ class Skill extends Component {
         <p>
           (Le bon skill à avoir est
           {' '}
-          { data.adventure_skill }
+          { data.content.adventure_skill }
           )
         </p>
-        {!endNaration && skills}
-        {endNaration
-         && (
-         <div>
-           <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(endNaration) }} />
-           <button type="button" onClick={() => { endGame(didWin ? 'win' : 'loose'); }}>next </button>
-         </div>
-         )
-        }
+        {skills}
       </div>
     );
   }
