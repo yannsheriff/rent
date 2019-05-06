@@ -24,12 +24,9 @@ class DataHandler extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ads: EthanService.get('ads', props.profil),
-      actualAd: 0,
       round: 0,
       data: {},
       card: {},
-      actualStep: 'ads',
       isNarration: false,
     };
   }
@@ -66,13 +63,11 @@ class DataHandler extends Component {
   //
   getCardData = (step) => {
     const { profil } = this.props;
-    const { ads, actualAd } = this.state;
     const data = EthanService.get(step, profil);
     const payload = { content: data };
 
     switch (step) {
       case 'ads':
-        payload.content = ads[actualAd];
         payload.leftChoice = 'suivant';
         payload.rightChoice = 'Visiter';
         break;
@@ -215,27 +210,14 @@ class DataHandler extends Component {
   //
   handleAd(choice) {
     const { next } = this.props;
-    const { data, actualAd, ads } = this.state;
+    const { data } = this.state;
     if (choice) {
-      this.setState(state => ({ actualAd: state.actualAd + 1, data: state.ads[actualAd + 1] }));
       NounouService.saveAd(data);
       next();
-    } else if (ads.length <= actualAd) {
-      this.setState({
-        actualAd: 0,
-      }, () => {
-        const newData = this.getCardData('ads');
-        const card = this.returnActualComponent(newData, 'ads');
-        this.setState({ data: newData, card });
-      });
     } else {
-      this.setState(state => ({
-        actualAd: state.actualAd + 1,
-      }), () => {
-        const newData = this.getCardData('ads');
-        const card = this.returnActualComponent(newData, 'ads');
-        this.setState({ data: newData, card });
-      });
+      const newData = this.getCardData('ads');
+      const card = this.returnActualComponent(newData, 'ads');
+      this.setState({ data: newData, card });
     }
   }
 
