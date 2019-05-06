@@ -9,6 +9,8 @@ import Question from './Question/Question';
 import Reject from './Reject/Reject';
 import Skill from './Skill/Skill';
 import SkillSelection from './SkillSelection/SkillSelection';
+import Narration from './Narration/Narration';
+import Transition from './Transition/Transition';
 import Visit from './Visit/Visit';
 
 export {
@@ -24,4 +26,6 @@ export {
   Skill,
   SkillSelection,
   Visit,
+  Narration,
+  Transition,
 };
