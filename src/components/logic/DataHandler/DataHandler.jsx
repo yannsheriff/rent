@@ -41,7 +41,7 @@ class DataHandler extends Component {
   componentWillMount() {
     const { step } = this.props;
     const data = this.getCardData(step);
-    const card = this.returnActualComponent(data, step);
+    const card = this.returnActualComponent(data, step, true);
     this.setState({ data, card });
   }
 
@@ -108,16 +108,21 @@ class DataHandler extends Component {
     const childProps = { data: data.content };
     const payload = [];
 
+    if (isNewStep && (
+      step === 'visit'
+      || step === 'adventure')
+    ) {
+      payload.push(<Transition data={step} />);
+    }
+
     switch (step) {
       case 'ads':
         payload.push(<Ads {...childProps} />);
         break;
       case 'visit':
-        payload.push(<Transition data={step} />);
         payload.push(<Visit {...childProps} />);
         break;
       case 'adventure':
-        payload.push(<Transition data={step} />);
         payload.push(<Adventure {...childProps} />);
         break;
       case 'skill':
