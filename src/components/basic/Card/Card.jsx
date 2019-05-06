@@ -1,9 +1,20 @@
 /* eslint-disable no-unused-expressions */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './Card.scss';
 
 class Card extends Component {
+  static propTypes = {
+    swipRight: PropTypes.func,
+    swipLeft: PropTypes.func,
+  }
+
+  static defaultProps = {
+    swipRight: () => {},
+    swipLeft: () => {},
+  }
+
   constructor(props) {
     super(props);
     this.firstTouch = { x: 0, y: 0 };
@@ -71,7 +82,6 @@ class Card extends Component {
     this.setState({ cardPosX: 0, cardPosY: 0 });
   }
 
-
   render() {
     const {
       data, children, leftChoice, rightChoice,
@@ -79,7 +89,14 @@ class Card extends Component {
     const { cardPosX, cardPosY } = this.state;
 
     return (
-      <div id="card" onTouchStart={this.dragStart} onTouchMove={this.drag} onTouchEnd={this.dragEnd} style={{ transform: `translate(${cardPosX}px, ${cardPosY}px)` }} ref={this.card}>
+      <div
+        id="card"
+        onTouchStart={this.dragStart}
+        onTouchMove={this.drag}
+        onTouchEnd={this.dragEnd}
+        style={{ transform: `translate(${cardPosX}px, ${cardPosY}px)` }}
+        ref={this.card}
+      >
         {children}
         {leftChoice && rightChoice
         && (
@@ -101,7 +118,6 @@ class Card extends Component {
 const mapStateToProps = state => ({
   mainState: state.mainReducer,
 });
-
 
 const componentContainer = connect(
   mapStateToProps,

@@ -20,13 +20,11 @@ class Header extends Component {
       budget, origin, status, score,
     } = profil;
 
-    const grade = (((budget.value + origin.value + status.value) * 2 + score) * 5) / 21;
-
     return (
       <div id="profile">
-        <p>{grade.toFixed(2)}</p>
+        <p>{score}</p>
         <p>{budget.title}</p>
-        <p>{origin.title}</p>
+        <p>{origin.flag}</p>
         <p>{status.title}</p>
       </div>
     );

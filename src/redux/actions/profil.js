@@ -1,7 +1,7 @@
 export const UPDATE_STATUS = 'UPDATE_STATUS';
 export const UPDATE_BUDGET = 'UPDATE_BUDGET';
 export const UPDATE_ORIGIN = 'UPDATE_ORIGIN';
-export const UPDATE_SCORE = 'UPDATE_SCORE';
+export const UPDATE_BONUS = 'UPDATE_BONUS';
 export const UPDATE_SKILLS = 'UPDATE_SKILLS';
 
 export function updateStatus(payload) {
@@ -25,9 +25,9 @@ export function updateOrigin(payload) {
   };
 }
 
-export function updateScore(payload) {
+export function updateBonus(payload) {
   return {
-    type: UPDATE_SCORE,
+    type: UPDATE_BONUS,
     payload,
   };
 }

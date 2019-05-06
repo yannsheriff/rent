@@ -2,6 +2,7 @@
 import React from 'react';
 
 import './App.css';
+
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -10,6 +11,9 @@ import PlayScreen from './screens/PlayScreen/PlayScreen';
 import EndScreen from './screens/EndScreen/EndScreen';
 
 function App(props) {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+
   const { isSetUp, gameIsOver } = props.step;
   return (
     <Router className="app">
