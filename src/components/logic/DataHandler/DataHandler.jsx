@@ -270,12 +270,12 @@ class DataHandler extends Component {
       this.setState({ isNarration: false }, () => fail());
     } else {
       if (choice) {
-        // if (round === 0 || rand === 0) {
-        //   const card = ([<Narration data={data.content.reject.reject_narration} />]);
-        //   this.setState({ card, isNarration: true });
-        // } else {
-        next();
-        // }
+        if (round === 0 || rand === 0) {
+          const card = ([<Narration data={data.content.reject.reject_narration} />]);
+          this.setState({ card, isNarration: true });
+        } else {
+          next();
+        }
       } else {
         fail();
       }
