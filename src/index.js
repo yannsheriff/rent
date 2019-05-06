@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import './assets/fonts/fivosansmodern.css';
 import './assets/scss/index.scss';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';

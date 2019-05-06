@@ -9,14 +9,6 @@ import { EthanService } from 'services/EthanServices';
 import DataHandler from '../DataHandler/DataHandler';
 
 class Header extends Component {
-  static propTypes = {
-    profil: PropTypes.objectOf(PropTypes.object),
-  };
-
-  static defaultProps = {
-    profil: {},
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -129,7 +121,6 @@ class Header extends Component {
 
 const mapStateToProps = state => ({
   mainState: state.mainReducer,
-  profil: state.profilReducer,
 });
 
 const componentContainer = connect(
