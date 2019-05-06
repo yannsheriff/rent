@@ -72,7 +72,12 @@ class DataHandler extends Component {
     if (!isNarration) {
       const data = this.getCardData(step);
       const card = this.returnActualComponent(data, step, true);
-      this.setState({ data, card }, () => { if (step === 'event') { this.updateProfile(); } });
+      this.setState({ data, card }, () => {
+        if (step === 'event') {
+          console.log('COMPONENT UPDATE PROFIL');
+          this.updateProfile();
+        }
+      });
     }
   }
 
