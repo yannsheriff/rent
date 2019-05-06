@@ -8,6 +8,7 @@ import { NounouService } from 'services/NounouService';
 import {
   updateStatus, updateBudget, updateOrigin, updateBonus,
 } from 'redux/actions/profil';
+import { endGame } from '../../../redux/actions/steps';
 import StackHandler from '../StackHandler/StackHandler';
 
 // components
@@ -50,6 +51,7 @@ class DataHandler extends Component {
       data: {},
       card: {},
       isNarration: false,
+      didWin: false,
     };
   }
 
@@ -70,7 +72,7 @@ class DataHandler extends Component {
     if (!isNarration) {
       const data = this.getCardData(step);
       const card = this.returnActualComponent(data, step, true);
-      this.setState({ data, card });
+      this.setState({ data, card }, () => { if (step === 'event') { this.updateProfile(); } });
     }
   }
 
@@ -109,7 +111,13 @@ class DataHandler extends Component {
         payload.rightChoice = data.question_accept;
         break;
 
+      case 'event':
+        payload.leftChoice = '';
+        payload.rightChoice = '';
+        break;
+
       default:
+        payload.content = this.state.data;
         payload.leftChoice = '';
         payload.rightChoice = '';
         break;
@@ -122,7 +130,7 @@ class DataHandler extends Component {
   // elle prend en entré, les données de contenu ainsi que la step acutel
   //
   returnActualComponent = (data, step, isNewStep = false) => {
-    const childProps = { data: data.content };
+    const childProps = { data: data.content, next: this.nextCard };
     const payload = [];
 
     if (isNewStep && (
@@ -290,6 +298,25 @@ class DataHandler extends Component {
   }
 
   // ---------------------------------------------------------------------
+  // SKILLS : Cette fonction s'occupe du choix fait a partir d'un skill
+  //
+  handleSkill(choice) {
+    const { endGame } = this.props;
+    const { data, isNarration, didWin } = this.state;
+    if (isNarration) {
+      endGame(didWin ? 'win' : 'loose');
+    } else {
+      if (choice) {
+        const card = ([<Narration data={data.content.content.adventure_victory} />]);
+        this.setState({ card, isNarration: true, didWin: true });
+      } else {
+        const card = ([<Narration data={data.content.content.adventure_defeat} />]);
+        this.setState({ card, isNarration: true });
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------
   // QUESTION : Cette fonction s'occupe de du choix fait a partir d'une Remise en q.
   //
   handleQuestion(choice) {
@@ -312,7 +339,6 @@ class DataHandler extends Component {
   handleEvent() {
     console.log('event');
     const { next } = this.props;
-    this.updateProfile();
     next();
   }
 
@@ -356,6 +382,9 @@ const mapDispatchToProps = dispatch => ({
   },
   updateBonus: (e) => {
     dispatch(updateBonus(e));
+  },
+  endGame: (win) => {
+    dispatch(endGame(win));
   },
 });
 

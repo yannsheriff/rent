@@ -7,6 +7,7 @@ import './Event.scss';
 class Event extends Component {
   render() {
     const { data } = this.props;
+    console.log('TCL: Event -> render -> data', data);
 
     return (
       <div id="event">
@@ -16,4 +17,3 @@ class Event extends Component {
   }
 }
 export default Event;
-
