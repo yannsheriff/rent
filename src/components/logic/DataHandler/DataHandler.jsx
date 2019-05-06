@@ -110,6 +110,7 @@ class DataHandler extends Component {
         break;
 
       default:
+        payload.content = this.state.data;
         payload.leftChoice = '';
         payload.rightChoice = '';
         break;

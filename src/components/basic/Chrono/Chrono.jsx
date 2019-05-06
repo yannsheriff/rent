@@ -16,11 +16,11 @@ class Chrono extends Component {
     this.timer = 300;
   }
 
-  // endGame = () => {
-  //   const { end } = this.props;
-  //   clearInterval(this.chrono);
-  //   end('chrono');
-  // };
+  endGame = () => {
+    const { end } = this.props;
+    clearInterval(this.chrono);
+    end('chrono');
+  };
 
   componentDidMount() {
     const endTime = moment()

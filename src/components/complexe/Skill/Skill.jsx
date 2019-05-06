@@ -40,6 +40,7 @@ class Skill extends Component {
 
   render() {
     const { profil, data } = this.props;
+    console.log('TCL: Skill -> render -> data', data);
     const { endNaration, didWin } = this.state;
     const skills = profil.skills.map(element => (
       <button type="button" onClick={() => this.chooseSkill(element.title)}>
