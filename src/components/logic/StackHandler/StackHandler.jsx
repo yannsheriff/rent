@@ -21,54 +21,81 @@ class StackHandler extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => { this.setState({ transition: true }); }, 100);
+    this.setState({ actualCard: 0 }, () => this.playEnterTransition());
   }
 
   componentWillReceiveProps() {
-    this.setState({ actualCard: 0 }, () => this.ref.resetPosition());
+    this.setState({ actualCard: 0 }, () => this.playEnterTransition());
   }
 
-  nextCard() {
-    this.setState(state => ({ actualCard: state.actualCard + 1 }), () => this.ref.resetPosition());
+  componentDidUpdate() {
+    const {
+      show, transition, cardIsRotate, actualCard,
+    } = this.state;
+    if (!show && !transition && !cardIsRotate && actualCard > 0) {
+      this.playEnterTransition();
+    }
+  }
+
+
+  playEnterTransition() {
+    this.setState({ show: true }, () => {
+      setTimeout(() => { this.setState({ transition: true }); }, 200);
+    });
+  }
+
+  nextCard(choice) {
+    const { content, reject, accept } = this.props;
+    const { actualCard } = this.state;
+    const isLastCard = content.length === actualCard + 1;
+
+    this.setState({ show: false, transition: false, cardIsRotate: false }, () => {
+      this.ref.resetPosition();
+      if (isLastCard) {
+        choice ? accept() : reject();
+      } else {
+        this.setState(state => ({ actualCard: state.actualCard + 1 }));
+      }
+    });
   }
 
 
   render() {
     const {
-      bgColor, show, transition, cardIsRotate, actualCard,
+      show, transition, cardIsRotate, actualCard,
     } = this.state;
     const {
-      content, reject, accept, leftChoice, rightChoice, isNarration,
+      content, leftChoice, rightChoice, isNarration,
     } = this.props;
-    // const style = cardIsRotate ? { transform: 'rotate(2deg)' } : { transform: 'rotate(0deg)' };
+    const style = cardIsRotate ? { transform: 'rotate(2deg)' } : { transform: 'rotate(0deg)' };
     const isLastCard = content.length === actualCard + 1;
     const displayChoice = !isNarration && isLastCard;
 
     return (
 
-    // <div id="stackHandler" style={{ backgroundColor: bgColor }}>
-    //   <div className="card-placeholder-container">
-    //     <div className="card-placeholder" style={style} />
-    //   </div>
-    //   { show
-    //   && (
-    //   <CSSTransition in={transition} timeout={1000} classNames="trans-card" onEntered={() => this.setState({ cardIsRotate: true })}>
-    //     <div className="card-container">
+      <div id="stackHandler">
+        <div className="card-placeholder-container">
+          <div className="card-placeholder" style={style} />
+        </div>
+        { show
+      && (
+      <CSSTransition in={transition} timeout={500} classNames="trans-card" onEntered={() => this.setState({ cardIsRotate: true })}>
+        <div className="card-container">
 
-      <Card
-        swipLeft={() => (isLastCard ? reject() : this.nextCard())}
-        swipRight={() => (isLastCard ? accept() : this.nextCard())}
-        leftChoice={displayChoice ? leftChoice : ''}
-        rightChoice={displayChoice ? rightChoice : ''}
-        onRef={(ref) => { this.ref = ref; }}
-      >
-        {content[actualCard]}
-      </Card>
-    //     </div>
-    //   </CSSTransition>
-    //   )
+          <Card
+            swipLeft={() => (this.nextCard(false))}
+            swipRight={() => (this.nextCard(true))}
+            leftChoice={displayChoice ? leftChoice : ''}
+            rightChoice={displayChoice ? rightChoice : ''}
+            onRef={(ref) => { this.ref = ref; }}
+          >
+            {content[actualCard]}
+          </Card>
+        </div>
+      </CSSTransition>
+      )}
 
-    // </div>
+      </div>
     );
   }
 }
