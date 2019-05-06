@@ -33,7 +33,7 @@ class SkillSelection extends Component {
       const { selected } = this.state;
       if (selected.length > 1) {
         updateSkill(selected);
-        setTimeout(() => { next(); }, 600);
+        setTimeout(() => { next(); }, 100);
       }
     });
   }

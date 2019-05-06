@@ -39,9 +39,9 @@ class ProfileGeneration extends Component {
   }
 
   generateAll = () => {
-    setTimeout(() => { this.generateStatus(); }, 500);
-    setTimeout(() => { this.generateOrigin(); }, 1000);
-    setTimeout(() => { this.generateBudget(); }, 1500);
+    setTimeout(() => { this.generateStatus(); }, 100);
+    setTimeout(() => { this.generateOrigin(); }, 100);
+    setTimeout(() => { this.generateBudget(); }, 100);
   }
 
   generateStatus = () => {

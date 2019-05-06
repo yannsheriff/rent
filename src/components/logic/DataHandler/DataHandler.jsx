@@ -205,20 +205,24 @@ class DataHandler extends Component {
       updateStatus,
       updateBudget,
       updateOrigin,
+      step,
     } = this.props;
     const { data } = this.state;
 
-    if (data.content.question_new_points) {
-      updateBonus(data.content.question_new_points);
+    console.log(data.content);
+    console.log(data.content[`${step}_new_points`]);
+
+    if (data.content[`${step}_new_points`]) {
+      updateBonus(data.content[`${step}_new_points`]);
     }
-    if (data.content.question_new_status) {
-      updateStatus(data.content.question_new_status);
+    if (data.content[`${step}_new_status`]) {
+      updateStatus(data.content[`${step}_new_status`]);
     }
-    if (data.content.question_new_budget) {
-      updateBudget(data.content.question_new_budget);
+    if (data.content[`${step}_new_budget`]) {
+      updateBudget(data.content[`${step}_new_budget`]);
     }
-    if (data.content.question_new_origin) {
-      updateOrigin(data.content.question_new_origin);
+    if (data.content[`${step}_new_origin`]) {
+      updateOrigin(data.content[`${step}_new_origin`]);
     }
   }
 
@@ -254,12 +258,12 @@ class DataHandler extends Component {
       this.setState({ isNarration: false }, () => fail());
     } else {
       if (choice) {
-        if (round === 0 || rand === 0) {
-          const card = ([<Narration data={data.content.reject.reject_narration} />]);
-          this.setState({ card, isNarration: true });
-        } else {
-          next();
-        }
+        // if (round === 0 || rand === 0) {
+        //   const card = ([<Narration data={data.content.reject.reject_narration} />]);
+        //   this.setState({ card, isNarration: true });
+        // } else {
+        next();
+        // }
       } else {
         fail();
       }
@@ -272,13 +276,16 @@ class DataHandler extends Component {
   handleAdventure(choice) {
     const { next, fail } = this.props;
     const { data, isNarration } = this.state;
-    if (choice) {
-      next();
-    } else if (isNarration) {
+
+    if (isNarration) {
       this.setState({ isNarration: false }, () => fail());
     } else {
-      const card = ([<Narration data={data.content.adventure_back} />]);
-      this.setState({ card, isNarration: true });
+      if (choice) {
+        next();
+      } else {
+        const card = ([<Narration data={data.content.adventure_back} />]);
+        this.setState({ card, isNarration: true });
+      }
     }
   }
 
@@ -293,7 +300,9 @@ class DataHandler extends Component {
     } else {
       const content = choice ? data.content.question_accept_narration : data.content.question_refuse_narration;
       const card = ([<Narration data={content} />]);
-      this.setState({ card, isNarration: true }, () => this.updateProfile());
+      this.setState({ card, isNarration: true }, () => {
+        if (choice) { this.updateProfile(); }
+      });
     }
   }
 
@@ -301,6 +310,7 @@ class DataHandler extends Component {
   // EVENT : Cette fonction s'occupe de du choix fait a partir d'un evenement
   //
   handleEvent() {
+    console.log('event');
     const { next } = this.props;
     this.updateProfile();
     next();
