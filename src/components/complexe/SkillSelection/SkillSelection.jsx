@@ -46,12 +46,16 @@ class SkillSelection extends Component {
     });
   }
 
+  /* HTML */
+
   returnSelectedSkill = skill => (
     <div className="skill selected" onClick={() => this.unselectSkill(skill)}>
       <img src={skill.img} alt="" />
       <h3>{skill.title}</h3>
     </div>
   )
+
+  /* HTML */
 
   returnUnselectedSkill = skill => (
     <div className="skill" onClick={() => this.selectSkill(skill)}>
