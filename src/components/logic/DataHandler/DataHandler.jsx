@@ -35,6 +35,7 @@ class DataHandler extends Component {
       round: 0,
       data: {},
       card: {},
+      actualStep: 'ads',
       isNarration: false,
     };
   }
@@ -43,7 +44,6 @@ class DataHandler extends Component {
   // ------------------------------
   //  Initialisation des components
   //
-
   componentWillMount() {
     const { step } = this.props;
     const data = this.getCardData(step);
