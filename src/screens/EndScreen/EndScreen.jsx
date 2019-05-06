@@ -21,7 +21,6 @@ class App extends Component {
 
   render() {
     const { step } = this.props;
-    console.log(this.recap);
     return (
       <div className="App">
         <h1>
