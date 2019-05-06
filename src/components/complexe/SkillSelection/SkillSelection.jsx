@@ -2,11 +2,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { updateSkills } from '../../../redux/actions/profil';
-import skills from '../../../contents/skills';
+import skills from 'assets/skills';
+import { updateSkills } from 'redux/actions/profil';
 import './SkillSelection.scss';
 
 class SkillSelection extends Component {
+  static propTypes = {
+    updateSkill: PropTypes.func,
+    next: PropTypes.func,
+  };
+
+  static defaultProps = {
+    updateSkill: () => {},
+    next: () => {},
+  };
+
   constructor(props) {
     super(props);
 
@@ -23,7 +33,7 @@ class SkillSelection extends Component {
       const { selected } = this.state;
       if (selected.length > 1) {
         updateSkill(selected);
-        next();
+        setTimeout(() => { next(); }, 600);
       }
     });
   }
@@ -67,7 +77,9 @@ class SkillSelection extends Component {
     });
     return (
       <div id="skillSelection">
-        <p>skillSelection </p>
+        <p>
+          Choisissez un 2 capacités qui pourront vous être utile lors de votre recherche
+        </p>
         <div className="skills">
           {skill}
         </div>

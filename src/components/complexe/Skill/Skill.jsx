@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -9,11 +10,14 @@ import './Skill.scss';
 class Skill extends Component {
   static propTypes = {
     data: PropTypes.object,
-
+    profil: PropTypes.object,
+    endGame: PropTypes.func,
   };
 
   static defaultProps = {
-    // fail: () => {},
+    data: {},
+    profil: {},
+    endGame: () => {},
   };
 
   constructor(props) {
@@ -35,7 +39,7 @@ class Skill extends Component {
   }
 
   render() {
-    const { profil, endGame, data } = this.props;
+    const { profil, data } = this.props;
     const { endNaration, didWin } = this.state;
     const skills = profil.skills.map(element => (
       <button type="button" onClick={() => this.chooseSkill(element.title)}>
@@ -56,7 +60,7 @@ class Skill extends Component {
          && (
          <div>
            <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(endNaration) }} />
-           <button onClick={() => { endGame(didWin ? 'win' : 'loose'); }}>next </button>
+           <button type="button" onClick={() => { endGame(didWin ? 'win' : 'loose'); }}>next </button>
          </div>
          )
         }

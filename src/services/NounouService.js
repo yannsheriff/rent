@@ -11,7 +11,7 @@ class NounouServices {
     this.adventure = [];
     this.visitedFlatIDs = [];
     this.actualVisit = 'Avec une tache de sang';
-    this.acutalFlat = {};
+    this.actualFlat = {};
 
     if (!instance) {
       instance = this;

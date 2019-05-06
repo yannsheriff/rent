@@ -3,32 +3,32 @@ import illu from './img';
 export default [
   {
     id: 'photoshop',
-    title: 'As de photoshop',
+    title: 'As de Photoshop',
     img: illu.diamond,
   },
   {
     id: 'psychopathe',
-    title: 'psychopathe en herbe',
+    title: 'Psychopathe en Herbe',
     img: illu.diamond,
   },
   {
     id: 'mytho',
-    title: 'céréale mytho',
+    title: 'Serial Mytho',
     img: illu.diamond,
   },
   {
     id: 'chance',
-    title: 'petit chanceux',
+    title: 'Petit Chanceux',
     img: illu.diamond,
   },
   {
     id: 'hacker',
-    title: 'hacker du dimanche',
+    title: 'Hacker du Dimanche',
     img: illu.diamond,
   },
   {
     id: 'deguisement',
-    title: 'Maitre du deguisement',
+    title: 'Maitre du Déguisement',
     img: illu.diamond,
   },
 ];

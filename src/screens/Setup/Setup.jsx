@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import logo from '../../logo.svg';
 import { gameIsSetUp } from '../../redux/actions/steps';
-import ProfilGeneration from '../../components/complexe/ProfilGeneration/ProfilGeneration';
+import ProfilGeneration from '../../components/complexe/ProfileGeneration/ProfileGeneration';
 import SkillSelection from '../../components/complexe/SkillSelection/SkillSelection';
 import ProfileRecap from '../../components/complexe/ProfileRecap/ProfileRecap';
 import Intro from '../../components/complexe/Intro/Intro';
