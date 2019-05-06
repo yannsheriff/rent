@@ -3,24 +3,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './DataHandler.scss';
-import { CSSTransition } from 'react-transition-group';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import { EthanService } from '../../../services/EthanServices';
-import { NounouService } from '../../../services/NounouService';
-import StackHandler from '../StackHandler/StackHandler';
+import { EthanService } from 'services/EthanServices';
+import { NounouService } from 'services/NounouService';
 import {
-  updateStatus, updateBudget, updateOrigin, updateScore,
-} from '../../../redux/actions/profil';
-
+  updateStatus, updateBudget, updateOrigin, updateBonus,
+} from 'redux/actions/profil';
+import StackHandler from '../StackHandler/StackHandler';
 
 // components
 
-import Ads from '../../complexe/Ads/Ads';
-import Adventure from '../../complexe/Adventure/Adventure';
-import Event from '../../complexe/Event/Event';
-import Question from '../../complexe/Question/Question';
-import Skill from '../../complexe/Skill/Skill';
-import Visit from '../../complexe/Visit/Visit';
+import {
+  Ads, Adventure, Event, Question, Skill, Visit,
+} from '../../complexe';
 
 function getRandomArbitrary(min, max) {
   return Math.round(Math.random() * ((max - 1) - min) + min);
@@ -84,7 +79,7 @@ class DataHandler extends Component {
         break;
 
       case 'visit':
-        payload.leftChoice = 'retour aux annonces';
+        payload.leftChoice = 'Retour aux annonces';
         payload.rightChoice = 'Déposer un dossier';
         break;
 
@@ -182,7 +177,7 @@ class DataHandler extends Component {
   //
   updateProfile = () => {
     const {
-      updateScore,
+      updateBonus,
       updateStatus,
       updateBudget,
       updateOrigin,
@@ -190,7 +185,7 @@ class DataHandler extends Component {
     const { data } = this.state;
 
     if (data.content.question_new_points) {
-      updateScore(data.content.question_new_points);
+      updateBonus(data.content.question_new_points);
     }
     if (data.content.question_new_status) {
       updateStatus(data.content.question_new_status);
@@ -300,7 +295,6 @@ class DataHandler extends Component {
     next();
   }
 
-
   /* ===============================================================
   ======================= Render function ==========================
   ================================================================ */
@@ -339,8 +333,8 @@ const mapDispatchToProps = dispatch => ({
   updateOrigin: (e) => {
     dispatch(updateOrigin(e));
   },
-  updateScore: (e) => {
-    dispatch(updateScore(e));
+  updateBonus: (e) => {
+    dispatch(updateBonus(e));
   },
 });
 

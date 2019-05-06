@@ -27,7 +27,6 @@ class StackHandler extends Component {
   // - question
   // - event
 
-
   componentDidMount() {
     setTimeout(() => { this.setState({ transition: true }); }, 300);
   }
