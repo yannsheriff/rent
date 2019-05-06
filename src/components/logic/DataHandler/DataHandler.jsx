@@ -72,7 +72,12 @@ class DataHandler extends Component {
     if (!isNarration) {
       const data = this.getCardData(step);
       const card = this.returnActualComponent(data, step, true);
-      this.setState({ data, card }, () => { if (step === 'event') { this.updateProfile(); } });
+      this.setState({ data, card }, () => {
+        // si c'est un evenement on veux appliquer directement la modification
+        if (step === 'event') {
+          this.setState({ isNarration: true }, () => this.updateProfile());
+        }
+      });
     }
   }
 
@@ -217,6 +222,8 @@ class DataHandler extends Component {
     } = this.props;
     const { data } = this.state;
 
+    console.log('UPDATE PROFIL', step);
+
     if (data.content[`${step}_new_points`]) {
       updateBonus(data.content[`${step}_new_points`]);
     }
@@ -342,7 +349,7 @@ class DataHandler extends Component {
     const { next } = this.props;
     const { data } = this.state;
     NounouService.saveEvent(data.content);
-    next();
+    this.setState({ isNarration: false }, () => next());
   }
 
   /* ===============================================================
