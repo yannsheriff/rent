@@ -9,7 +9,7 @@ import { EthanService } from '../../../services/EthanServices';
 import { NounouService } from '../../../services/NounouService';
 import StackHandler from '../StackHandler/StackHandler';
 import {
-  updateStatus, updateBudget, updateOrigin, updateScore,
+  updateStatus, updateBudget, updateOrigin, updateBonus,
 } from '../../../redux/actions/profil';
 
 
@@ -183,7 +183,7 @@ class DataHandler extends Component {
   //
   updateProfile = () => {
     const {
-      updateScore,
+      updateBonus,
       updateStatus,
       updateBudget,
       updateOrigin,
@@ -191,7 +191,7 @@ class DataHandler extends Component {
     const { data } = this.state;
 
     if (data.content.question_new_points) {
-      updateScore(data.content.question_new_points);
+      updateBonus(data.content.question_new_points);
     }
     if (data.content.question_new_status) {
       updateStatus(data.content.question_new_status);
@@ -340,8 +340,8 @@ const mapDispatchToProps = dispatch => ({
   updateOrigin: (e) => {
     dispatch(updateOrigin(e));
   },
-  updateScore: (e) => {
-    dispatch(updateScore(e));
+  updateBonus: (e) => {
+    dispatch(updateBonus(e));
   },
 });
 
