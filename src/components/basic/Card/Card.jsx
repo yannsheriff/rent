@@ -40,44 +40,53 @@ class Card extends Component {
   }
 
   dragStart = (e) => {
-    this.card.current.classList.remove('transition');
-    this.firstTouch = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    const { isLocked } = this.props;
+    if (!isLocked) {
+      this.card.current.classList.remove('transition');
+      this.firstTouch = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }
   }
 
   drag = (e) => {
-    const translateX = e.touches[0].clientX - this.firstTouch.x;
-    const translateY = e.touches[0].clientY - this.firstTouch.y;
+    const { isLocked } = this.props;
 
-    if (translateX > 20) {
-      this.isValidated = 'right';
-    } else if (translateX < -20) {
-      this.isValidated = 'left';
-    } else {
-      this.isValidated = false;
+    if (!isLocked) {
+      const translateX = e.touches[0].clientX - this.firstTouch.x;
+      const translateY = e.touches[0].clientY - this.firstTouch.y;
+
+      if (translateX > 20) {
+        this.isValidated = 'right';
+      } else if (translateX < -20) {
+        this.isValidated = 'left';
+      } else {
+        this.isValidated = false;
+      }
+
+      this.lastTouch = e.touches[0].clientX;
+      this.setState({ cardPosX: translateX, cardPosY: translateY });
     }
-
-    this.lastTouch = e.touches[0].clientX;
-    this.setState({ cardPosX: translateX, cardPosY: translateY });
   }
 
   dragEnd = () => {
-    const { swipRight, swipLeft } = this.props;
-    this.card.current.classList.add('transition');
-    if (this.isValidated === 'right') {
-      this.setState({ cardPosX: 400, cardPosY: 100 });
-      swipRight
-        ? swipRight()
-        : console.warn('need swipRight to be a function');
-    } else if (this.isValidated === 'left') {
-      this.setState({ cardPosX: -400, cardPosY: 100 });
-      swipLeft
-        ? swipLeft()
-        : console.warn('need swipLeft to be a function');
-    } else {
-      this.setState({ cardPosX: 0, cardPosY: 0 });
+    const { swipRight, swipLeft, isLocked } = this.props;
+    if (!isLocked) {
+      this.card.current.classList.add('transition');
+      if (this.isValidated === 'right') {
+        this.setState({ cardPosX: 400, cardPosY: 100 });
+        swipRight
+          ? swipRight()
+          : console.warn('need swipRight to be a function');
+      } else if (this.isValidated === 'left') {
+        this.setState({ cardPosX: -400, cardPosY: 100 });
+        swipLeft
+          ? swipLeft()
+          : console.warn('need swipLeft to be a function');
+      } else {
+        this.setState({ cardPosX: 0, cardPosY: 0 });
+      }
+      this.lastTouch = 0;
+      this.isValidated = false;
     }
-    this.lastTouch = 0;
-    this.isValidated = false;
   }
 
   resetPosition = () => {

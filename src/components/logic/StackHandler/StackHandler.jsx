@@ -62,17 +62,27 @@ class StackHandler extends Component {
 
   render() {
     const {
-      show, transition, cardIsRotate, actualCard,
+      show,
+      transition,
+      cardIsRotate,
+      actualCard,
     } = this.state;
+
     const {
-      content, leftChoice, rightChoice, isNarration,
+      content,
+      leftChoice,
+      rightChoice,
+      isNarration,
+      step,
     } = this.props;
+
     const style = cardIsRotate ? { transform: 'rotate(2deg)' } : { transform: 'rotate(0deg)' };
     const isLastCard = content.length === actualCard + 1;
     const displayChoice = !isNarration && isLastCard;
+    const isCardLocked = step === 'skill';
+    console.log('TCL: render -> isCardLocked', isCardLocked);
 
     return (
-
       <div id="stackHandler">
         <div className="card-placeholder-container">
           <div className="card-placeholder" style={style} />
@@ -81,12 +91,12 @@ class StackHandler extends Component {
       && (
       <CSSTransition in={transition} timeout={500} classNames="trans-card" onEntered={() => this.setState({ cardIsRotate: true })}>
         <div className="card-container">
-
           <Card
             swipLeft={() => (this.nextCard(false))}
             swipRight={() => (this.nextCard(true))}
             leftChoice={displayChoice ? leftChoice : ''}
             rightChoice={displayChoice ? rightChoice : ''}
+            isLocked={isCardLocked}
             onRef={(ref) => { this.ref = ref; }}
           >
             {content[actualCard]}
@@ -94,7 +104,6 @@ class StackHandler extends Component {
         </div>
       </CSSTransition>
       )}
-
       </div>
     );
   }

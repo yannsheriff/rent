@@ -267,7 +267,6 @@ class DataHandler extends Component {
     const { data, isNarration } = this.state;
     const rand = getRandomArbitrary(0, 10);
     // dossier refusé donc retour aux annonces
-    console.log(data.content);
     if (isNarration) {
       this.setState({ isNarration: false }, () => fail());
     } else {
@@ -358,6 +357,7 @@ class DataHandler extends Component {
 
   render() {
     const { card, data, isNarration } = this.state;
+    const { step } = this.props;
     return (
       <StackHandler
         accept={() => this.nextCard(true)}
@@ -366,6 +366,7 @@ class DataHandler extends Component {
         leftChoice={data.leftChoice}
         rightChoice={data.rightChoice}
         isNarration={isNarration}
+        step={step}
       />
     );
   }
