@@ -1,5 +1,6 @@
 /* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Skill.scss';
 import DraggableSkill from '../../basic/DraggableSkill/DraggableSkill';
@@ -95,4 +96,16 @@ class Skill extends Component {
   }
 }
 
-export default Skill;
+/* ===============================================================
+  ======================= REDUX CONNECTION =======================
+  ================================================================ */
+
+const mapStateToProps = state => ({
+  profil: state.profilReducer,
+});
+
+const componentContainer = connect(
+  mapStateToProps,
+)(Skill);
+
+export default componentContainer;
