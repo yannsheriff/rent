@@ -1,16 +1,21 @@
 @import "variables.scss";
+@import "style.scss";
+@import "layout.scss";
 
 .intro--info {
     position: absolute;
     width: 100%;
     text-align: center;
     bottom: 15px;
+    font-size: 14px; 
+    color: $white;
+    font-family: fivo_sans_modernitalic;
 }
 
 .main-layout {
+    // background: $blue;
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
     position: relative;
     box-sizing: border-box;
-    border: 2px solid paleturquoise;
 }

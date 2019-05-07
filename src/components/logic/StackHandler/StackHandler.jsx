@@ -11,7 +11,7 @@ class StackHandler extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      bgColor: '#90d5d0',
+      bgColor: '#5f7bfc',
       transition: false,
       show: true,
       cardIsRotate: false,

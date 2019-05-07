@@ -9,6 +9,7 @@ export function gameIsSetUp() {
 }
 
 export function changeStep(payload) {
+  console.log(payload);
   return {
     type: CHANGE_STEP,
     payload,

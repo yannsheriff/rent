@@ -9,6 +9,7 @@ const defaultState = {
 };
 
 export function stepReducer(state = defaultState, action) {
+  console.log('step reducer');
   switch (action.type) {
     case DID_SET_UP:
       return {
@@ -17,6 +18,7 @@ export function stepReducer(state = defaultState, action) {
       };
 
     case CHANGE_STEP:
+      console.log('change step');
       return {
         ...state,
         step: action.payload,
