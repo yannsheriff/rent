@@ -16,7 +16,6 @@ class App extends Component {
 
   componentDidMount() {
     const recap = NounouService.getRecap();
-    console.log('TCL: App -> componentDidMount -> recap', recap);
   }
 
   render() {

@@ -7,8 +7,6 @@ import './Event.scss';
 class Event extends Component {
   render() {
     const { data } = this.props;
-    console.log('TCL: Event -> render -> data', data);
-
     return (
       <div id="event">
         <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.event_narration) }} />

@@ -222,8 +222,6 @@ class DataHandler extends Component {
     } = this.props;
     const { data } = this.state;
 
-    console.log('UPDATE PROFIL', step);
-
     if (data.content[`${step}_new_points`]) {
       updateBonus(data.content[`${step}_new_points`]);
     }
