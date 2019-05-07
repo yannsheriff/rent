@@ -1,25 +1,13 @@
-.ads {
-  background-color: $blue;
-  -webkit-transition: 1.5s ease;
-  -moz-transition: 1.5s ease;
-  -ms-transition: 1.5s ease;
-  -o-transition: 1.5s ease;
+.layout--profile,
+.layout--header {
+  box-sizing: border-box;
+  padding: 0 8vw;
+  height: 10vh;
+  border: 1px solid white;
 }
 
-.visit,
-.question {
-  background-color: $orange;
-  -webkit-transition: 1.5s ease;
-  -moz-transition: 1.5s ease;
-  -ms-transition: 1.5s ease;
-  -o-transition: 1.5s ease;
-}
-
-.adventure,
-.event {
-  background-color: $red;
-  -webkit-transition: 1.5s ease;
-  -moz-transition: 1.5s ease;
-  -ms-transition: 1.5s ease;
-  -o-transition: 1.5s ease;
+.layout--steps {
+  box-sizing: border-box;
+  padding: 0 8vw;
+  flex: 1;
 }

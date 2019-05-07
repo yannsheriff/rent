@@ -1,52 +1,47 @@
-#card {
-    width: 300px;
-    height: 350px;
-    background-color: white;
-    // position: absolute;
-    // top: 0;
-    // left: 0;
-    padding: 10px;
-    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+// #card {
+//     background-color: white;
+//     padding: 10px;
+//     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
     
-    border-radius: 15px;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    -ms-border-radius: 15px;
-    -o-border-radius: 15px;
+//     border-radius: 15px;
+//     -webkit-border-radius: 15px;
+//     -moz-border-radius: 15px;
+//     -ms-border-radius: 15px;
+//     -o-border-radius: 15px;
 
-    &.transition {
-        transition: .3s ease;
-        -webkit-transition: .3s ease;
-        -moz-transition: .3s ease;
-        -ms-transition: .3s ease;
-        -o-transition: .3s ease;
-    }
+//     &.transition {
+//         transition: .3s ease;
+//         -webkit-transition: .3s ease;
+//         -moz-transition: .3s ease;
+//         -ms-transition: .3s ease;
+//         -o-transition: .3s ease;
+//     }
 
-    .bottom {
-        display: flex;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        flex-flow: row nowrap;
-        justify-content: space-around;
-        align-items: center;
+//     .bottom {
+//         display: flex;
+//         position: absolute;
+//         bottom: 0;
+//         left: 0;
+//         width: 100%;
+//         flex-flow: row nowrap;
+//         justify-content: space-around;
+//         align-items: center;
 
-        &> div {
-            opacity: .5;
-            flex: 1;
-            transition: .2s ease;
-            -webkit-transition: .2s ease;
-            -moz-transition: .2s ease;
-            -ms-transition: .2s ease;
-            -o-transition: .2s ease;
+//         &> div {
+//             opacity: .5;
+//             flex: 1;
+//             transition: .2s ease;
+//             -webkit-transition: .2s ease;
+//             -moz-transition: .2s ease;
+//             -ms-transition: .2s ease;
+//             -o-transition: .2s ease;
             
-            &.selected {
-                opacity: 1;
-            }
-        }
-    }
+//             &.selected {
+//                 opacity: 1;
+//             }
+//         }
+//     }
 
 
     
-}
+// }

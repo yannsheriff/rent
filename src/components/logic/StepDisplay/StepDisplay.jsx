@@ -92,7 +92,7 @@ class StepDisplay extends Component {
       actualStep, round,
     } = this.state;
     return (
-      <div id="steps">
+      <div id="steps" className="layout--steps">
         <DataHandler step={actualStep} round={round} next={this.nextStep} fail={this.failStep} />
       </div>
     );

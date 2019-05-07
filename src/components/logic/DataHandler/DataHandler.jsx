@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-lonely-if */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -47,7 +49,7 @@ class DataHandler extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      round: 0,
+      // round: 0,
       data: {},
       card: {},
       isNarration: false,
@@ -221,8 +223,6 @@ class DataHandler extends Component {
       step,
     } = this.props;
     const { data } = this.state;
-
-    console.log('UPDATE PROFIL', step);
 
     if (data.content[`${step}_new_points`]) {
       updateBonus(data.content[`${step}_new_points`]);

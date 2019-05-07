@@ -1,0 +1,46 @@
+/* STRUCTURE COMMUNE DE CARTE */
+
+.card {
+  height: 100%;
+  width: 100%;
+  border-radius: 22px;
+  -moz-border-radius: 22px; 
+  -webkit-border-radius: 22px;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+/* CARTE DE FOND */
+
+.background-card {
+  background: $white;
+  opacity: 0.5;
+  left: 0;
+  top: 0;
+  transition: transform .2s ease;
+  -webkit-transition: transform .2s ease;
+  -moz-transition: transform .2s ease;
+  -ms-transition: transform .2s ease;
+  -o-transition: transform .2s ease;
+}
+  /* CARTE PRINCIPALE */
+
+.card {
+  &--main {
+    position: relative;
+    box-sizing: border-box;
+    box-shadow : 5px 5px 0 0 rgba(0,0,0,0.05);
+    background-color: $white;
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+  }
+
+  &--container {
+    box-sizing: border-box;
+    border: 1px solid $black;
+    height: 100%;
+    padding: 0 8vw;
+    border-radius: 22px;
+  }
+}

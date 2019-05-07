@@ -1,6 +1,8 @@
 @import "variables.scss";
 @import "style.scss";
 @import "layout.scss";
+@import "background.scss";
+@import "card.scss";
 
 .intro--info {
     position: absolute;
@@ -13,7 +15,6 @@
 }
 
 .main-layout {
-    // background: $blue;
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
     position: relative;

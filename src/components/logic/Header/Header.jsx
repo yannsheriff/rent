@@ -17,7 +17,7 @@ class Header extends Component {
 
   render() {
     return (
-      <div id="header">
+      <div id="header" className="layout--header">
         <Chrono />
       </div>
     );

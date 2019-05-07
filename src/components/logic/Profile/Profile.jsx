@@ -21,7 +21,7 @@ class Header extends Component {
     } = profil;
 
     return (
-      <div id="profile">
+      <div id="profile" className="layout--profile">
         <p>{score}</p>
         <p>{budget.title}</p>
         <p>{origin.flag}</p>

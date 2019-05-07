@@ -76,7 +76,7 @@ class StackHandler extends Component {
       step,
     } = this.props;
 
-    const style = cardIsRotate ? { transform: 'rotate(2deg)' } : { transform: 'rotate(0deg)' };
+    const style = cardIsRotate ? { transform: 'rotate(4deg)' } : { transform: 'rotate(0deg)' };
     const isLastCard = content.length === actualCard + 1;
     const displayChoice = !isNarration && isLastCard;
     const isCardLocked = step === 'skill';
@@ -84,13 +84,13 @@ class StackHandler extends Component {
 
     return (
       <div id="stackHandler">
-        <div className="card-placeholder-container">
-          <div className="card-placeholder" style={style} />
+        <div className="background-card--placeholder">
+          <div className="card background-card" style={style} />
         </div>
         { show
       && (
       <CSSTransition in={transition} timeout={500} classNames="trans-card" onEntered={() => this.setState({ cardIsRotate: true })}>
-        <div className="card-container">
+        <div className="card--placeholder">
           <Card
             swipLeft={() => (this.nextCard(false))}
             swipRight={() => (this.nextCard(true))}

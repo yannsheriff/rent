@@ -29,6 +29,7 @@ class EthanServices {
   }
 
   init = () => {
+  // async getDatas() {
     const list = ['ad', 'adventure', 'reject', 'event', 'question', 'visit'];
 
     for (let i = 0; i < list.length; i += 1) {
@@ -42,7 +43,7 @@ class EthanServices {
         })
         .catch(console.error);
     }
-  };
+  }
 
   get = (step, profile) => {
     switch (step) {
@@ -81,7 +82,9 @@ class EthanServices {
   }
 
   getAds = (profile) => {
-    const filtered = this.ad.filter(item => item.ad_budget <= profile.budget.value);
+    const filtered = this.ad.filter(
+      item => item.ad_budget <= profile.budget.value,
+    );
     const rand = getRandomArbitrary(0, filtered.length);
     const ad = filtered[rand];
     return ad;

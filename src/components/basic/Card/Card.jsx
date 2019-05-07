@@ -101,15 +101,16 @@ class Card extends Component {
 
     return (
       <div
-        id="card"
+        className="card card--main"
         onTouchStart={this.dragStart}
         onTouchMove={this.drag}
         onTouchEnd={this.dragEnd}
         style={{ transform: `translate(${cardPosX}px, ${cardPosY}px)` }}
         ref={this.card}
       >
-        {children}
-        {leftChoice && rightChoice
+        <div className="card--container">
+          {children}
+          {leftChoice && rightChoice
         && (
           <div className="bottom">
             <div className={`left ${this.isValidated === 'left' ? 'selected' : ''}`}>{leftChoice}</div>
@@ -117,6 +118,7 @@ class Card extends Component {
           </div>
         )
         }
+        </div>
       </div>
     );
   }
