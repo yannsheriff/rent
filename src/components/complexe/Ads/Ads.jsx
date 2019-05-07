@@ -15,14 +15,14 @@ class Ads extends Component {
       ad_views: '462',
     };
     return (
-      <div className="card--ads">
+      <div className="card--content card--ads">
         <h2 className="card--type">Annonce</h2>
-        {/* {data.ad_source === 'agency'
+        {data.ad_source === 'agency'
         && <h3 className="card--tag ">Agence immobilière</h3>
         }
         {data.ad_source === 'individual'
         && <h3 className="card--tag ">Particulier</h3>
-        } */}
+        }
         <h1>
           {data.title}
           {' '}

@@ -112,7 +112,7 @@ class Card extends Component {
           {children}
           {leftChoice && rightChoice
         && (
-          <div className="bottom">
+          <div className="card--choice">
             <div className={`left ${this.isValidated === 'left' ? 'selected' : ''}`}>{leftChoice}</div>
             <div className={`right ${this.isValidated === 'right' ? 'selected' : ''}`}>{rightChoice }</div>
           </div>

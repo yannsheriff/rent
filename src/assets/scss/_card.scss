@@ -42,5 +42,16 @@
     height: 100%;
     padding: 0 8vw;
     border-radius: 22px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &--content {
+    flex: 1;
+  }
+
+  &--choice {
+    display: flex;
+    flex-direction: row;
   }
 }
