@@ -79,8 +79,7 @@ class StackHandler extends Component {
     const style = cardIsRotate ? { transform: 'rotate(4deg)' } : { transform: 'rotate(0deg)' };
     const isLastCard = content.length === actualCard + 1;
     const displayChoice = !isNarration && isLastCard;
-    const isCardLocked = step === 'skill';
-    console.log('TCL: render -> isCardLocked', isCardLocked);
+    const isCardLocked = step === 'skill' && !isNarration;
 
     return (
       <div id="stackHandler">
