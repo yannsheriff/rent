@@ -14,20 +14,35 @@ class App extends Component {
     step: false,
   };
 
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      flat: {},
+      totalVisits: {},
+    };
+  }
+
+  componentWillMount() {
     const recap = NounouService.getRecap();
+    console.log('TCL: App -> componentDidMount -> recap', recap);
+    this.setState({ flat: recap.actualFlat, totalVisits: recap.totalSeenAds });
   }
 
   render() {
     const { step } = this.props;
+    const { flat, totalVisits } = this.state;
     return (
       <div className="App">
         <h1>
           {step.end === 'win' ? 'Victoire !' : 'Défaite :(' }
         </h1>
         <div>
-          <p><u>Recap :</u></p>
-          POUR VIVRE DANS UN APPARTEMENT :
+          <p>Recap :</p>
+          Pour vivre dans un appartement
+          {` ${flat.visit.visit_recap} `}
+          vous avez visité
+          {` ${totalVisits} `}
+          apparts
           <ul>
             <li />
           </ul>

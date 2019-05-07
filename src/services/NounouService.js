@@ -23,8 +23,8 @@ class NounouServices {
 
   saveAd(ad) {
     this.totalSeenAds += 1;
-    this.actualAd = ad;
-    // this.visitedFlatIDs.push(ad.id);
+    this.actualFlat = ad;
+    this.visitedFlatIDs.push(ad.id);
     EthanService.removeData('ad', ad.id);
   }
 
@@ -42,6 +42,7 @@ class NounouServices {
   }
 
   saveVisit(visit) {
+    this.visits.push(visit.visit_recap);
     this.actualVisit = visit;
     EthanService.removeData('visit', visit.id);
   }
@@ -52,9 +53,9 @@ class NounouServices {
 
   getRecap() {
     return {
-      acutalFlat: {
+      actualFlat: {
         visit: this.actualVisit,
-        flat: this.acutalFlat,
+        flat: this.actualFlat,
       },
       totalSeenAds: this.totalSeenAds,
       visits: this.visits,
