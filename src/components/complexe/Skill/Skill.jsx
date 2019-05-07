@@ -52,7 +52,7 @@ class Skill extends Component {
 
   skillValidation = (index) => {
     const { profil } = this.props;
-    const choosenSkill = profil[index];
+    const choosenSkill = profil.skills[index].id;
     this.setState({ receptacleIsSelected: true }, () => {
       setTimeout(() => this.chooseSkill(choosenSkill), 700);
     });
