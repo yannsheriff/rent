@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import './Ads.scss';
-import ads from 'assets/ads/test.gif';
+import ads from 'assets/img/ads/test.gif';
+import views from 'assets/img/icons/icon_visites.svg';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Ads extends Component {
@@ -21,16 +22,16 @@ class Ads extends Component {
         </g>
       </svg>
     );
-    const { data } = this.props;
-    // const data = {
-    //   title: 'Sublime appartement avec sous-sol',
-    //   ad_size: '50',
-    //   ad_price: '€€€',
-    //   ad_description: 'Sublime appartement de 4 pièces non meublé comportant une imposante pièce voûtée en sous-sol denviron 25m2. Frais de bail à prévoir.',
-    //   ad_source: 'agency',
-    //   ad_rate: '3.5',
-    //   ad_views: '462',
-    // };
+    // const { data } = this.props;
+    const data = {
+      title: 'Sublime appartement avec sous-sol',
+      ad_size: '50',
+      ad_price: '€€€',
+      ad_description: 'Sublime appartement de 4 pièces non meublé comportant une imposante pièce voûtée en sous-sol denviron 25m2. Frais de bail à prévoir.',
+      ad_source: 'agency',
+      ad_rate: '3.5',
+      ad_views: '462',
+    };
     return (
       <div className="card--content card--ads">
         <h2 className="card--type">Annonce</h2>
@@ -56,22 +57,26 @@ class Ads extends Component {
         </div>
 
         {data.ad_source === 'agency'
-      && <h3 className="card--tag ">Agence immobilière</h3>
-      }
+        && <h3 className="card--tag">Agence immobilière</h3>
+        }
         {data.ad_source === 'individual'
-      && <h3 className="card--tag ">Particulier</h3>
-      }
+        && <h3 className="card--tag ">Particulier</h3>
+        }
         <h1>
-          {data.title}
+          {data.ad_title}
         </h1>
-        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.ad_description) }} />
         <p>
-        vu par
+          {data.ad_description}
+        </p>
+        {/* <p dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.ad_description) }} /> */}
+        <div className="card--views">
+          <img src={views} />
+          vu par
           {' '}
           {data.ad_views}
           {' '}
-        personnes
-        </p>
+          personnes
+        </div>
       </div>
     );
   }
