@@ -1,4 +1,6 @@
-.ads {
+.ads,
+.intro,
+.profil {
   background-color: $blue;
   -webkit-transition: 1.5s ease;
   -moz-transition: 1.5s ease;
@@ -7,7 +9,8 @@
 }
 
 .visit,
-.question {
+.question,
+.recap {
   background-color: $orange;
   -webkit-transition: 1.5s ease;
   -moz-transition: 1.5s ease;
@@ -16,7 +19,8 @@
 }
 
 .adventure,
-.event {
+.event,
+.skill {
   background-color: $red;
   -webkit-transition: 1.5s ease;
   -moz-transition: 1.5s ease;

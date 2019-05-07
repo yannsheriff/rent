@@ -43,7 +43,7 @@ class ProfileRecap extends Component {
     };
 
     return (
-      <div id="profile-recap" className="main-layout" onClick={() => this.nextStep()}>
+      <div id="profile-recap" onClick={() => this.nextStep()}>
         <p>Votre profil</p>
         <h3>{ status.title }</h3>
         <h3>{ budget.title }</h3>

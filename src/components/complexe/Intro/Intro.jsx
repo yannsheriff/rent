@@ -9,7 +9,7 @@ class Intro extends Component {
   render() {
     const { next } = this.props;
     return (
-      <div id="intro" className="main-layout" onClick={() => next()}>
+      <div id="intro" className="intro" onClick={() => next()}>
         <img className="intro--banner" src={rentBanner} alt="rent-banner" />
         <h1>LOUE MOI SI TU PEUX</h1>
         <p>
@@ -18,7 +18,6 @@ class Intro extends Component {
           <br />
           Saurez vous faire les bons choix pour ne pas finir à la rue (ou pire) ?
           {' '}
-
         </p>
         <p className="intro--info">Toucher pour continuer</p>
       </div>

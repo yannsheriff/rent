@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import logo from '../../logo.svg';
-import { gameIsSetUp } from '../../redux/actions/steps';
-import ProfilGeneration from '../../components/complexe/ProfileGeneration/ProfileGeneration';
-import SkillSelection from '../../components/complexe/SkillSelection/SkillSelection';
-import ProfileRecap from '../../components/complexe/ProfileRecap/ProfileRecap';
-import Intro from '../../components/complexe/Intro/Intro';
+import Menu from 'components/basic/Menu/Menu';
+import logo from 'logo.svg';
+import { gameIsSetUp } from 'redux/actions/steps';
+import {
+  Intro, ProfileGeneration, SkillSelection, ProfileRecap,
+} from 'components/complexe';
 import './Setup.scss';
 
 class Setup extends Component {
@@ -43,12 +43,13 @@ class Setup extends Component {
   render() {
     const { step } = this.state;
     return (
-      <div className="App">
+      <div className={`App main-layout setup ${step}`}>
+        <Menu />
         {step === 'intro'
           && <Intro next={this.goToNextStep} />
         }
         {step === 'profil'
-          && <ProfilGeneration next={this.goToNextStep} />
+          && <ProfileGeneration next={this.goToNextStep} />
         }
         {step === 'skill'
           && <SkillSelection next={this.goToNextStep} />

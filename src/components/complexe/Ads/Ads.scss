@@ -1,0 +1,51 @@
+.card {
+  &--ads {
+  }
+
+  &--illu {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    max-width: 50%;
+  }
+
+  &--info {
+    position: absolute;
+    top: 3vw;
+    right: 3vw;
+
+    > div {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      text-align: center;
+
+      > div {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        > div {
+          
+
+          span {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  &--pricetag {
+    width: 100px;
+    #element_price {
+      fill: #5f7bfc;
+    }
+  }
+}
