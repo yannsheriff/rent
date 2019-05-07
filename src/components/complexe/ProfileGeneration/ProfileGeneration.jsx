@@ -83,8 +83,9 @@ class ProfileGeneration extends Component {
       budget, origin, status,
     } = profil;
     return (
-      <div className="profile-generation main-layout" onClick={() => this.nextStep()}>
+      <div className="intro" onClick={() => this.nextStep()}>
         <div className="profile-generation--container">
+          <h2>Votre profil</h2>
           <div className="profile-generation--container--item">
             {isStatus
             && (

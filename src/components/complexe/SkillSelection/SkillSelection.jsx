@@ -80,10 +80,10 @@ class SkillSelection extends Component {
       return isSelected ? this.returnSelectedSkill(skill) : this.returnUnselectedSkill(skill);
     });
     return (
-      <div id="skillSelection">
-        <p>
-          Choisissez un 2 capacités qui pourront vous être utile lors de votre recherche
-        </p>
+      <div id="skillSelection" className="skills-selection">
+        <h2>
+          Choisissez 2 capacités qui pourront vous être utile
+        </h2>
         <div className="skills">
           {skill}
         </div>

@@ -14,6 +14,7 @@ h1,
 h2,
 .card--type {
     text-align: center;
+    text-transform: lowercase;
     font-family: fivo_sans_modernregularbold;
     font-size: 18px;
     color: $black;
@@ -22,8 +23,9 @@ h2,
 p,
 .card--text {
     font-size : 16px;
-    color : black;
+    color : #323232;
     line-height : 20px;
+    line-height: 1.25;
 }
 
 .card--price, 

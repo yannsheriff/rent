@@ -1,34 +1,34 @@
-import illu from './img';
+import svg from './img';
 
 export default [
   {
     id: 'photoshop',
     title: 'As de Photoshop',
-    img: illu.diamond,
+    img: svg.photoshop,
   },
   {
     id: 'psychopathe',
     title: 'Psychopathe en Herbe',
-    img: illu.diamond,
+    img: svg.psychopathe,
   },
   {
     id: 'mytho',
     title: 'Serial Mytho',
-    img: illu.diamond,
+    img: svg.mytho,
   },
   {
     id: 'chance',
     title: 'Petit Chanceux',
-    img: illu.diamond,
+    img: svg.chance,
   },
   {
     id: 'hacker',
     title: 'Hacker du Dimanche',
-    img: illu.diamond,
+    img: svg.hacker,
   },
   {
     id: 'deguisement',
     title: 'Maitre du Déguisement',
-    img: illu.diamond,
+    img: svg.deguisement,
   },
 ];

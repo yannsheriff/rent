@@ -1,0 +1,55 @@
+#menu {
+  position: absolute;
+  top: 8vw;
+  left: 8vw;
+  width: 25px;
+  height: 25px;
+  z-index: 999;
+
+  .menu--container {
+      position: relative;
+
+      button {
+          &:before {
+              content: '';
+              position: absolute; 
+              right: 0;
+              top: 25%;
+              width: 20px;
+              background: white;
+              height: 2px;
+          }
+          &:after {
+              content: '';
+              position: absolute; 
+              left: 0;
+              bottom: 25%;
+              width: 20px;
+              background: white;
+              height: 2px;
+          }
+      }
+  }
+
+  
+}
+
+button {
+    background: none;
+    border: none;
+    text-decoration: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+  button,
+  select {
+    /* 1 */
+    text-transform: none;
+  }
+
+  button,
+  input {
+    /* 1 */
+    overflow: visible;
+  }
