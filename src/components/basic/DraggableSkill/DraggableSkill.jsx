@@ -1,18 +1,22 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable no-unused-expressions */
-import React, { Component, ReactDOM } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import './DraggableSkill.scss';
 
 class DraggableSkill extends Component {
   static propTypes = {
-    swipRight: PropTypes.func,
-    swipLeft: PropTypes.func,
+    content: PropTypes.object,
+    target: PropTypes.object,
+    onTargetHover: PropTypes.func,
+    onValidation: PropTypes.func,
   }
 
   static defaultProps = {
-    swipRight: () => {},
-    swipLeft: () => {},
+    content: {},
+    target: {},
+    onTargetHover: () => {},
+    onValidation: () => {},
   }
 
   constructor(props) {
@@ -21,9 +25,7 @@ class DraggableSkill extends Component {
     this.state = {
       posX: 0,
       posY: 0,
-      pos: false,
     };
-    this.lastTouch = 0;
     this.isValidated = false;
     this.skill = React.createRef();
   }
@@ -42,7 +44,6 @@ class DraggableSkill extends Component {
     const { clientY, clientX } = e.touches[0];
     const translateX = clientX - this.firstTouch.x;
     const translateY = clientY - this.firstTouch.y;
-
     if (
       clientX > target.x && clientX < target.x + target.width
       && clientY > target.y && clientY < target.y + target.width
@@ -57,7 +58,6 @@ class DraggableSkill extends Component {
       }
       this.isValidated = false;
     }
-    this.lastTouch = e.touches[0].clientX;
     this.setState({ posX: translateX, posY: translateY });
   }
 
@@ -76,19 +76,12 @@ class DraggableSkill extends Component {
       });
     } else {
       this.setState({ posX: 0, posY: 0 });
-      this.lastTouch = 0;
       this.isValidated = false;
     }
   }
 
-  resetPosition = () => {
-    this.setState({ posX: 0, posY: 0 });
-  }
-
   render() {
-    const {
-      content,
-    } = this.props;
+    const { content } = this.props;
     const { posX, posY } = this.state;
 
     return (
@@ -106,16 +99,4 @@ class DraggableSkill extends Component {
   }
 }
 
-/* ===============================================================
-  ======================= REDUX CONNECTION =======================
-  ================================================================ */
-
-const mapStateToProps = state => ({
-  mainState: state.mainReducer,
-});
-
-const componentContainer = connect(
-  mapStateToProps,
-)(DraggableSkill);
-
-export default componentContainer;
+export default DraggableSkill;
