@@ -2,7 +2,7 @@
 import { DID_SET_UP, CHANGE_STEP, END_GAME } from '../actions/steps';
 
 const defaultState = {
-  isSetUp: false,
+  isSetUp: true,
   step: 'ads',
   gameIsOver: false,
   victory: false,

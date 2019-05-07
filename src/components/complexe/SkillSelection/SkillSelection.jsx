@@ -49,7 +49,7 @@ class SkillSelection extends Component {
   /* HTML */
 
   returnSelectedSkill = skill => (
-    <div className="skill selected" onClick={() => this.unselectSkill(skill)}>
+    <div className="skill-list selected" onClick={() => this.unselectSkill(skill)}>
       <img src={skill.img} alt="" />
       <h3>{skill.title}</h3>
     </div>
@@ -58,7 +58,7 @@ class SkillSelection extends Component {
   /* HTML */
 
   returnUnselectedSkill = skill => (
-    <div className="skill" onClick={() => this.selectSkill(skill)}>
+    <div className="skill-list" onClick={() => this.selectSkill(skill)}>
       <img src={skill.img} alt="" />
       <h3>{skill.title}</h3>
     </div>
