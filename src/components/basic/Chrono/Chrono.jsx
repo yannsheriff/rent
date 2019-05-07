@@ -2,79 +2,58 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { connect } from 'react-redux';
 import './Chrono.scss';
+import { humanizeMonth } from 'vendors/humanize';
 
 class Chrono extends Component {
+  static propTypes = {
+    didExpire: PropTypes.func,
+  };
+
+  static defaultProps = {
+    didExpire: (reason) => {},
+  };
+
   constructor(props) {
     super(props);
-
     this.state = {
-      second: 300,
-      // percentage: 100,
+      month: null,
     };
     this.timer = 300;
+    this.month = 5;
   }
-
-  endGame = () => {
-    const { end } = this.props;
-    clearInterval(this.chrono);
-    end('chrono');
-  };
 
   componentDidMount() {
     const endTime = moment()
       .add(this.timer, 'seconds')
       .toDate()
       .getTime();
-
     this.chrono = setInterval(() => {
       const now = new Date().getTime();
       const sub = endTime - now;
       const seconds = sub / 1000;
-      // const percentage = (seconds / this.timer) * 1;
-      this.setState({ second: seconds });
-
-      if (sub <= 0) {
-        this.endGame();
-      }
+      const monthInSec = this.month * 31 * 24 * 60 * 60;
+      const leftMonthInSec = seconds * monthInSec / this.timer;
+      this.setState({ month: leftMonthInSec });
+      if (sub <= 0) { this.endGame(); }
     }, 200);
   }
 
+
+  endGame = () => {
+    const { didExpire } = this.props;
+    clearInterval(this.chrono);
+    didExpire('chrono');
+  };
+
   render() {
-    const { second } = this.state;
+    const { month } = this.state;
     return (
       <div>
-        <p>{chrono(second)}</p>
-        {/* <div
-          className="indicator"
-          style={{ transform: `scale(${percentage}, 1)` }}
-        /> */}
+        <p>{humanizeMonth(month)}</p>
       </div>
     );
   }
 }
 
-export function chrono(secNum) {
-  const hours = Math.floor(secNum / 3600);
-  let minutes = Math.floor((secNum - hours * 3600) / 60);
-  let seconds = Math.floor(secNum - hours * 3600 - minutes * 60);
-  minutes = minutes > 0 ? (minutes > 9 ? `${minutes}:` : `0${minutes}:`) : '00:';
-  seconds = seconds > 0 ? (seconds > 9 ? `${seconds}` : `0${seconds}`) : '00';
-
-  return minutes + seconds;
-}
-
-/* ===============================================================
-  ======================= REDUX CONNECTION =======================
-  ================================================================ */
-
-const mapStateToProps = state => ({
-  mainState: state.mainReducer,
-});
-
-const componentContainer = connect(
-  mapStateToProps,
-)(Chrono);
-
-export default componentContainer;
+export default Chrono;

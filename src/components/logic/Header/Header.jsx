@@ -15,10 +15,15 @@ class Header extends Component {
     end: () => {},
   };
 
+  triggerEnd = (reason) => {
+    const { end } = this.props;
+    end(reason);
+  }
+
   render() {
     return (
       <div id="header">
-        <Chrono />
+        <Chrono didExpire={this.triggerEnd} />
       </div>
     );
   }
