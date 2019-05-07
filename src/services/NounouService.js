@@ -1,4 +1,7 @@
-import { EthanService } from './EthanServices';
+import { EthanPromise } from './EthanServices';
+
+let EthanService = {};
+EthanPromise.then((ethan) => { EthanService = ethan; });
 
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable class-methods-use-this */

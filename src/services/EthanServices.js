@@ -4,44 +4,22 @@
 
 import * as contentful from 'contentful';
 
-let instance = null;
-
 class EthanServices {
-  constructor() {
-    this.client = contentful.createClient({
-      space: 'w1j59qz3nacc',
-      accessToken:
-        '5f17d0d58028f245cf2e3d2a2144f90c2a5e7afcbe246c28161921c2be4df156',
-    });
-
+  constructor(data) {
     this.ad = [];
     this.adventure = [];
     this.event = [];
     this.question = [];
     this.visit = [];
     this.reject = [];
-    this.init();
-
-    if (!instance) {
-      instance = this;
-    }
-    return instance;
+    this.init(data);
   }
 
-  init = () => {
-  // async getDatas() {
-    const list = ['ad', 'adventure', 'reject', 'event', 'question', 'visit'];
-
+  init = (payload) => {
+    console.log('TCL: EthanServices -> init -> payload', payload);
+    const { list, data } = payload;
     for (let i = 0; i < list.length; i += 1) {
-      this.client
-        .getEntries({ content_type: list[i] })
-        .then((datas) => {
-          datas.items.forEach((item) => {
-            const data = { id: item.sys.id, ...item.fields };
-            this[list[i]].push(data);
-          });
-        })
-        .catch(console.error);
+      this[list[i]] = data[list[i]];
     }
   }
 
@@ -135,7 +113,56 @@ class EthanServices {
   }
 }
 
-export const EthanService = new EthanServices();
+
+/* ===============================================================
+  ======================= ASYNC SINGLETTON INIT ==================
+  ================================================================ */
+
+let instance = null;
+let semaphore = false;
+
+async function initData() {
+  const client = contentful.createClient({
+    space: 'w1j59qz3nacc',
+    accessToken:
+            '5f17d0d58028f245cf2e3d2a2144f90c2a5e7afcbe246c28161921c2be4df156',
+  });
+  const list = ['ad', 'adventure', 'reject', 'event', 'question', 'visit'];
+  const data = [];
+  let promiseResolved = 0;
+  return new Promise((resolve) => {
+    for (let i = 0; i < list.length; i += 1) {
+      client
+        .getEntries({ content_type: list[i] })
+        .then((datas) => {
+          const table = [];
+          datas.items.forEach((item) => {
+            const data = { id: item.sys.id, ...item.fields };
+            table.push(data);
+          });
+          data[list[i]] = table;
+          promiseResolved++;
+
+          if (promiseResolved === list.length) {
+            resolve({ list, data });
+          }
+        })
+        .catch(console.error);
+    }
+  });
+}
+
+async function initSingletton() {
+  if (!instance && !semaphore) {
+    semaphore = true; // mark awaited constructor
+    const data = await initData();
+    instance = new EthanServices(data);
+  }
+
+  return instance;
+}
+
+export const EthanPromise = initSingletton();
 
 function getRandomArbitrary(min, max) {
   return Math.round(Math.random() * ((max - 1) - min) + min);

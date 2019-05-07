@@ -5,19 +5,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './DataHandler.scss';
-import { EthanService } from 'services/EthanServices';
 import { NounouService } from 'services/NounouService';
+import { EthanPromise } from 'services/EthanServices';
 import {
   updateStatus, updateBudget, updateOrigin, updateBonus,
 } from 'redux/actions/profil';
 import { endGame } from '../../../redux/actions/steps';
 import StackHandler from '../StackHandler/StackHandler';
 
-// components
 
+// components
 import {
   Ads, Adventure, Event, Question, Skill, Visit, Narration, Transition,
 } from '../../complexe';
+
+let EthanService = {};
+EthanPromise.then((ethan) => { EthanService = ethan; });
 
 function getRandomArbitrary(min, max) {
   return Math.round(Math.random() * ((max - 1) - min) + min);
@@ -49,11 +52,11 @@ class DataHandler extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // round: 0,
       data: {},
       card: {},
       isNarration: false,
       didWin: false,
+      waitingForData: true,
     };
   }
 
@@ -63,9 +66,18 @@ class DataHandler extends Component {
   //
   componentWillMount() {
     const { step } = this.props;
-    const data = this.getCardData(step);
-    const card = this.returnActualComponent(data, step, true);
-    this.setState({ data, card });
+    if (EthanService.ad) {
+      const data = this.getCardData(step);
+      const card = this.returnActualComponent(data, step, true);
+      this.setState({ data, card });
+    } else {
+      EthanPromise.then((ethan) => {
+        EthanService = ethan;
+        const data = this.getCardData(step);
+        const card = this.returnActualComponent(data, step, true);
+        this.setState({ data, card });
+      });
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -95,6 +107,7 @@ class DataHandler extends Component {
   getCardData = (step) => {
     const { profil } = this.props;
     const data = EthanService.get(step, profil);
+    console.log('TCL: getCardData -> EthanService', EthanService);
     const payload = { content: data };
 
     switch (step) {
