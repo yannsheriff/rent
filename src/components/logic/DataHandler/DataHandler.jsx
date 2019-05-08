@@ -99,7 +99,7 @@ class DataHandler extends Component {
 
     switch (step) {
       case 'ads':
-        payload.leftChoice = 'Suivant';
+        payload.leftChoice = 'Passer';
         payload.rightChoice = 'Visiter';
         break;
 

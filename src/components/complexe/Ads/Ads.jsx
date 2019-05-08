@@ -22,16 +22,16 @@ class Ads extends Component {
         </g>
       </svg>
     );
-    // const { data } = this.props;
-    const data = {
-      title: 'Sublime appartement avec sous-sol',
-      ad_size: '50',
-      ad_price: '€€€',
-      ad_description: 'Sublime appartement de 4 pièces non meublé comportant une imposante pièce voûtée en sous-sol denviron 25m2. Frais de bail à prévoir.',
-      ad_source: 'agency',
-      ad_rate: '3.5',
-      ad_views: '462',
-    };
+    const { data } = this.props;
+    // const data = {
+    //   ad_title: 'Sublime appartement avec sous-sol',
+    //   ad_size: '50',
+    //   ad_budget: 2,
+    //   ad_description: 'Sublime appartement de 4 pièces non meublé comportant une imposante pièce voûtée en sous-sol denviron 25m2. Frais de bail à prévoir.',
+    //   ad_source: 'agency',
+    //   ad_rate: '3.5',
+    //   ad_views: '462',
+    // };
     return (
       <div className="card--content card--ads">
         <h2 className="card--type">Annonce</h2>
@@ -49,7 +49,11 @@ class Ads extends Component {
                     {' '}
               m²
                   </span>
-                  <span className="card--price">{data.budget}</span>
+                  <span className="card--price">
+                    {data.ad_budget === 1 && '€' }
+                    {data.ad_budget === 2 && '€€' }
+                    {data.ad_budget === 3 && '€€€' }
+                  </span>
                 </p>
               </div>
             </div>
@@ -57,20 +61,20 @@ class Ads extends Component {
         </div>
 
         {data.ad_source === 'agency'
-        && <h3 className="card--tag">Agence immobilière</h3>
+        && <h3 className="card--tag blue">Agence immobilière</h3>
         }
         {data.ad_source === 'individual'
-        && <h3 className="card--tag ">Particulier</h3>
+        && <h3 className="card--tag blue">Particulier</h3>
         }
         <h1>
           {data.ad_title}
         </h1>
-        <p>
+        {/* <p>
           {data.ad_description}
-        </p>
-        {/* <p dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.ad_description) }} /> */}
+        </p> */}
+        <p dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.ad_description) }} />
         <div className="card--views">
-          <img src={views} />
+          <img src={views} alt="views-icon" />
           vu par
           {' '}
           {data.ad_views}

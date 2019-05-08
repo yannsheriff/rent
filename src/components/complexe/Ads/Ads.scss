@@ -1,3 +1,5 @@
+@import 'assets/scss/index.scss';
+
 .card {
   &--ads {
   }
@@ -12,7 +14,7 @@
   &--pricetag {
     width: 100px;
     #element_price {
-      fill: #5f7bfc;
+      fill: $blue;
     }
   }
 
