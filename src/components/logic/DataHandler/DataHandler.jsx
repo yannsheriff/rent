@@ -8,7 +8,7 @@ import './DataHandler.scss';
 import { NounouService } from 'services/NounouService';
 
 import {
-  updateStatus, updateBudget, updateOrigin, updateBonus,
+  updateStatus, updateBudget, updateOrigin, updateBonus, updateTimer,
 } from 'redux/actions/profil';
 import { EthanPromise } from 'services/EthanServices';
 import { endGame, displayPopUp } from 'redux/actions/steps';
@@ -38,6 +38,7 @@ class DataHandler extends Component {
     updateBudget: PropTypes.func,
     updateOrigin: PropTypes.func,
     updateBonus: PropTypes.func,
+    updateTimer: PropTypes.func,
     changeStep: PropTypes.func,
     popup: PropTypes.func,
   };
@@ -51,6 +52,7 @@ class DataHandler extends Component {
     updateBudget: () => {},
     updateOrigin: () => {},
     updateBonus: () => {},
+    updateTimer: () => {},
     changeStep: () => {},
     popup: () => {},
   };
@@ -239,11 +241,13 @@ class DataHandler extends Component {
   // Cette fonction update le profile en fonction des donnée du state
   //
   updateProfile = () => {
+    console.log('update profile');
     const {
       updateBonus,
       updateStatus,
       updateBudget,
       updateOrigin,
+      updateTimer,
     } = this.props;
 
     const update = this.returnProfilUpdate();
@@ -260,6 +264,9 @@ class DataHandler extends Component {
     if (update.field === 'origin') {
       updateOrigin(update.value);
     }
+    if (update.field === 'time') {
+      updateTimer(update.value);
+    }
   }
 
   returnProfilUpdate = (data) => {
@@ -267,7 +274,7 @@ class DataHandler extends Component {
     const usableData = data || stateData;
     const { step } = this.props;
 
-    const updateTypes = ['points', 'status', 'budget', 'origin'];
+    const updateTypes = ['points', 'status', 'budget', 'origin', 'time'];
     const fieldToUpdate = updateTypes.filter(type => usableData.content[`${step}_new_${type}`]);
     const update = fieldToUpdate.map(type => ({ field: type, value: usableData.content[`${step}_new_${type}`] }));
     return fieldToUpdate.length ? update[0] : false;
@@ -436,6 +443,9 @@ const mapDispatchToProps = dispatch => ({
   },
   updateBonus: (e) => {
     dispatch(updateBonus(e));
+  },
+  updateTimer: (e) => {
+    dispatch(updateTimer(e));
   },
   endGame: (win) => {
     dispatch(endGame(win));

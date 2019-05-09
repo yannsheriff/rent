@@ -38,7 +38,7 @@ class Chrono extends Component {
       const leftMonthInSec = seconds * monthInSec / this.initialTimer;
       this.setState({ month: leftMonthInSec });
       if (sub <= 0) { this.endGame(); }
-    }, 200);
+    }, 100);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -59,9 +59,23 @@ class Chrono extends Component {
 
   render() {
     const { month } = this.state;
+    const date = humanizeMonth(month);
     return (
-      <div>
-        <p>{humanizeMonth(month)}</p>
+      <div className={`chrono fade ${date.month === '04' ? 'urgent' : ''}`}>
+        <div>
+          <span className="chrono--nb">{ date.month }</span>
+          <p className="chrono--text">MOIS</p>
+        </div>
+        <div>:</div>
+        <div>
+          <span className="chrono--nb">{ date.days }</span>
+          <p className="chrono--text">JOURS</p>
+        </div>
+        <div>:</div>
+        <div>
+          <span className="chrono--nb">{ date.hours }</span>
+          <p className="chrono--text">HEURES</p>
+        </div>
       </div>
     );
   }

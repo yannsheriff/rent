@@ -1,0 +1,28 @@
+@import 'assets/scss/index.scss';
+
+.chrono {
+  display: flex;
+  flex-direction: row;
+  color: white;
+
+  div {
+    margin: 0 1vw;
+  }
+
+  &--nb {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    font-family: fivo_sans_modernregularbold;
+  }
+  &--text {
+    text-align: center;
+    color: white;
+    font-size: 10px;
+  }
+}
+
+.urgent {
+  color: $red;
+}
