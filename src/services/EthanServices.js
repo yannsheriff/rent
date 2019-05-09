@@ -59,10 +59,7 @@ class EthanServices {
   }
 
   getAds = (profile) => {
-    const filtered = this.ad.filter(
-      // item => (item.ad_budget <= profile.budget.value),
-      item => item.ad_source === 'premium',
-    );
+    const filtered = this.ad.filter(item => (item.ad_budget <= profile.budget.value));
 
     const rand = getRandomArbitrary(0, filtered.length);
     const ad = filtered[rand];
