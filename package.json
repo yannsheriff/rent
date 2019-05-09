@@ -6,6 +6,7 @@
     "@contentful/rich-text-html-renderer": "^13.1.0",
     "contentful": "^7.5.0",
     "gsap": "^2.1.2",
+    "lottie-web": "^5.5.2",
     "moment": "^2.24.0",
     "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",

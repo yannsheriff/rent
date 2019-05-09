@@ -11,8 +11,8 @@ import {
   updateStatus, updateBudget, updateOrigin, updateBonus,
 } from 'redux/actions/profil';
 import { EthanPromise } from 'services/EthanServices';
+import { endGame, displayPopUp } from 'redux/actions/steps';
 import { changeStep } from 'redux/actions/steps';
-import { endGame } from '../../../redux/actions/steps';
 import StackHandler from '../StackHandler/StackHandler';
 
 
@@ -39,6 +39,7 @@ class DataHandler extends Component {
     updateOrigin: PropTypes.func,
     updateBonus: PropTypes.func,
     changeStep: PropTypes.func,
+    popup: PropTypes.func,
   };
 
   static defaultProps = {
@@ -51,6 +52,7 @@ class DataHandler extends Component {
     updateOrigin: () => {},
     updateBonus: () => {},
     changeStep: () => {},
+    popup: () => {},
   };
 
   constructor(props) {
@@ -88,9 +90,10 @@ class DataHandler extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { step } = nextProps;
+    const { step, profil } = nextProps;
+    const { profil: oldProfil } = this.props;
     const { isNarration } = this.state;
-    if (!isNarration) {
+    if (!isNarration && profil.premium === oldProfil.premium) {
       const data = this.getCardData(step);
       const card = this.returnActualComponent(data, step, true);
       this.setState({ data, card }, () => {
@@ -159,6 +162,8 @@ class DataHandler extends Component {
     const childProps = { data: data.content, next: this.nextCard };
     const { changeStep } = this.props;
     const payload = [];
+    const update = this.returnProfilUpdate(data);
+
     if (isNewStep && (
       step === 'visit' || step === 'adventure')
     ) {
@@ -183,7 +188,7 @@ class DataHandler extends Component {
         payload.push(<Question {...childProps} />);
         break;
       case 'event':
-        payload.push(<Event {...childProps} />);
+        payload.push(<Event {...childProps} update={update} />);
         break;
       default:
         payload.push(<Ads {...childProps} />);
@@ -239,22 +244,33 @@ class DataHandler extends Component {
       updateStatus,
       updateBudget,
       updateOrigin,
-      step,
     } = this.props;
-    const { data } = this.state;
 
-    if (data.content[`${step}_new_points`]) {
-      updateBonus(data.content[`${step}_new_points`]);
+    const update = this.returnProfilUpdate();
+
+    if (update.field === 'points') {
+      updateBonus(update.value);
     }
-    if (data.content[`${step}_new_status`]) {
-      updateStatus(data.content[`${step}_new_status`]);
+    if (update.field === 'status') {
+      updateStatus(update.value);
     }
-    if (data.content[`${step}_new_budget`]) {
-      updateBudget(data.content[`${step}_new_budget`]);
+    if (update.field === 'budget') {
+      updateBudget(update.value);
     }
-    if (data.content[`${step}_new_origin`]) {
-      updateOrigin(data.content[`${step}_new_origin`]);
+    if (update.field === 'origin') {
+      updateOrigin(update.value);
     }
+  }
+
+  returnProfilUpdate = (data) => {
+    const { data: stateData } = this.state;
+    const usableData = data || stateData;
+    const { step } = this.props;
+
+    const updateTypes = ['points', 'status', 'budget', 'origin'];
+    const fieldToUpdate = updateTypes.filter(type => usableData.content[`${step}_new_${type}`]);
+    const update = fieldToUpdate.map(type => ({ field: type, value: usableData.content[`${step}_new_${type}`] }));
+    return fieldToUpdate.length ? update[0] : false;
   }
 
 
@@ -266,12 +282,13 @@ class DataHandler extends Component {
   // AD : Cette fonction s'occupe de du choix fait a partir d'une Ad
   //
   handleAd(choice) {
-    const { next, profil } = this.props;
+    const { next, profil, popup } = this.props;
     const { data } = this.state;
 
     if (choice) {
       if (data.content.ad_source === 'premium' && !profil.premium) {
-        setTimeout(() => this.stackHandler.rerollCard(), 300);
+        popup('premium');
+        setTimeout(() => this.stackHandler.rerollCard(), 150);
       } else {
         NounouService.saveAd(data.content);
         next();
@@ -358,7 +375,8 @@ class DataHandler extends Component {
     } else {
       NounouService.saveQuestion(data.content);
       const content = choice ? data.content.question_accept_narration : data.content.question_refuse_narration;
-      const card = ([<Narration data={content} />]);
+      const update = this.returnProfilUpdate();
+      const card = ([<Narration data={content} animation={update} />]);
       this.setState({ card, isNarration: true }, () => {
         if (choice) { this.updateProfile(); }
       });
@@ -424,6 +442,9 @@ const mapDispatchToProps = dispatch => ({
   },
   changeStep: (e) => {
     dispatch(changeStep(e));
+  },
+  popup: (type) => {
+    dispatch(displayPopUp(type));
   },
 });
 

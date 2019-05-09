@@ -2,7 +2,7 @@
 // import { ACTION } from '../actions/';
 
 import {
-  UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN, UPDATE_BONUS, UPDATE_SKILLS,
+  UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN, UPDATE_BONUS, UPDATE_SKILLS, GET_PREMIUM, UPDATE_TIME,
 } from '../actions/profil';
 
 import origins from '../../assets/img/origins';
@@ -15,6 +15,7 @@ const defaultState = {
     { title: 'Psychopathe en Herbe', id: 'psychopathe' }],
   bonus: 0,
   score: 0,
+  time: 300,
   premium: false,
 };
 
@@ -121,6 +122,20 @@ export function profilReducer(state = defaultState, action) {
       return {
         ...state,
         skills: action.payload,
+      };
+    }
+
+    case UPDATE_TIME: {
+      return {
+        ...state,
+        time: typeof (action.payload) === 'number' ? (state.time + action.payload) : state.time,
+      };
+    }
+
+    case GET_PREMIUM: {
+      return {
+        ...state,
+        premium: true,
       };
     }
 

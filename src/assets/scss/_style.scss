@@ -60,3 +60,11 @@ p,
     line-height: 1.25;
     text-transform: lowercase;
 }
+
+.transition {
+    transition: .3s ease;
+    -webkit-transition: .3s ease;
+    -moz-transition: .3s ease;
+    -ms-transition: .3s ease;
+    -o-transition: .3s ease;
+}

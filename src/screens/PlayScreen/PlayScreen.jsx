@@ -7,6 +7,7 @@ import './PlayScreen.scss';
 import Header from 'components/logic/Header/Header';
 import Profile from 'components/logic/Profile/Profile';
 import StepDisplay from 'components/logic/StepDisplay/StepDisplay';
+import PopUp from 'components/complexe/PopUp/PopUp';
 
 class PlayScreen extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class PlayScreen extends Component {
         <Header />
         <StepDisplay />
         <Profile />
+        { step.popup && <PopUp />}
       </div>
     );
   }

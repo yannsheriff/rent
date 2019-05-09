@@ -21,9 +21,11 @@ class Header extends Component {
   }
 
   render() {
+    const { profil } = this.props;
+
     return (
       <div id="header" className="layout--header">
-        <Chrono didExpire={this.triggerEnd} />
+        <Chrono didExpire={this.triggerEnd} time={profil.time} />
       </div>
     );
   }
@@ -35,6 +37,7 @@ class Header extends Component {
 
 const mapStateToProps = state => ({
   mainState: state.mainReducer,
+  profil: state.profilReducer,
 });
 
 const mapDispatchToProps = dispatch => ({

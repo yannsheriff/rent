@@ -60,8 +60,7 @@ class EthanServices {
 
   getAds = (profile) => {
     const filtered = this.ad.filter(
-      item => (
-        item.ad_budget <= profile.budget.value),
+      item => (item.ad_budget <= profile.budget.value),
       // item.ad_source === 'premium'),
     );
 

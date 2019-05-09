@@ -95,6 +95,13 @@ class Card extends Component {
     this.setState({ cardPosX: 0, cardPosY: 0 });
   }
 
+  animatedResetPosition = () => {
+    this.card.current.classList.add('transition');
+    this.setState({ cardPosX: 0, cardPosY: 0 }, () => {
+      setTimeout(() => this.card.current.classList.remove('transition'), 300);
+    });
+  }
+
   render() {
     const {
       data, children, leftChoice, rightChoice,
