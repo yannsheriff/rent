@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getPremium } from 'redux/actions/profil';
+import { getPremium, updateTimer } from 'redux/actions/profil';
 import { connect } from 'react-redux';
 import './Premium.scss';
 
@@ -11,8 +11,9 @@ class Premium extends Component {
   }
 
   purchasePremium = () => {
-    const { premium } = this.props;
+    const { premium, updateTime } = this.props;
     premium();
+    updateTime(-220);
     this.props.hide();
   }
 
@@ -39,6 +40,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   premium: () => {
     dispatch(getPremium());
+  },
+  updateTime: (length) => {
+    dispatch(updateTimer(length));
   },
 });
 
