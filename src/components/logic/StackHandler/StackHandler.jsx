@@ -48,13 +48,6 @@ class StackHandler extends Component {
     }
   }
 
-
-  playEnterTransition() {
-    this.setState({ show: true }, () => {
-      setTimeout(() => { this.setState({ transition: true }); }, 200);
-    });
-  }
-
   rerollCard = () => {
     this.ref.resetPosition();
   }
@@ -65,6 +58,12 @@ class StackHandler extends Component {
       resolve();
     });
   })
+
+  playEnterTransition() {
+    this.setState({ show: true }, () => {
+      setTimeout(() => { this.setState({ transition: true }); }, 200);
+    });
+  }
 
   nextCard(choice) {
     const { content, reject, accept } = this.props;
@@ -105,7 +104,7 @@ class StackHandler extends Component {
     return (
       <div id="stackHandler">
         <div className="background-card--placeholder">
-          <div className="card background-card" style={style} />
+          <div className="card background-card smooth" style={style} />
         </div>
         { show
       && (

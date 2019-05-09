@@ -24,7 +24,7 @@ class Ads extends Component {
     );
     const { data } = this.props;
     return (
-      <div className="card--content card--ads">
+      <div className={`card--content card--ads ${data.ad_source === 'premium' ? 'premium' : ''}`}>
         <h2 className="card--type">Annonce</h2>
 
         <img className="card--illu" src={ads} alt="" />
@@ -56,6 +56,9 @@ class Ads extends Component {
         }
         {data.ad_source === 'individual'
         && <h3 className="card--tag blue">Particulier</h3>
+        }
+        {data.ad_source === 'premium'
+        && <h3 className="card--tag">Premium</h3>
         }
         <h1>
           {data.ad_title}

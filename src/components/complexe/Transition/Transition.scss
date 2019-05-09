@@ -1,8 +1,15 @@
-#transition {
-    position: relative;
-    .event {
-        position: relative;
-        width: 320px;
-        height: 370px;
-    }
+.transition--card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  .transition--illu {
+    display: block;
+    max-width: 65%;
+    margin: 0 auto;
+  }
+
+  .transition--title {
+      color: white;
+  }
 }

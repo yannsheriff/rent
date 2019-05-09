@@ -42,11 +42,6 @@
   opacity: 0.5;
   left: 0;
   top: 0;
-  transition: transform .1s ease;
-  -webkit-transition: transform .1s ease;
-  -moz-transition: transform .1s ease;
-  -ms-transition: transform .1s ease;
-  -o-transition: transform .1s ease;
 }
   /* CARTE PRINCIPALE */
 
@@ -61,6 +56,15 @@
     padding: 5px;
   }
 
+  &--border {
+    box-sizing: border-box;
+    height: 100%;
+    border-radius: 22px;
+    -moz-border-radius: 22px; 
+    -webkit-border-radius: 22px;
+    border: 1px solid $black;
+  }
+
   &--container {
     box-sizing: border-box;
     height: 100%;
@@ -68,6 +72,10 @@
     border-radius: 22px;
     display: flex;
     flex-direction: column;
+
+    >div {
+      height: 100%;
+    }
   }
 
   &--content {

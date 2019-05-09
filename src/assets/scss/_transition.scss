@@ -1,0 +1,26 @@
+.transition {
+  .card--border {
+    border-color: $white;
+  }
+
+  p {
+    color: $white;
+  }
+
+  &--visit {
+    background-color: $dark-orange;
+
+    .card--main,
+    .background-card {
+      background-color: $orange;
+    }
+  }
+  &--adventure {
+    background-color: $dark-orange;
+
+    .card--main,
+    .background-card {
+      background-color: $red;
+    }
+  }
+}

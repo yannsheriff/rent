@@ -11,6 +11,7 @@ import {
   updateStatus, updateBudget, updateOrigin, updateBonus,
 } from 'redux/actions/profil';
 import { EthanPromise } from 'services/EthanServices';
+import { changeStep } from 'redux/actions/steps';
 import { endGame } from '../../../redux/actions/steps';
 import StackHandler from '../StackHandler/StackHandler';
 
@@ -37,6 +38,7 @@ class DataHandler extends Component {
     updateBudget: PropTypes.func,
     updateOrigin: PropTypes.func,
     updateBonus: PropTypes.func,
+    changeStep: PropTypes.func,
   };
 
   static defaultProps = {
@@ -48,6 +50,7 @@ class DataHandler extends Component {
     updateBudget: () => {},
     updateOrigin: () => {},
     updateBonus: () => {},
+    changeStep: () => {},
   };
 
   constructor(props) {
@@ -69,6 +72,7 @@ class DataHandler extends Component {
   //
   componentWillMount() {
     const { step } = this.props;
+
     if (EthanService.ad) {
       const data = this.getCardData(step);
       const card = this.returnActualComponent(data, step, true);
@@ -149,19 +153,19 @@ class DataHandler extends Component {
 
   // ---------------------------------------------------------------------
   // Cette fonction return le composant qui met en forme les donnée
-  // elle prend en entré, les données de contenu ainsi que la step acutel
+  // elle prend en entrée, les données de contenu ainsi que la step actuel
   //
   returnActualComponent = (data, step, isNewStep = false) => {
     const childProps = { data: data.content, next: this.nextCard };
+    const { changeStep } = this.props;
     const payload = [];
-
     if (isNewStep && (
-      step === 'visit'
-      || step === 'adventure')
+      step === 'visit' || step === 'adventure')
     ) {
+      if (step === 'visit') { changeStep('transition transition--visit'); }
+      if (step === 'adventure') { changeStep('transition transition--adventure'); }
       payload.push(<Transition data={step} />);
     }
-
     switch (step) {
       case 'ads':
         payload.push(<Ads {...childProps} />);
@@ -191,7 +195,7 @@ class DataHandler extends Component {
   // -----------------------------------------------------------------------
   // Cette fonction permet de distibuer les actions a faire lorsqu'un
   // choix a été effectué par l'ustilisateur.
-  // elle prend en entré, un booléen représantant le choix de l'utilisateur.
+  // elle prend en entrée, un booléen représentant le choix de l'utilisateur.
   //
   nextCard = (choice) => {
     const { step } = this.props;
@@ -417,6 +421,9 @@ const mapDispatchToProps = dispatch => ({
   },
   endGame: (win) => {
     dispatch(endGame(win));
+  },
+  changeStep: (e) => {
+    dispatch(changeStep(e));
   },
 });
 
