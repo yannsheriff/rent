@@ -11,19 +11,27 @@ class Premium extends Component {
   }
 
   purchasePremium = () => {
-    const { premium, updateTime } = this.props;
+    const { premium, updateTime, hide } = this.props;
     premium();
     updateTime(-220);
-    this.props.hide();
+    hide();
   }
 
 
   render() {
     return (
-      <div>
-        <p> Do you want premium ? </p>
-        <button onClick={this.purchasePremium}>YES </button>
-        <button onClick={this.cancel}>NO </button>
+      <div className="premium--content">
+        <img src="" alt="" />
+        <h1>Bien réservé aux clients Premium</h1>
+        <p>Souscrivez* dès à présent** à l'abonnement Premium pour accéder aux annonces de qualité supérieure.</p>
+        <p className="premium--condition">
+        * La création du statut prend du temps
+          {' '}
+          <br />
+        ** Vraiment beaucoup de temps
+        </p>
+        <button className="btn" onClick={this.purchasePremium}>YES </button>
+        <button className="arrow" onClick={this.cancel}>X</button>
       </div>
     );
   }

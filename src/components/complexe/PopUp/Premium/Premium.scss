@@ -1,61 +1,18 @@
-@import 'assets/scss/index.scss';
+.arrow {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 
-.card {
-  &--ads {
-  }
+.premium--content {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-  &--illu {
-    position: relative;
-    display: block;
-    margin: 0 auto;
-    max-width: 50%;
-  }
-
-  &--pricetag {
-    width: 100px;
-    #element_price {
-      fill: $blue;
-    }
-  }
-
-  &--info {
-    position: absolute;
-    top: 3vw;
-    right: 3vw;
-
-    > div {
-      position: relative;
-      height: 100%;
-      width: 100%;
-      text-align: center;
-
-      > div {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        > div {
-          
-
-          span {
-            display: block;
-          }
-        }
-      }
-    }
-  }
-
-  &--views {
-    img {
-      vertical-align:middle;
-      max-width: 25px;
-      margin-right: 5px;
-    }
-  }
+.premium--condition {
+  font-size: 12px;
 }

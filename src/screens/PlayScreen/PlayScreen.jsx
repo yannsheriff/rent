@@ -12,7 +12,6 @@ import PopUp from 'components/complexe/PopUp/PopUp';
 class PlayScreen extends Component {
   render() {
     const { step } = this.props;
-
     return (
       <div className={`App main-layout ${step.step} fade`}>
         <Header />

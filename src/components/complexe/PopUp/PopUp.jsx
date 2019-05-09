@@ -33,12 +33,11 @@ class PopUp extends Component {
     }
   }
 
-
   render() {
     const component = this.returnPopUp();
     return (
-      <div id="pop-up">
-        <div className="container">
+      <div id="premium--pop-up" className="fade">
+        <div className="premium--container">
           {component}
         </div>
       </div>
