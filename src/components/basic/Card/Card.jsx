@@ -42,7 +42,8 @@ class Card extends Component {
   dragStart = (e) => {
     const { isLocked } = this.props;
     if (!isLocked) {
-      this.card.current.classList.remove('transition');
+      // remove transition de carte
+      this.card.current.classList.remove('smooth');
       this.firstTouch = { x: e.touches[0].clientX, y: e.touches[0].clientY };
     }
   }
@@ -70,7 +71,8 @@ class Card extends Component {
   dragEnd = () => {
     const { swipRight, swipLeft, isLocked } = this.props;
     if (!isLocked) {
-      this.card.current.classList.add('transition');
+      // add transition de carte
+      this.card.current.classList.add('smooth');
       if (this.isValidated === 'right') {
         this.setState({ cardPosX: 400, cardPosY: 100 });
         swipRight
@@ -105,7 +107,6 @@ class Card extends Component {
       data, children, leftChoice, rightChoice,
     } = this.props;
     const { cardPosX, cardPosY } = this.state;
-
     return (
       <div
         className="card card--main"
@@ -115,9 +116,10 @@ class Card extends Component {
         style={{ transform: `translate(${cardPosX}px, ${cardPosY}px)` }}
         ref={this.card}
       >
-        <div className="card--container">
-          {children}
-          {leftChoice && rightChoice
+        <div className="card--border fade">
+          <div className="card--container">
+            {children}
+            {leftChoice && rightChoice
         && (
           <div className="card--choice-container">
             <span className={`left ${this.isValidated === 'left' ? 'selected' : ''} card--choice`}>{leftChoice}</span>
@@ -126,6 +128,7 @@ class Card extends Component {
           </div>
         )
         }
+          </div>
         </div>
       </div>
     );

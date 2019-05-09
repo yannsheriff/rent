@@ -63,8 +63,8 @@ class StepDisplay extends Component {
 
   nextStep = () => {
     const { round } = this.state;
-    const { changeStep } = this.props;
     const nextStep = this.returnNextStep(true);
+    const { changeStep } = this.props;
     changeStep(nextStep);
     const addRound = nextStep === 'ads' ? 1 : 0;
 
@@ -76,8 +76,8 @@ class StepDisplay extends Component {
 
   failStep = () => {
     const { round } = this.state;
-    const { changeStep } = this.props;
     const nextStep = this.returnNextStep(false);
+    const { changeStep } = this.props;
     changeStep(nextStep);
     const addRound = nextStep === 'ads' ? 1 : 0;
 

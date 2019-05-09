@@ -18,7 +18,7 @@ class PlayScreen extends Component {
     const { step } = this.props;
 
     return (
-      <div className={`App main-layout ${step.step}`}>
+      <div className={`App main-layout ${step.step} fade`}>
         <Header />
         <StepDisplay />
         <Profile />

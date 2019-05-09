@@ -1,9 +1,6 @@
 @import 'assets/scss/index.scss';
 
 .card {
-  &--ads {
-  }
-
   &--illu {
     position: relative;
     display: block;
@@ -56,6 +53,22 @@
       vertical-align:middle;
       max-width: 25px;
       margin-right: 5px;
+    }
+  }
+
+  /* PREMIUM */
+  .premium {
+    .card--tag {
+      background: $orange;
+      border-radius: 3px;
+      width: fit-content;
+      padding: 4px;
+      color: $white;
+    }
+    .card--pricetag {
+      #element_price {
+        fill: $orange;
+      }
     }
   }
 }

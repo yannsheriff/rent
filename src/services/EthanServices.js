@@ -16,7 +16,6 @@ class EthanServices {
   }
 
   init = (payload) => {
-    console.log('TCL: EthanServices -> init -> payload', payload);
     const { list, data } = payload;
     for (let i = 0; i < list.length; i += 1) {
       this[list[i]] = data[list[i]];
@@ -62,6 +61,7 @@ class EthanServices {
   getAds = (profile) => {
     const filtered = this.ad.filter(
       item => (item.ad_budget <= profile.budget.value),
+      // item.ad_source === 'premium'),
     );
 
     const rand = getRandomArbitrary(0, filtered.length);
