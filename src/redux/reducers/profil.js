@@ -5,7 +5,7 @@ import {
   UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN, UPDATE_BONUS, UPDATE_SKILLS, GET_PREMIUM, UPDATE_TIME,
 } from '../actions/profil';
 
-import origins from '../../assets/img/origins';
+import origins from '../../assets/content/origins';
 
 const defaultState = {
   status: { title: 'Couple', value: 1, ref: 'couple' },
