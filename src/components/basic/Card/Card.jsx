@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable no-unused-expressions */
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
@@ -6,13 +7,23 @@ import './Card.scss';
 
 class Card extends Component {
   static propTypes = {
+    data: PropTypes.string,
     swipRight: PropTypes.func,
     swipLeft: PropTypes.func,
+    leftChoice: PropTypes.string,
+    rightChoice: PropTypes.string,
+    onRef: PropTypes.func,
+    isLocked: PropTypes.bool,
   }
 
   static defaultProps = {
+    data: '',
     swipRight: () => {},
     swipLeft: () => {},
+    leftChoice: '',
+    rightChoice: '',
+    onRef: () => {},
+    isLocked: false,
   }
 
   constructor(props) {
@@ -28,14 +39,16 @@ class Card extends Component {
   }
 
   componentDidMount() {
-    if (this.props.onRef) {
-      this.props.onRef(this);
+    const { onRef } = this.props;
+    if (onRef) {
+      onRef(this);
     }
   }
 
   componentWillUnmount() {
-    if (this.props.onRef) {
-      this.props.onRef(this);
+    const { onRef } = this.props;
+    if (onRef) {
+      onRef(this);
     }
   }
 
@@ -104,7 +117,9 @@ class Card extends Component {
 
   render() {
     const {
-      data, children, leftChoice, rightChoice,
+      // data
+      // eslint-disable-next-line react/prop-types
+      children, leftChoice, rightChoice,
     } = this.props;
     const { cardPosX, cardPosY } = this.state;
     return (

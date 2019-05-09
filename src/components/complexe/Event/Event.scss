@@ -1,8 +1,10 @@
-#event {
-    position: relative;
-    .event {
-        position: relative;
-        width: 320px;
-        height: 370px;
+.card--event {
+  .card {
+    &--type:before {
+      content: url("../../../assets/img/icons/icon_event.svg");
     }
+    &--type:after {
+      content: url("../../../assets/img/icons/icon_event.svg");
+    }
+  }
 }

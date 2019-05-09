@@ -17,9 +17,9 @@ body {
 h1, 
 .card--title {
     font-family: fivo_sans_modernextra_black;
-    font-size: 30px;
+    font-size: 7vw;
     color: $black;
-    line-height: 30px;
+    line-height: 7vw;
     font-weight: 900;
 }
 
@@ -38,14 +38,6 @@ p,
     color : #323232;
     line-height : 20px;
     line-height: 1.25;
-}
-
-.card--price, 
-.card--size {
-    font-family: fivo_sans_modernregularbold;
-    size : 18px;
-    color : white;
-    letter-spacing : 1px;
 }
 
 .card--tag {

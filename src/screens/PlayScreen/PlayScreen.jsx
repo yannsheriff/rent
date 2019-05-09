@@ -10,10 +10,6 @@ import StepDisplay from 'components/logic/StepDisplay/StepDisplay';
 import PopUp from 'components/complexe/PopUp/PopUp';
 
 class PlayScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { step } = this.props;
 

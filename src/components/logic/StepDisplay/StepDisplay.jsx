@@ -12,14 +12,11 @@ class StepDisplay extends Component {
   static propTypes = {
     changeStep: PropTypes.func,
     updateBackgroundColor: PropTypes.func,
-    globalStep: PropTypes.objectOf(PropTypes.object),
   };
-
 
   static defaultProps = {
     changeStep: () => {},
     updateBackgroundColor: () => {},
-    globalStep: {},
   };
 
   constructor(props) {

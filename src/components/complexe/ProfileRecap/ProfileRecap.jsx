@@ -34,7 +34,7 @@ class ProfileRecap extends Component {
 
   render() {
     const { canNext } = this.state;
-    const { profil, next } = this.props;
+    const { profil } = this.props;
     const {
       budget, origin, status, score, skills,
     } = profil;

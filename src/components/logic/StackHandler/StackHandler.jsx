@@ -11,7 +11,6 @@ class StackHandler extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      bgColor: '#5f7bfc',
       transition: false,
       show: true,
       cardIsRotate: false,
@@ -21,9 +20,10 @@ class StackHandler extends Component {
   }
 
   componentDidMount() {
+    const { onRef } = this.props;
     this.setState({ actualCard: 0 }, () => this.playEnterTransition());
-    if (this.props.onRef) {
-      this.props.onRef(this);
+    if (onRef) {
+      onRef(this);
     }
   }
 
