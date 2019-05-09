@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Card.scss';
 
@@ -112,9 +112,10 @@ class Card extends Component {
           {children}
           {leftChoice && rightChoice
         && (
-          <div className="card--choice">
-            <div className={`left ${this.isValidated === 'left' ? 'selected' : ''}`}>{leftChoice}</div>
-            <div className={`right ${this.isValidated === 'right' ? 'selected' : ''}`}>{rightChoice }</div>
+          <div className="card--choice-container">
+            <span className={`left ${this.isValidated === 'left' ? 'selected' : ''} card--choice`}>{leftChoice}</span>
+            <span className="card--choice-separation">|</span>
+            <span className={`right ${this.isValidated === 'right' ? 'selected' : ''} card--choice`}>{rightChoice }</span>
           </div>
         )
         }

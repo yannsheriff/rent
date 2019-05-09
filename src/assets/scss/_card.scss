@@ -10,6 +10,31 @@
   flex: 1;
 }
 
+/* CAS SPECIFIQUES */
+
+.ads {
+  .card--choice,
+  .card--choice-separation {
+    color: $blue;
+  }
+}
+
+.visit,
+.question {
+  .card--choice,
+  .card--choice-separation {
+    color: $orange;
+  }
+}
+
+.adventure,
+.event {
+  .card--choice,
+  .card--choice-separation { 
+    color: $red;
+  }
+}
+
 /* CARTE DE FOND */
 
 .background-card {
@@ -49,8 +74,11 @@
     flex: 1;
   }
 
-  &--choice {
+  &--choice-container {
+    text-align: center;
     display: flex;
+    justify-content: space-around;
+    align-items: center;
     flex-direction: row;
   }
 }

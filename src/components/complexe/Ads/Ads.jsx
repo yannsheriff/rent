@@ -23,7 +23,6 @@ class Ads extends Component {
       </svg>
     );
     const { data } = this.props;
-
     return (
       <div className="card--content card--ads">
         <h2 className="card--type">Annonce</h2>
@@ -41,7 +40,11 @@ class Ads extends Component {
                     {' '}
               m²
                   </span>
-                  <span className="card--price">{data.budget}</span>
+                  <span className="card--price">
+                    {data.ad_budget === 1 && '€' }
+                    {data.ad_budget === 2 && '€€' }
+                    {data.ad_budget === 3 && '€€€' }
+                  </span>
                 </p>
               </div>
             </div>
@@ -49,17 +52,17 @@ class Ads extends Component {
         </div>
 
         {data.ad_source === 'agency'
-        && <h3 className="card--tag">Agence immobilière</h3>
+        && <h3 className="card--tag blue">Agence immobilière</h3>
         }
         {data.ad_source === 'individual'
-        && <h3 className="card--tag ">Particulier</h3>
+        && <h3 className="card--tag blue">Particulier</h3>
         }
         <h1>
           {data.ad_title}
         </h1>
         <p dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.ad_description) }} />
         <div className="card--views">
-          <img src={views} />
+          <img src={views} alt="views-icon" />
           vu par
           {' '}
           {data.ad_views}

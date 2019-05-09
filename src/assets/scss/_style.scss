@@ -2,6 +2,18 @@ body {
     font-family: fivo_sans_modernregular;
 }
 
+.blue {
+    color: $blue;
+}
+
+.orange {
+    color: $orange;
+}
+
+.red {
+    color: $red;
+}
+
 h1, 
 .card--title {
     font-family: fivo_sans_modernextra_black;
@@ -40,4 +52,11 @@ p,
     text-transform: lowercase;
     font-family: fivo_sans_modernregularbold;
     font-size : 14px;
+}
+
+.card--choice {
+    font-family: fivo_sans_modernregularbold;
+    size : 16px;
+    line-height: 1.25;
+    text-transform: lowercase;
 }
