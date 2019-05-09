@@ -1,0 +1,17 @@
+.btn {
+    width: 100%;
+    height: 60px;
+    border-radius: 15px;
+    box-shadow: 0 5px 0 0 $black;
+    border: solid 1px $black;
+    background-color: $white;
+
+    &:active {
+        box-shadow: 0 0 0 0 $black;
+        transform: translateY(5px);
+        -webkit-transform: translateY(5px);
+        -moz-transform: translateY(5px);
+        -ms-transform: translateY(5px);
+        -o-transform: translateY(5px);
+    }
+}

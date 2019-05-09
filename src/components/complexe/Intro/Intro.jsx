@@ -9,17 +9,24 @@ class Intro extends Component {
   render() {
     const { next } = this.props;
     return (
-      <div id="intro" className="intro" onClick={() => next()}>
-        <img className="intro--banner" src={rentBanner} alt="rent-banner" />
-        <h1>LOUE MOI SI TU PEUX</h1>
-        <p>
-          Vous avez 3 mois pour trouver un appartement.
-          {' '}
-          <br />
-          Saurez vous faire les bons choix pour ne pas finir à la rue (ou pire) ?
-          {' '}
-        </p>
-        <p className="intro--info">Toucher pour continuer</p>
+      <div id="intro" className="intro">
+        <div className="header">
+          <div className="menu" />
+        </div>
+        <div className="content">
+
+          <div>
+
+            <img className="intro--banner" src={rentBanner} alt="rent-banner" />
+            <h1>Bienvenue sur ce jeu de qualité</h1>
+            <p>
+          Vous avez 6 mois pour trouver un appartement à Paris !
+          Saurez-vous faire les bons choix pour ne pas finir à la rue ?
+          Encore une ligne, allez !
+            </p>
+          </div>
+          <button className="btn" onClick={() => next()}> Relever le défi </button>
+        </div>
       </div>
     );
   }
