@@ -125,7 +125,6 @@ export function profilReducer(state = defaultState, action) {
     }
 
     case GET_PREMIUM: {
-      console.log('TCL: profilReducer -> GET_PREMIUM');
       return {
         ...state,
         premium: true,

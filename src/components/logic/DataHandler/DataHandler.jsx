@@ -86,9 +86,10 @@ class DataHandler extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { step } = nextProps;
+    const { step, profil } = nextProps;
+    const { profil: oldProfil } = this.props;
     const { isNarration } = this.state;
-    if (!isNarration) {
+    if (!isNarration && profil.premium === oldProfil.premium) {
       const data = this.getCardData(step);
       const card = this.returnActualComponent(data, step, true);
       this.setState({ data, card }, () => {
@@ -270,7 +271,7 @@ class DataHandler extends Component {
     if (choice) {
       if (data.content.ad_source === 'premium' && !profil.premium) {
         popup('premium');
-        setTimeout(() => this.stackHandler.rerollCard(), 300);
+        setTimeout(() => this.stackHandler.rerollCard(), 150);
       } else {
         NounouService.saveAd(data.content);
         next();

@@ -27,10 +27,15 @@ class StackHandler extends Component {
     }
   }
 
-  componentWillReceiveProps() {
-    this.resetCardStack().then(() => {
-      this.setState({ actualCard: 0 }, () => this.playEnterTransition());
-    });
+  componentWillReceiveProps(nextProps) {
+    const { isNarration: oldIsNarration, content: oldContent } = this.props;
+    const { isNarration, content } = nextProps;
+
+    if (JSON.stringify(oldContent) !== JSON.stringify(content) || oldIsNarration !== isNarration) {
+      this.resetCardStack().then(() => {
+        this.setState({ actualCard: 0 }, () => this.playEnterTransition());
+      });
+    }
   }
 
   componentDidUpdate() {
@@ -56,7 +61,7 @@ class StackHandler extends Component {
   }
 
   rerollCard = () => {
-    this.ref.resetPosition();
+    this.ref.animatedResetPosition();
   }
 
   resetCardStack = async () => new Promise((resolve) => {
