@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 /* eslint-disable no-shadow */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-lonely-if */
@@ -11,8 +12,7 @@ import {
   updateStatus, updateBudget, updateOrigin, updateBonus, updateTimer,
 } from 'redux/actions/profil';
 import { EthanPromise } from 'services/EthanServices';
-import { endGame, displayPopUp } from 'redux/actions/steps';
-import { changeStep } from 'redux/actions/steps';
+import { endGame, displayPopUp, changeStep } from 'redux/actions/steps';
 import StackHandler from '../StackHandler/StackHandler';
 
 
@@ -31,7 +31,7 @@ function getRandomArbitrary(min, max) {
 class DataHandler extends Component {
   static propTypes = {
     step: PropTypes.string,
-    profil: PropTypes.objectOf(PropTypes.object),
+    profil: PropTypes.object,
     next: PropTypes.func,
     fail: PropTypes.func,
     updateStatus: PropTypes.func,

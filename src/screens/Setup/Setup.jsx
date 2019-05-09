@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Menu from 'components/basic/Menu/Menu';
-import logo from 'logo.svg';
 import { gameIsSetUp } from 'redux/actions/steps';
 import {
   Intro, ProfileGeneration, SkillSelection, ProfileRecap,
