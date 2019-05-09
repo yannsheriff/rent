@@ -1,13 +1,9 @@
-@import 'assets/scss/index.scss';
+@import "assets/scss/index.scss";
 
-.card {
-  &--illu {
-    position: relative;
+.ads {
+  .card--type {
     display: block;
-    margin: 0 auto;
-    max-width: 50%;
   }
-
   &--pricetag {
     width: 100px;
     #element_price {
@@ -38,8 +34,6 @@
         align-items: center;
 
         > div {
-          
-
           span {
             display: block;
           }
@@ -48,27 +42,40 @@
     }
   }
 
+  &--price,
+  &--size {
+    font-family: fivo_sans_modernregularbold;
+    size: 18px;
+    color: white;
+    letter-spacing: 1px;
+  }
+
   &--views {
+    margin-top: 5%;
     img {
-      vertical-align:middle;
+      vertical-align: middle;
       max-width: 25px;
       margin-right: 5px;
     }
-  }
-
-  /* PREMIUM */
-  .premium {
-    .card--tag {
-      background: $orange;
-      border-radius: 3px;
-      width: fit-content;
-      padding: 4px;
-      color: $white;
+    p {
+      display: inline-block;
+      vertical-align: middle;
     }
-    .card--pricetag {
-      #element_price {
-        fill: $orange;
-      }
+  }
+}
+
+/* PREMIUM */
+.premium {
+  .card--tag {
+    background: $orange;
+    border-radius: 3px;
+    width: fit-content;
+    padding: 4px;
+    color: $white;
+  }
+  .ads--pricetag {
+    #element_price {
+      fill: $orange;
     }
   }
 }

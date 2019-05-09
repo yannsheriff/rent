@@ -1,14 +1,13 @@
-#question {
-    position: relative;
-    .question {
-        position: relative;
-        width: 320px;
-        height: 370px;
-    }
+@import "assets/scss/index.scss";
 
-    .choices {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+.card--question {
+  .card {
+    &--type:before {
+      content: url("../../../assets/img/icons/icon_question.svg");
     }
+    &--type:after {
+      content: url("../../../assets/img/icons/icon_question.svg");
+      transform: rotate(180deg);
+    }
+  }
 }

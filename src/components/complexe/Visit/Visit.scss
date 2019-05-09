@@ -1,8 +1,12 @@
-#visit {
-    position: relative;
-    .visit {
-        position: relative;
-        width: 320px;
-        height: 370px;
+@import "assets/scss/index.scss";
+
+.card--visit {
+  .card {
+    &--type:before {
+      content: url("../../../assets/img/icons/icon_visites.svg");
     }
+    &--type:after {
+      content: url("../../../assets/img/icons/icon_visites.svg");
+    }
+  }
 }
