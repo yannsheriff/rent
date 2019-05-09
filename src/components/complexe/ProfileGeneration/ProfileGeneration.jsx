@@ -3,8 +3,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { updateStatus, updateBudget, updateOrigin } from '../../../redux/actions/profil';
 import './ProfileGeneration.scss';
+import Wheel from 'components/basic/Wheel/Wheel';
+import origins from 'assets/content/origins';
+import allstatus from 'assets/content/status';
+import { updateStatus, updateBudget, updateOrigin } from '../../../redux/actions/profil';
 
 function getRandomArbitrary(min, max) {
   return Math.round(Math.random() * ((max - 1) - min) + min);
@@ -35,45 +38,51 @@ class ProfileGeneration extends Component {
   }
 
   componentDidMount() {
-    this.generateAll();
+    // this.generateAll();
   }
 
-  generateAll = () => {
-    setTimeout(() => { this.generateStatus(); }, 100);
-    setTimeout(() => { this.generateOrigin(); }, 100);
-    setTimeout(() => { this.generateBudget(); }, 100);
-  }
+  // generateAll = () => {
+  //   setTimeout(() => { this.generateStatus(); }, 100);
+  //   setTimeout(() => { this.generateOrigin(); }, 100);
+  //   setTimeout(() => { this.generateBudget(); }, 100);
+  // }
 
-  generateStatus = () => {
-    const { updateStatus } = this.props;
-    const statusArray = ['single', 'couple', 'collocation'];
-    const rand = getRandomArbitrary(0, statusArray.length);
-    updateStatus(statusArray[rand]);
-    this.setState({ isStatus: true });
-  }
+  // generateStatus = () => {
+  //   const { updateStatus } = this.props;
+  //   const statusArray = ['single', 'couple', 'collocation'];
+  //   const rand = getRandomArbitrary(0, statusArray.length);
+  //   updateStatus(statusArray[rand]);
+  //   this.setState({ isStatus: true });
+  // }
 
-  generateOrigin = () => {
-    const { updateOrigin } = this.props;
-    const originArray = ['frfr', 'frjp', 'frmc'];
-    const rand = getRandomArbitrary(0, originArray.length);
-    updateOrigin(originArray[rand]);
-    this.setState({ isOrigin: true });
-  }
+  // generateOrigin = () => {
+  //   const { updateOrigin } = this.props;
+  //   const originArray = ['frfr', 'frjp', 'frmc'];
+  //   const rand = getRandomArbitrary(0, originArray.length);
+  //   updateOrigin(originArray[rand]);
+  //   this.setState({ isOrigin: true });
+  // }
 
-  generateBudget = () => {
-    const { updateBudget } = this.props;
-    const budgetArray = ['poor', 'regular', 'rich'];
-    const rand = getRandomArbitrary(0, budgetArray.length);
-    updateBudget(budgetArray[rand]);
-    this.setState({ isBudget: true });
-  }
+  // generateBudget = () => {
+  //   const { updateBudget } = this.props;
+  //   const budgetArray = ['poor', 'regular', 'rich'];
+  //   const rand = getRandomArbitrary(0, budgetArray.length);
+  //   updateBudget(budgetArray[rand]);
+  //   this.setState({ isBudget: true });
+  // }
 
   nextStep = () => {
-    const { isStatus, isBudget, isOrigin } = this.state;
-    const { next } = this.props;
-    if (isStatus && isOrigin && isBudget) {
-      next();
-    }
+    // const { isStatus, isBudget, isOrigin } = this.state;
+    // const { next } = this.props;
+    // if (isStatus && isOrigin && isBudget) {
+    //   next();
+    // }
+
+    this.wheel.select();
+  }
+
+  dataIsSelected = (data) => {
+    console.log(data);
   }
 
   render() {
@@ -86,7 +95,14 @@ class ProfileGeneration extends Component {
       <div className="intro" onClick={() => this.nextStep()}>
         <div className="profile-generation--container">
           <h2>Votre profil</h2>
-          <div className="profile-generation--container--item">
+          <Wheel
+            data={origins}
+            fieldToShow="illu"
+            onDataSelection={this.dataIsSelected}
+            onRef={(ref) => { this.wheel = ref; }}
+            // img //if is img
+          />
+          {/* <div className="profile-generation--container--item">
             {isStatus
             && (
             <>
@@ -126,7 +142,7 @@ class ProfileGeneration extends Component {
             && (
             <p className="intro--info">Toucher pour continuer</p>
             )
-        }
+        } */}
         </div>
       </div>
     );

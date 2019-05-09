@@ -1,0 +1,25 @@
+#wheel-item {
+    position: absolute;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    transition: ease-out;
+    -webkit-transition: ease-out;
+    -moz-transition: ease-out;
+    -ms-transition: ease-out;
+    -o-transition: ease-out;
+
+    p {
+        font-size: 70px;
+    }
+    
+    img {
+        width: 100%;
+    }
+}
