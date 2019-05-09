@@ -2,7 +2,7 @@
 // import { ACTION } from '../actions/';
 
 import {
-  UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN, UPDATE_BONUS, UPDATE_SKILLS,
+  UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN, UPDATE_BONUS, UPDATE_SKILLS, GET_PREMIUM,
 } from '../actions/profil';
 
 import origins from '../../assets/img/origins';
@@ -121,6 +121,14 @@ export function profilReducer(state = defaultState, action) {
       return {
         ...state,
         skills: action.payload,
+      };
+    }
+
+    case GET_PREMIUM: {
+      console.log('TCL: profilReducer -> GET_PREMIUM');
+      return {
+        ...state,
+        premium: true,
       };
     }
 

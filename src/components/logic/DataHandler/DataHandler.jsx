@@ -11,7 +11,7 @@ import {
   updateStatus, updateBudget, updateOrigin, updateBonus,
 } from 'redux/actions/profil';
 import { EthanPromise } from 'services/EthanServices';
-import { endGame } from '../../../redux/actions/steps';
+import { endGame, displayPopUp } from 'redux/actions/steps';
 import StackHandler from '../StackHandler/StackHandler';
 
 
@@ -37,6 +37,7 @@ class DataHandler extends Component {
     updateBudget: PropTypes.func,
     updateOrigin: PropTypes.func,
     updateBonus: PropTypes.func,
+    popup: PropTypes.func,
   };
 
   static defaultProps = {
@@ -48,6 +49,7 @@ class DataHandler extends Component {
     updateBudget: () => {},
     updateOrigin: () => {},
     updateBonus: () => {},
+    popup: () => {},
   };
 
   constructor(props) {
@@ -262,11 +264,12 @@ class DataHandler extends Component {
   // AD : Cette fonction s'occupe de du choix fait a partir d'une Ad
   //
   handleAd(choice) {
-    const { next, profil } = this.props;
+    const { next, profil, popup } = this.props;
     const { data } = this.state;
 
     if (choice) {
       if (data.content.ad_source === 'premium' && !profil.premium) {
+        popup('premium');
         setTimeout(() => this.stackHandler.rerollCard(), 300);
       } else {
         NounouService.saveAd(data.content);
@@ -417,6 +420,9 @@ const mapDispatchToProps = dispatch => ({
   },
   endGame: (win) => {
     dispatch(endGame(win));
+  },
+  popup: (type) => {
+    dispatch(displayPopUp(type));
   },
 });
 
