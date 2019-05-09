@@ -6,10 +6,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './DataHandler.scss';
 import { NounouService } from 'services/NounouService';
-import { EthanPromise } from 'services/EthanServices';
+
 import {
   updateStatus, updateBudget, updateOrigin, updateBonus,
 } from 'redux/actions/profil';
+import { EthanPromise } from 'services/EthanServices';
 import { endGame } from '../../../redux/actions/steps';
 import StackHandler from '../StackHandler/StackHandler';
 
@@ -58,6 +59,8 @@ class DataHandler extends Component {
       didWin: false,
       waitingForData: true,
     };
+
+    this.stackHandler = React.createRef();
   }
 
 
@@ -107,7 +110,6 @@ class DataHandler extends Component {
   getCardData = (step) => {
     const { profil } = this.props;
     const data = EthanService.get(step, profil);
-    console.log('TCL: getCardData -> EthanService', EthanService);
     const payload = { content: data };
 
     switch (step) {
@@ -260,11 +262,16 @@ class DataHandler extends Component {
   // AD : Cette fonction s'occupe de du choix fait a partir d'une Ad
   //
   handleAd(choice) {
-    const { next } = this.props;
+    const { next, profil } = this.props;
     const { data } = this.state;
+
     if (choice) {
-      NounouService.saveAd(data.content);
-      next();
+      if (data.content.ad_source === 'premium' && !profil.premium) {
+        setTimeout(() => this.stackHandler.rerollCard(), 300);
+      } else {
+        NounouService.saveAd(data.content);
+        next();
+      }
     } else {
       const newData = this.getCardData('ads');
       const card = this.returnActualComponent(newData, 'ads');
@@ -380,6 +387,7 @@ class DataHandler extends Component {
         rightChoice={data.rightChoice}
         isNarration={isNarration}
         step={step}
+        onRef={(ref) => { this.stackHandler = ref; }}
       />
     );
   }

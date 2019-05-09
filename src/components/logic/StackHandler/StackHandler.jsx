@@ -22,10 +22,15 @@ class StackHandler extends Component {
 
   componentDidMount() {
     this.setState({ actualCard: 0 }, () => this.playEnterTransition());
+    if (this.props.onRef) {
+      this.props.onRef(this);
+    }
   }
 
   componentWillReceiveProps() {
-    this.setState({ actualCard: 0 }, () => this.playEnterTransition());
+    this.resetCardStack().then(() => {
+      this.setState({ actualCard: 0 }, () => this.playEnterTransition());
+    });
   }
 
   componentDidUpdate() {
@@ -37,6 +42,12 @@ class StackHandler extends Component {
     }
   }
 
+  componentWillUnmount() {
+    if (this.props.onRef) {
+      this.props.onRef(this);
+    }
+  }
+
 
   playEnterTransition() {
     this.setState({ show: true }, () => {
@@ -44,19 +55,29 @@ class StackHandler extends Component {
     });
   }
 
+  rerollCard = () => {
+    this.ref.resetPosition();
+  }
+
+  resetCardStack = async () => new Promise((resolve) => {
+    this.setState({ show: false, transition: false, cardIsRotate: false }, () => {
+      this.ref.resetPosition();
+      resolve();
+    });
+  })
+
   nextCard(choice) {
     const { content, reject, accept } = this.props;
     const { actualCard } = this.state;
     const isLastCard = content.length === actualCard + 1;
 
-    this.setState({ show: false, transition: false, cardIsRotate: false }, () => {
-      this.ref.resetPosition();
-      if (isLastCard) {
-        choice ? accept() : reject();
-      } else {
+    if (isLastCard) {
+      choice ? accept() : reject();
+    } else {
+      this.resetCardStack().then(() => {
         this.setState(state => ({ actualCard: state.actualCard + 1 }));
-      }
-    });
+      });
+    }
   }
 
 

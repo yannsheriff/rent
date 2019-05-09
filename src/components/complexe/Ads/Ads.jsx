@@ -22,16 +22,8 @@ class Ads extends Component {
         </g>
       </svg>
     );
-    // const { data } = this.props;
-    const data = {
-      title: 'Sublime appartement avec sous-sol',
-      ad_size: '50',
-      ad_price: '€€€',
-      ad_description: 'Sublime appartement de 4 pièces non meublé comportant une imposante pièce voûtée en sous-sol denviron 25m2. Frais de bail à prévoir.',
-      ad_source: 'agency',
-      ad_rate: '3.5',
-      ad_views: '462',
-    };
+    const { data } = this.props;
+
     return (
       <div className="card--content card--ads">
         <h2 className="card--type">Annonce</h2>
@@ -65,10 +57,7 @@ class Ads extends Component {
         <h1>
           {data.ad_title}
         </h1>
-        <p>
-          {data.ad_description}
-        </p>
-        {/* <p dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.ad_description) }} /> */}
+        <p dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.ad_description) }} />
         <div className="card--views">
           <img src={views} />
           vu par

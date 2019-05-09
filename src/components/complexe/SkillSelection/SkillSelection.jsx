@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import skills from 'assets/skills';
+import skills from 'assets/img/skills';
 import { updateSkills } from 'redux/actions/profil';
 import './SkillSelection.scss';
 

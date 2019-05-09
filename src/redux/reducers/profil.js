@@ -5,12 +5,12 @@ import {
   UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN, UPDATE_BONUS, UPDATE_SKILLS,
 } from '../actions/profil';
 
-import origins from '../../assets/origins';
+import origins from '../../assets/img/origins';
 
 const defaultState = {
   status: { title: 'Couple', value: 1, ref: 'couple' },
   origin: { title: 'Blanc', value: 1, ref: 'frfr' },
-  budget: { title: '$', value: 1, ref: 'poor' },
+  budget: { title: '$', value: 2, ref: 'poor' },
   skills: [{ title: 'As de Photoshop', id: 'photoshop' },
     { title: 'Psychopathe en Herbe', id: 'psychopathe' }],
   bonus: 0,
