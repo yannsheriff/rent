@@ -1,14 +1,11 @@
-#adventure {
-    position: relative;
-    .adventure {
-        position: relative;
-        width: 320px;
-        height: 370px;
+.card--adventure {
+    .card {
+      &--type:before {
+        content: url("../../../assets/img/icons/icon_adventure.svg");
+      }
+      &--type:after {
+        content: url("../../../assets/img/icons/icon_adventure.svg");
+      }
     }
-
-    .choices {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-}
+  }
+  

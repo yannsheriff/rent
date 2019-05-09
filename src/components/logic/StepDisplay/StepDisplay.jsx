@@ -14,7 +14,6 @@ class StepDisplay extends Component {
     updateBackgroundColor: PropTypes.func,
   };
 
-
   static defaultProps = {
     changeStep: () => {},
     updateBackgroundColor: () => {},
@@ -23,7 +22,7 @@ class StepDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      actualStep: 'ads',
+      actualStep: 'question',
       round: 0,
     };
   }
