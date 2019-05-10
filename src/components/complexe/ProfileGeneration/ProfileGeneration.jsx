@@ -34,6 +34,8 @@ class ProfileGeneration extends Component {
       isStatus: false,
       isOrigin: false,
       isBudget: false,
+      wheelData: origins,
+      field: 'illu',
     };
   }
 
@@ -79,6 +81,9 @@ class ProfileGeneration extends Component {
     // }
 
     this.wheel.select();
+    setTimeout(() => {
+      this.setState({ wheelData: allstatus, field: 'picto' });
+    }, 5000);
   }
 
   dataIsSelected = (data) => {
@@ -86,7 +91,9 @@ class ProfileGeneration extends Component {
   }
 
   render() {
-    const { isStatus, isBudget, isOrigin } = this.state;
+    const {
+      isStatus, isBudget, isOrigin, wheelData, field,
+    } = this.state;
     const { profil } = this.props;
     const {
       budget, origin, status,
@@ -96,11 +103,11 @@ class ProfileGeneration extends Component {
         <div className="profile-generation--container">
           <h2>Votre profil</h2>
           <Wheel
-            data={origins}
-            fieldToShow="illu"
+            data={wheelData}
+            fieldToShow={field}
             onDataSelection={this.dataIsSelected}
             onRef={(ref) => { this.wheel = ref; }}
-            // img //if is img
+            img={field === 'picto'} // if is img
           />
           {/* <div className="profile-generation--container--item">
             {isStatus

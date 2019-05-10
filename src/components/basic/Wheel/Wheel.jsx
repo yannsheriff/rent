@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import React, { Component } from 'react';
 import './Wheel.scss';
+import { stringify } from 'querystring';
 import WheelItem from './WheelItem/WheelItem';
 
 class Wheel extends Component {
@@ -19,6 +20,31 @@ class Wheel extends Component {
   }
 
   componentWillMount = () => {
+    this.start();
+  }
+
+  // Create ref for top component
+  componentDidMount() {
+    const { onRef } = this.props;
+    if (onRef) {
+      onRef(this);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (stringify(nextProps.data) !== stringify(this.state.data)) {
+      console.log('TCL: componentWillReceiveProps -> nextProps', nextProps);
+      this.setState({
+        data: nextProps.data,
+        fieldToShow: nextProps.fieldToShow,
+        img: nextProps.img,
+      }, () => this.start());
+    }
+  }
+
+
+  start = () => {
+    this.requestStop = false;
     this.setState({ items: this.generateItems() }, () => { // when items are generated
       this.creatInterval = setInterval(() => { // set loop to remove last items and replace it
         if (this.requestStop) { // if stop requested
@@ -29,14 +55,6 @@ class Wheel extends Component {
         }
       }, (this.size + this.margin) * this.timing);
     });
-  }
-
-  // Create ref for top component
-  componentDidMount() {
-    const { onRef } = this.props;
-    if (onRef) {
-      onRef(this);
-    }
   }
 
   changeItem = () => {
