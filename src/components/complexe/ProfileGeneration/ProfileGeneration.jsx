@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './ProfileGeneration.scss';
 import Wheel from 'components/basic/Wheel/Wheel';
-import origins from 'assets/content/origins';
 import allstatus from 'assets/content/status';
+import allorigins from 'assets/content/origins';
+import allbudget from 'assets/content/budget';
 import { updateStatus, updateBudget, updateOrigin } from '../../../redux/actions/profil';
 
 function getRandomArbitrary(min, max) {
@@ -34,65 +35,89 @@ class ProfileGeneration extends Component {
       isStatus: false,
       isOrigin: false,
       isBudget: false,
-      wheelData: origins,
-      field: 'illu',
+      wheelIsTurning: true,
+      wheelData: allstatus,
+      step: 'status',
     };
   }
 
-  componentDidMount() {
-    // this.generateAll();
+  componentDidMount = () => {
+    this.wheel.start();
   }
 
-  // generateAll = () => {
-  //   setTimeout(() => { this.generateStatus(); }, 100);
-  //   setTimeout(() => { this.generateOrigin(); }, 100);
-  //   setTimeout(() => { this.generateBudget(); }, 100);
-  // }
-
-  // generateStatus = () => {
-  //   const { updateStatus } = this.props;
-  //   const statusArray = ['single', 'couple', 'collocation'];
-  //   const rand = getRandomArbitrary(0, statusArray.length);
-  //   updateStatus(statusArray[rand]);
-  //   this.setState({ isStatus: true });
-  // }
-
-  // generateOrigin = () => {
-  //   const { updateOrigin } = this.props;
-  //   const originArray = ['frfr', 'frjp', 'frmc'];
-  //   const rand = getRandomArbitrary(0, originArray.length);
-  //   updateOrigin(originArray[rand]);
-  //   this.setState({ isOrigin: true });
-  // }
-
-  // generateBudget = () => {
-  //   const { updateBudget } = this.props;
-  //   const budgetArray = ['poor', 'regular', 'rich'];
-  //   const rand = getRandomArbitrary(0, budgetArray.length);
-  //   updateBudget(budgetArray[rand]);
-  //   this.setState({ isBudget: true });
-  // }
-
   nextStep = () => {
-    // const { isStatus, isBudget, isOrigin } = this.state;
-    // const { next } = this.props;
-    // if (isStatus && isOrigin && isBudget) {
-    //   next();
+    const { step, wheelIsTurning } = this.state;
+    const { next } = this.props;
+
+    // if (wheelIsTurning)
+
+    // this.wheel.start();
+
+    // premier click arrête la roue
+    // if (wheelIsTurning) {
+    // this.wheel.select();
+    // setTimeout(() => {
+    this.setState({ wheelIsTurning: false });
+    // }, 5000);
+    // } else {
+    // deuxième click change la step et start la roue
+    switch (step) {
+      case 'status':
+        this.setState({
+          step: 'origin',
+          wheelData: allorigins,
+        });
+        break;
+
+      case 'origin':
+        this.setState({
+          step: 'budget',
+          wheelData: allbudget,
+        });
+        break;
+
+      case 'budget':
+        this.setState({
+          step: 'over',
+          wheelData: allbudget,
+        });
+        break;
+
+      default:
+        return '';
+    }
     // }
 
-    this.wheel.select();
-    setTimeout(() => {
-      this.setState({ wheelData: allstatus, field: 'picto' });
-    }, 5000);
+    // click final passe à l'écran d'après
+    if (step === 'over') {
+      next();
+    }
   }
 
   dataIsSelected = (data) => {
-    console.log(data);
+    const { updateStatus, updateOrigin, updateBudget } = this.props;
+    const { step } = this.state;
+    // console.log(step);
+    // console.log(data);
+    // updateStatus(data);
+    // switch (step) {
+    //   case 'status':
+    //     updateStatus(data);
+    //     break;
+    //   case 'origin':
+    //     updateOrigin(data);
+    //     break;
+    //   case 'budget':
+    //     updateBudget(data);
+    //     break;
+    //   default:
+    //     return '';
+    // }
   }
 
   render() {
     const {
-      isStatus, isBudget, isOrigin, wheelData, field,
+      wheelData, step,
     } = this.state;
     const { profil } = this.props;
     const {
@@ -104,10 +129,10 @@ class ProfileGeneration extends Component {
           <h2>Votre profil</h2>
           <Wheel
             data={wheelData}
-            fieldToShow={field}
+            fieldToShow={step === 'origin' ? 'flag' : 'picto'} // string or svg
+            img={step !== 'origin'} // if is img
             onDataSelection={this.dataIsSelected}
             onRef={(ref) => { this.wheel = ref; }}
-            img={field === 'picto'} // if is img
           />
           {/* <div className="profile-generation--container--item">
             {isStatus

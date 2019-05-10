@@ -4,7 +4,7 @@ import coupleLight from './img/couple-light.svg';
 
 export default [
   {
-    title: 'solo',
+    title: 'Seul',
     picto: soloLight,
     pictoLight: soloLight,
     value: 2,
@@ -18,7 +18,7 @@ export default [
     ref: 'couple',
   },
   {
-    title: 'En colocation',
+    title: 'En collocation',
     picto: colocLight,
     pictoLight: colocLight,
     value: 1,

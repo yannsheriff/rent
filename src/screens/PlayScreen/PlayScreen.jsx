@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Fade from '@material-ui/core/Fade';
 import './PlayScreen.scss';
 
 // components
@@ -17,7 +18,13 @@ class PlayScreen extends Component {
         <Header />
         <StepDisplay />
         <Profile />
-        { step.popup && <PopUp />}
+        { step.popup
+        && (
+        <Fade>
+          <PopUp />
+        </Fade>
+        )
+          }
       </div>
     );
   }
