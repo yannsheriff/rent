@@ -125,7 +125,9 @@
   }
 
   &--choice {
+    flex: 1;
     opacity: .5;
+    font-size: 14px;
     &.selected {
       opacity: 1;
     }
