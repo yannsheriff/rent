@@ -12,7 +12,6 @@ import statuss from '../../assets/content/status';
 import budgets from '../../assets/content/budget';
 
 const defaultState = {
-<<<<<<< HEAD
   status: {
     // title: 'En couple',
     // picto: coupleLight,
@@ -20,9 +19,6 @@ const defaultState = {
     // value: 3,
     // ref: 'couple',
   },
-=======
-  status: statuss[0],
->>>>>>> 8f85679dc9e07cae7f4a65dba07959998ddbaf11
   origin: {
     // name: 'Franco-Allemande',
     // flag: '🇩🇪',
