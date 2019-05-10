@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 // import { ACTION } from '../actions/';
-
+import skill from 'assets/content/skills';
 import {
   UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN, UPDATE_BONUS, UPDATE_SKILLS, GET_PREMIUM, UPDATE_TIME,
 } from '../actions/profil';
@@ -11,8 +11,7 @@ const defaultState = {
   status: { title: 'Couple', value: 1, ref: 'couple' },
   origin: { title: 'Blanc', value: 1, ref: 'frfr' },
   budget: { title: '$', value: 2, ref: 'poor' },
-  skills: [{ title: 'As de Photoshop', id: 'photoshop' },
-    { title: 'Psychopathe en Herbe', id: 'psychopathe' }],
+  skills: [skill[0], skill[2]],
   bonus: 0,
   score: 0,
   time: 300,

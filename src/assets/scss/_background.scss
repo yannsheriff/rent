@@ -11,7 +11,11 @@
 }
 
 .adventure,
-.event,
-.skill {
+.event
+{
   background-color: $red;
+}
+
+.skill {
+  background-color: $dark-orange;
 }

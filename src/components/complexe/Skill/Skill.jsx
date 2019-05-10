@@ -73,23 +73,32 @@ class Skill extends Component {
     const { receptaclePos, receptacleIsHovered, receptacleIsSelected } = this.state;
     const classes = `${receptacleIsHovered ? 'hover' : ''} ${receptacleIsSelected ? 'selected' : ''}`;
     const skills = profil.skills.map((element, index) => (
-      <DraggableSkill
-        target={receptaclePos}
-        content={element.title}
-        onTargetHover={this.targetIsHovered}
-        onValidation={() => { this.skillValidation(index); }}
-      />
+      <div>
+        <DraggableSkill
+          target={receptaclePos}
+          content={element}
+          onTargetHover={this.targetIsHovered}
+          onValidation={() => { this.skillValidation(index); }}
+        />
+        <p>{element.title}</p>
+      </div>
     ));
 
     return (
-      <div id="skill">
-        <p>Quel skill voulez vous choisir pour Faire cette action ? </p>
-        { data.content.adventure_skill }
-        <div className="container">
-          <div className={`receptacle ${classes}`} ref={this.assignBounding} />
-          <div className="skills-container">
-            {skills}
-          </div>
+      <div id="skill" className="container">
+        <div>
+          <h1 className="card--title">
+            { data.content.adventure_first_choice }
+          </h1>
+          <p>Une de vos capacités peut peut-être vous aider à vous tirer de cette situation…  </p>
+        </div>
+        <div className={`receptacle ${classes}`} ref={this.assignBounding}>
+          <svg>
+            <circle cx="50%" cy="50%" r={receptaclePos.width - receptaclePos.width / 100 * 50} />
+          </svg>
+        </div>
+        <div className="skills-container">
+          {skills}
         </div>
       </div>
     );
