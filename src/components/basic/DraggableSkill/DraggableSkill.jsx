@@ -90,11 +90,9 @@ class DraggableSkill extends Component {
         onTouchStart={this.dragStart}
         onTouchMove={this.drag}
         onTouchEnd={this.dragEnd}
-        style={{ transform: `translate(${posX}px, ${posY}px)` }}
+        style={{ transform: `translate(${posX}px, ${posY}px)`, backgroundImage: `url(${content.img})` }}
         ref={this.skill}
-      >
-        {content}
-      </div>
+      />
     );
   }
 }

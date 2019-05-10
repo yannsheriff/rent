@@ -1,10 +1,10 @@
 #premium--pop-up {
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   width: 100vw;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,11 +12,70 @@
 
 .premium {
   &--container {
-    border-radius: 22px;
-    box-sizing: border-box;
-    height: 80%;
-    width: 85%;
-    padding: 30px;
-    background-color: white;
-  }
+  border-radius: 22px;
+  box-sizing: border-box;
+  height: 80%;
+  width: 85%;
+  padding: 30px;
+  background-color: white;
+  opacity: 0;
+  transform: translateY(500px);
+  -webkit-transform: translateY(500px);
+  -moz-transform: translateY(500px);
+  -ms-transform: translateY(500px);
+  -o-transform: translateY(500px);
+}
+}
+
+
+.trans-popup-enter {
+  opacity: 0;
+  transform: translateY(500px);
+  -webkit-transform: translateY(500px);
+  -moz-transform: translateY(500px);
+  -ms-transform: translateY(500px);
+  -o-transform: translateY(500px);
+}
+
+.trans-popup-enter-active {
+  opacity: 1;
+  transition:.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  -webkit-transition:.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  -moz-transition:.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  -ms-transition:.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  -o-transition:.5s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transform: translateY(0px);
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  -o-transform: translateY(0px);
+}
+.trans-popup-enter-done {
+  opacity: 1;
+  transform: translateY(0px);
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  -o-transform: translateY(0px);
+}
+.trans-popup-exit {
+  opacity: 0;
+  transform: translateY(0px);
+  -webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+  -o-transform: translateY(0px);
+}
+.trans-popup-exit-done {
+  opacity: 0;
+  transition:.3s ease;
+  -webkit-transition:.3s ease;
+  -moz-transition:.3s ease;
+  -ms-transition:.3s ease;
+  -o-transition:.3s ease;
+  transform: translateY(500px);
+  -webkit-transform: translateY(500px);
+  -moz-transform: translateY(500px);
+  -ms-transform: translateY(500px);
+  -o-transform: translateY(500px);
 }

@@ -1,7 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 // import { ACTION } from '../actions/';
 
-import poor from '../../assets/content/budget/img/icon_profile_budget_poor.svg';
+import skill from 'assets/content/skills';
+import poor from 'assets/content/budget/img/icon_profile_budget_poor.svg';
 
 import {
   UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN, UPDATE_BONUS, UPDATE_SKILLS, GET_PREMIUM, UPDATE_TIME,
@@ -31,8 +32,7 @@ const defaultState = {
     value: 1,
     ref: 'poor',
   },
-  skills: [{ title: 'As de Photoshop', id: 'photoshop' },
-    { title: 'Psychopathe en Herbe', id: 'psychopathe' }],
+  skills: [skill[0], skill[2]],
   bonus: 0,
   score: 0,
   time: 300,

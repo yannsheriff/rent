@@ -1,8 +1,21 @@
 #skill {
 
-    .container {
+    color: white;
+
+    p {
+        color: white;
+
+        text-align: center;
+    }
+
+    .card--title {
+        color: white;
+        text-align: center;
+    }
+
+    &.container {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         flex-direction: column;
         align-items: center;
     }
@@ -11,25 +24,25 @@
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-around;
-        margin-top: 45px;
         width: 100%;
-    }
 
-    .skill {
-        height: 70px;
-        width: 70px;
-        background-color: orange;
-        border-radius: 50%;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        -ms-border-radius: 50%;
-        -o-border-radius: 50%;
+        & > div {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        p {
+            font-size: 14px;
+        }
     }
 
     .receptacle {
-        height: 130px;
-        width: 130px;
-        background-color: grey;
+        height: 15vh;
+        min-height: 15vh;
+        width: 15vh;
+        position: relative;
         border-radius: 50% ;
         -webkit-border-radius: 50% ;
         -moz-border-radius: 50% ;
@@ -41,12 +54,33 @@
         -ms-transition: .3s ease;
         -o-transition: .3s ease;
 
+        svg {
+            position: absolute;
+            top: -5%;
+            left: -5%;
+            width: 110%;
+            height: 110%;
+            animation: spin 25s linear infinite;
+            -webkit-animation: spin 25s linear infinite;
+}
+
+        circle {
+            stroke-width: 6; /* control the dashes width */
+            stroke-dasharray: 2, 15; /* control the dashes spacing */
+            fill: none;
+            stroke: black;
+        }
+
         &.hover {
             transform: scale(1.1);
             -webkit-transform: scale(1.1);
             -moz-transform: scale(1.1);
             -ms-transform: scale(1.1);
             -o-transform: scale(1.1);
+            svg {
+                animation: spin 10s linear infinite;
+                -webkit-animation: spin 10s linear infinite;
+            }
         }
 
         &.selected {
@@ -58,3 +92,9 @@
 }
     }
 }
+
+@keyframes spin { 
+    100% { 
+      transform: rotateZ(360deg); 
+    }
+  }

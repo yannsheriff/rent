@@ -35,6 +35,12 @@
   }
 }
 
+.skill
+.card--main,
+.background-card {
+  background-color: $red;
+}
+
 /* CARTE DE FOND */
 
 .background-card {
@@ -116,5 +122,12 @@
     justify-content: space-around;
     align-items: center;
     flex-direction: row;
+  }
+
+  &--choice {
+    opacity: .5;
+    &.selected {
+      opacity: 1;
+    }
   }
 }

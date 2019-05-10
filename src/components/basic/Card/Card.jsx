@@ -88,14 +88,18 @@ class Card extends Component {
       this.card.current.classList.add('smooth');
       if (this.isValidated === 'right') {
         this.setState({ cardPosX: 400, cardPosY: 100 });
-        swipRight
-          ? swipRight()
-          : console.warn('need swipRight to be a function');
+        setTimeout(() => {
+          swipRight
+            ? swipRight()
+            : console.warn('need swipRight to be a function');
+        }, 200);
       } else if (this.isValidated === 'left') {
         this.setState({ cardPosX: -400, cardPosY: 100 });
-        swipLeft
-          ? swipLeft()
-          : console.warn('need swipLeft to be a function');
+        setTimeout(() => {
+          swipLeft
+            ? swipLeft()
+            : console.warn('need swipLeft to be a function');
+        }, 200);
       } else {
         this.setState({ cardPosX: 0, cardPosY: 0 });
       }
@@ -109,9 +113,9 @@ class Card extends Component {
   }
 
   animatedResetPosition = () => {
-    this.card.current.classList.add('transition');
+    this.card.current.classList.add('smooth');
     this.setState({ cardPosX: 0, cardPosY: 0 }, () => {
-      setTimeout(() => this.card.current.classList.remove('transition'), 300);
+      setTimeout(() => this.card.current.classList.remove('smooth'), 300);
     });
   }
 
@@ -119,7 +123,7 @@ class Card extends Component {
     const {
       // data
       // eslint-disable-next-line react/prop-types
-      children, leftChoice, rightChoice,
+      children, leftChoice, rightChoice, swipLeft, swipRight,
     } = this.props;
     const { cardPosX, cardPosY } = this.state;
     return (
@@ -131,15 +135,31 @@ class Card extends Component {
         style={{ transform: `translate(${cardPosX}px, ${cardPosY}px)` }}
         ref={this.card}
       >
-        <div className="card--border fade">
+        <div className="card--border">
           <div className="card--container">
             {children}
             {leftChoice && rightChoice
         && (
           <div className="card--choice-container">
-            <span className={`left ${this.isValidated === 'left' ? 'selected' : ''} card--choice`}>{leftChoice}</span>
+            <span
+              className={`left ${this.isValidated === 'left' ? 'selected' : ''} card--choice`}
+              onClick={() => {
+                this.isValidated = 'left';
+                this.dragEnd();
+              }}
+            >
+              {leftChoice}
+            </span>
             <span className="card--choice-separation">|</span>
-            <span className={`right ${this.isValidated === 'right' ? 'selected' : ''} card--choice`}>{rightChoice }</span>
+            <span
+              className={`right ${this.isValidated === 'right' ? 'selected' : ''} card--choice`}
+              onClick={() => {
+                this.isValidated = 'right';
+                this.dragEnd();
+              }}
+            >
+              {rightChoice }
+            </span>
           </div>
         )
         }
