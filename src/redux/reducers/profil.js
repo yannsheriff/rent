@@ -8,10 +8,11 @@ import {
   UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN, UPDATE_BONUS, UPDATE_SKILLS, GET_PREMIUM, UPDATE_TIME,
 } from '../actions/profil';
 
-import origins from '../../assets/content/origins';
-import coupleLight from '../../assets/content/status';
+import statuss from '../../assets/content/status';
+import budgets from '../../assets/content/budget';
 
 const defaultState = {
+<<<<<<< HEAD
   status: {
     // title: 'En couple',
     // picto: coupleLight,
@@ -19,6 +20,9 @@ const defaultState = {
     // value: 3,
     // ref: 'couple',
   },
+=======
+  status: statuss[0],
+>>>>>>> 8f85679dc9e07cae7f4a65dba07959998ddbaf11
   origin: {
     // name: 'Franco-Allemande',
     // flag: '🇩🇪',
@@ -45,7 +49,7 @@ export function profilReducer(state = defaultState, action) {
   switch (action.type) {
     case UPDATE_STATUS: {
       const newStatus = action.payload;
-      const newScore = ((((newStatus.value + state.origin.value + state.budget.value) * 2 + state.bonus) * 5) / 21).toFixed(2);
+      const newScore = ((((newStatus.value + state.origin.value + state.budget.value) * 2 + state.bonus) * 5) / 21).toFixed(1);
       return {
         ...state,
         status: newStatus,
@@ -55,7 +59,8 @@ export function profilReducer(state = defaultState, action) {
 
     case UPDATE_BUDGET: {
       const newBudget = action.payload;
-      const newScore = ((((state.status.value + state.origin.value + newBudget.value) * 2 + state.bonus) * 5) / 21).toFixed(2);
+      console.log('TCL: profilReducer -> action.payload', action.payload);
+      const newScore = ((((state.status.value + state.origin.value + newBudget.value) * 2 + state.bonus) * 5) / 21).toFixed(1);
       return {
         ...state,
         budget: newBudget,
@@ -65,7 +70,7 @@ export function profilReducer(state = defaultState, action) {
 
     case UPDATE_ORIGIN: {
       const newOrigin = action.payload;
-      const newScore = ((((state.status.value + newOrigin.value + state.budget.value) * 2 + state.bonus) * 5) / 21).toFixed(2);
+      const newScore = ((((state.status.value + newOrigin.value + state.budget.value) * 2 + state.bonus) * 5) / 21).toFixed(1);
       return {
         ...state,
         origin: newOrigin,
@@ -75,7 +80,7 @@ export function profilReducer(state = defaultState, action) {
 
     case UPDATE_BONUS: {
       const newBonus = state.bonus + action.payload;
-      const newScore = ((((state.status.value + state.origin.value + state.budget.value) * 2 + newBonus) * 5) / 21).toFixed(2);
+      const newScore = ((((state.status.value + state.origin.value + state.budget.value) * 2 + newBonus) * 5) / 21).toFixed(1);
       return {
         ...state,
         bonus: newBonus,
@@ -103,13 +108,6 @@ export function profilReducer(state = defaultState, action) {
         premium: true,
       };
     }
-
-
-    // case ACTION:
-
-    //   return {
-    //     ...state,
-    //   };
 
     default:
       return state;

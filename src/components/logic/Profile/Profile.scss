@@ -4,4 +4,62 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+
+  & > div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+
+    img {
+      max-height: 45px;
+      max-width: 45px;
+    }
+
+    .origin {
+      height: 45px;
+      width: 45px;
+      background-color: white;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+
+      p { 
+        height: 30px;
+        font-size: 30px 
+      }
+    }
+
+    &.score {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      & > * {
+        position: absolute;
+      }
+
+      p {
+        font-size: 15px;
+        font-family: fivo_sans_modernextra_black;
+        opacity: 1;
+        top: -7px;
+        transition: .5s ease;
+        -webkit-transition: .5s ease;
+        -moz-transition: .5s ease;
+        -ms-transition: .5s ease;
+        -o-transition: .5s ease;
+}
+    }
+  }
+}
+
+.transition #profile .card--choice {
+  color: black;
 }

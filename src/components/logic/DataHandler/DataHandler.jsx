@@ -287,13 +287,15 @@ class DataHandler extends Component {
   }
 
   returnProfilUpdate = (data) => {
+    const { step } = this.props;
     const { data: stateData } = this.state;
     const usableData = data || stateData;
-    const { step } = this.props;
     const updateTypes = ['points', 'status', 'budget', 'origin', 'time'];
     const fieldToUpdate = updateTypes.filter(type => usableData.content[`${step}_new_${type}`]);
     const update = fieldToUpdate.map(type => ({ field: type, value: usableData.content[`${step}_new_${type}`] }))[0];
-    if (fieldToUpdate[0] === 'status' && 'budget' && 'origin') {
+    if (fieldToUpdate[0] === 'status'
+    || fieldToUpdate[0] === 'budget'
+    || fieldToUpdate[0] === 'origin') {
       const returnData = this.returnProfilUpdateData(fieldToUpdate[0], update.value);
       update.value = returnData;
     }

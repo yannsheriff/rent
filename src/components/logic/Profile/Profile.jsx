@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './Profile.scss';
+import star from 'assets/img/icons/icon_star.svg';
 
 class Header extends Component {
   static propTypes = {
@@ -23,10 +24,21 @@ class Header extends Component {
 
     return (
       <div id="profile" className="layout--profile">
-        <p>{score}</p>
-        <p>{budget.title}</p>
-        <p>{origin.flag}</p>
-        <p>{status.title}</p>
+        <div className="score">
+          <img src={star} />
+          <p className="card--choice">{score}</p>
+        </div>
+        <div>
+          <img src={status.picto} />
+        </div>
+        <div>
+          <div className="origin">
+            <p>{origin.flag}</p>
+          </div>
+        </div>
+        <div>
+          <img src={budget.picto} />
+        </div>
       </div>
     );
   }
