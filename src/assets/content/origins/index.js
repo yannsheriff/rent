@@ -1,49 +1,66 @@
 // noms à mettre au féminin : "d'origine franco-..."
 
 export default [
+  // BLANC
+
   {
     name: 'Franco-Allemande',
-    illu: '🇩🇪',
+    flag: '🇩🇪',
     value: 3,
+    ref: 'frfr',
   },
   {
     name: 'Franco-Américaine',
-    illu: '🇺🇸',
+    flag: '🇺🇸',
     value: 3,
+    ref: 'frfr',
   },
   {
     name: 'Franco-Anglaise',
-    illu: '🇬🇧',
+    flag: '🇬🇧',
     value: 3,
+    ref: 'frfr',
   },
+
+  // MAT
+
   {
     name: 'Franco-Chinoise',
-    illu: '🇨🇳',
+    flag: '🇨🇳',
     value: 2,
+    ref: 'frjp',
   },
   {
     name: 'Franco-Japonaise',
-    illu: '🇯🇵',
+    flag: '🇯🇵',
     value: 2,
+    ref: 'frjp',
   },
   {
     name: 'Franco-Coréenne',
-    illu: '🇰🇷',
+    flag: '🇰🇷',
     value: 2,
+    ref: 'frjp',
   },
+
+  // CHO
+
   {
     name: 'Franco-Congolaise',
-    illu: '🇨🇬',
+    flag: '🇨🇬',
     value: 1,
+    ref: 'frmc',
   },
   {
     name: 'Franco-Algérienne',
-    illu: '🇩🇿',
+    flag: '🇩🇿',
     value: 1,
+    ref: 'frmc',
   },
   {
     name: 'Franco-Marocaine',
-    illu: '🇲🇦',
+    flag: '🇲🇦',
     value: 1,
+    ref: 'frmc',
   },
 ];

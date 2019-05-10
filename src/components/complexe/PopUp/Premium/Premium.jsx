@@ -30,7 +30,7 @@ class Premium extends Component {
           <br />
         ** Vraiment beaucoup de temps
         </p>
-        <button className="btn" onClick={this.purchasePremium}>YES </button>
+        <button className="btn" onClick={this.purchasePremium}>Souscrire</button>
         <button className="arrow" onClick={this.cancel}>X</button>
       </div>
     );

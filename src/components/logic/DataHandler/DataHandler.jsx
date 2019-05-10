@@ -7,10 +7,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './DataHandler.scss';
 import { NounouService } from 'services/NounouService';
-
 import {
   updateStatus, updateBudget, updateOrigin, updateBonus, updateTimer,
 } from 'redux/actions/profil';
+import statusData from 'assets/content/status';
+import originData from 'assets/content/origins';
+import budgetData from 'assets/content/budget';
 import { EthanPromise } from 'services/EthanServices';
 import { endGame, displayPopUp, changeStep } from 'redux/actions/steps';
 import StackHandler from '../StackHandler/StackHandler';
@@ -64,7 +66,6 @@ class DataHandler extends Component {
       card: {},
       isNarration: false,
       didWin: false,
-      waitingForData: true,
     };
 
     this.stackHandler = React.createRef();
@@ -268,15 +269,35 @@ class DataHandler extends Component {
     }
   }
 
+  // ---------------------------------------------------------------------
+  // Cette fonction retourne l'objet associé à la nouvelle valeur du profil
+  //
+
+  returnProfilUpdateData = (field, value) => {
+    switch (field) {
+      case 'status':
+        return statusData.filter(status => status.ref === value)[0];
+      case 'origin':
+        return originData.filter(origin => origin.ref === value)[0];
+      case 'budget':
+        return budgetData.filter(budget => budget.ref === value)[0];
+      default:
+        return '';
+    }
+  }
+
   returnProfilUpdate = (data) => {
     const { data: stateData } = this.state;
     const usableData = data || stateData;
     const { step } = this.props;
-
     const updateTypes = ['points', 'status', 'budget', 'origin', 'time'];
     const fieldToUpdate = updateTypes.filter(type => usableData.content[`${step}_new_${type}`]);
-    const update = fieldToUpdate.map(type => ({ field: type, value: usableData.content[`${step}_new_${type}`] }));
-    return fieldToUpdate.length ? update[0] : false;
+    const update = fieldToUpdate.map(type => ({ field: type, value: usableData.content[`${step}_new_${type}`] }))[0];
+    if (fieldToUpdate[0] === 'status' && 'budget' && 'origin') {
+      const returnData = this.returnProfilUpdateData(fieldToUpdate[0], update.value);
+      update.value = returnData;
+    }
+    return fieldToUpdate.length ? update : false;
   }
 
 

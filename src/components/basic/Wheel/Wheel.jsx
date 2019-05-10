@@ -13,14 +13,10 @@ class Wheel extends Component {
     };
     this.ref = [];
     this.size = 120; // size of the circles
-    this.margin = 20; // margin beetwin circles
+    this.margin = 20; // margin between circles
     this.requestStop = false; // if stop requested
     this.itemsLength = 11; // number of items
     this.timing = 2.5; // speed
-  }
-
-  componentWillMount = () => {
-    this.start();
   }
 
   // Create ref for top component
@@ -37,10 +33,11 @@ class Wheel extends Component {
         data: nextProps.data,
         fieldToShow: nextProps.fieldToShow,
         img: nextProps.img,
-      }, () => this.start());
+      },
+      //
+      () => this.start());
     }
   }
-
 
   start = () => {
     this.requestStop = false;
