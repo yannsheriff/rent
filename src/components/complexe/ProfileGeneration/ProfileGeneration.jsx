@@ -49,49 +49,51 @@ class ProfileGeneration extends Component {
     const { step, wheelIsTurning } = this.state;
     const { next } = this.props;
 
-    // if (wheelIsTurning)
-
-    // this.wheel.start();
-
-    // premier click arrête la roue
-    // if (wheelIsTurning) {
-    // this.wheel.select();
-    // setTimeout(() => {
-    this.setState({ wheelIsTurning: false });
-    // }, 5000);
-    // } else {
-    // deuxième click change la step et start la roue
-    switch (step) {
-      case 'status':
-        this.setState({
-          step: 'origin',
-          wheelData: allorigins,
-        });
-        break;
-
-      case 'origin':
-        this.setState({
-          step: 'budget',
-          wheelData: allbudget,
-        });
-        break;
-
-      case 'budget':
-        this.setState({
-          step: 'over',
-          wheelData: allbudget,
-        });
-        break;
-
-      default:
-        return '';
-    }
-    // }
-
     // click final passe à l'écran d'après
     if (step === 'over') {
       next();
     }
+
+    // premier click arrête la roue
+    if (wheelIsTurning) {
+      console.log('on arrête la roue');
+      this.wheel.select();
+      setTimeout(() => {
+        this.setState({ wheelIsTurning: false });
+      }, 2000);
+    }
+
+    // deuxième click change la step et start la roue
+    if (!wheelIsTurning) {
+      console.log('on demarre la roue');
+      this.setState({ wheelIsTurning: true });
+      switch (step) {
+        case 'status':
+          this.setState({
+            step: 'origin',
+            wheelData: allorigins,
+          }, () => { this.wheel.start(); });
+          break;
+
+        case 'origin':
+          this.setState({
+            step: 'budget',
+            wheelData: allbudget,
+          }, () => { this.wheel.start(); });
+          break;
+
+        case 'budget':
+          this.setState({
+            step: 'over',
+            wheelData: allbudget,
+          }, () => { this.wheel.start(); });
+          break;
+
+        default:
+          return '';
+      }
+    }
+    // }
   }
 
   dataIsSelected = (data) => {

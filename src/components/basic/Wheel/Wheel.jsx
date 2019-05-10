@@ -21,6 +21,7 @@ class Wheel extends Component {
 
   // Create ref for top component
   componentDidMount() {
+    // this.start();
     const { onRef } = this.props;
     if (onRef) {
       onRef(this);
@@ -33,15 +34,16 @@ class Wheel extends Component {
         data: nextProps.data,
         fieldToShow: nextProps.fieldToShow,
         img: nextProps.img,
-      },
+      });
       //
-      () => this.start());
+      // () => this.start());
     }
   }
 
   start = () => {
     this.requestStop = false;
     this.setState({ items: this.generateItems() }, () => { // when items are generated
+      console.log(this.state.items);
       this.creatInterval = setInterval(() => { // set loop to remove last items and replace it
         if (this.requestStop) { // if stop requested
           clearInterval(this.creatInterval); // clear loop
