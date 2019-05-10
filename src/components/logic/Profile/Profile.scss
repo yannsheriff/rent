@@ -39,6 +39,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
 
       & > * {
         position: absolute;
@@ -47,7 +48,18 @@
       p {
         font-size: 15px;
         font-family: fivo_sans_modernextra_black;
-      }
+        opacity: 1;
+        top: -7px;
+        transition: .5s ease;
+        -webkit-transition: .5s ease;
+        -moz-transition: .5s ease;
+        -ms-transition: .5s ease;
+        -o-transition: .5s ease;
+}
     }
   }
+}
+
+.transition #profile .card--choice {
+  color: black;
 }

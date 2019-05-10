@@ -26,7 +26,7 @@ class Header extends Component {
       <div id="profile" className="layout--profile">
         <div className="score">
           <img src={star} />
-          <p>{score}</p>
+          <p className="card--choice">{score}</p>
         </div>
         <div>
           <img src={status.picto} />
