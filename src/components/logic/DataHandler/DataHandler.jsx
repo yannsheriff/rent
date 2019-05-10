@@ -241,7 +241,6 @@ class DataHandler extends Component {
   // Cette fonction update le profile en fonction des donnée du state
   //
   updateProfile = () => {
-    console.log('update profile');
     const {
       updateBonus,
       updateStatus,

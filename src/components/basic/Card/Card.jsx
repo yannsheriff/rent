@@ -119,7 +119,7 @@ class Card extends Component {
     const {
       // data
       // eslint-disable-next-line react/prop-types
-      children, leftChoice, rightChoice,
+      children, leftChoice, rightChoice, swipLeft, swipRight,
     } = this.props;
     const { cardPosX, cardPosY } = this.state;
     return (
@@ -137,9 +137,9 @@ class Card extends Component {
             {leftChoice && rightChoice
         && (
           <div className="card--choice-container">
-            <span className={`left ${this.isValidated === 'left' ? 'selected' : ''} card--choice`}>{leftChoice}</span>
+            <span className={`left ${this.isValidated === 'left' ? 'selected' : ''} card--choice`} onClick={() => swipLeft()}>{leftChoice}</span>
             <span className="card--choice-separation">|</span>
-            <span className={`right ${this.isValidated === 'right' ? 'selected' : ''} card--choice`}>{rightChoice }</span>
+            <span className={`right ${this.isValidated === 'right' ? 'selected' : ''} card--choice`} onClick={() => swipRight()}>{rightChoice }</span>
           </div>
         )
         }
