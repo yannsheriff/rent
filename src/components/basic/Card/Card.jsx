@@ -85,17 +85,21 @@ class Card extends Component {
     const { swipRight, swipLeft, isLocked } = this.props;
     if (!isLocked) {
       // add transition de carte
-      this.card.current.classList.add('smooth');
+      this.card.current.classList.add('transition');
       if (this.isValidated === 'right') {
         this.setState({ cardPosX: 400, cardPosY: 100 });
-        swipRight
-          ? swipRight()
-          : console.warn('need swipRight to be a function');
+        setTimeout(() => {
+          swipRight
+            ? swipRight()
+            : console.warn('need swipRight to be a function');
+        }, 200);
       } else if (this.isValidated === 'left') {
         this.setState({ cardPosX: -400, cardPosY: 100 });
-        swipLeft
-          ? swipLeft()
-          : console.warn('need swipLeft to be a function');
+        setTimeout(() => {
+          swipLeft
+            ? swipLeft()
+            : console.warn('need swipLeft to be a function');
+        }, 200);
       } else {
         this.setState({ cardPosX: 0, cardPosY: 0 });
       }
@@ -137,9 +141,25 @@ class Card extends Component {
             {leftChoice && rightChoice
         && (
           <div className="card--choice-container">
-            <span className={`left ${this.isValidated === 'left' ? 'selected' : ''} card--choice`} onClick={() => swipLeft()}>{leftChoice}</span>
+            <span
+              className={`left ${this.isValidated === 'left' ? 'selected' : ''} card--choice`}
+              onClick={() => {
+                this.isValidated = 'left';
+                this.dragEnd();
+              }}
+            >
+              {leftChoice}
+            </span>
             <span className="card--choice-separation">|</span>
-            <span className={`right ${this.isValidated === 'right' ? 'selected' : ''} card--choice`} onClick={() => swipRight()}>{rightChoice }</span>
+            <span
+              className={`right ${this.isValidated === 'right' ? 'selected' : ''} card--choice`}
+              onClick={() => {
+                this.isValidated = 'right';
+                this.dragEnd();
+              }}
+            >
+              {rightChoice }
+            </span>
           </div>
         )
         }
