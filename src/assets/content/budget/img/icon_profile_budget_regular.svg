@@ -1,21 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 45 45" style="enable-background:new 0 0 45 45;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:none;}
-</style>
-<title>icon_profile_budget-moyen</title>
-<desc>Created with Sketch.</desc>
-<g id="UI">
-	<g id="HUTTE_UI-kit_atomes" transform="translate(-390.000000, -814.000000)">
-		<g id="icon_profile_budget-moyen" transform="translate(390.000000, 810.000000)">
-			<rect id="Rectangle" y="4" class="st0" width="45" height="45"/>
-			<path d="M30.6,13.8H6.9l1.1-3.6C8.4,8.9,9.6,8,11,8c0.3,0,0.6,0,0.9,0.1L30.6,13.8z M41.8,16.3c1.8,0,3.2,1.4,3.2,3.2v18.5
-				c0,1.8-1.4,3.2-3.2,3.2H3.2c-1.8,0-3.2-1.4-3.2-3.2V19.5c0-1.8,1.4-3.2,3.2-3.2H41.8z M23.4,35.9c3.9,0,5.8-1.5,6.6-5h-3.2
-				c-0.4,1.8-1.4,2.6-3.4,2.6s-3.1-0.9-3.6-2.8h4v-1.5h-4.2v-1h4.9v-1.5h-4.7c0.4-1.9,1.5-2.7,3.5-2.7s3.1,0.8,3.4,2.6h3.2
-				c-0.5-3.5-2.5-5-6.6-5c-4.2,0-6.4,1.6-6.9,5.2h-1.8v1.5h1.6v1.1h-1.6v1.5h1.8C17,34.3,19.1,35.9,23.4,35.9z"/>
-		</g>
-	</g>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/wheel/budget-moyen</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icon/wheel/budget-moyen" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M30,0 C13.4314575,-1.01453063e-15 2.02906125e-15,13.4314575 0,30 C-2.02906125e-15,46.5685425 13.4314575,60 30,60 C46.5685425,60 60,46.5685425 60,30 C60,22.0435053 56.8392948,14.4128879 51.2132034,8.78679656 C45.5871121,3.16070521 37.9564947,4.87194788e-16 30,0 Z M16.42,15.18 C16.8092833,13.9268763 17.967805,13.0721627 19.28,13.07 C19.5782845,13.0676587 19.8751335,13.1115114 20.16,13.2 L37.57,18.51 L15.4,18.51 L16.42,15.18 Z M51,41 C51,42.6568542 49.6568542,44 48,44 L12,44 C10.3431458,44 9,42.6568542 9,41 L9,23.77 C9,22.1131458 10.3431458,20.77 12,20.77 L48,20.77 C49.6568542,20.77 51,22.1131458 51,23.77 L51,41 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
+        <path d="M30.85,36.85 C29.2215659,37.0387774 27.7431375,35.8854251 27.53,34.26 L31.25,34.26 L31.25,32.88 L27.36,32.88 L27.36,31.88 L32,31.88 L32,30.53 L27.53,30.53 C27.91,28.75 28.9,27.97 30.83,27.97 C32.76,27.97 33.68,28.72 33.97,30.42 L36.97,30.42 C36.5,27.12 34.67,25.71 30.83,25.71 C26.99,25.71 24.83,27.17 24.34,30.53 L22.68,30.53 L22.68,31.88 L24.2,31.88 L24.2,32.88 L22.68,32.88 L22.68,34.26 L24.33,34.26 C24.84,37.63 26.86,39.1 30.83,39.1 C34.44,39.1 36.24,37.7 36.99,34.41 L34,34.41 C33.64,36.13 32.73,36.85 30.85,36.85 Z" id="Shape" fill="#FFFFFF" fill-rule="nonzero"></path>
+    </g>
 </svg>

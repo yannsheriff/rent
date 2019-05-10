@@ -4,19 +4,19 @@ export default [
   // BLANC
 
   {
-    name: 'Franco-Allemande',
+    title: 'Franco-Allemande',
     flag: '🇩🇪',
     value: 3,
     ref: 'frfr',
   },
   {
-    name: 'Franco-Américaine',
+    title: 'Franco-Américaine',
     flag: '🇺🇸',
     value: 3,
     ref: 'frfr',
   },
   {
-    name: 'Franco-Anglaise',
+    title: 'Franco-Anglaise',
     flag: '🇬🇧',
     value: 3,
     ref: 'frfr',
@@ -25,19 +25,19 @@ export default [
   // MAT
 
   {
-    name: 'Franco-Chinoise',
+    title: 'Franco-Chinoise',
     flag: '🇨🇳',
     value: 2,
     ref: 'frjp',
   },
   {
-    name: 'Franco-Japonaise',
+    title: 'Franco-Japonaise',
     flag: '🇯🇵',
     value: 2,
     ref: 'frjp',
   },
   {
-    name: 'Franco-Coréenne',
+    title: 'Franco-Coréenne',
     flag: '🇰🇷',
     value: 2,
     ref: 'frjp',
@@ -46,19 +46,19 @@ export default [
   // CHO
 
   {
-    name: 'Franco-Congolaise',
+    title: 'Franco-Congolaise',
     flag: '🇨🇬',
     value: 1,
     ref: 'frmc',
   },
   {
-    name: 'Franco-Algérienne',
+    title: 'Franco-Algérienne',
     flag: '🇩🇿',
     value: 1,
     ref: 'frmc',
   },
   {
-    name: 'Franco-Marocaine',
+    title: 'Franco-Marocaine',
     flag: '🇲🇦',
     value: 1,
     ref: 'frmc',

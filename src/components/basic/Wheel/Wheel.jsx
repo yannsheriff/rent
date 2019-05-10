@@ -114,7 +114,7 @@ class Wheel extends Component {
   render() {
     const { items } = this.state;
     return (
-      <div id="wheel">
+      <div id="wheel" className="profile-generation--wheel">
         {items}
       </div>
     );

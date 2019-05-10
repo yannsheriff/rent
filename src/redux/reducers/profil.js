@@ -13,26 +13,28 @@ import coupleLight from '../../assets/content/status';
 
 const defaultState = {
   status: {
-    title: 'En couple',
-    picto: coupleLight,
-    pictoLight: coupleLight,
-    value: 3,
-    ref: 'couple',
+    // title: 'En couple',
+    // picto: coupleLight,
+    // pictoLight: coupleLight,
+    // value: 3,
+    // ref: 'couple',
   },
   origin: {
-    name: 'Franco-Allemande',
-    flag: '🇩🇪',
-    value: 3,
-    ref: 'frfr',
+    // name: 'Franco-Allemande',
+    // flag: '🇩🇪',
+    // value: 3,
+    // ref: 'frfr',
   },
   budget: {
-    title: '€',
-    picto: poor,
-    pictoLight: poor,
-    value: 1,
-    ref: 'poor',
+    // title: '€',
+    // picto: poor,
+    // pictoLight: poor,
+    // value: 1,
+    // ref: 'poor',
   },
-  skills: [skill[0], skill[2]],
+  skills: [
+    // skill[0], skill[2]
+  ],
   bonus: 0,
   score: 0,
   time: 300,

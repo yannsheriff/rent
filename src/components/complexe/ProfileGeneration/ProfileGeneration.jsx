@@ -49,7 +49,6 @@ class ProfileGeneration extends Component {
 
     this.setState({ allowClick: false });
 
-
     if (allowClick) {
       // premier click arrête la roue
       if (wheelIsTurning) {
@@ -122,10 +121,14 @@ class ProfileGeneration extends Component {
     const {
       budget, origin, status,
     } = profil;
+    console.log(step);
+    console.log(profil);
     return (
       <div className="intro" onClick={() => this.nextStep()}>
         <div className="profile-generation--container">
-          <h2>Votre profil</h2>
+          <div className="profile-generation--title">
+            <h1>Votre profil</h1>
+          </div>
           <Wheel
             data={wheelData}
             fieldToShow={step === 'origin' ? 'flag' : 'picto'} // string or svg
@@ -133,47 +136,32 @@ class ProfileGeneration extends Component {
             onDataSelection={this.dataIsSelected}
             onRef={(ref) => { this.wheel = ref; }}
           />
-          {/* <div className="profile-generation--container--item">
-            {isStatus
-            && (
-            <>
-              <p>Vous cherchez un appartement :</p>
-              <h2>{ status.title }</h2>
-            </>
-            )
-          }
+          <div className="profile-generation--status">
+            {step === 'status' && <h2>situation</h2>}
+            {step === 'origin' && <h2>origine</h2>}
+            {step === 'budget' && <h2>budget</h2>}
+            <span className="profile-generation--status-main">
+              {step === 'status' ? <h1>{profil.status.title}</h1> : ''}
+              {step === 'origin' ? <h1>{profil.origin.title}</h1> : ''}
+              {step === 'budget' ? <h1>{profil.budget.title}</h1> : ''}
+            </span>
           </div>
-          <div className="profile-generation--container--item">
-            {isOrigin
-            && (
-            <>
-              <p>Vous êtes d'origine :</p>
-              <h2>
-                { origin.title }
-                {' '}
-                {' '}
-                {' '}
-                { origin.flag }
-              </h2>
-            </>
-            )
-          }
+          <div className="profile-generation--recap">
+            <ul>
+              <li className={profil.status.title && 'valid'}>
+                {profil.status.title
+                && <img src={profil.status.pictoLight} alt="" />}
+              </li>
+              <li className={profil.origin.title && 'valid'}>
+                <span>{profil.origin.flag}</span>
+              </li>
+              <li className={profil.budget.title && 'valid'}>
+                {profil.budget.title
+                && <img src={profil.budget.pictoLight} alt="" />}
+              </li>
+            </ul>
           </div>
-          <div className="profile-generation--container--item">
-            {isBudget
-            && (
-            <>
-              <p>Vous avez un budget :</p>
-              <h2>{ budget.title }</h2>
-            </>
-            )
-          }
-          </div>
-          {(isStatus && isOrigin && isBudget)
-            && (
-            <p className="intro--info">Toucher pour continuer</p>
-            )
-        } */}
+          <p className="intro--info">Toucher pour continuer</p>
         </div>
       </div>
     );
