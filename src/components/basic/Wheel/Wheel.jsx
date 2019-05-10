@@ -15,7 +15,7 @@ class Wheel extends Component {
     this.size = 120; // size of the circles
     this.margin = 20; // margin between circles
     this.requestStop = false; // if stop requested
-    this.itemsLength = 11; // number of items
+    this.itemsLength = 8; // number of items
     this.timing = 2.5; // speed
   }
 
@@ -33,9 +33,7 @@ class Wheel extends Component {
         data: nextProps.data,
         fieldToShow: nextProps.fieldToShow,
         img: nextProps.img,
-      },
-      //
-      () => this.start());
+      });
     }
   }
 

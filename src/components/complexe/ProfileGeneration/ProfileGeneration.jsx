@@ -32,11 +32,9 @@ class ProfileGeneration extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isStatus: false,
-      isOrigin: false,
-      isBudget: false,
       wheelIsTurning: true,
       wheelData: allstatus,
+      allowClick: true,
       step: 'status',
     };
   }
@@ -46,73 +44,74 @@ class ProfileGeneration extends Component {
   }
 
   nextStep = () => {
-    const { step, wheelIsTurning } = this.state;
+    const { step, wheelIsTurning, allowClick } = this.state;
     const { next } = this.props;
 
-    // if (wheelIsTurning)
+    this.setState({ allowClick: false });
 
-    // this.wheel.start();
 
-    // premier click arrête la roue
-    // if (wheelIsTurning) {
-    // this.wheel.select();
-    // setTimeout(() => {
-    this.setState({ wheelIsTurning: false });
-    // }, 5000);
-    // } else {
-    // deuxième click change la step et start la roue
-    switch (step) {
-      case 'status':
-        this.setState({
-          step: 'origin',
-          wheelData: allorigins,
-        });
-        break;
+    if (allowClick) {
+      // premier click arrête la roue
+      if (wheelIsTurning) {
+        this.wheel.select();
+        setTimeout(() => {
+          this.setState({
+            wheelIsTurning: false,
+            allowClick: true,
+          });
+        }, 2000); // la durée de la roue
+      }
 
-      case 'origin':
-        this.setState({
-          step: 'budget',
-          wheelData: allbudget,
-        });
-        break;
+      // deuxième click change la step et start la roue
+      if (!wheelIsTurning) {
+        this.setState({ wheelIsTurning: true });
+        switch (step) {
+        // when status selection is over
+          case 'status':
+            this.setState({
+              step: 'origin',
+              wheelData: allorigins,
+              allowClick: true,
+            }, () => { this.wheel.start(); });
+            break;
 
-      case 'budget':
-        this.setState({
-          step: 'over',
-          wheelData: allbudget,
-        });
-        break;
+            // when origin selection is over
+          case 'origin':
+            this.setState({
+              step: 'budget',
+              wheelData: allbudget,
+              allowClick: true,
+            }, () => { this.wheel.start(); });
+            break;
 
-      default:
-        return '';
-    }
-    // }
+            // when origin selection is over next
+          case 'budget':
+            next();
+            break;
 
-    // click final passe à l'écran d'après
-    if (step === 'over') {
-      next();
+          default:
+            return '';
+        }
+      }
     }
   }
 
   dataIsSelected = (data) => {
     const { updateStatus, updateOrigin, updateBudget } = this.props;
     const { step } = this.state;
-    // console.log(step);
-    // console.log(data);
-    // updateStatus(data);
-    // switch (step) {
-    //   case 'status':
-    //     updateStatus(data);
-    //     break;
-    //   case 'origin':
-    //     updateOrigin(data);
-    //     break;
-    //   case 'budget':
-    //     updateBudget(data);
-    //     break;
-    //   default:
-    //     return '';
-    // }
+    switch (step) {
+      case 'status':
+        updateStatus(data);
+        break;
+      case 'origin':
+        updateOrigin(data);
+        break;
+      case 'budget':
+        updateBudget(data);
+        break;
+      default:
+        return '';
+    }
   }
 
   render() {
