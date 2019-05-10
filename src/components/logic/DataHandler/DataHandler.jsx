@@ -299,7 +299,6 @@ class DataHandler extends Component {
       const returnData = this.returnProfilUpdateData(fieldToUpdate[0], update.value);
       update.value = returnData;
     }
-    console.log(update.value);
     return fieldToUpdate.length ? update : false;
   }
 
