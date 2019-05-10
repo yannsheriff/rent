@@ -9,6 +9,7 @@ import {
 } from '../actions/profil';
 
 import statuss from '../../assets/content/status';
+import budgets from '../../assets/content/budget';
 
 const defaultState = {
   status: statuss[0],
@@ -18,13 +19,7 @@ const defaultState = {
     value: 3,
     ref: 'frfr',
   },
-  budget: {
-    title: '€',
-    picto: poor,
-    pictoLight: poor,
-    value: 1,
-    ref: 'poor',
-  },
+  budget: budgets[1],
   skills: [skill[0], skill[2]],
   bonus: 0,
   score: 0,
@@ -46,6 +41,7 @@ export function profilReducer(state = defaultState, action) {
 
     case UPDATE_BUDGET: {
       const newBudget = action.payload;
+      console.log('TCL: profilReducer -> action.payload', action.payload);
       const newScore = ((((state.status.value + state.origin.value + newBudget.value) * 2 + state.bonus) * 5) / 21).toFixed(1);
       return {
         ...state,
