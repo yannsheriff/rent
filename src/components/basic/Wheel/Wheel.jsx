@@ -33,7 +33,6 @@ class Wheel extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (stringify(nextProps.data) !== stringify(this.state.data)) {
-      console.log('TCL: componentWillReceiveProps -> nextProps', nextProps);
       this.setState({
         data: nextProps.data,
         fieldToShow: nextProps.fieldToShow,
@@ -78,12 +77,13 @@ class Wheel extends Component {
     const unix = Date.now();
     const rand = Math.round(Math.random() * ((data.length - 1)));
     const randKey = Math.round(Math.random() * (1000));
+    const key = `${index}${unix}${randKey}`;
     const randData = data[rand];
     return (
       <WheelItem
         data={randData}
         index={index}
-        key={index + unix + randKey}
+        key={key}
         timing={this.timing}
         size={this.size}
         margin={this.margin}
