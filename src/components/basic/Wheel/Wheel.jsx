@@ -15,13 +15,12 @@ class Wheel extends Component {
     this.size = 120; // size of the circles
     this.margin = 20; // margin between circles
     this.requestStop = false; // if stop requested
-    this.itemsLength = 11; // number of items
+    this.itemsLength = 8; // number of items
     this.timing = 2.5; // speed
   }
 
   // Create ref for top component
   componentDidMount() {
-    // this.start();
     const { onRef } = this.props;
     if (onRef) {
       onRef(this);
@@ -35,15 +34,12 @@ class Wheel extends Component {
         fieldToShow: nextProps.fieldToShow,
         img: nextProps.img,
       });
-      //
-      // () => this.start());
     }
   }
 
   start = () => {
     this.requestStop = false;
     this.setState({ items: this.generateItems() }, () => { // when items are generated
-      console.log(this.state.items);
       this.creatInterval = setInterval(() => { // set loop to remove last items and replace it
         if (this.requestStop) { // if stop requested
           clearInterval(this.creatInterval); // clear loop
