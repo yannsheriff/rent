@@ -52,7 +52,6 @@ class WheelItem extends Component {
     const {
       data, size, field, img,
     } = this.props;
-    console.log('TCL: WheelItem -> render -> img', img);
     const {
       pos, timing, ease, opacity,
     } = this.state;
