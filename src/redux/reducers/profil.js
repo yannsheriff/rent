@@ -8,17 +8,10 @@ import {
   UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN, UPDATE_BONUS, UPDATE_SKILLS, GET_PREMIUM, UPDATE_TIME,
 } from '../actions/profil';
 
-import origins from '../../assets/content/origins';
-import coupleLight from '../../assets/content/status';
+import statuss from '../../assets/content/status';
 
 const defaultState = {
-  status: {
-    title: 'En couple',
-    picto: coupleLight,
-    pictoLight: coupleLight,
-    value: 3,
-    ref: 'couple',
-  },
+  status: statuss[0],
   origin: {
     name: 'Franco-Allemande',
     flag: '🇩🇪',
