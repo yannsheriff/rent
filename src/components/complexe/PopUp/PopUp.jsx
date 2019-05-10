@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { hidePopUp } from 'redux/actions/steps';
+import { CSSTransition } from 'react-transition-group';
 import Premium from './Premium/Premium';
 import './PopUp.scss';
 
@@ -16,6 +17,15 @@ class PopUp extends Component {
   static defaultProps = {
     step: {},
     hide: () => {},
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = { show: false };
+  }
+
+  componentDidMount() {
+    setTimeout(() => { this.setState({ show: true }); }, 500);
   }
 
   hidePopUp = () => {
@@ -34,12 +44,15 @@ class PopUp extends Component {
   }
 
   render() {
+    const { show } = this.state;
     const component = this.returnPopUp();
     return (
       <div id="premium--pop-up" className="fade">
-        <div className="premium--container">
-          {component}
-        </div>
+        <CSSTransition in={show} timeout={500} classNames="trans-popup">
+          <div className="premium--container">
+            {component}
+          </div>
+        </CSSTransition>
       </div>
     );
   }
