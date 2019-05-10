@@ -85,7 +85,7 @@ class Card extends Component {
     const { swipRight, swipLeft, isLocked } = this.props;
     if (!isLocked) {
       // add transition de carte
-      this.card.current.classList.add('transition');
+      this.card.current.classList.add('smooth');
       if (this.isValidated === 'right') {
         this.setState({ cardPosX: 400, cardPosY: 100 });
         setTimeout(() => {
@@ -113,9 +113,9 @@ class Card extends Component {
   }
 
   animatedResetPosition = () => {
-    this.card.current.classList.add('transition');
+    this.card.current.classList.add('smooth');
     this.setState({ cardPosX: 0, cardPosY: 0 }, () => {
-      setTimeout(() => this.card.current.classList.remove('transition'), 300);
+      setTimeout(() => this.card.current.classList.remove('smooth'), 300);
     });
   }
 
@@ -135,7 +135,7 @@ class Card extends Component {
         style={{ transform: `translate(${cardPosX}px, ${cardPosY}px)` }}
         ref={this.card}
       >
-        <div className="card--border fade">
+        <div className="card--border">
           <div className="card--container">
             {children}
             {leftChoice && rightChoice
