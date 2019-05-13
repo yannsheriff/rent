@@ -2,7 +2,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import question from 'assets/img/ads/test.gif';
 import './Question.scss';
 
 class Question extends Component {

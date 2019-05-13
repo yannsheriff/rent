@@ -1,7 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import ads from 'assets/img/ads/test.gif';
 import './Adventure.scss';
 
 class Adventure extends Component {
