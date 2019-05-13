@@ -323,7 +323,11 @@ class DataHandler extends Component {
         next();
       }
     } else {
-      const newData = this.getCardData('ads');
+      let newData = {};
+      do {
+        newData = this.getCardData('ads');
+      } while (JSON.stringify(newData) === JSON.stringify(data));
+
       const card = this.returnActualComponent(newData, 'ads');
       this.setState({ data: newData, card });
     }
