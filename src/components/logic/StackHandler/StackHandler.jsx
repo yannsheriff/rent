@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './StackHandler.scss';
 import { CSSTransition } from 'react-transition-group';
@@ -133,17 +132,4 @@ class StackHandler extends Component {
   }
 }
 
-/* ===============================================================
-  ======================= REDUX CONNECTION =======================
-  ================================================================ */
-
-const mapStateToProps = state => ({
-  mainState: state.mainReducer,
-  profil: state.profilReducer,
-});
-
-const componentContainer = connect(
-  mapStateToProps,
-)(StackHandler);
-
-export default componentContainer;
+export default StackHandler;

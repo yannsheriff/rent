@@ -1,7 +1,5 @@
 /* eslint-disable no-unused-expressions */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import moment from 'moment';
 import './WheelItem.scss';
 
 class WheelItem extends Component {

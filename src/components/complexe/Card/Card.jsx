@@ -123,7 +123,7 @@ class Card extends Component {
     const {
       // data
       // eslint-disable-next-line react/prop-types
-      children, leftChoice, rightChoice, swipLeft, swipRight,
+      children, leftChoice, rightChoice,
     } = this.props;
     const { cardPosX, cardPosY } = this.state;
     return (
@@ -170,16 +170,4 @@ class Card extends Component {
   }
 }
 
-/* ===============================================================
-  ======================= REDUX CONNECTION =======================
-  ================================================================ */
-
-const mapStateToProps = state => ({
-  mainState: state.mainReducer,
-});
-
-const componentContainer = connect(
-  mapStateToProps,
-)(Card);
-
-export default componentContainer;
+export default Card;

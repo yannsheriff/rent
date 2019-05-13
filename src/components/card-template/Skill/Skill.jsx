@@ -72,10 +72,13 @@ class Skill extends Component {
     const { profil, data } = this.props;
     const { receptaclePos, receptacleIsHovered, receptacleIsSelected } = this.state;
     const classes = `${receptacleIsHovered ? 'hover' : ''} ${receptacleIsSelected ? 'selected' : ''}`;
-    const skills = profil.skills.map((element, index) => (
-      <div>
+    let skills = [];
+
+
+    skills = profil.skills.map((element, index) => (
+      <div key={element.id}>
         <DraggableSkill
-          target={receptaclePos}
+          target={receptaclePos || {}}
           content={element}
           onTargetHover={this.targetIsHovered}
           onValidation={() => { this.skillValidation(index); }}
@@ -93,9 +96,11 @@ class Skill extends Component {
           <p>Une de vos capacités peut peut-être vous aider à vous tirer de cette situation…  </p>
         </div>
         <div className={`receptacle ${classes}`} ref={this.assignBounding}>
+          {receptaclePos && (
           <svg>
             <circle cx="50%" cy="50%" r={receptaclePos.width - receptaclePos.width / 100 * 50} />
           </svg>
+          )}
         </div>
         <div className="skills-container">
           {skills}
