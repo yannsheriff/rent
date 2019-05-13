@@ -59,6 +59,7 @@ class SkillSelection extends Component {
 
   returnSkill = (skill, isSelected) => (
     <div
+      key={skill.id}
       className={`skill-list ${isSelected ? 'selected' : ''}`}
       onClick={() => {
         isSelected

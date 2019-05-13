@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { changeStep } from 'redux/actions/steps';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import ads from 'assets/img/transition/transition.gif';
 import visit from 'assets/img/transition/transition.gif';
 import adventure from 'assets/img/transition/transition.gif';

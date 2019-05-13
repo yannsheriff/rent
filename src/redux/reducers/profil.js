@@ -1,16 +1,13 @@
 /* eslint-disable import/prefer-default-export */
 // import { ACTION } from '../actions/';
 
-import skill from 'assets/content/skills';
-import poor from 'assets/content/budget/img/icon_profile_budget_poor.svg';
-
 import {
   UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN, UPDATE_BONUS, UPDATE_SKILLS, GET_PREMIUM, UPDATE_TIME,
 } from '../actions/profil';
 
-import statuss from '../../assets/content/status';
-import originss from '../../assets/content/origins';
-import budgetss from '../../assets/content/budget';
+// import statuss from '../../assets/content/status';
+// import originss from '../../assets/content/origins';
+// import budgetss from '../../assets/content/budget';
 
 const defaultState = {
   status: {},

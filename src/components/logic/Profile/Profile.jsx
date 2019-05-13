@@ -25,11 +25,11 @@ class Header extends Component {
     return (
       <div id="profile" className="layout--profile">
         <div className="score">
-          <img src={star} />
+          <img src={star} alt="score star" />
           <p className="card--choice">{score}</p>
         </div>
         <div>
-          <img src={status.picto} />
+          <img src={status.picto} alt="situation pictogram" />
         </div>
         <div>
           <div className="origin">
@@ -37,7 +37,7 @@ class Header extends Component {
           </div>
         </div>
         <div>
-          <img src={budget.picto} />
+          <img src={budget.picto} alt="budget pictogram" />
         </div>
       </div>
     );
