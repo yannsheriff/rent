@@ -111,7 +111,7 @@ class ProfileGeneration extends Component {
 
   render() {
     const {
-      wheelData, step,
+      wheelData, step, wheelIsTurning,
     } = this.state;
     const { profil } = this.props;
     // const {
@@ -155,7 +155,11 @@ class ProfileGeneration extends Component {
               </li>
             </ul>
           </div>
-          <p className="intro--info">Toucher pour continuer</p>
+          <p className="intro--info">
+            Toucher pour l'écran pour
+            {' '}
+            {wheelIsTurning ? 'arrêter la roue' : 'continuer'}
+          </p>
         </div>
       </div>
     );
