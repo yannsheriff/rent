@@ -11,6 +11,14 @@
     }
   }
 
+  .card--tag {
+    background: $blue;
+    border-radius: 3px;
+    width: fit-content;
+    padding: 4px;
+    color: $white;
+  }
+
   &--info {
     position: absolute;
     top: 3vw;
@@ -68,10 +76,10 @@
 .premium {
   .card--tag {
     background: $orange;
-    border-radius: 3px;
-    width: fit-content;
-    padding: 4px;
-    color: $white;
+    // border-radius: 3px;
+    // width: fit-content;
+    // padding: 4px;
+    // color: $white;
   }
   .ads--pricetag {
     #element_price {

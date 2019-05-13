@@ -22,7 +22,8 @@
 .visit,
 .question {
   .card--choice,
-  .card--choice-separation {
+  .card--choice-separation,
+  .narration--quote {
     color: $orange;
   }
 }
@@ -30,14 +31,16 @@
 .adventure,
 .event {
   .card--choice,
-  .card--choice-separation {
+  .card--choice-separation,
+  .narration--quote {
     color: $red;
   }
 }
 
 .skill {
   .card--main,
-  .background-card {
+  .background-card,
+  .narration--quote {
     background-color: $red;
   }
 }
