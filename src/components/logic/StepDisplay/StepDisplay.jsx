@@ -22,7 +22,7 @@ class StepDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      actualStep: 'adventure',
+      actualStep: 'ads',
       round: 0,
     };
   }

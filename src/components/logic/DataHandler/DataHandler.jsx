@@ -167,7 +167,6 @@ class DataHandler extends Component {
     const childProps = { data: data.content, next: this.nextCard };
     const { changeStep } = this.props;
     const payload = [];
-    const update = this.returnProfilUpdate(data);
 
     if (isNewStep && (
       step === 'visit' || step === 'adventure')
@@ -193,6 +192,7 @@ class DataHandler extends Component {
         payload.push(<Question {...childProps} />);
         break;
       case 'event':
+        const update = this.returnProfilUpdate(data);
         payload.push(<Event {...childProps} update={update} />);
         break;
       default:
@@ -289,6 +289,7 @@ class DataHandler extends Component {
   }
 
   returnProfilUpdate = (data) => {
+    console.log(data);
     const { step } = this.props;
     const { data: stateData } = this.state;
     const usableData = data || stateData;

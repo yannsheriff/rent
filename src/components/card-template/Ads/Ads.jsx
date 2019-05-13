@@ -9,6 +9,7 @@ import views from 'assets/img/icons/icon_visites.svg';
 import small from 'assets/img/ads/ads_small.gif';
 import medium from 'assets/img/ads/ads_medium.gif';
 import big from 'assets/img/ads/ads_big.gif';
+import tipi from 'assets/img/ads/ads_tipi.gif';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Ads extends Component {
@@ -35,6 +36,9 @@ class Ads extends Component {
 
       case 'big':
         return adsIllu[2][rand];
+
+      case 'tipi':
+        return tipi;
 
       default:
         return ads;
