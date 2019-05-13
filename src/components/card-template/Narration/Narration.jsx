@@ -42,12 +42,17 @@ class Narration extends Component {
   }
 
   render() {
-    const { data, title } = this.props;
+    const { data, title, animation } = this.props;
     return (
       <div id="narration">
-        <div className="animation" ref={this.animationContainer} />
-        <h1>{ title }</h1>
-        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data) }} />
+        <div className="narration--container">
+          {!animation
+          && <span className="narration--quote">”</span>
+          }
+          <div className="animation" ref={this.animationContainer} />
+          <h1>{ title }</h1>
+          <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data) }} />
+        </div>
       </div>
     );
   }

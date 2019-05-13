@@ -4,7 +4,7 @@
   height: 100%;
   width: 100%;
   border-radius: 22px;
-  -moz-border-radius: 22px; 
+  -moz-border-radius: 22px;
   -webkit-border-radius: 22px;
   box-sizing: border-box;
   flex: 1;
@@ -30,15 +30,16 @@
 .adventure,
 .event {
   .card--choice,
-  .card--choice-separation { 
+  .card--choice-separation {
     color: $red;
   }
 }
 
-.skill
-.card--main,
-.background-card {
-  background-color: $red;
+.skill {
+  .card--main,
+  .background-card {
+    background-color: $red;
+  }
 }
 
 /* CARTE DE FOND */
@@ -49,13 +50,13 @@
   left: 0;
   top: 0;
 }
-  /* CARTE PRINCIPALE */
+/* CARTE PRINCIPALE */
 
 .card {
   &--main {
     position: relative;
     box-sizing: border-box;
-    box-shadow : 5px 5px 0 0 rgba(0,0,0,0.05);
+    box-shadow: 5px 5px 0 0 rgba(0, 0, 0, 0.05);
     background-color: $white;
     height: 100%;
     width: 100%;
@@ -70,7 +71,7 @@
     flex-direction: column;
     box-sizing: border-box;
 
-    >div:first-child {
+    > div:first-child {
       height: 100%;
     }
   }
@@ -92,7 +93,6 @@
       width: 26px;
       height: auto;
       display: block;
-      
     }
   }
 
@@ -107,7 +107,7 @@
     box-sizing: border-box;
     height: 100%;
     border-radius: 22px;
-    -moz-border-radius: 22px; 
+    -moz-border-radius: 22px;
     -webkit-border-radius: 22px;
     border: 1px solid $black;
   }
@@ -126,7 +126,7 @@
 
   &--choice {
     flex: 1;
-    opacity: .5;
+    opacity: 0.5;
     font-size: 14px;
     &.selected {
       opacity: 1;
