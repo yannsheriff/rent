@@ -9,32 +9,20 @@ import {
 } from '../actions/profil';
 
 import statuss from '../../assets/content/status';
-import budgets from '../../assets/content/budget';
+import originss from '../../assets/content/origins';
+import budgetss from '../../assets/content/budget';
 
 const defaultState = {
-  status: {
-    // title: 'En couple',
-    // picto: coupleLight,
-    // pictoLight: coupleLight,
-    // value: 3,
-    // ref: 'couple',
-  },
-  origin: {
-    // name: 'Franco-Allemande',
-    // flag: '🇩🇪',
-    // value: 3,
-    // ref: 'frfr',
-  },
-  budget: {
-    // title: '€',
-    // picto: poor,
-    // pictoLight: poor,
-    // value: 1,
-    // ref: 'poor',
-  },
-  skills: [
-    // skill[0], skill[2]
-  ],
+  status: {},
+  origin: {},
+  budget: {},
+  skills: [],
+  // statuss[0],
+  // origin: originss[0],
+  // budget: budgetss[0],
+  // skills: [
+  //   skill[0], skill[2],
+  // ],
   bonus: 0,
   score: 0,
   time: 300,
@@ -55,7 +43,6 @@ export function profilReducer(state = defaultState, action) {
 
     case UPDATE_BUDGET: {
       const newBudget = action.payload;
-      console.log('TCL: profilReducer -> action.payload', action.payload);
       const newScore = ((((state.status.value + state.origin.value + newBudget.value) * 2 + state.bonus) * 5) / 21).toFixed(1);
       return {
         ...state,

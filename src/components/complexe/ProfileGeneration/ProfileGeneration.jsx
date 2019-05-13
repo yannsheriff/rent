@@ -58,7 +58,7 @@ class ProfileGeneration extends Component {
             wheelIsTurning: false,
             allowClick: true,
           });
-        }, 2000); // la durée de la roue
+        }, 500); // la durée de la roue
       }
 
       // deuxième click change la step et start la roue
@@ -118,11 +118,9 @@ class ProfileGeneration extends Component {
       wheelData, step,
     } = this.state;
     const { profil } = this.props;
-    const {
-      budget, origin, status,
-    } = profil;
-    console.log(step);
-    console.log(profil);
+    // const {
+    //   budget, origin, status,
+    // } = profil;
     return (
       <div className="intro" onClick={() => this.nextStep()}>
         <div className="profile-generation--container">
@@ -153,7 +151,7 @@ class ProfileGeneration extends Component {
                 && <img src={profil.status.pictoLight} alt="" />}
               </li>
               <li className={profil.origin.title && 'valid'}>
-                <span>{profil.origin.flag}</span>
+                <div><span>{profil.origin.flag}</span></div>
               </li>
               <li className={profil.budget.title && 'valid'}>
                 {profil.budget.title

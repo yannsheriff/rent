@@ -1,23 +1,50 @@
-#skillSelection {
+.skills-selection {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+
+    h1 {
+        text-align: center;
+        color: white;
+      }
     
-    .skills {
+    .skills-container {
         display: flex;
         flex-flow: row wrap;
         justify-content: center;
-    }
-    .skill-list {
-        opacity: 0.6;
-        width: 40%;
-        margin: 10px;
 
-        &.selected {
-            transform: scale(1.2);
-            opacity: 1;
-        }
+        .skill-list {
+            position: relative;
+            text-align: center;
+            width: 40%;
+            margin: 10px;
 
-        img {
-            width: 50%;
+            h3 {
+                color: white;
+                font-size: 14px;
+                font-family: fivo_sans_modernmedium;
+            }
+    
+            &.selected {
+                transform: scale(0.8);
+                opacity: 0.6;
+
+                &:before {
+                    content: url("../../../assets/img/skill_selected.svg");
+                    position: absolute;
+                    top: 5%;
+                    right: 5%;
+                  }
+            }
+    
+            img {
+                max-width: 100px;
+                width: 100%;
+            }
         }
     }
+    
 }

@@ -25,12 +25,12 @@ class Setup extends Component {
         this.setState({ step: 'profil' });
         break;
       case 'profil':
-        this.setState({ step: 'skill' });
-        break;
-      case 'skill':
         this.setState({ step: 'recap' });
         break;
       case 'recap':
+        this.setState({ step: 'skill-selection' });
+        break;
+      case 'skill-selection':
         didSetUp();
         break;
 
@@ -50,11 +50,11 @@ class Setup extends Component {
         {step === 'profil'
           && <ProfileGeneration next={this.goToNextStep} />
         }
-        {step === 'skill'
-          && <SkillSelection next={this.goToNextStep} />
-        }
         {step === 'recap'
           && <ProfileRecap next={this.goToNextStep} />
+        }
+        {step === 'skill-selection'
+          && <SkillSelection next={this.goToNextStep} />
         }
       </div>
     );

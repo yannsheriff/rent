@@ -43,24 +43,28 @@ class ProfileRecap extends Component {
     };
 
     return (
-      <div id="profile-recap" onClick={() => this.nextStep()}>
-        <p>Votre profil</p>
-        <h3>{ status.title }</h3>
-        <h3>{ budget.title }</h3>
-        <h3 style={lowercase}>
-          origine
-          {' '}
-          { origin.title }
-        </h3>
+      <div className="profile-recap" onClick={() => this.nextStep()}>
+        <div className="profile-recap--container">
+          <h1>
+            Vous cherchez un logement
+            {' '}
+            <span className="lowercase">
+              { status.title }
+              ,
+            </span>
+            {' '}
+            êtes d'origine
+            {' '}
+            { origin.title }
+            {' '}
+            avec un budget
+            {' '}
+            { budget.title }
+            {'.'}
+          </h1>
+        </div>
 
-        <br />
-
-        <h3>{ skills[0].title }</h3>
-        <h3>{ skills[1].title }</h3>
-
-        <p>Votre dossier a une note de :</p>
-
-        <h1>{ score }</h1>
+        <div className="profile-recap--rate" />
 
         {canNext
             && (

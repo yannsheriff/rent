@@ -46,24 +46,6 @@ class SkillSelection extends Component {
     });
   }
 
-  /* HTML */
-
-  returnSelectedSkill = skill => (
-    <div className="skill-list selected" onClick={() => this.unselectSkill(skill)}>
-      <img src={skill.img} alt="" />
-      <h3>{skill.title}</h3>
-    </div>
-  )
-
-  /* HTML */
-
-  returnUnselectedSkill = skill => (
-    <div className="skill-list" onClick={() => this.selectSkill(skill)}>
-      <img src={skill.img} alt="" />
-      <h3>{skill.title}</h3>
-    </div>
-  )
-
   isSkillSelected = (skill) => {
     const { selected } = this.state;
     if (selected.length) {
@@ -73,18 +55,34 @@ class SkillSelection extends Component {
     return false;
   }
 
+  /* HTML */
+
+  returnSkill = (skill, isSelected) => (
+    <div
+      className={`skill-list ${isSelected ? 'selected' : ''}`}
+      onClick={() => {
+        isSelected
+          ? this.unselectSkill(skill)
+          : this.selectSkill(skill);
+      }}
+    >
+      <img src={skill.img} alt="" />
+      <h3>{skill.title}</h3>
+    </div>
+  )
+
 
   render() {
     const skill = skills.map((skill) => {
       const isSelected = this.isSkillSelected(skill);
-      return isSelected ? this.returnSelectedSkill(skill) : this.returnUnselectedSkill(skill);
+      return this.returnSkill(skill, isSelected);
     });
     return (
       <div id="skillSelection" className="skills-selection">
-        <h2>
-          Choisissez 2 capacités qui pourront vous être utile
-        </h2>
-        <div className="skills">
+        <h1>
+          Choisissez 2 capacités qui vous seront utiles
+        </h1>
+        <div className="skills-container">
           {skill}
         </div>
       </div>

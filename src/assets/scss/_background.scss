@@ -1,17 +1,18 @@
 .ads,
 .intro,
-.profil {
+.profil,
+.recap {
   background-color: $blue;
 }
 
 .visit,
-.question,
-.recap {
+.question {
   background-color: $orange;
 }
 
 .adventure,
-.event
+.event,
+.skill-selection
 {
   background-color: $red;
 }

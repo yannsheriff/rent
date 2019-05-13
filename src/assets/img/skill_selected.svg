@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 3</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="UI" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="0_4B_skills" transform="translate(-286.000000, -330.000000)">
+            <g id="Group-3" transform="translate(286.000000, 330.000000)">
+                <circle id="Oval" fill="#000000" cx="10" cy="10" r="10"></circle>
+                <path d="M13.2317787,6.3598156 C13.5853428,5.9355387 14.2159075,5.87821464 14.6401844,6.23177872 C15.0644613,6.5853428 15.1217854,7.2159075 14.7682213,7.6401844 L9.06719835,14.4814119 L5.29289322,10.7071068 C4.90236893,10.3165825 4.90236893,9.68341751 5.29289322,9.29289322 C5.68341751,8.90236893 6.31658249,8.90236893 6.70710678,9.29289322 L8.93280165,11.5185881 L13.2317787,6.3598156 Z" id="icon_ok" fill="#FFFFFF" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>
