@@ -5,7 +5,7 @@ import './StackHandler.scss';
 import { CSSTransition } from 'react-transition-group';
 
 // components
-import Card from '../../basic/Card/Card';
+import Card from '../../complexe/Card/Card';
 
 class StackHandler extends Component {
   constructor(props) {

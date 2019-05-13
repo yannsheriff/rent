@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './Header.scss';
 import { endGame } from 'redux/actions/steps';
-import Chrono from '../../basic/Chrono/Chrono';
+import Chrono from '../../complexe/Chrono/Chrono';
 
 class Header extends Component {
   static propTypes = {
