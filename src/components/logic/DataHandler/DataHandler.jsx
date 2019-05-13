@@ -15,13 +15,13 @@ import originData from 'assets/content/origins';
 import budgetData from 'assets/content/budget';
 import { EthanPromise } from 'services/EthanServices';
 import { endGame, displayPopUp, changeStep } from 'redux/actions/steps';
+import {
+  Ads, Adventure, Event, Question, Skill, Visit, Narration, Transition,
+} from 'components/card-template';
 import StackHandler from '../StackHandler/StackHandler';
 
 
 // components
-import {
-  Ads, Adventure, Event, Question, Skill, Visit, Narration, Transition,
-} from '../../complexe';
 
 let EthanService = {};
 EthanPromise.then((ethan) => { EthanService = ethan; });

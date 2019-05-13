@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './ProfileGeneration.scss';
-import Wheel from 'components/basic/Wheel/Wheel';
+import { Wheel } from 'components/complexe';
 import allstatus from 'assets/content/status';
 import allorigins from 'assets/content/origins';
 import allbudget from 'assets/content/budget';

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Skill.scss';
-import DraggableSkill from '../../basic/DraggableSkill/DraggableSkill';
+import { DraggableSkill } from 'components/complexe';
 
 class Skill extends Component {
   static propTypes = {

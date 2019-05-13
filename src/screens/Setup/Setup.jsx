@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Menu from 'components/basic/Menu/Menu';
 import { gameIsSetUp } from 'redux/actions/steps';
 import {
-  Intro, ProfileGeneration, SkillSelection, ProfileRecap,
+  ProfileGeneration,
+} from 'components/logic';
+import {
+  Intro, SkillSelection, ProfileRecap, Menu,
 } from 'components/complexe';
 import './Setup.scss';
 
