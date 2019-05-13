@@ -31,7 +31,7 @@ class App extends Component {
     const { step } = this.props;
     const { flat, totalVisits } = this.state;
     return (
-      <div className="App">
+      <div id="end">
         <h1>
           {step.end === 'win' ? 'Victoire !' : 'Défaite :(' }
         </h1>
