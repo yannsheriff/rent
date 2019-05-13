@@ -344,7 +344,7 @@ class DataHandler extends Component {
       NounouService.saveVisit(data.content.visit);
       if (choice) {
         if (round === 0 || rand === 0) {
-          const card = ([<Narration data={data.content.reject.reject_narration} />]);
+          const card = ([<Narration data={data.content.reject.reject_narration} title={data.content.reject.reject_title} />]);
           this.setState({ card, isNarration: true });
         } else {
           next();

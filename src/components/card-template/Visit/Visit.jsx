@@ -10,7 +10,7 @@ class Visit extends Component {
     return (
       <div className="card--content card--visit">
         <h2 className="card--type">Visite</h2>
-        <img className="card--illu" src={ads} alt="" />
+        {/* <img className="card--illu" src={ads} alt="" /> */}
         <h1>{ data.visit.visit_quality }</h1>
         <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.visit.visit_description) }} />
       </div>

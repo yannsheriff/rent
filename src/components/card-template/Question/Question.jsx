@@ -11,7 +11,7 @@ class Question extends Component {
     return (
       <div className="card--content card--question">
         <h2 className="card--type">Remise en question</h2>
-        <img className="card--illu" src={question} alt="" />
+        {/* <img className="card--illu" src={question} alt="" /> */}
         <div
           dangerouslySetInnerHTML={
                 { __html: documentToHtmlString(data.question_narration) }

@@ -10,7 +10,7 @@ class Adventure extends Component {
     return (
       <div className="card--content card--adventure">
         <h2 className="card--type">Péripétie</h2>
-        <img className="card--illu" src={ads} alt="" />
+        {/* <img className="card--illu" src={ads} alt="" /> */}
         <h1>Drôle d'impression</h1>
         <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.adventure_narration) }} />
       </div>

@@ -42,11 +42,11 @@ class Narration extends Component {
   }
 
   render() {
-    const { data } = this.props;
-
+    const { data, title } = this.props;
     return (
       <div id="narration">
         <div className="animation" ref={this.animationContainer} />
+        <h1>{ title }</h1>
         <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data) }} />
       </div>
     );
