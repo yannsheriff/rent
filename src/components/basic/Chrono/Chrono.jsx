@@ -21,7 +21,7 @@ class Chrono extends Component {
     };
     this.timer = props.time;
     this.initialTimer = props.time;
-    this.month = 5;
+    this.month = 6;
   }
 
   componentDidMount() {

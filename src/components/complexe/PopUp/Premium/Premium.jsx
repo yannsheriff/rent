@@ -13,7 +13,7 @@ class Premium extends Component {
   purchasePremium = () => {
     const { premium, updateTime, hide } = this.props;
     premium();
-    updateTime(-220);
+    updateTime(-60);
     hide();
   }
 
