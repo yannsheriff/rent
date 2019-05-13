@@ -4,8 +4,43 @@ import './Ads.scss';
 import ads from 'assets/img/ads/test.gif';
 import views from 'assets/img/icons/icon_visites.svg';
 
+/* ILLUSTRATIONS */
+
+import small from 'assets/img/ads/ads_small.gif';
+import medium from 'assets/img/ads/ads_medium.gif';
+import big from 'assets/img/ads/ads_big.gif';
+
 // eslint-disable-next-line react/prefer-stateless-function
 class Ads extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      adsIllu: [
+        [small, small, small],
+        [medium, medium, medium],
+        [big, big, big],
+      ],
+    };
+  }
+
+  returnIllu(size) {
+    const { adsIllu } = this.state;
+    const rand = Math.round(Math.random() * ((3 - 1)));
+    switch (size) {
+      case 'small':
+        return adsIllu[0][rand];
+
+      case 'medium':
+        return adsIllu[1][rand];
+
+      case 'big':
+        return adsIllu[2][rand];
+
+      default:
+        return ads;
+    }
+  }
+
   render() {
     const PriceTag = props => (
       <svg className="ads--pricetag" viewBox="0 0 100 100" version="1.1" {...props}>
@@ -27,7 +62,7 @@ class Ads extends Component {
       <div className={`card--content card--ads ${data.ad_source === 'premium' ? 'premium' : ''}`}>
         <h2 className="card--type">Annonce</h2>
 
-        <img className="card--illu" src={ads} alt="" />
+        <img className="card--illu" src={this.returnIllu(data.ad_size_type)} alt="" />
 
         <div className="ads--info">
           <div>
