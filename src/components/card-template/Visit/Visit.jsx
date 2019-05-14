@@ -32,10 +32,14 @@ class Visit extends Component {
   render() {
     const { data } = this.props;
     console.log(data);
+    console.log(data.visit_story);
     return (
       <div className="card--content card--visit">
         <h2 className="card--type">Visite</h2>
         {/* <img className="card--illu" src={this.returnIllu(data.visit.visit_quality)} alt="" /> */}
+        {data.visit.visit_story === 'true'
+        && <h3 className="card--tag white">Histoire vraie</h3>
+        }
         <h1>{ data.visit.visit_title }</h1>
         <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.visit.visit_description) }} />
       </div>
