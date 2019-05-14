@@ -79,7 +79,9 @@ class ProfileRecap extends Component {
             {' '}
             avec un budget
             {' '}
-            { budget.title }
+            <span className="lowercase">
+              { budget.title }
+            </span>
             {'.'}
           </h1>
         </div>

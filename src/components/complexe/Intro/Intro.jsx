@@ -18,7 +18,7 @@ class Intro extends Component {
           <div>
 
             <img className="intro--banner" src={rentBanner} alt="rent-banner" />
-            <h1>Bienvenue sur ce jeu de qualité</h1>
+            <h1>Loue moi si tu peux !</h1>
             <p>
           Vous avez 6 mois pour trouver un appartement à Paris !
           Saurez-vous faire les bons choix pour ne pas finir à la rue ?
