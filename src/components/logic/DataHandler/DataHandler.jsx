@@ -18,6 +18,7 @@ import { endGame, displayPopUp, changeStep } from 'redux/actions/steps';
 import {
   Ads, Adventure, Event, Question, Skill, Visit, Narration, Transition,
 } from 'components/card-template';
+import { getRandomArbitrary } from 'vendors/random';
 import StackHandler from '../StackHandler/StackHandler';
 
 
@@ -25,10 +26,6 @@ import StackHandler from '../StackHandler/StackHandler';
 
 let EthanService = {};
 EthanPromise.then((ethan) => { EthanService = ethan; });
-
-function getRandomArbitrary(min, max) {
-  return Math.round(Math.random() * ((max - 1) - min) + min);
-}
 
 class DataHandler extends Component {
   static propTypes = {
@@ -393,10 +390,10 @@ class DataHandler extends Component {
   // SKILLS : Cette fonction s'occupe du choix fait a partir d'un skill
   //
   handleSkill(choice) {
-    const { endGame } = this.props;
+    const { endGame, fail } = this.props;
     const { data, isNarration, didWin } = this.state;
     if (isNarration) {
-      endGame(didWin ? 'win' : 'loose');
+      didWin ? endGame('win') : this.setState({ isNarration: false }, () => fail());
     } else {
       if (choice) {
         const card = ([

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './StepDisplay.scss';
 import { changeStep } from 'redux/actions/steps';
+import { getRandomArbitrary } from 'vendors/random';
 
 // components
 
@@ -42,7 +43,9 @@ class StepDisplay extends Component {
         return next ? 'visit' : 'visit';
 
       case 'visit':
-        return next ? 'adventure' : 'ads';
+        const rand = getRandomArbitrary(0, 3);
+        const fail = rand === 0 ? 'event' : 'ads';
+        return next ? 'adventure' : fail;
 
       case 'adventure':
         return next ? 'skill' : 'question';
@@ -52,6 +55,9 @@ class StepDisplay extends Component {
 
       case 'event':
         return next ? 'ads' : 'ads';
+
+      case 'skill':
+        return next ? 'question' : 'question';
 
       default:
         return 'ads';
