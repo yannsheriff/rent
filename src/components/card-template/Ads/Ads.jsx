@@ -10,7 +10,7 @@ import small2 from 'assets/img/ads/ads_small_2.gif';
 import small3 from 'assets/img/ads/ads_small_3.gif';
 import medium1 from 'assets/img/ads/ads_medium_1.gif';
 import medium2 from 'assets/img/ads/ads_medium_2.gif';
-import medium3 from 'assets/img/ads/ads_medium_2.gif';
+import medium3 from 'assets/img/ads/ads_medium_3.gif';
 import big1 from 'assets/img/ads/ads_big_1.gif';
 import big2 from 'assets/img/ads/ads_big_2.gif';
 import big3 from 'assets/img/ads/ads_big_3.gif';
