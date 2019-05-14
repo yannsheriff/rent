@@ -10,10 +10,6 @@ import allorigins from './node_modules/assets/content/origins';
 import allbudget from './node_modules/assets/content/budget';
 import { updateStatus, updateBudget, updateOrigin } from '../../../redux/actions/profil';
 
-function getRandomArbitrary(min, max) {
-  return Math.round(Math.random() * ((max - 1) - min) + min);
-}
-
 class ProfileGeneration extends Component {
   static propTypes = {
     updateStatus: PropTypes.func,

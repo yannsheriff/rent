@@ -3,6 +3,7 @@
 /* eslint-disable class-methods-use-this */
 
 import * as contentful from 'contentful';
+import { getRandomArbitrary } from 'vendors/random';
 
 class EthanServices {
   constructor(data) {
@@ -160,7 +161,3 @@ async function initSingletton() {
 }
 
 export const EthanPromise = initSingletton();
-
-function getRandomArbitrary(min, max) {
-  return Math.round(Math.random() * ((max - 1) - min) + min);
-}
