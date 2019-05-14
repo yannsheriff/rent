@@ -4,21 +4,21 @@ import rich from './img/icon_profile_budget_rich.svg';
 
 export default [
   {
-    title: '€',
+    title: 'Modeste',
     picto: poor,
     pictoLight: poor,
     value: 1,
     ref: 'poor',
   },
   {
-    title: '€€',
+    title: 'Moyen',
     picto: regular,
     pictoLight: regular,
     value: 2,
     ref: 'regular',
   },
   {
-    title: '€€€',
+    title: 'Élevé',
     picto: rich,
     pictoLight: rich,
     value: 3,
