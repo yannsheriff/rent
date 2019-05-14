@@ -289,7 +289,6 @@ class DataHandler extends Component {
   }
 
   returnProfilUpdate = (data) => {
-    console.log(data);
     const { step } = this.props;
     const { data: stateData } = this.state;
     const usableData = data || stateData;
