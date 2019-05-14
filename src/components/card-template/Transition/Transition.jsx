@@ -4,10 +4,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { changeStep } from 'redux/actions/steps';
+import lottie from 'lottie-web';
+import './Transition.scss';
+
+/* ILLUSTRATIONS */
+
+import animations from 'assets/animation';
+
 import ads from 'assets/img/transition/transition.gif';
 import visit from 'assets/img/transition/transition.gif';
 import adventure from 'assets/img/transition/transition.gif';
-import './Transition.scss';
 
 class Transition extends Component {
   static propTypes = {
@@ -19,6 +25,21 @@ class Transition extends Component {
     data: '',
     changeStep: () => {},
   };
+
+  constructor(props) {
+    super(props);
+    this.animationContainer = React.createRef();
+  }
+
+  componentDidMount() {
+    lottie.loadAnimation({
+      container: this.animationContainer.current, // the dom element that will contain the animation
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      animationData: animations.transition, // the path to the animation json
+    });
+  }
 
   componentWillUnmount() {
     const { changeStep, data } = this.props;
@@ -45,7 +66,8 @@ class Transition extends Component {
     return (
       <div className="transition--card">
         {' '}
-        <img className="transition--illu" src={illu} alt="" />
+        <div className="transition--illu" ref={this.animationContainer} />
+        {/* <img className="transition--illu" src={illu} alt="" /> */}
         <h1 className="card--title transition--title">
           {(data === 'visit') && 'Le coeur battant, vous vous rendez à la visite...'}
           {(data === 'adventure') && 'Dernier entretien, vous croisez les doigts'}

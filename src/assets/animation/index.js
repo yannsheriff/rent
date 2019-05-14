@@ -6,6 +6,7 @@ import event_good from './anim_event_good.json';
 import question_bad from './anim_reassement_badjson.json';
 import question_good from './anim_reassement_good.json';
 import question from './anim_reassessment.json';
+import transition from './anim_transition.json';
 
 export default {
   budget_up,
@@ -16,4 +17,5 @@ export default {
   question_bad,
   question_good,
   question,
+  transition,
 };
