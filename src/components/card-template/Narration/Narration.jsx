@@ -46,8 +46,16 @@ class Narration extends Component {
 
   findAnimation() {
     const { animation, animation: { oldProfil, update, choice } } = this.props;
-    const isPositive = oldProfil[update.field] < update.value || update.value > 0;
+    let isPositive = true;
+    if (update.field === 'points') {
+      isPositive = oldProfil[update.field] < update.value || update.value > 0;
+    } else {
+      isPositive = oldProfil[update.field].value < update.value.value || update.value > 0;
+    }
     switch (update.field) {
+      // case 'points':
+      //   return isPositive && choice ? animations.question_good : animations.question_bad;
+
       // case 'origin':
       //   return oldProfil.origin < update.value ? animations.question_good : animations.question_bad;
 
@@ -58,6 +66,7 @@ class Narration extends Component {
       //   return oldProfil.budget < update.value ? animations.question_good : animations.question_bad;
 
       default:
+        // return '';
         return isPositive && choice ? animations.question_good : animations.question_bad;
     }
   }
