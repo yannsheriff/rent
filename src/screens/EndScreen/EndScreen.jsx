@@ -24,6 +24,7 @@ class App extends Component {
 
   componentWillMount() {
     const recap = NounouService.getRecap();
+    console.log('TCL: App -> componentWillMount -> recap', recap);
     this.setState({ flat: recap.actualFlat, totalVisits: recap.totalSeenAds });
   }
 
