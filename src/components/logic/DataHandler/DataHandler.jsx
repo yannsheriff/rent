@@ -165,7 +165,7 @@ class DataHandler extends Component {
   //
   returnActualComponent = (data, step, isNewStep = false) => {
     const childProps = { data: data.content, next: this.nextCard };
-    const { changeStep } = this.props;
+    const { changeStep, profil } = this.props;
     const payload = [];
 
     if (isNewStep && (
@@ -192,8 +192,8 @@ class DataHandler extends Component {
         payload.push(<Question {...childProps} />);
         break;
       case 'event':
-        const update = this.returnProfilUpdate(data);
-        payload.push(<Event {...childProps} update={update} />);
+        const update = this.returnProfilUpdate(data, step);
+        payload.push(<Event {...childProps} animation={{ oldProfil: profil, update }} />);
         break;
       default:
         payload.push(<Ads {...childProps} />);
@@ -288,14 +288,14 @@ class DataHandler extends Component {
     }
   }
 
-  returnProfilUpdate = (data) => {
-    console.log(data);
-    const { step } = this.props;
+  returnProfilUpdate = (data, step) => {
+    const { step: propsStep } = this.props;
     const { data: stateData } = this.state;
     const usableData = data || stateData;
+    const usableStep = step || propsStep;
     const updateTypes = ['points', 'status', 'budget', 'origin', 'time'];
-    const fieldToUpdate = updateTypes.filter(type => usableData.content[`${step}_new_${type}`]);
-    const update = fieldToUpdate.map(type => ({ field: type, value: usableData.content[`${step}_new_${type}`] }))[0];
+    const fieldToUpdate = updateTypes.filter(type => usableData.content[`${usableStep}_new_${type}`]);
+    const update = fieldToUpdate.map(type => ({ field: type, value: usableData.content[`${usableStep}_new_${type}`] }))[0];
     if (fieldToUpdate[0] === 'status'
     || fieldToUpdate[0] === 'budget'
     || fieldToUpdate[0] === 'origin') {
@@ -422,7 +422,7 @@ class DataHandler extends Component {
   // QUESTION : Cette fonction s'occupe de du choix fait a partir d'une Remise en q.
   //
   handleQuestion(choice) {
-    const { next } = this.props;
+    const { next, profil } = this.props;
     const { data, isNarration } = this.state;
     if (isNarration) {
       this.setState({ isNarration: false }, () => next());
@@ -433,7 +433,7 @@ class DataHandler extends Component {
       const update = this.returnProfilUpdate();
       const card = ([<Narration
         data={content}
-        animation={update}
+        animation={{ oldProfil: profil, update, choice }}
         title={title}
       />]);
       this.setState({ card, isNarration: true }, () => {
