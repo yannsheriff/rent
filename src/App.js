@@ -4,7 +4,7 @@ import React from 'react';
 import './App.css';
 
 import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router';
+import { Route, Redirect, Switch } from 'react-router';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Setup from './screens/Setup/Setup';
 import PlayScreen from './screens/PlayScreen/PlayScreen';
@@ -17,7 +17,7 @@ function App(props) {
   const { isSetUp, gameIsOver } = props.step;
   return (
     <Router className="app">
-      <>
+      <Switch>
         <Route exact path="/" render={() => <Redirect to="/setup" />} />
 
         <Route
@@ -48,8 +48,8 @@ function App(props) {
           )
             }
         />
-
-      </>
+        <Redirect to="/setup" />
+      </Switch>
     </Router>
   );
 }
