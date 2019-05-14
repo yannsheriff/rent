@@ -45,17 +45,20 @@ class Narration extends Component {
   }
 
   findAnimation() {
-    const { animation } = this.props;
+    const { animation, animation: { oldProfil, update, choice } } = this.props;
+    const isPositive = oldProfil[update.field] < update.value || update.value > 0;
+    switch (update.field) {
+      // case 'origin':
+      //   return oldProfil.origin < update.value ? animations.question_good : animations.question_bad;
 
-    switch (animation.field) {
-      case 'status':
-        return animation.value > 0 ? animations.status_single : animations.status_single;
+      // case 'status':
+      //   return oldProfil.status < update.value ? animations.question_good : animations.question_bad;
 
-      case 'budget':
-        return animation.value > 0 ? animations.budget_up : animations.budget_up;
+      // case 'budget':
+      //   return oldProfil.budget < update.value ? animations.question_good : animations.question_bad;
 
       default:
-        return animations.positif;
+        return isPositive && choice ? animations.question_good : animations.question_bad;
     }
   }
 
