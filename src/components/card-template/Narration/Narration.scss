@@ -1,8 +1,13 @@
+@import "assets/scss/index.scss";
+
 #narration {
     position: relative;
-    .event {
-        position: relative;
-        width: 320px;
-        height: 370px;
+    text-align: center;
+
+    .narration {
+        &--quote {
+            font-size: 50px;
+            font-family: fivo_sans_modernextra_black;
+        }
     }
 }

@@ -36,6 +36,7 @@ class DataHandler extends Component {
     profil: PropTypes.object,
     next: PropTypes.func,
     fail: PropTypes.func,
+    endGame: PropTypes.func,
     updateStatus: PropTypes.func,
     updateBudget: PropTypes.func,
     updateOrigin: PropTypes.func,
@@ -48,6 +49,7 @@ class DataHandler extends Component {
   static defaultProps = {
     step: '',
     profil: {},
+    endGame: () => {},
     next: () => {},
     fail: () => {},
     updateStatus: () => {},
@@ -165,7 +167,6 @@ class DataHandler extends Component {
     const childProps = { data: data.content, next: this.nextCard };
     const { changeStep } = this.props;
     const payload = [];
-    const update = this.returnProfilUpdate(data);
 
     if (isNewStep && (
       step === 'visit' || step === 'adventure')
@@ -191,6 +192,7 @@ class DataHandler extends Component {
         payload.push(<Question {...childProps} />);
         break;
       case 'event':
+        const update = this.returnProfilUpdate(data);
         payload.push(<Event {...childProps} update={update} />);
         break;
       default:
@@ -287,6 +289,7 @@ class DataHandler extends Component {
   }
 
   returnProfilUpdate = (data) => {
+    console.log(data);
     const { step } = this.props;
     const { data: stateData } = this.state;
     const usableData = data || stateData;
@@ -348,7 +351,12 @@ class DataHandler extends Component {
       NounouService.saveVisit(data.content.visit);
       if (choice) {
         if (round === 0 || rand === 0) {
-          const card = ([<Narration data={data.content.reject.reject_narration} title={data.content.reject.reject_title} />]);
+          const card = ([
+            <Narration
+              data={data.content.reject.reject_narration}
+              title={data.content.reject.reject_title}
+            />,
+          ]);
           this.setState({ card, isNarration: true });
         } else {
           next();
@@ -372,7 +380,10 @@ class DataHandler extends Component {
       if (choice) {
         next();
       } else {
-        const card = ([<Narration data={data.content.adventure_back} />]);
+        const card = ([<Narration
+          data={data.content.adventure_back}
+          title={data.content.adventure_second_choice}
+        />]);
         this.setState({ card, isNarration: true });
       }
     }
@@ -388,10 +399,20 @@ class DataHandler extends Component {
       endGame(didWin ? 'win' : 'loose');
     } else {
       if (choice) {
-        const card = ([<Narration data={data.content.content.adventure_victory} />]);
+        const card = ([
+          <Narration
+            data={data.content.content.adventure_victory}
+            title={data.content.content.adventure_first_choice}
+          />,
+        ]);
         this.setState({ card, isNarration: true, didWin: true });
       } else {
-        const card = ([<Narration data={data.content.content.adventure_defeat} />]);
+        const card = ([
+          <Narration
+            data={data.content.content.adventure_defeat}
+            title={data.content.content.adventure_first_choice}
+          />,
+        ]);
         this.setState({ card, isNarration: true });
       }
     }
@@ -408,8 +429,13 @@ class DataHandler extends Component {
     } else {
       NounouService.saveQuestion(data.content);
       const content = choice ? data.content.question_accept_narration : data.content.question_refuse_narration;
+      const title = choice ? data.content.question_accept : data.content.question_refuse;
       const update = this.returnProfilUpdate();
-      const card = ([<Narration data={content} animation={update} />]);
+      const card = ([<Narration
+        data={content}
+        animation={update}
+        title={title}
+      />]);
       this.setState({ card, isNarration: true }, () => {
         if (choice) { this.updateProfile(); }
       });
