@@ -31,8 +31,6 @@ class Visit extends Component {
 
   render() {
     const { data } = this.props;
-    console.log(data);
-    console.log(data.visit_story);
     return (
       <div className="card--content card--visit">
         <h2 className="card--type">Visite</h2>

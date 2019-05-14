@@ -10,7 +10,6 @@ import './Adventure.scss';
 class Adventure extends Component {
   render() {
     const { data } = this.props;
-    console.log(data);
     return (
       <div className="card--content card--adventure">
         <h2 className="card--type">Péripétie</h2>

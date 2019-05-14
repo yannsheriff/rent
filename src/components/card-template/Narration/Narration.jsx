@@ -2,12 +2,25 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import PropTypes from 'prop-types';
 import './Narration.scss';
 import lottie from 'lottie-web';
 import animations from 'assets/animation';
 
+import skills from 'assets/content/skills';
+
 
 class Narration extends Component {
+  static propTypes = {
+    title: PropTypes.string,
+    winningSkill: PropTypes.string,
+  };
+
+  static defaultProps = {
+    title: '',
+    winningSkill: '',
+  };
+
   constructor(props) {
     super(props);
     this.animationContainer = React.createRef();
@@ -26,6 +39,11 @@ class Narration extends Component {
     }
   }
 
+  returnSkill(skill) {
+    const goodSkill = skills.filter(item => item.id === skill)[0];
+    return goodSkill.title;
+  }
+
   findAnimation() {
     const { animation } = this.props;
 
@@ -42,7 +60,9 @@ class Narration extends Component {
   }
 
   render() {
-    const { data, title, animation } = this.props;
+    const {
+      data, title, animation, winningSkill,
+    } = this.props;
     return (
       <div id="narration">
         <div className="narration--container">
@@ -50,7 +70,17 @@ class Narration extends Component {
           && <span className="narration--quote">”</span>
           }
           <div className="animation" ref={this.animationContainer} />
-          <h1>{ title }</h1>
+          <h1 className="card--title">{ title }</h1>
+          {winningSkill
+          && (
+          <div>
+            Grace à votre capacité
+            {' '}
+            { this.returnSkill(winningSkill) }
+            {', '}
+          </div>
+          )
+          }
           <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data) }} />
         </div>
       </div>
