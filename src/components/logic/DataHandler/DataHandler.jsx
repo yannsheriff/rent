@@ -402,6 +402,7 @@ class DataHandler extends Component {
           <Narration
             data={data.content.content.adventure_victory}
             title={data.content.content.adventure_first_choice}
+            winningSkill={data.content.content.adventure_skill}
           />,
         ]);
         this.setState({ card, isNarration: true, didWin: true });
