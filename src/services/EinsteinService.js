@@ -18,17 +18,17 @@ class EinsteinServices {
 
   async sendRecap(time, isVictory, totalFlat, Skills) {
     const Url = `${this.apiUrl}/game`;
-    const send = await axios({
-      crossdomain: true,
-      method: 'post',
-      url: Url,
-      data: {
-        time: 290,
-        win: false,
-        totalFlat: 3,
-        skills: ['chance', 'mytho'],
-      },
-    });
+    // const send = await axios({
+    //   crossdomain: true,
+    //   method: 'post',
+    //   url: Url,
+    //   data: {
+    //     time: 290,
+    //     win: false,
+    //     totalFlat: 3,
+    //     skills: ['chance', 'mytho'],
+    //   },
+    // });
 
     const response = await axios({
       method: 'get',
