@@ -125,6 +125,7 @@ class Card extends Component {
       children, leftChoice, rightChoice,
     } = this.props;
     const { cardPosX, cardPosY } = this.state;
+    const onPressProps = leftChoice && rightChoice ? {} : { onClick: () => { this.isValidated = 'right'; this.dragEnd(); } };
     return (
       <div
         className="card card--main"
@@ -133,6 +134,7 @@ class Card extends Component {
         onTouchEnd={this.dragEnd}
         style={{ transform: `translate(${cardPosX}px, ${cardPosY}px)` }}
         ref={this.card}
+        {...onPressProps}
       >
         <div className="card--border">
           <div className="card--container">
