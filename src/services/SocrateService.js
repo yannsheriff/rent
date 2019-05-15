@@ -4,7 +4,7 @@ import axios from 'axios';
 
 let instance = null;
 
-class EinsteinServices {
+class SocrateServices {
   constructor() {
     this.apiUrl = 'http://localhost:4000/api';
 
@@ -38,4 +38,4 @@ class EinsteinServices {
   }
 }
 
-export const EinsteinService = new EinsteinServices();
+export const SocrateService = new SocrateServices();

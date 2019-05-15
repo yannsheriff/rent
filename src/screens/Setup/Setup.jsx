@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { gameIsSetUp } from 'redux/actions/steps';
-import { EinsteinService } from 'services/EinsteinService';
+import { SocrateService } from 'services/SocrateService';
 import {
   ProfileGeneration,
 } from 'components/logic';
@@ -18,7 +18,7 @@ class Setup extends Component {
       step: 'intro',
     };
 
-    EinsteinService.sendRecap();
+    SocrateService.sendRecap();
   }
 
   goToNextStep = () => {
