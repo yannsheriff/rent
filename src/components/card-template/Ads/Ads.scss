@@ -58,12 +58,18 @@
     margin-top: 5%;
     img {
       vertical-align: middle;
-      max-width: 25px;
+      max-width: 15px;
       margin-right: 5px;
     }
     p {
       display: inline-block;
       vertical-align: middle;
+    }
+    .available {
+      color: green;
+    }
+    .unavailable {
+      color: red;
     }
   }
 }

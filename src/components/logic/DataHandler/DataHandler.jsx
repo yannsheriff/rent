@@ -64,6 +64,7 @@ class DataHandler extends Component {
       data: {},
       card: {},
       isNarration: false,
+      needQuestion: false,
       didWin: false,
     };
 
@@ -311,25 +312,42 @@ class DataHandler extends Component {
   // AD : Cette fonction s'occupe de du choix fait a partir d'une Ad
   //
   handleAd(choice) {
-    const { next, profil, popup } = this.props;
-    const { data } = this.state;
-
-    if (choice) {
-      if (data.content.ad_source === 'premium' && !profil.premium) {
-        popup('premium');
-        setTimeout(() => this.stackHandler.rerollCard(), 150);
-      } else {
-        NounouService.saveAd(data.content);
-        next();
-      }
+    const {
+      next, fail, profil, popup,
+    } = this.props;
+    const { data, isNarration } = this.state;
+    if (isNarration) {
+      this.setState({ isNarration: false }, () => fail());
     } else {
-      let newData = {};
-      do {
-        newData = this.getCardData('ads');
-      } while (JSON.stringify(newData) === JSON.stringify(data));
+      if (choice) {
+        // check si le profil est premium
+        if (data.content.ad_source === 'premium' && !profil.premium) {
+          popup('premium');
+          setTimeout(() => this.stackHandler.rerollCard(), 150);
+        } else {
+          // check si le profil a le bon budget
+          if (profil.budget.value < data.content.ad_budget) {
+            const card = ([
+              <Narration
+                data="Cet appartement n'est clairement pas dans votre budget."
+                title="Hors de prix"
+              />,
+            ]);
+            this.setState({ card, isNarration: true });
+          } else {
+            NounouService.saveAd(data.content);
+            next();
+          }
+        }
+      } else {
+        let newData = {};
+        do {
+          newData = this.getCardData('ads');
+        } while (JSON.stringify(newData) === JSON.stringify(data));
 
-      const card = this.returnActualComponent(newData, 'ads');
-      this.setState({ data: newData, card });
+        const card = this.returnActualComponent(newData, 'ads');
+        this.setState({ data: newData, card });
+      }
     }
   }
 
@@ -337,27 +355,32 @@ class DataHandler extends Component {
   // VISIT : Cette fonction s'occupe de du choix fait a partir d'une Visite
   //
   handleVisit(choice) {
-    const { next, fail, round } = this.props;
-    const { data, isNarration } = this.state;
+    const { next, fail, round, profil } = this.props;
+    const { data, isNarration, needQuestion } = this.state;
     const rand = getRandomArbitrary(0, 10);
     // dossier refusé donc retour aux annonces
     if (isNarration) {
-      this.setState({ isNarration: false }, () => fail());
+      this.setState({ isNarration: false }, () => fail(needQuestion));
     } else {
-      // carte visite
+      // carte visite - accepter la visite
       NounouService.saveVisit(data.content.visit);
       if (choice) {
-        if (round === 0 || rand === 0) {
+        // refus du premier tour ou refus aléatoire
+        // if (round === 0 || rand === 0) {
+
+        // refus si l'appartement visité a une note trop haute
+        if (NounouService.actualFlat.ad_rate > profil.score) {
           const card = ([
             <Narration
               data={data.content.reject.reject_narration}
               title={data.content.reject.reject_title}
             />,
           ]);
-          this.setState({ card, isNarration: true });
+          this.setState({ card, isNarration: true, needQuestion: true });
         } else {
           next();
         }
+      // refuser la visit
       } else {
         fail();
       }
@@ -390,7 +413,7 @@ class DataHandler extends Component {
   // SKILLS : Cette fonction s'occupe du choix fait a partir d'un skill
   //
   handleSkill(choice) {
-    const { endGame, fail } = this.props;
+    const { endGame, fail, updateTimer } = this.props;
     const { data, isNarration, didWin } = this.state;
     if (isNarration) {
       didWin ? endGame('win') : this.setState({ isNarration: false }, () => fail());
@@ -405,6 +428,8 @@ class DataHandler extends Component {
         ]);
         this.setState({ card, isNarration: true, didWin: true });
       } else {
+        // on enleve du temps et on retourne aux annonces
+        updateTimer(-90);
         const card = ([
           <Narration
             data={data.content.content.adventure_defeat}

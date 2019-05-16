@@ -84,6 +84,8 @@ class Narration extends Component {
           </div>
           )
           }
+          {/* temporaire pour tester */}
+          {typeof (data) === 'string' && <div>{data}</div>} 
           <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data) }} />
         </div>
       </div>

@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import './Ads.scss';
-import views from 'assets/img/icons/icon_visites.svg';
+
 
 /* ILLUSTRATIONS */
+
+import views from 'assets/img/icons/icon_star_black.svg';
 
 import small1 from 'assets/img/ads/ads_small_1.gif';
 import small2 from 'assets/img/ads/ads_small_2.gif';
@@ -75,7 +78,7 @@ class Ads extends Component {
         </g>
       </svg>
     );
-    const { data } = this.props;
+    const { data, profil } = this.props;
     return (
       <div className={`card--content card--ads ${data.ad_source === 'premium' ? 'premium' : ''}`}>
         <h2 className="card--type">Annonce</h2>
@@ -91,7 +94,7 @@ class Ads extends Component {
                   <span className="ads--size">
                     {data.ad_size}
                     {' '}
-              m²
+                    m²
                   </span>
                   <span className="ads--price">
                     {data.ad_budget === 1 && '€' }
@@ -120,12 +123,9 @@ class Ads extends Component {
         <div className="ads--views">
           <img src={views} alt="views-icon" />
           <p>
+            dossier recommandé :
             {' '}
-            vu par
-            {' '}
-            {data.ad_views}
-            {' '}
-            personnes
+            <span className={`${profil.score < data.ad_rate ? 'unavailable' : 'available'}`}>{data.ad_rate}</span>
           </p>
         </div>
       </div>
@@ -133,4 +133,14 @@ class Ads extends Component {
   }
 }
 
-export default Ads;
+/* ===============================================================
+  ======================= REDUX CONNECTION =======================
+  ================================================================ */
+
+const mapStateToProps = state => ({ profil: state.profilReducer });
+
+const componentContainer = connect(
+  mapStateToProps,
+)(Ads);
+
+export default componentContainer;

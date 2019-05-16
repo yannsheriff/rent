@@ -39,19 +39,25 @@ class StepDisplay extends Component {
   returnNextStep = (next) => {
     const { actualStep } = this.state;
     switch (actualStep) {
-      case 'ads':
-        return next ? 'visit' : 'visit';
+      case 'ads': {
+        const isEvent = this.eventHappen();
+        return next ? 'visit' : isEvent;
+      }
 
-      case 'visit':
-        const rand = getRandomArbitrary(0, 3);
-        const fail = rand === 0 ? 'event' : 'ads';
-        return next ? 'adventure' : fail;
+      case 'visit': {
+        const isEvent = this.eventHappen();
+        return next ? 'adventure' : isEvent;
+      }
 
-      case 'adventure':
-        return next ? 'skill' : 'question';
+      case 'adventure': {
+        const isEvent = this.eventHappen();
+        return next ? 'skill' : isEvent;
+      }
 
-      case 'question':
-        return next ? 'event' : 'event';
+      case 'question': {
+        const isEvent = this.eventHappen();
+        return next ? 'ads' : isEvent;
+      }
 
       case 'event':
         return next ? 'ads' : 'ads';
@@ -77,10 +83,15 @@ class StepDisplay extends Component {
     });
   }
 
-  failStep = () => {
+  failStep = (needQuestion) => {
     const { round } = this.state;
-    const nextStep = this.returnNextStep(false);
     const { changeStep } = this.props;
+    let nextStep = '';
+    if (!needQuestion) {
+      nextStep = this.returnNextStep(false);
+    } else {
+      nextStep = 'question';
+    }
     changeStep(nextStep);
     const addRound = nextStep === 'ads' ? 1 : 0;
 
@@ -88,6 +99,12 @@ class StepDisplay extends Component {
       actualStep: nextStep,
       round: round + addRound,
     });
+  }
+
+  eventHappen = () => {
+    const rand = getRandomArbitrary(0, 3);
+    const fail = rand === 0 ? 'event' : 'ads';
+    return fail;
   }
 
   render() {
