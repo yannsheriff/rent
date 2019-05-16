@@ -20,7 +20,7 @@ class App extends Component {
     this.state = {
       flat: {},
       totalVisits: {},
-      generalTime: 
+      generalTime: 0,
     };
   }
 
@@ -38,7 +38,6 @@ class App extends Component {
       const formatedSkills = profil.skills.map(element => element.id);
       SocrateService.sendRecap(step.finalTime, step.victory, recap.totalSeenAds, formatedSkills);
       const recaps = SocrateService.getGeneralRecap();
-      this.setState({generalTime: })
       console.log('TCL: App -> componentWillReceiveProps -> recap', recaps);
     }
   }
@@ -59,7 +58,7 @@ class App extends Component {
           {` ${totalVisits} `}
           apparts en
           {' '}
-          {step.finalTime} 
+          {step.finalTime}
           <ul>
             <li />
           </ul>

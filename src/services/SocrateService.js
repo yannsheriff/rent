@@ -6,7 +6,8 @@ let instance = null;
 
 class SocrateServices {
   constructor() {
-    this.apiUrl = 'http://localhost:4000/api';
+    this.apiUrl = 'https://lmstp-api.herokuapp.com/api/';
+    // this.apiUrl = 'http://localhost:4000/api';
 
     if (!instance) {
       instance = this;
@@ -17,7 +18,6 @@ class SocrateServices {
   // DELETE CARD THAT HAS BEEN ALREADY SEEN
 
   async sendRecap(time, isVictory, totalFlat, Skills) {
-    console.log('TCL: SocrateServices -> sendRecap -> time', time, isVictory, totalFlat, Skills);
     const Url = `${this.apiUrl}/game`;
     if (
       time
