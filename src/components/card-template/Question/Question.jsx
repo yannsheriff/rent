@@ -27,6 +27,7 @@ class Question extends Component {
     const { data } = this.props;
     return (
       <div className="card--content card--question">
+        <h2 className="card--type">Remise en question</h2>
         {/* <img className="card--illu" src={question} alt="" /> */}
         <div className="animation card--illu" ref={this.animationContainer} />
         <div

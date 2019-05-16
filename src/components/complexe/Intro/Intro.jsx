@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import rentBanner from 'assets/img/rent-banner.png';
+import lmstpBanner from 'assets/img/intro.gif';
 import './Intro.scss';
 
 class Intro extends Component {
@@ -17,12 +17,11 @@ class Intro extends Component {
 
           <div>
 
-            <img className="intro--banner" src={rentBanner} alt="rent-banner" />
-            <h1>Bienvenue sur ce jeu de qualité</h1>
+            <img className="intro--banner" src={lmstpBanner} alt="rent-banner" />
+            <h1>Loue moi si tu peux !</h1>
             <p>
-          Vous avez 6 mois pour trouver un appartement à Paris !
-          Saurez-vous faire les bons choix pour ne pas finir à la rue ?
-          Encore une ligne, allez !
+              Vous avez 6 mois pour trouver un appartement à Paris !
+              Saurez-vous faire les bons choix pour ne pas finir à la rue ?
             </p>
           </div>
           <button className="btn" onClick={() => next()}> Relever le défi </button>
