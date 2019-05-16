@@ -50,6 +50,11 @@ class Chrono extends Component {
       .getTime();
   }
 
+  componentWillUnmount() {
+    const { timeToSet } = this.props;
+    timeToSet(this.secondPassed);
+  }
+
 
   endGame = () => {
     const { didExpire } = this.props;

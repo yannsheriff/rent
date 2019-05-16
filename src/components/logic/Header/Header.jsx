@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './Header.scss';
-import { endGame } from 'redux/actions/steps';
+import { endGame, setFinalTime } from 'redux/actions/steps';
 import Chrono from '../../complexe/Chrono/Chrono';
 
 class Header extends Component {
@@ -21,11 +21,11 @@ class Header extends Component {
   }
 
   render() {
-    const { profil } = this.props;
+    const { profil, setTime } = this.props;
 
     return (
       <div id="header" className="layout--header">
-        <Chrono didExpire={this.triggerEnd} time={profil.time} />
+        <Chrono didExpire={this.triggerEnd} time={profil.time} timeToSet={time => setTime(time)} />
       </div>
     );
   }
@@ -43,6 +43,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   end: (reason) => {
     dispatch(endGame(reason));
+  },
+  setTime: (time) => {
+    dispatch(setFinalTime(time));
   },
 });
 

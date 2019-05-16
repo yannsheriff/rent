@@ -17,24 +17,38 @@ class SocrateServices {
   // DELETE CARD THAT HAS BEEN ALREADY SEEN
 
   async sendRecap(time, isVictory, totalFlat, Skills) {
+    console.log('TCL: SocrateServices -> sendRecap -> time', time, isVictory, totalFlat, Skills);
     const Url = `${this.apiUrl}/game`;
-    // const send = await axios({
-    //   crossdomain: true,
-    //   method: 'post',
-    //   url: Url,
-    //   data: {
-    //     time: 290,
-    //     win: false,
-    //     totalFlat: 3,
-    //     skills: ['chance', 'mytho'],
-    //   },
-    // });
+    if (
+      time
+      && isVictory !== undefined
+      && totalFlat
+      && Skills
+    ) {
+      const response = await axios({
+        crossdomain: true,
+        method: 'post',
+        url: Url,
+        data: {
+          time: Math.round(time),
+          win: isVictory,
+          totalFlat,
+          skills: Skills,
+        },
+      });
 
+      console.log(response);
+    }
+  }
+
+  async getGeneralRecap() {
+    const Url = `${this.apiUrl}/game/recap`;
     const response = await axios({
       method: 'get',
       url: Url,
     });
-    console.log(response);
+
+    return response;
   }
 }
 
