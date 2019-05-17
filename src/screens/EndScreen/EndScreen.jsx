@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -17,18 +18,16 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+    const recap = NounouService.getRecap();
     this.state = {
-      flat: {},
-      totalVisits: {},
-      generalTime: 0,
+      flat: recap.actualFlat,
+      totalVisits: recap.totalSeenAds,
+      generalRecap: false,
     };
   }
 
   componentWillMount() {
-    const { step, profil } = this.props;
-    const recap = NounouService.getRecap();
-    console.log('TCL: App -> componentWillMount -> recap', recap);
-    this.setState({ flat: recap.actualFlat, totalVisits: recap.totalSeenAds });
+    this.getRecap();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -36,32 +35,45 @@ class App extends Component {
     if (step.victory !== undefined && step.finalTime) {
       const recap = NounouService.getRecap();
       const formatedSkills = profil.skills.map(element => element.id);
-      SocrateService.sendRecap(step.finalTime, step.victory, recap.totalSeenAds, formatedSkills);
-      const recaps = SocrateService.getGeneralRecap();
-      console.log('TCL: App -> componentWillReceiveProps -> recap', recaps);
+      // SocrateService.sendRecap(step.finalTime, step.victory, recap.totalSeenAds, formatedSkills);
+      this.getRecap();
     }
+  }
+
+  async getRecap() {
+    console.log('hello');
+    const recaps = await SocrateService.getGeneralRecap();
+    console.log('TCL: App -> componentWillReceiveProps -> recap', recaps);
+    this.setState({ generalRecap: recaps.data.data });
   }
 
   render() {
     const { step } = this.props;
-    const { flat, totalVisits } = this.state;
+    const { flat, totalVisits, generalRecap } = this.state;
+    const winPercent = Math.floor(generalRecap.totalWins / generalRecap.totalGames * 100);
     return (
       <div id="end">
         <h1>
           {step.end === 'win' ? 'Victoire !' : 'Défaite :(' }
         </h1>
-        <div>
-          <p>Recap :</p>
-          Pour vivre dans un appartement
-          {` ${flat.visit.visit_recap} `}
-          vous avez visité
-          {` ${totalVisits} `}
-          apparts en
-          {' '}
-          {step.finalTime}
+        <div className="end-recap">
+          <h2>Recap :</h2>
+          Pour vivre dans un appartement {` ${flat.visit.visit_recap} `},
+          vous avez visité {` ${totalVisits} `} apparts en {Math.floor(step.finalTime)} secondes.
           <ul>
             <li />
           </ul>
+
+          { generalRecap
+          && (
+          <div>
+            <h2>Users data : </h2>
+            <p> le pourcentage de victoire est de {winPercent} %.</p>
+            <p> les joueurs visites en moyenne {Math.floor(generalRecap.avgFlat)} appartements.</p>
+            <p> Le temps moyen d'une partie est de {generalRecap.avgTime} secondes.</p>
+          </div>
+          )
+          }
         </div>
       </div>
     );

@@ -13,7 +13,7 @@ class NounouServices {
     this.visits = [];
     this.adventure = [];
     this.visitedFlatIDs = [];
-    this.actualVisit = 'Avec une tache de sang';
+    this.actualVisit = { visit_recap: 'Avec une tache de sang' };
     this.actualFlat = {};
 
     if (!instance) {

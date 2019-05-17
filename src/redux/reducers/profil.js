@@ -11,11 +11,19 @@ import budgetss from '../../assets/content/budget';
 import skill from '../../assets/content/skills';
 
 
+export const debugProfil = {
+  status: statuss[0],
+  origin: originss[0],
+  budget: budgetss[2],
+  skills: [skill[0], skill[2]],
+  bonus: 0,
+  score: 1,
+  time: 300,
+  premium: false,
+};
+
+
 const defaultState = {
-  // status: statuss[0],
-  // origin: originss[0],
-  // budget: budgetss[2],
-  // skills: [skill[0], skill[2]],
   status: {},
   origin: {},
   budget: {},
