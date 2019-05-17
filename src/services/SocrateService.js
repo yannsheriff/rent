@@ -6,8 +6,8 @@ let instance = null;
 
 class SocrateServices {
   constructor() {
-    this.apiUrl = 'http://vps.yannischerif.com:4000/api/';
-    // this.apiUrl = 'http://localhost:4000/api';
+    // this.apiUrl = 'http://vps.yannischerif.com:4000/api/';
+    this.apiUrl = 'http://localhost:4000/api';
 
     if (!instance) {
       instance = this;
@@ -15,7 +15,18 @@ class SocrateServices {
     return instance;
   }
 
-  // DELETE CARD THAT HAS BEEN ALREADY SEEN
+  async saveChoice(card, choice) {
+    const Url = `${this.apiUrl}/card/${card.id}`;
+    const response = await axios({
+      crossdomain: true,
+      method: 'post',
+      url: Url,
+      data: {
+        choose: choice,
+      },
+    });
+    console.log(response);
+  }
 
   async sendRecap(time, isVictory, totalFlat, Skills) {
     const Url = `${this.apiUrl}/game`;
@@ -43,6 +54,16 @@ class SocrateServices {
 
   async getGeneralRecap() {
     const Url = `${this.apiUrl}/game/recap`;
+    const response = await axios({
+      method: 'get',
+      url: Url,
+    });
+
+    return response;
+  }
+
+  async getCardStat(id) {
+    const Url = `${this.apiUrl}/card/${id}`;
     const response = await axios({
       method: 'get',
       url: Url,

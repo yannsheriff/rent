@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './DataHandler.scss';
 import { NounouService } from 'services/NounouService';
+import { SocrateService } from 'services/SocrateService';
 import {
   updateStatus, updateBudget, updateOrigin, updateBonus, updateTimer,
 } from 'redux/actions/profil';
@@ -355,7 +356,9 @@ class DataHandler extends Component {
   // VISIT : Cette fonction s'occupe de du choix fait a partir d'une Visite
   //
   handleVisit(choice) {
-    const { next, fail, round, profil } = this.props;
+    const {
+      next, fail, round, profil,
+    } = this.props;
     const { data, isNarration, needQuestion } = this.state;
     const rand = getRandomArbitrary(0, 10);
     // dossier refusé donc retour aux annonces
@@ -364,6 +367,7 @@ class DataHandler extends Component {
     } else {
       // carte visite - accepter la visite
       NounouService.saveVisit(data.content.visit);
+      SocrateService.saveChoice(data.content.visit, choice);
       if (choice) {
         // refus du premier tour ou refus aléatoire
         // if (round === 0 || rand === 0) {
@@ -397,6 +401,7 @@ class DataHandler extends Component {
       this.setState({ isNarration: false }, () => fail());
     } else {
       NounouService.saveAdventure(data.content);
+      SocrateService.saveChoice(data.content, choice);
       if (choice) {
         next();
       } else {
@@ -451,6 +456,7 @@ class DataHandler extends Component {
       this.setState({ isNarration: false }, () => next());
     } else {
       NounouService.saveQuestion(data.content);
+      SocrateService.saveChoice(data.content, choice);
       const content = choice ? data.content.question_accept_narration : data.content.question_refuse_narration;
       const title = choice ? data.content.question_accept : data.content.question_refuse;
       const update = this.returnProfilUpdate();
