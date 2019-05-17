@@ -27,7 +27,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.getRecap();
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,13 +35,12 @@ class App extends Component {
     if (step.victory !== undefined && step.finalTime) {
       const recap = NounouService.getRecap();
       const formatedSkills = profil.skills.map(element => element.id);
-      // SocrateService.sendRecap(step.finalTime, step.victory, recap.totalSeenAds, formatedSkills);
-      this.getRecap();
+      this.handleRecap(step.finalTime, step.victory, recap.totalSeenAds, formatedSkills);
     }
   }
 
-  async getRecap() {
-    console.log('hello');
+  async handleRecap(time, win, ads, skills) {
+    await SocrateService.sendRecap(time, win, ads, skills);
     const recaps = await SocrateService.getGeneralRecap();
     console.log('TCL: App -> componentWillReceiveProps -> recap', recaps);
     this.setState({ generalRecap: recaps.data.data });
@@ -70,7 +69,7 @@ class App extends Component {
             <h2>Users data : </h2>
             <p> le pourcentage de victoire est de {winPercent} %.</p>
             <p> les joueurs visites en moyenne {Math.floor(generalRecap.avgFlat)} appartements.</p>
-            <p> Le temps moyen d'une partie est de {generalRecap.avgTime} secondes.</p>
+            <p> Le temps moyen d'une partie est de {Math.floor(generalRecap.avgTime)} secondes.</p>
           </div>
           )
           }
