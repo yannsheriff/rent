@@ -44,14 +44,13 @@ class App extends Component {
   }
 
   async generalRecap(time, win, ads, skills) {
-    // await SocrateService.sendRecap(time, win, ads, skills);
+    await SocrateService.sendRecap(time, win, ads, skills);
     const recaps = await SocrateService.getGeneralRecap();
     console.log('TCL: App -> componentWillReceiveProps -> recap', recaps);
     this.setState({ generalRecap: recaps.data.data });
   }
 
   async choiceRecap(recap) {
-    // await SocrateService.sendRecap(time, win, ads, skills);
     const { data: visitResponse } = await SocrateService.getCardStat(recap.actualFlat.visit.id);
     const visit = { ...visitResponse.data, ...recap.actualFlat.visit };
     const { data: adventureResponse } = await SocrateService.getCardStat(recap.adventure.id);
