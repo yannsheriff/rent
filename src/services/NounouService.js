@@ -32,7 +32,7 @@ class NounouServices {
   }
 
   saveAdventure(adventure) {
-    // sauvegarder les choix ici
+    this.actualAdventure = adventure;
     EthanService.removeData('adventure', adventure.id);
   }
 
@@ -61,6 +61,7 @@ class NounouServices {
         flat: this.actualFlat,
       },
       totalSeenAds: this.totalSeenAds,
+      adventure: this.actualAdventure,
       visits: this.visits,
     };
   }
