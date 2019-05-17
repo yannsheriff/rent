@@ -54,10 +54,8 @@ class App extends Component {
     // await SocrateService.sendRecap(time, win, ads, skills);
     const { data: visitResponse } = await SocrateService.getCardStat(recap.actualFlat.visit.id);
     const visit = { ...visitResponse.data, ...recap.actualFlat.visit };
-    console.log('TCL: App -> choiceRecap -> visit', visit);
     const { data: adventureResponse } = await SocrateService.getCardStat(recap.adventure.id);
     const adventure = { ...adventureResponse.data, ...recap.adventure };
-    console.log('TCL: App -> choiceRecap -> adventure', adventure);
     this.setState({ visitChoiceStats: visit, adventureChoiceStats: adventure });
   }
 
