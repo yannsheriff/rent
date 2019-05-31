@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './Header.scss';
 import { endGame, setFinalTime } from 'redux/actions/steps';
-import Chrono from '../../complexe/Chrono/Chrono';
+import { Chrono, ProgressBar } from '../../complexe';
 
 class Header extends Component {
   static propTypes = {
@@ -25,6 +25,7 @@ class Header extends Component {
 
     return (
       <div id="header" className="layout--header">
+        {/* <ProgressBar /> */}
         <Chrono didExpire={this.triggerEnd} time={profil.time} timeToSet={time => setTime(time)} />
       </div>
     );

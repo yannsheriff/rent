@@ -45,7 +45,7 @@ class Setup extends Component {
     const { step } = this.state;
     return (
       <div className={`App main-layout setup ${step}`}>
-        <Menu />
+        {/* <Menu /> */}
         {step === 'intro'
           && <Intro next={this.goToNextStep} />
         }

@@ -47,7 +47,6 @@ class SocrateServices {
           skills: Skills,
         },
       });
-
       console.log(response);
     }
   }
