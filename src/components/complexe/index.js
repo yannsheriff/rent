@@ -8,6 +8,7 @@ import Menu from './Menu/Menu';
 import PopUp from './PopUp/PopUp';
 import ProgressBar from './ProgressBar/ProgressBar';
 import Wheel from './Wheel/Wheel';
+import Launch from './Launch/Launch';
 
 export {
   Intro,
@@ -20,4 +21,5 @@ export {
   PopUp,
   ProgressBar,
   Wheel,
+  Launch,
 };

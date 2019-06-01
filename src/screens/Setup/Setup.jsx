@@ -5,7 +5,7 @@ import {
   ProfileGeneration,
 } from 'components/logic';
 import {
-  Intro, SkillSelection, ProfileRecap, Menu,
+  Intro, SkillSelection, ProfileRecap, Menu, Launch,
 } from 'components/complexe';
 import './Setup.scss';
 
@@ -33,6 +33,9 @@ class Setup extends Component {
         this.setState({ step: 'skill-selection' });
         break;
       case 'skill-selection':
+        this.setState({ step: 'launch' });
+        break;
+      case 'launch':
         didSetUp();
         break;
 
@@ -54,6 +57,9 @@ class Setup extends Component {
         }
         {step === 'recap'
           && <ProfileRecap next={this.goToNextStep} />
+        }
+        {step === 'launch'
+          && <Launch next={this.goToNextStep} />
         }
         {step === 'skill-selection'
           && <SkillSelection next={this.goToNextStep} />

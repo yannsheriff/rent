@@ -1,0 +1,21 @@
+#launch {
+  height: 100%;
+  .intro--banner {
+    width: 100%;
+    height: auto;
+  }
+
+  .content {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    height: 100%;
+  }
+  h1 {
+    color: white;
+  }
+
+  p {
+    color: white;
+  }
+}
