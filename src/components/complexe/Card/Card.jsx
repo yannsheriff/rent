@@ -150,7 +150,7 @@ class Card extends Component {
             {children}
             {leftChoice && rightChoice
         && (
-          <div className="card--choice-container">
+          <div className={`card--choice-container ${this.isValidated ? 'containe-selected' : ''}`}>
             <span
               className={`left ${this.isValidated === 'left' ? 'selected' : ''} card--choice`}
               onClick={() => this.forceCardSwipe('left')}
