@@ -4,7 +4,7 @@
 /* eslint-disable no-lonely-if */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import PropTypes, { number } from 'prop-types';
 import './DataHandler.scss';
 import { NounouService } from 'services/NounouService';
 import { SocrateService } from 'services/SocrateService';
@@ -34,6 +34,7 @@ class DataHandler extends Component {
     profil: PropTypes.object,
     next: PropTypes.func,
     fail: PropTypes.func,
+    round: PropTypes.number,
     endGame: PropTypes.func,
     updateStatus: PropTypes.func,
     updateBudget: PropTypes.func,
@@ -47,6 +48,7 @@ class DataHandler extends Component {
   static defaultProps = {
     step: '',
     profil: {},
+    round: 0,
     endGame: () => {},
     next: () => {},
     fail: () => {},
@@ -77,29 +79,29 @@ class DataHandler extends Component {
   //  Initialisation des components
   //
   componentWillMount() {
-    const { step } = this.props;
+    const { step, round } = this.props;
 
     if (EthanService.ad) {
       const data = this.getCardData(step);
-      const card = this.returnActualComponent(data, step, true);
+      const card = this.returnActualComponent(data, step, true, round);
       this.setState({ data, card });
     } else {
       EthanPromise.then((ethan) => {
         EthanService = ethan;
         const data = this.getCardData(step);
-        const card = this.returnActualComponent(data, step, true);
+        const card = this.returnActualComponent(data, step, true, round);
         this.setState({ data, card });
       });
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const { step, profil } = nextProps;
+    const { step, profil, round } = nextProps;
     const { profil: oldProfil } = this.props;
     const { isNarration } = this.state;
     if (!isNarration && profil.premium === oldProfil.premium) {
       const data = this.getCardData(step);
-      const card = this.returnActualComponent(data, step, true);
+      const card = this.returnActualComponent(data, step, true, round);
       this.setState({ data, card }, () => {
         // si c'est un evenement on veux appliquer directement la modification
         if (step === 'event') {
@@ -162,16 +164,17 @@ class DataHandler extends Component {
   // Cette fonction return le composant qui met en forme les donnée
   // elle prend en entrée, les données de contenu ainsi que la step actuel
   //
-  returnActualComponent = (data, step, isNewStep = false) => {
+  returnActualComponent = (data, step, isNewStep = false, round) => {
     const childProps = { data: data.content, next: this.nextCard };
     const { changeStep, profil } = this.props;
     const payload = [];
 
     if (isNewStep && (
-      step === 'visit' || step === 'adventure')
+      step === 'visit' || step === 'adventure' || (step === 'ads' && round === 0))
     ) {
       if (step === 'visit') { changeStep('transition transition--visit'); }
       if (step === 'adventure') { changeStep('transition transition--adventure'); }
+      if (step === 'ads' && round === 0) { changeStep('transition transition--ads'); }
       payload.push(<Transition data={step} />);
     }
     switch (step) {

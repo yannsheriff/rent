@@ -23,4 +23,12 @@
       background-color: $red;
     }
   }
+  &--ads {
+    background-color: $dark-blue;
+
+    .card--main,
+    .background-card {
+      background-color:$blue;
+    }
+  }
 }

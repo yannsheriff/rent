@@ -71,6 +71,7 @@ class Transition extends Component {
         <h1 className="card--title transition--title">
           {(data === 'visit') && 'Le coeur battant, vous vous rendez à la visite...'}
           {(data === 'adventure') && 'Dernier entretien, vous croisez les doigts'}
+          {(data === 'ads') && 'Allez, épluchons les annonces !'}
         </h1>
         {' '}
       </div>

@@ -72,29 +72,32 @@ class StepDisplay extends Component {
 
   nextStep = () => {
     const { round } = this.state;
-    const nextStep = this.returnNextStep(true);
     const { changeStep } = this.props;
-    changeStep(nextStep);
+
+    const nextStep = this.returnNextStep(true);
     const addRound = nextStep === 'ads' ? 1 : 0;
 
+    changeStep(nextStep);
     this.setState({
       actualStep: nextStep,
       round: round + addRound,
     });
+    console.log('TCL: StepDisplay -> nextStep ->  round + addRound', round + addRound);
   }
 
   failStep = (needQuestion) => {
     const { round } = this.state;
     const { changeStep } = this.props;
+
     let nextStep = '';
     if (!needQuestion) {
       nextStep = this.returnNextStep(false);
     } else {
       nextStep = 'question';
     }
-    changeStep(nextStep);
     const addRound = nextStep === 'ads' ? 1 : 0;
 
+    changeStep(nextStep);
     this.setState({
       actualStep: nextStep,
       round: round + addRound,
