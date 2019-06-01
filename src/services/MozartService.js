@@ -26,7 +26,8 @@ class MozartServices {
     if (this[name]) {
       this[name].play();
     } else {
-      throw new Error(`The sound ${name} doesn't exist maybe it's a typo ;)`);
+      console.error(`The sound ${name} doesn't exist maybe it's a typo ;)`);
+      console.error('If you want to add a sound put it in assets sounds and call is name');
     }
   }
 }
