@@ -102,7 +102,7 @@ class StepDisplay extends Component {
   }
 
   eventHappen = () => {
-    const rand = getRandomArbitrary(0, 3);
+    const rand = getRandomArbitrary(0, 2);
     const fail = rand === 0 ? 'event' : 'ads';
     return fail;
   }

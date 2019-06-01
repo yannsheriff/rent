@@ -4,6 +4,7 @@
 
 import * as contentful from 'contentful';
 import { getRandomArbitrary } from 'vendors/random';
+import { NounouService } from 'services/NounouService';
 
 class EthanServices {
   constructor(data) {
@@ -68,9 +69,10 @@ class EthanServices {
   };
 
   getVisit = () => {
-    const visitRand = getRandomArbitrary(0, this.visit.length);
+    const matchingVisits = this.visit.filter(visit => visit.visit_source === NounouService.actualFlat.ad_source);
+    const visitRand = getRandomArbitrary(0, matchingVisits.length);
     const rejectRand = getRandomArbitrary(0, this.reject.length);
-    const visit = this.visit[visitRand];
+    const visit = matchingVisits[visitRand];
     const reject = this.reject[rejectRand];
     const payload = {
       visit,

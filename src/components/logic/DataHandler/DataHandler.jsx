@@ -372,8 +372,8 @@ class DataHandler extends Component {
         // refus du premier tour ou refus aléatoire
         // if (round === 0 || rand === 0) {
 
-        // refus si l'appartement visité a une note trop haute
-        if (NounouService.actualFlat.ad_rate > profil.score) {
+        // refus si l'appartement visité a une note trop haute sauf si l'utilisateur est premium
+        if (NounouService.actualFlat.ad_rate > profil.score && !profil.premium) {
           const card = ([
             <Narration
               data={data.content.reject.reject_narration}

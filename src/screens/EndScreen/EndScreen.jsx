@@ -84,7 +84,7 @@ class App extends Component {
           <div>
             <h2>Users data : </h2>
             <p> le pourcentage de victoire est de {winPercent} %.</p>
-            <p> les joueurs visites en moyenne {Math.floor(generalRecap.avgFlat)} appartements.</p>
+            <p> les joueurs visitent en moyenne {Math.floor(generalRecap.avgFlat)} appartements.</p>
             <p> Le temps moyen d'une partie est de {Math.floor(generalRecap.avgTime)} secondes.</p>
           </div>
           )
@@ -94,7 +94,7 @@ class App extends Component {
           <div>
             <h2>Your choices : </h2>
             <p> Comme  {visitChoice}% des utilisateurs vous avez pris un appartement {` ${flat.visit.visit_recap} `}</p>
-            <p> Comme  {adventureChoice}% des utilisateurs vous avez suivit les folie du propritaire.</p>
+            <p> Comme  {adventureChoice}% des utilisateurs vous avez ...</p>
           </div>
           )
           }
