@@ -27,15 +27,25 @@ class SkillSelection extends Component {
 
   selectSkill = (skill) => {
     const { next, updateSkill } = this.props;
-    this.setState(state => ({
-      selected: state.selected.concat(skill),
-    }), () => {
-      const { selected } = this.state;
-      if (selected.length > 1) {
+    if (this.state.selected.length === 2) {
+      this.setState(state => ({
+        selected: state.selected.concat(skill).slice(1),
+      }), () => {
+        const { selected } = this.state;
         updateSkill(selected);
         setTimeout(() => { next(); }, 100);
-      }
-    });
+      });
+    } else {
+      this.setState(state => ({
+        selected: state.selected.concat(skill),
+      }), () => {
+        const { selected } = this.state;
+        if (selected.length > 1) {
+          updateSkill(selected);
+          setTimeout(() => { next(); }, 100);
+        }
+      });
+    }
   }
 
   unselectSkill = (skill) => {

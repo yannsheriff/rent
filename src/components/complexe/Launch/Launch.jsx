@@ -13,12 +13,13 @@ function Launch(props) {
       <div className="content">
         <div>
           <img className="intro--banner" src={lmstpBanner} alt="rent-banner" />
-          <h1>Retro occupy organic, stumptow.</h1>
+          <h1>Dernier check up.</h1>
           <p>
-            Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore. Actually artisan organic occupy, Wes Anderson ugh whatever pou.
+           Une fois la partie lancé, vous n'aurez que 5 minutes pour dégoter un appartement ! Autant dire que vous avez peu de chance de reussir..
+           Vous etes prets ?
           </p>
         </div>
-        <button className="btn" onClick={() => next()}> Je vais y arriver </button>
+        <button className="btn" onClick={() => next()}> C'est moi le plus fort. </button>
       </div>
     </div>
   );

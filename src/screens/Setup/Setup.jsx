@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Flickity from 'flickity';
 import { gameIsSetUp } from 'redux/actions/steps';
 import {
   ProfileGeneration,
@@ -16,6 +17,32 @@ class Setup extends Component {
     this.state = {
       step: 'intro',
     };
+
+    this.flickity = React.createRef();
+  }
+
+  componentDidMount() {
+    this.flkty = new Flickity(this.flickity.current, {
+      cellAlign: 'left',
+      prevNextButtons: false,
+      pageDots: true,
+    });
+
+    this.flkty.on('change', (index) => {
+      switch (index) {
+        case 0:
+          this.setState({ step: 'recap' });
+          break;
+        case 1:
+          this.setState({ step: 'skill-selection' });
+          break;
+        case 2:
+          this.setState({ step: 'launch' });
+          break;
+        default:
+          break;
+      }
+    });
   }
 
   goToNextStep = () => {
@@ -31,9 +58,11 @@ class Setup extends Component {
         break;
       case 'recap':
         this.setState({ step: 'skill-selection' });
+        this.flkty.select(1);
         break;
       case 'skill-selection':
         this.setState({ step: 'launch' });
+        this.flkty.select(2);
         break;
       case 'launch':
         didSetUp();
@@ -52,18 +81,22 @@ class Setup extends Component {
         {step === 'intro'
           && <Intro next={this.goToNextStep} />
         }
-        {step === 'profil'
-          && <ProfileGeneration next={this.goToNextStep} />
-        }
-        {step === 'recap'
-          && <ProfileRecap next={this.goToNextStep} />
-        }
-        {step === 'launch'
-          && <Launch next={this.goToNextStep} />
-        }
-        {step === 'skill-selection'
-          && <SkillSelection next={this.goToNextStep} />
-        }
+        <div ref={this.flickity} id="slider" className={step !== 'intro' ? 'show' : ''}>
+          <div className="slide" style={step === 'profil' || step === 'recap' ? {} : { pointerEvents: 'none' }}>
+            {step === 'profil'
+              && <ProfileGeneration next={this.goToNextStep} />
+            }
+            {step !== 'profil' && step !== 'intro'
+              && <ProfileRecap next={this.goToNextStep} />
+            }
+          </div>
+          <div className="slide" style={step === 'skill-selection' ? {} : { pointerEvents: 'none' }}>
+            <SkillSelection next={this.goToNextStep} />
+          </div>
+          <div className="slide">
+            <Launch next={this.goToNextStep} />
+          </div>
+        </div>
       </div>
     );
   }
