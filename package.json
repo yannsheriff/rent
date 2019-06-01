@@ -8,6 +8,7 @@
     "axios": "^0.18.0",
     "contentful": "^7.5.0",
     "gsap": "^2.1.2",
+    "howler": "^2.1.2",
     "lottie-web": "^5.5.2",
     "moment": "^2.24.0",
     "node-sass": "^4.11.0",

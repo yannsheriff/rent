@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-expressions */
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { MozartService } from 'services/MozartService';
 import './Card.scss';
 
 class Card extends Component {
@@ -85,7 +86,9 @@ class Card extends Component {
     if (!isLocked) {
       // add transition de carte
       this.card.current.classList.add('smooth');
+
       if (this.isValidated === 'right') {
+        MozartService.interaction('swipe');
         this.setState({ cardPosX: 400, cardPosY: 100 });
         setTimeout(() => {
           swipRight
@@ -93,6 +96,7 @@ class Card extends Component {
             : console.warn('need swipRight to be a function');
         }, 200);
       } else if (this.isValidated === 'left') {
+        MozartService.interaction('swipe');
         this.setState({ cardPosX: -400, cardPosY: 100 });
         setTimeout(() => {
           swipLeft
