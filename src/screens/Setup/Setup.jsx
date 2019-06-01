@@ -16,6 +16,7 @@ class Setup extends Component {
 
     this.state = {
       step: 'intro',
+      isSetUp: false,
     };
 
     this.flickity = React.createRef();
@@ -26,6 +27,7 @@ class Setup extends Component {
       cellAlign: 'left',
       prevNextButtons: false,
       pageDots: true,
+      draggable: false,
     });
 
     this.flkty.on('change', (index) => {
@@ -37,6 +39,8 @@ class Setup extends Component {
           this.setState({ step: 'skill-selection' });
           break;
         case 2:
+          this.flkty.options.draggable = true;
+          this.flkty.updateDraggable();
           this.setState({ step: 'launch' });
           break;
         default:
@@ -61,7 +65,7 @@ class Setup extends Component {
         this.flkty.select(1);
         break;
       case 'skill-selection':
-        this.setState({ step: 'launch' });
+        this.setState({ step: 'launch', isSetUp: true });
         this.flkty.select(2);
         break;
       case 'launch':
@@ -74,7 +78,7 @@ class Setup extends Component {
   }
 
   render() {
-    const { step } = this.state;
+    const { step, isSetUp } = this.state;
     return (
       <div className={`App main-layout setup ${step}`}>
         {/* <Menu /> */}
@@ -82,7 +86,7 @@ class Setup extends Component {
           && <Intro next={this.goToNextStep} />
         }
         <div ref={this.flickity} id="slider" className={step !== 'intro' ? 'show' : ''}>
-          <div className="slide" style={step === 'profil' || step === 'recap' ? {} : { pointerEvents: 'none' }}>
+          <div className="slide" style={isSetUp ? { pointerEvents: 'none' } : {}}>
             {step === 'profil'
               && <ProfileGeneration next={this.goToNextStep} />
             }
@@ -90,7 +94,7 @@ class Setup extends Component {
               && <ProfileRecap next={this.goToNextStep} />
             }
           </div>
-          <div className="slide" style={step === 'skill-selection' ? {} : { pointerEvents: 'none' }}>
+          <div className="slide" style={isSetUp ? { pointerEvents: 'none' } : {}}>
             <SkillSelection next={this.goToNextStep} />
           </div>
           <div className="slide">
