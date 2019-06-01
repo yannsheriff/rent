@@ -16,7 +16,7 @@ class Wheel extends Component {
     this.margin = 20; // margin between circles
     this.requestStop = false; // if stop requested
     this.itemsLength = 8; // number of items
-    this.timing = 2.5; // speed
+    this.timing = 1; // speed
   }
 
   // Create ref for top component
