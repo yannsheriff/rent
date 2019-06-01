@@ -108,7 +108,7 @@ class StackHandler extends Component {
     let cardTemplate = (<div>Loading</div>);
     if (content[actualCard]) {
       cardTemplate = React.cloneElement(content[actualCard],
-        { forceCardSwipe: this.ref.forceCardSwipe });
+        { forceCardSwipe: this.ref ? this.ref.forceCardSwipe : () => {} });
     }
 
     return (
