@@ -39,11 +39,27 @@ class Transition extends Component {
       autoplay: true,
       animationData: animations.transition, // the path to the animation json
     });
+
+    const timeoutOnCard = new Promise(((resolve, reject) => {
+      setTimeout(() => { resolve(true); }, 3000, false);
+    }));
+
+    const unmountPromise = new Promise((resolve) => {
+      this.resolveUnmountPromise = resolve;
+    });
+
+    Promise.race([timeoutOnCard, unmountPromise]).then((next) => {
+      if (next) {
+        // eslint-disable-next-line react/destructuring-assignment
+        this.props.forceCardSwipe('left');
+      }
+    });
   }
 
   componentWillUnmount() {
     const { changeStep, data } = this.props;
     changeStep(data);
+    this.resolveUnmountPromise(false);
   }
 
   getIllu() {

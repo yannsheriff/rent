@@ -122,6 +122,11 @@ class Card extends Component {
     });
   }
 
+  forceCardSwipe = (side) => {
+    this.isValidated = side === 'right' ? 'right' : 'left';
+    this.dragEnd();
+  }
+
   render() {
     const {
       // data
@@ -129,7 +134,7 @@ class Card extends Component {
       children, leftChoice, rightChoice,
     } = this.props;
     const { cardPosX, cardPosY } = this.state;
-    const onPressProps = leftChoice && rightChoice ? {} : { onClick: () => { this.isValidated = 'right'; this.dragEnd(); } };
+    const onPressProps = leftChoice && rightChoice ? {} : { onClick: () => this.forceCardSwipe('right') };
     return (
       <div
         className="card card--main"
@@ -148,20 +153,14 @@ class Card extends Component {
           <div className="card--choice-container">
             <span
               className={`left ${this.isValidated === 'left' ? 'selected' : ''} card--choice`}
-              onClick={() => {
-                this.isValidated = 'left';
-                this.dragEnd();
-              }}
+              onClick={() => this.forceCardSwipe('left')}
             >
               {leftChoice}
             </span>
             <span className="card--choice-separation">|</span>
             <span
               className={`right ${this.isValidated === 'right' ? 'selected' : ''} card--choice`}
-              onClick={() => {
-                this.isValidated = 'right';
-                this.dragEnd();
-              }}
+              onClick={() => this.forceCardSwipe('right')}
             >
               {rightChoice }
             </span>
