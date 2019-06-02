@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getPremium, updateTimer } from 'redux/actions/profil';
 import { connect } from 'react-redux';
+import { Button } from 'components/basic';
 import './Premium.scss';
 
 
@@ -30,7 +31,7 @@ class Premium extends Component {
           <br />
         ** Vraiment beaucoup de temps
         </p>
-        <button className="btn" onClick={this.purchasePremium}>Souscrire</button>
+        <Button onClick={this.purchasePremium} text="Souscrire" />
         <button className="arrow" onClick={this.cancel}>X</button>
       </div>
     );

@@ -1,6 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import lmstpBanner from 'assets/img/intro.gif';
+import { Button } from 'components/basic';
 import './Launch.scss';
 
 function Launch(props) {
@@ -19,7 +20,8 @@ function Launch(props) {
            Vous etes prets ?
           </p>
         </div>
-        <button className="btn" onClick={() => next()}> C'est moi le plus fort. </button>
+
+        <Button onClick={() => next()} text="C'est moi le plus fort." />
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import skills from 'assets/content/skills';
 import { updateSkills } from 'redux/actions/profil';
+import { MozartService } from 'services/MozartService';
 import './SkillSelection.scss';
 
 class SkillSelection extends Component {
@@ -39,6 +40,7 @@ class SkillSelection extends Component {
       this.setState(state => ({
         selected: state.selected.concat(skill),
       }), () => {
+        MozartService.interaction('skill');
         const { selected } = this.state;
         if (selected.length > 1) {
           updateSkill(selected);
