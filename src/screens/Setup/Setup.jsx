@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Flickity from 'flickity';
 import { gameIsSetUp } from 'redux/actions/steps';
+import { MozartService } from 'services/MozartService';
 import {
   ProfileGeneration,
 } from 'components/logic';
@@ -59,6 +60,7 @@ class Setup extends Component {
         break;
       case 'profil':
         this.setState({ step: 'recap' });
+        MozartService.interaction('success');
         break;
       case 'recap':
         this.setState({ step: 'skill-selection' });

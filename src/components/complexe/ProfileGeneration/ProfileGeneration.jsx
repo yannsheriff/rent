@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './ProfileGeneration.scss';
+import { MozartService } from 'services/MozartService';
 import Wheel from './node_modules/components/basic/Wheel/Wheel';
 import allstatus from './node_modules/assets/content/status';
 import allorigins from './node_modules/assets/content/origins';
@@ -44,11 +45,15 @@ class ProfileGeneration extends Component {
     const { next } = this.props;
 
     this.setState({ allowClick: false });
+    MozartService.interaction('wheel1');
+    console.log('TCL: wheel1');
 
     if (allowClick) {
       // premier click arrête la roue
       if (wheelIsTurning) {
         this.wheel.select();
+
+
         setTimeout(() => {
           this.setState({
             wheelIsTurning: false,
@@ -118,7 +123,7 @@ class ProfileGeneration extends Component {
     //   budget, origin, status,
     // } = profil;
     return (
-      <div className="intro" onClick={() => this.nextStep()}>
+      <div className="intro" onClick={this.nextStep}>
         <div className="profile-generation--container">
           <div className="profile-generation--title">
             <h1>Votre profil</h1>

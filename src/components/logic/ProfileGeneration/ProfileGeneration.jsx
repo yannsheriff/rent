@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './ProfileGeneration.scss';
 import { Wheel } from 'components/complexe';
+import { MozartService } from 'services/MozartService';
 import allstatus from 'assets/content/status';
 import allorigins from 'assets/content/origins';
 import allbudget from 'assets/content/budget';
@@ -37,6 +38,8 @@ class ProfileGeneration extends Component {
 
   componentDidMount = () => {
     this.wheel.start();
+    this.wheelSound = MozartService.loopSound('wheel');
+    this.wheelSound.play();
   }
 
   nextStep = () => {
@@ -49,6 +52,16 @@ class ProfileGeneration extends Component {
       // premier click arrête la roue
       if (wheelIsTurning) {
         this.wheel.select();
+        MozartService.interaction('wheel1');
+        // console.log('TCL: slow ->  this.wheelSound', this.wheelSound._rate);
+        const slow = setInterval(() => {
+          if (this.wheelSound._rate > 0.4) {
+            this.wheelSound.rate(this.wheelSound._rate - 0.07);
+          } else {
+            this.wheelSound.stop();
+            clearInterval(slow);
+          }
+        }, 100);
         setTimeout(() => {
           this.setState({
             wheelIsTurning: false,
@@ -67,7 +80,7 @@ class ProfileGeneration extends Component {
               step: 'origin',
               wheelData: allorigins,
               allowClick: true,
-            }, () => { this.wheel.start(); });
+            }, () => { this.wheel.start(); this.wheelSound.stop().rate(1).play(); });
             break;
 
             // when origin selection is over
@@ -76,7 +89,7 @@ class ProfileGeneration extends Component {
               step: 'budget',
               wheelData: allbudget,
               allowClick: true,
-            }, () => { this.wheel.start(); });
+            }, () => { this.wheel.start(); this.wheelSound.stop().rate(1).play(); });
             break;
 
             // when origin selection is over next
