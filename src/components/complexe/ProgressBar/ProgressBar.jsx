@@ -21,18 +21,18 @@ class ProgressBar extends Component {
       case 'question':
       case 'event':
       case 'ads':
-        return 1;
+        return 20; // %
 
       case 'visit':
       case 'transition transition--visit':
-        return 2;
+        return 40; // %
 
       case 'adventure':
       case 'transition transition--adventure':
-        return 3;
+        return 60; // %
 
       case 'skill':
-        return 4;
+        return 80; // %
 
       default:
         return null;
@@ -41,8 +41,8 @@ class ProgressBar extends Component {
 
   render() {
     return (
-      <div>
-        { this.getStepPourcent() }
+      <div id="progress-bar">
+        <div id="progress-bar--fill" style={{ width: `${this.getStepPourcent()}%` }} />
       </div>
     );
   }

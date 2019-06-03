@@ -105,7 +105,18 @@ class StackHandler extends Component {
     const displayChoice = !isNarration && isLastCard;
     const isCardLocked = step === 'skill' && !isNarration;
 
-    let cardTemplate = (<div>Loading</div>);
+    let cardTemplate = (
+      <div className="loading">
+        <div className="lds-ring">
+          <div />
+          <div />
+          <div />
+          <div />
+        </div>
+
+      </div>
+    );
+
     if (content[actualCard]) {
       cardTemplate = React.cloneElement(content[actualCard],
         { forceCardSwipe: this.ref ? this.ref.forceCardSwipe : () => {} });

@@ -12,6 +12,8 @@
   }
 
   .card--tag {
+    border: green;
+    position: relative;
     color: $blue;
   }
 
@@ -46,9 +48,30 @@
     }
   }
 
-  &--price,
+  &--header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+    >div {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  
   &--size {
-    font-family: fivo_sans_modernregularbold;
+    position: relative;
+    font-family: fivo_sans_modernextra_black;
+    font-size: 3.5vh;
+    color: $blue;
+    line-height: 3.5vh;
+    font-weight: 900;
+  }
+
+  &--price {
+  font-family: fivo_sans_modernregularbold;
     size: 18px;
     color: white;
     letter-spacing: 1px;
@@ -82,6 +105,9 @@
     width: fit-content;
     padding: 4px;
     color: $white;
+  }
+  .ads--size {
+    color: $orange;
   }
   .ads--pricetag {
     #element_price {

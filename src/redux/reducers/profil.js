@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable import/prefer-default-export */
 // import { ACTION } from '../actions/';
 
@@ -17,21 +18,29 @@ export const debugProfil = {
   budget: budgetss[2],
   skills: [skill[0], skill[2]],
   bonus: 0,
-  score: 1,
+  score: 5,
   time: 300,
   premium: false,
 };
 
 
 const defaultState = {
-  status: {},
-  origin: {},
-  budget: {},
-  skills: [],
+  status: statuss[0],
+  origin: originss[0],
+  budget: budgetss[2],
+  skills: [skill[0], skill[2]],
   bonus: 0,
-  score: 1,
+  score: 5,
   time: 300,
   premium: false,
+  // status: {},
+  // origin: {},
+  // budget: {},
+  // skills: [],
+  // bonus: 0,
+  // score: 1,
+  // time: 300,
+  // premium: false,
 };
 
 export function profilReducer(state = defaultState, action) {

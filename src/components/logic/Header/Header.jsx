@@ -25,7 +25,7 @@ class Header extends Component {
 
     return (
       <div id="header" className="layout--header">
-        {/* <ProgressBar /> */}
+        <ProgressBar />
         <Chrono didExpire={this.triggerEnd} time={profil.time} timeToSet={time => setTime(time)} />
       </div>
     );
