@@ -9,15 +9,9 @@ import './Ads.scss';
 import views from 'assets/img/icons/icon_star_black.svg';
 import size from 'assets/img/icons/icon_surface.svg';
 
-import small1 from 'assets/img/ads/ads_small_1.gif';
-import small2 from 'assets/img/ads/ads_small_2.gif';
-import small3 from 'assets/img/ads/ads_small_3.gif';
-import medium1 from 'assets/img/ads/ads_medium_1.gif';
-import medium2 from 'assets/img/ads/ads_medium_2.gif';
-import medium3 from 'assets/img/ads/ads_medium_3.gif';
-import big1 from 'assets/img/ads/ads_big_1.gif';
-import big2 from 'assets/img/ads/ads_big_2.gif';
-import big3 from 'assets/img/ads/ads_big_3.gif';
+import {
+  small1, small2, small3, medium1, medium2, medium3, big1, big2, big3,
+} from 'assets/img/ads';
 
 import tipi from 'assets/img/ads/ads_tipi.gif';
 import yourte from 'assets/img/ads/ads_yourte.gif';
@@ -117,7 +111,7 @@ class Ads extends Component {
             <span className="ads--size">
               {data.ad_size}
               {' '}
-              m²
+              m
             </span>
             <img src={size} alt="views-icon" />
           </div>

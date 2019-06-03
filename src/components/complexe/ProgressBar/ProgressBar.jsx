@@ -21,18 +21,18 @@ class ProgressBar extends Component {
       case 'question':
       case 'event':
       case 'ads':
-        return 20; // %
+        return 0; // %
 
       case 'visit':
       case 'transition transition--visit':
-        return 40; // %
+        return 25; // %
 
       case 'adventure':
       case 'transition transition--adventure':
-        return 60; // %
+        return 50; // %
 
       case 'skill':
-        return 80; // %
+        return 75; // %
 
       default:
         return null;
