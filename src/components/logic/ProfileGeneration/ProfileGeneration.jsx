@@ -38,6 +38,9 @@ class ProfileGeneration extends Component {
 
   componentDidMount = () => {
     this.wheel.start();
+    setTimeout(() => { this.wheel1.start(); }, 150);
+    setTimeout(() => { this.wheel2.start(); }, 300);
+
     this.wheelSound = MozartService.loopSound('wheel');
     this.wheelSound.play();
   }
@@ -136,13 +139,29 @@ class ProfileGeneration extends Component {
           <div className="profile-generation--title">
             <h1>Votre profil</h1>
           </div>
-          <Wheel
-            data={wheelData}
-            fieldToShow={step === 'origin' ? 'flag' : 'picto'} // string or svg
-            img={step !== 'origin'} // if is img
-            onDataSelection={this.dataIsSelected}
-            onRef={(ref) => { this.wheel = ref; }}
-          />
+
+          <div className="wheel-container">
+            <Wheel
+              data={allstatus}
+              fieldToShow="picto" // string or svg
+              img="status" // if is img
+              onDataSelection={this.dataIsSelected}
+              onRef={(ref) => { this.wheel = ref; }}
+            />
+            <Wheel
+              data={allorigins}
+              fieldToShow="flag" // string or svg
+              onDataSelection={this.dataIsSelected}
+              onRef={(ref) => { this.wheel1 = ref; }}
+            />
+            <Wheel
+              data={allbudget}
+              fieldToShow="picto" // string or svg
+              img="budget" // if is img
+              onDataSelection={this.dataIsSelected}
+              onRef={(ref) => { this.wheel2 = ref; }}
+            />
+          </div>
           <div className="profile-generation--status">
             {step === 'status' && <h2>situation</h2>}
             {step === 'origin' && <h2>origine</h2>}
@@ -153,7 +172,7 @@ class ProfileGeneration extends Component {
               {step === 'budget' ? <h1>{profil.budget.title}</h1> : ''}
             </span>
           </div>
-          <div className="profile-generation--recap">
+          {/* <div className="profile-generation--recap">
             <ul>
               <li className={profil.status.title && 'valid'}>
                 {profil.status.title
@@ -167,12 +186,12 @@ class ProfileGeneration extends Component {
                 && <img src={profil.budget.pictoLight} alt="" />}
               </li>
             </ul>
-          </div>
-          <p className="intro--info">
+          </div> */}
+          {/* <p className="intro--info">
             Toucher pour l'écran pour
             {' '}
             {wheelIsTurning ? 'arrêter la roue' : 'continuer'}
-          </p>
+          </p> */}
         </div>
       </div>
     );
