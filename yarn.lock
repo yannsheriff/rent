@@ -2366,20 +2366,20 @@ contentful-resolve-response@^1.1.4:
   dependencies:
     lodash "^4.17.4"
 
-contentful-sdk-core@^6.3.0:
-  version "6.3.0"
-  resolved "https://registry.yarnpkg.com/contentful-sdk-core/-/contentful-sdk-core-6.3.0.tgz#f648ccd11eb50ec47ba4ab580b3a14217bccc293"
+contentful-sdk-core@^6.3.2:
+  version "6.3.3"
+  resolved "https://registry.yarnpkg.com/contentful-sdk-core/-/contentful-sdk-core-6.3.3.tgz#0c89e83d884cdf3fb41ec23cdea06ea2bd0d0af0"
   dependencies:
     lodash "^4.17.10"
     qs "^6.5.2"
 
-contentful@^7.5.0:
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/contentful/-/contentful-7.5.0.tgz#59b83b9b5e7d0dbc68535a45e0e993616d931d38"
+contentful@^7.6.0:
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/contentful/-/contentful-7.6.0.tgz#58070ec6c3618e2f55dbb644c0e8093acafc7a9c"
   dependencies:
     axios "^0.19.0-beta.1"
     contentful-resolve-response "^1.1.4"
-    contentful-sdk-core "^6.3.0"
+    contentful-sdk-core "^6.3.2"
     json-stringify-safe "^5.0.1"
     lodash "^4.17.11"
 

@@ -48,6 +48,7 @@
   &--text p {
     text-align: center;
     color: white;
+    font-family: fivo_sans_modernregularbold;
   }
 
   h1 {
@@ -55,6 +56,12 @@
     color: white;
     font-size: 8vw;
     line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 30px;
+    font-family: fivo_sans_modernextra_black;
+    color: white;
   }
 
   .lowercase {

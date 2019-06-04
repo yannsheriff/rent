@@ -6,8 +6,8 @@ let instance = null;
 
 class SocrateServices {
   constructor() {
-    this.apiUrl = 'http://vps.yannischerif.com:4000/api';
-    // this.apiUrl = 'http://localhost:4000/api';
+    // this.apiUrl = 'http://vps.yannischerif.com:4000/api';
+    this.apiUrl = 'http://localhost:4000/api';
 
     if (!instance) {
       instance = this;
@@ -28,13 +28,15 @@ class SocrateServices {
     console.log(response);
   }
 
-  async sendRecap(time, isVictory, totalFlat, Skills) {
+  async sendRecap({
+    time, isVictory, totalFlat, skills, origin, budget, status, score,
+  }) {
     const Url = `${this.apiUrl}/game`;
     if (
       time
       && isVictory !== undefined
       && totalFlat
-      && Skills
+      && skills
     ) {
       const response = await axios({
         crossdomain: true,
@@ -44,10 +46,18 @@ class SocrateServices {
           time: Math.round(time),
           win: isVictory,
           totalFlat,
-          skills: Skills,
+          skills,
+          origin,
+          budget,
+          status,
+          score,
         },
       });
       console.log(response);
+    } else {
+      console.log('FUCK');
+
+      console.log(time, isVictory, totalFlat, skills, origin, budget, status, score);
     }
   }
 

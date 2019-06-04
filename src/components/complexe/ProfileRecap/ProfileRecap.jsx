@@ -64,7 +64,7 @@ class ProfileRecap extends Component {
 
     return (
       <div className="profile-recap" onClick={() => this.nextStep()}>
-        <div className="profile-recap--container">
+        {/* <div className="profile-recap--container">
           <h1>
             Vous cherchez un logement
             {' '}
@@ -84,6 +84,28 @@ class ProfileRecap extends Component {
             </span>
             {'.'}
           </h1>
+        </div> */}
+
+        <div className="profile-generation--recap">
+          <ul>
+            <li className={profil.status.title && 'valid'}>
+              {profil.status.title
+                 && <img src={profil.status.pictoLight} alt="" />}
+            </li>
+            <li className={profil.origin.title && 'valid'}>
+              <div><span>{profil.origin.flag}</span></div>
+            </li>
+            <li className={profil.budget.title && 'valid'}>
+              {profil.budget.title
+                 && <img src={profil.budget.pictoLight} alt="" />}
+            </li>
+          </ul>
+        </div>
+
+        <div className="profile-recap--text">
+          <p>
+          Un instant, nous calculons la note de votre dossier d’après votre profil.
+          </p>
         </div>
 
         <div className="profile-recap--rate">
@@ -101,11 +123,7 @@ class ProfileRecap extends Component {
           <Star className="star small" />
         </div>
 
-        <div className="profile-recap--text">
-          <p>
-            La note ci-dessus, calculée d’après votre profil, représente la note de votre dossier de location.
-          </p>
-        </div>
+        <h2> Bon courage !  </h2>
 
         {canNext
             && (
