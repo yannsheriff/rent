@@ -19,7 +19,7 @@ import { endGame, displayPopUp, changeStep } from 'redux/actions/steps';
 import {
   Ads, Adventure, Event, Question, Skill, Visit, Narration, Transition,
 } from 'components/card-template';
-import { getRandomArbitrary } from 'vendors/random';
+import { getRandomWithProba } from 'vendors/probability';
 import StackHandler from '../StackHandler/StackHandler';
 
 
@@ -360,10 +360,9 @@ class DataHandler extends Component {
   //
   handleVisit(choice) {
     const {
-      next, fail, round, profil,
+      next, fail, profil,
     } = this.props;
     const { data, isNarration, needQuestion } = this.state;
-    const rand = getRandomArbitrary(0, 10);
     // dossier refusé donc retour aux annonces
     if (isNarration) {
       this.setState({ isNarration: false }, () => fail(needQuestion));
@@ -372,11 +371,8 @@ class DataHandler extends Component {
       NounouService.saveVisit(data.content.visit);
       SocrateService.saveChoice(data.content.visit, choice);
       if (choice) {
-        // refus du premier tour ou refus aléatoire
-        // if (round === 0 || rand === 0) {
-
         // refus si l'appartement visité a une note trop haute sauf si l'utilisateur est premium
-        if (NounouService.actualFlat.ad_rate > profil.score && !profil.premium) {
+        if (NounouService.actualFlat.ad_rate >= profil.score + 0.5 && !profil.premium) {
           const card = ([
             <Narration
               data={data.content.reject.reject_narration}
@@ -385,7 +381,26 @@ class DataHandler extends Component {
           ]);
           this.setState({ card, isNarration: true, needQuestion: true });
         } else {
-          next();
+          const interval = parseFloat((NounouService.actualFlat.ad_rate - profil.score).toFixed(1));
+          // si l'utilisateur est à 0.5 points de la note de l'appart on tente la dernière chance
+          if (interval < 0.5 && interval > 0 && !profil.premium) {
+            // on tire au sort une proba
+            const lastChance = getRandomWithProba(interval);
+            if (lastChance) {
+              next();
+            } else {
+              const card = ([
+                <Narration
+                  data={data.content.reject.reject_narration}
+                  title={data.content.reject.reject_title}
+                />,
+              ]);
+              this.setState({ card, isNarration: true, needQuestion: true });
+            }
+          // sinon tout est ok
+          } else {
+            next();
+          }
         }
       // refuser la visit
       } else {
