@@ -126,7 +126,8 @@ class Ads extends Component {
           <p>
             dossier recommandé :
             {' '}
-            <span className={`${profil.score < data.ad_rate ? 'unavailable' : 'available'}`}>{data.ad_rate}</span>
+            {data.ad_rate}
+            {/* <span className={`${profil.score < data.ad_rate ? 'unavailable' : 'available'}`}>{data.ad_rate}</span> */}
           </p>
         </div>
       </div>

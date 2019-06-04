@@ -18,7 +18,7 @@ export const debugProfil = {
   budget: budgetss[2],
   skills: [skill[0], skill[2]],
   bonus: 0,
-  score: 5,
+  score: 3,
   time: 300,
   premium: false,
 };
@@ -30,7 +30,7 @@ const defaultState = {
   budget: budgetss[2],
   skills: [skill[0], skill[2]],
   bonus: 0,
-  score: 5,
+  score: 3,
   time: 300,
   premium: false,
   // status: {},
