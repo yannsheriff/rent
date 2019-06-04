@@ -27,26 +27,41 @@ class App extends Component {
       visitChoiceStats: {},
       adventureChoiceStats: {},
     };
+
+    this.generateData = false;
   }
 
-  componentWillMount() {
-
+  componentDidMount() {
+    this.handleDataOnMount(this.props);
   }
 
   componentWillReceiveProps(nextProps) {
-    const { step, profil } = nextProps;
-    if (step.victory !== undefined && step.finalTime) {
+    this.handleDataOnMount(nextProps);
+  }
+
+  handleDataOnMount = (props) => {
+    const { step, profil } = props;
+    if (step.victory !== undefined && step.finalTime && !this.generateData) {
+      this.generateData = true;
       const recap = NounouService.getRecap();
       const formatedSkills = profil.skills.map(element => element.id);
-      this.generalRecap(step.finalTime, step.victory, recap.totalSeenAds, formatedSkills);
+      this.generalRecap(step.finalTime, step.victory, recap.totalSeenAds, formatedSkills, profil);
       this.choiceRecap(recap);
     }
   }
 
-  async generalRecap(time, win, ads, skills) {
-    await SocrateService.sendRecap(time, win, ads, skills);
+  async generalRecap(time, win, ads, skills, profil) {
+    await SocrateService.sendRecap({
+      time,
+      isVictory: win,
+      totalFlat: ads,
+      skills,
+      origin: profil.origin.id,
+      budget: profil.budget.id,
+      status: profil.status.id,
+      score: profil.score,
+    });
     const recaps = await SocrateService.getGeneralRecap();
-    console.log('TCL: App -> componentWillReceiveProps -> recap', recaps);
     this.setState({ generalRecap: recaps.data.data });
   }
 
