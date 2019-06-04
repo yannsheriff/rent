@@ -7,7 +7,7 @@ import './Launch.scss';
 function Launch(props) {
   const { next } = props;
   return (
-    <div id="launch" className="launch">
+    <div id="launch">
       <div className="header">
         <div className="menu" />
       </div>

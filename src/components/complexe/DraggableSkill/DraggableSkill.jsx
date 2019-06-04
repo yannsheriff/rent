@@ -25,7 +25,6 @@ class DraggableSkill extends Component {
     this.state = {
       posX: 0,
       posY: 0,
-      bounce: true,
     };
     this.isValidated = false;
     this.skill = React.createRef();
@@ -86,11 +85,11 @@ class DraggableSkill extends Component {
     const { posX, posY, bounce } = this.state;
     return (
       <div
-        id="draggable-skill"
         onTouchStart={this.dragStart}
         onTouchMove={this.drag}
         onTouchEnd={this.dragEnd}
-        className={bounce ? 'bounce' : ''}
+        // className={`${bounce ? 'bounce' : ''} draggable-skill`}
+        className="draggable-skill"
         style={{ transform: `translate(${posX}px, ${posY}px)`, backgroundImage: `url(${content.img})` }}
         ref={this.skill}
       />

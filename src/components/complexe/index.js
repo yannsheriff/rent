@@ -5,6 +5,7 @@ import Card from './Card/Card';
 import Chrono from './Chrono/Chrono';
 import DraggableSkill from './DraggableSkill/DraggableSkill';
 import Menu from './Menu/Menu';
+import NarrativeRecap from './NarrativeRecap/NarrativeRecap';
 import PopUp from './PopUp/PopUp';
 import ProgressBar from './ProgressBar/ProgressBar';
 import Wheel from './Wheel/Wheel';
@@ -18,6 +19,7 @@ export {
   Chrono,
   DraggableSkill,
   Menu,
+  NarrativeRecap,
   PopUp,
   ProgressBar,
   Wheel,

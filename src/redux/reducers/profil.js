@@ -30,7 +30,7 @@ const defaultState = {
   budget: budgetss[2],
   skills: [skill[0], skill[2]],
   bonus: 0,
-  score: 3,
+  score: 5,
   time: 300,
   premium: false,
   // status: {},

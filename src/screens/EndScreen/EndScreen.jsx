@@ -7,20 +7,25 @@ import { NounouService } from '../../services/NounouService';
 import { SocrateService } from '../../services/SocrateService';
 import './EndScreen.scss';
 
+// components
+import { NarrativeRecap } from 'components/complexe';
 
 class App extends Component {
   static propTypes = {
     step: PropTypes.object,
+    profil: PropTypes.object,
   };
 
   static defaultProps = {
     step: false,
+    profil: {},
   };
 
   constructor(props) {
     super(props);
     const recap = NounouService.getRecap();
     this.state = {
+      narrativeRecap: {},
       flat: recap.actualFlat,
       totalVisits: recap.totalSeenAds,
       generalRecap: false,
@@ -30,7 +35,8 @@ class App extends Component {
   }
 
   componentWillMount() {
-
+    const recap = NounouService.getRecap();
+    this.setState({ narrativeRecap: recap });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -59,45 +65,53 @@ class App extends Component {
   }
 
   render() {
-    const { step } = this.props;
+    const {
+      step, profil,
+    } = this.props;
     const {
       flat, totalVisits, generalRecap, visitChoiceStats, adventureChoiceStats,
+      narrativeRecap,
     } = this.state;
+
     const winPercent = Math.floor(generalRecap.totalWins / generalRecap.totalGames * 100);
     const visitChoice = Math.floor(visitChoiceStats.accept / visitChoiceStats.total * 100);
     const adventureChoice = Math.floor(adventureChoiceStats.accept / adventureChoiceStats.total * 100);
     return (
-      <div id="end">
-        <h1>
-          {step.end === 'win' ? 'Victoire !' : 'Défaite :(' }
-        </h1>
-        <div className="end-recap">
-          <h2>Recap :</h2>
-          Pour vivre dans un appartement {` ${flat.visit.visit_recap} `},
-          vous avez visité {` ${totalVisits} `} apparts en {Math.floor(step.finalTime)} secondes.
-          <ul>
-            <li />
-          </ul>
+      <div className={`App main-layout end fade ${step.end === 'win' ? 'victory' : 'loose'}`}>
+        <div className="container">
+          <h1>
+            {step.end === 'win' ? 'Victoire !' : 'Défaite...' }
+          </h1>
+          <NarrativeRecap profil={profil} recap={narrativeRecap} />
 
-          { generalRecap
-          && (
-          <div>
-            <h2>Users data : </h2>
-            <p> le pourcentage de victoire est de {winPercent} %.</p>
-            <p> les joueurs visitent en moyenne {Math.floor(generalRecap.avgFlat)} appartements.</p>
-            <p> Le temps moyen d'une partie est de {Math.floor(generalRecap.avgTime)} secondes.</p>
+
+          <div className="end-recap">
+            Pour vivre dans un appartement
+            vous avez visité {` ${totalVisits} `} apparts en {Math.floor(step.finalTime)} secondes.
+            <ul>
+              <li />
+            </ul>
+
+            { generalRecap
+            && (
+            <div>
+              <h2>Users data : </h2>
+              <p> le pourcentage de victoire est de {winPercent} %.</p>
+              <p> les joueurs visitent en moyenne {Math.floor(generalRecap.avgFlat)} appartements.</p>
+              <p> Le temps moyen d'une partie est de {Math.floor(generalRecap.avgTime)} secondes.</p>
+            </div>
+            )
+            }
+            { visitChoiceStats && adventureChoiceStats
+            && (
+            <div>
+              <h2>Your choices : </h2>
+              <p> Comme  {visitChoice}% des utilisateurs vous avez pris un appartement {` ${flat.visit.visit_recap} `}</p>
+              <p> Comme  {adventureChoice}% des utilisateurs vous avez ...</p>
+            </div>
+            )
+            }
           </div>
-          )
-          }
-          { visitChoiceStats && adventureChoiceStats
-          && (
-          <div>
-            <h2>Your choices : </h2>
-            <p> Comme  {visitChoice}% des utilisateurs vous avez pris un appartement {` ${flat.visit.visit_recap} `}</p>
-            <p> Comme  {adventureChoice}% des utilisateurs vous avez ...</p>
-          </div>
-          )
-          }
         </div>
       </div>
     );

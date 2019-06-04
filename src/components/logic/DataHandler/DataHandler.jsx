@@ -418,7 +418,7 @@ class DataHandler extends Component {
     if (isNarration) {
       this.setState({ isNarration: false }, () => fail());
     } else {
-      NounouService.saveAdventure(data.content);
+      NounouService.saveAdventure(data.content, choice);
       SocrateService.saveChoice(data.content, choice);
       if (choice) {
         next();
@@ -473,7 +473,7 @@ class DataHandler extends Component {
     if (isNarration) {
       this.setState({ isNarration: false }, () => next());
     } else {
-      NounouService.saveQuestion(data.content);
+      NounouService.saveQuestion(data.content, choice);
       SocrateService.saveChoice(data.content, choice);
       const content = choice ? data.content.question_accept_narration : data.content.question_refuse_narration;
       const title = choice ? data.content.question_accept : data.content.question_refuse;

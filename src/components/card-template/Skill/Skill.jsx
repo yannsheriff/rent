@@ -76,7 +76,6 @@ class Skill extends Component {
     const classes = `${receptacleIsHovered ? 'hover' : ''} ${receptacleIsSelected ? 'selected' : ''}`;
     let skills = [];
 
-
     skills = profil.skills.map((element, index) => (
       <div key={element.id}>
         <DraggableSkill

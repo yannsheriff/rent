@@ -1,21 +1,27 @@
-#end {
-    background-color: white;
+.end {
     .container {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        padding: 8vw;
+        height: 100%;
+        color: white;
     }
-    .end-recap {
-        width: 80%;
-        margin: 0 auto;
-    }
-    h1 { 
+    h1 {
+        color: white;
         text-align: center;
-        margin-top: 60px;
     }
     h2 { 
         text-align: left;
         margin-top: 25px;
         margin-bottom: 10px;
     }
+}
+
+.victory {
+
+}
+
+.loose {
+
 }
