@@ -78,8 +78,8 @@ class ProfileGeneration extends Component {
             allowClick: true,
           });
         }, 500);
-      }, 1500);
-    }, 1500);
+      }, 2000);
+    }, 2000);
   }
 
   dataIsSelected = (data, step) => {
@@ -103,13 +103,13 @@ class ProfileGeneration extends Component {
   }
 
   anime = () => {
-    document
-      .querySelectorAll('.letter')
-      .forEach((el, index) => {
-        setTimeout(() => {
-          el.classList.add('show');
-        }, index * 50 + 50);
-      });
+    const letter = document.querySelectorAll('.letter');
+    const time = 350 / letter.length;
+    letter.forEach((el, index) => {
+      setTimeout(() => {
+        el.classList.add('show');
+      }, index * time + time);
+    });
   }
 
   render() {
@@ -160,6 +160,11 @@ class ProfileGeneration extends Component {
           </div>
           )}
           {wheelIsTurning && <Button onClick={this.stopWheel} text="arreter la roue" />}
+          {allowClick
+            && (
+            <p className="intro--info">Toucher pour continuer</p>
+            )
+          }
         </div>
       </div>
     );
