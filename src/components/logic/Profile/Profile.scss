@@ -125,7 +125,7 @@
 // }
 
 .bounce {
-  animation: pulse 0.5s ease-in infinite normal;
+  animation: pulse 0.5s ease-in 3 forwards;
 }
 
 @keyframes pulse {
