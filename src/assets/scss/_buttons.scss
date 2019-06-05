@@ -6,7 +6,7 @@
     border: solid 1px $black;
     background-color: $white;
 
-    &:active, &:focus {
+    &:active {
         box-shadow: 0 0 0 0 $black;
         transform: translateY(5px);
         -webkit-transform: translateY(5px);

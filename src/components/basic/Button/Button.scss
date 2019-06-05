@@ -1,3 +1,5 @@
-#button {
- 
+.btn {
+    &.disabled {
+        opacity: .4;
+    }
 }

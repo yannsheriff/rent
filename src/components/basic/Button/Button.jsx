@@ -4,7 +4,7 @@ import { MozartService } from 'services/MozartService';
 import './Button.scss';
 
 function Button(props) {
-  const { text, onClick } = props;
+  const { text, onClick, disabled } = props;
 
   function click() {
     MozartService.interaction('click');
@@ -12,7 +12,7 @@ function Button(props) {
   }
 
   return (
-    <button className="btn" onClick={click} type="button">{text}</button>
+    <button className={`btn ${disabled ? 'disabled' : ''}`} onClick={click} type="button" disabled={disabled}>{text}</button>
   );
 }
 
