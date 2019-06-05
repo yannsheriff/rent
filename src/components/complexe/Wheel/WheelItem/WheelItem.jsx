@@ -67,6 +67,7 @@ class WheelItem extends Component {
       width: size,
       height: size,
       backgroundColor: img ? 'transparent' : 'white',
+      border: img ? 'transparent' : '1px solid black',
       opacity,
     };
     return (

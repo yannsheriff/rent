@@ -4,6 +4,9 @@ import coupleLight from './img/couple-light.svg';
 import coloc from './img/coloc-empty.svg';
 import solo from './img/solo-empty.svg';
 import couple from './img/couple-empty.svg';
+import colocWheel from './img/wheel_situation-coloc.svg';
+import soloWheel from './img/wheel_situation-solo.svg';
+import coupleWheel from './img/wheel_situation-couple.svg';
 
 export default [
   {
@@ -11,6 +14,7 @@ export default [
     title: 'Seul',
     picto: solo,
     pictoLight: soloLight,
+    pictoWheel: soloWheel,
     value: 2,
     ref: 'single',
   },
@@ -19,6 +23,7 @@ export default [
     title: 'En couple',
     picto: couple,
     pictoLight: coupleLight,
+    pictoWheel: coupleWheel,
     value: 3,
     ref: 'couple',
   },
@@ -27,6 +32,7 @@ export default [
     title: 'En collocation',
     picto: coloc,
     pictoLight: colocLight,
+    pictoWheel: colocWheel,
     value: 1,
     ref: 'collocation',
   },
