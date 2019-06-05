@@ -82,7 +82,7 @@ class Setup extends Component {
   render() {
     const { step, isSetUp } = this.state;
     return (
-      <div className={`App main-layout setup ${step}`}>
+      <div className={`App main-layout setup transition ${step}`}>
         {/* <Menu /> */}
         {step === 'intro'
           && <Intro next={this.goToNextStep} />

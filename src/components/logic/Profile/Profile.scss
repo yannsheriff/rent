@@ -1,45 +1,52 @@
 #profile {
-  box-sizing: border-box;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
   align-items: center;
+  justify-content: center;
 
-  & > div {
-    flex: 1;
+  .profile {
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
 
-    img {
-      max-height: 45px;
-      max-width: 45px;
-    }
+    &--items {
+      position: relative;
+      height: 40px;
+      width: 40px;
+      box-sizing: border-box;
 
-    .origin {
-      height: 45px;
-      width: 45px;
-      background-color: white;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      -webkit-border-radius: 50%;
-      -moz-border-radius: 50%;
-      -ms-border-radius: 50%;
-      -o-border-radius: 50%;
+      &:first-child {
+        max-height: 45px;
+        max-width: 45px;
+      }
 
-      p {
-        height: 30px;
-        font-size: 30px;
+      .round {
+        height: 100%;
+        width: 100%;
+        overflow-y: hidden;
+        border-radius: 50%;
+        background: white;
+        border: solid 1px black;
+        box-sizing: border-box;
+
+        img {
+          height: 100%;
+          width: 100%;
+        }
       }
     }
 
-    &.score {
+    .score {
+      height: 100%;
+      width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
+      margin-right: 20vw;
 
       & > * {
         position: absolute;
@@ -57,9 +64,65 @@
         -o-transition: 0.5s ease;
       }
     }
+
+    .status .round img {
+      position: relative;
+      top: 10px;
+    }
+
+    .status {
+      &:after {
+        content: url("../../../assets/img/icons/premium.svg");
+        position: absolute;
+        top: 0;
+        right: -6px;
+        max-width: 20px;
+        height: auto;
+        opacity: 0;
+        visibility: hidden;
+        -webkit-transition: all .5s ease-in;
+        -moz-transition: all .5s ease-in;
+        -ms-transition: all .5s ease-in;
+        -o-transition: all .5s ease-in;
+      }
+    }
+    .premium {
+      &:after {
+        animation: premium 1s ease-in 1 normal forwards;
+      }
+    }
+
+    .origin .round {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      p {
+        height: 26px;
+        font-size: 26px;
+      }
+    }
+
+    .budget .round {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        height: 70%;
+        width: 70%;
+      }
+    }
   }
 }
 
+// & > div {
+//   flex: 1;
+//   display: flex;
+//   justify-content: center;
+
+//   
+// }
 
 .bounce {
   animation: pulse 0.5s ease-in infinite normal;
@@ -80,6 +143,20 @@
   }
 }
 
-.transition #profile .card--choice {
-  color: black;
+@keyframes premium {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+    visibility: hidden;
+  }
+  80% {
+    transform: scale(1.1);
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+  }
 }

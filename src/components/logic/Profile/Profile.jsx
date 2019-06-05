@@ -46,25 +46,32 @@ class Header extends Component {
   render() {
     const { profil } = this.props;
     const {
-      budget, origin, status, score,
+      budget, origin, status, score, premium,
     } = profil;
+    console.log(profil);
 
     return (
       <div id="profile" className="layout--profile">
-        <div className="score" ref={this.score}>
-          <img src={star} alt="score star" />
-          <p className="card--choice">{score}</p>
-        </div>
-        <div className="status" ref={this.status}>
-          <img src={status.picto} alt="situation pictogram" />
-        </div>
-        <div ref={this.origin}>
-          <div className="origin">
-            <p>{origin.flag}</p>
+        <div className="profile">
+          <div className="profile--items score" ref={this.score}>
+            <img src={star} alt="score star" />
+            <p className="card--choice">{score}</p>
           </div>
-        </div>
-        <div ref={this.budget}>
-          <img src={budget.picto} alt="budget pictogram" />
+          <div ref={this.status} className={`profile--items status ${premium ? 'premium' : ''}`}>
+            <div className="round">
+              <img src={status.picto} alt="situation pictogram" />
+            </div>
+          </div>
+          <div className="profile--items origin" ref={this.origin}>
+            <div className="round">
+              <p>{origin.flag}</p>
+            </div>
+          </div>
+          <div className="profile--items budget" ref={this.budget}>
+            <div className="round">
+              <img src={budget.picto} alt="budget pictogram" />
+            </div>
+          </div>
         </div>
       </div>
     );

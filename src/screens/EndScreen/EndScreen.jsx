@@ -8,7 +8,8 @@ import { SocrateService } from '../../services/SocrateService';
 import './EndScreen.scss';
 
 // components
-import { NarrativeRecap } from 'components/complexe';
+import { NarrativeRecap, Chrono } from 'components/complexe';
+// import Header from 'components/logic/Header/Header';
 
 class App extends Component {
   static propTypes = {
@@ -97,6 +98,8 @@ class App extends Component {
     return (
       <div className={`App main-layout end fade ${step.end === 'win' ? 'victory' : 'loose'}`}>
         <div className="container">
+          <Chrono />
+
           <h1>
             {step.end === 'win' ? 'Victoire !' : 'Défaite...' }
           </h1>

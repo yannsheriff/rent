@@ -10,13 +10,21 @@
   &--visit {
     background-color: $dark-orange;
 
+    #profile .card--choice {
+      color: $dark-orange;
+    }
+
     .card--main,
     .background-card {
       background-color: $orange;
     }
   }
   &--adventure {
-    background-color: $dark-orange;
+    background-color: $dark-red;
+
+    #profile .card--choice {
+      color:  $dark-red;
+    }
 
     .card--main,
     .background-card {
@@ -26,6 +34,9 @@
   &--ads {
     background-color: $dark-blue;
 
+    #profile .card--choice {
+      color:  $dark-blue;
+    }
     .card--main,
     .background-card {
       background-color:$blue;
