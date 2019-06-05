@@ -86,8 +86,8 @@ class ProfileGeneration extends Component {
             allowClick: true,
           });
         }, 500);
-      }, 500);
-    }, 500);
+      }, 2000);
+    }, 2000);
   }
 
   dataIsSelected = (data, step) => {
@@ -167,7 +167,7 @@ class ProfileGeneration extends Component {
             </span>
           </div>
           )}
-          {wheelIsTurning && <Button onClick={this.stopWheel} text="arreter la roue" />}
+          {wheelIsTurning && <Button onClick={this.stopWheel} text="Arreter la roue" />}
           {allowClick
             && (
             <p className="intro--info">Toucher pour continuer</p>
