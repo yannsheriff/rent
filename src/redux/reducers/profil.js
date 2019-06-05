@@ -11,7 +11,6 @@ import originss from '../../assets/content/origins';
 import budgetss from '../../assets/content/budget';
 import skill from '../../assets/content/skills';
 
-
 export const debugProfil = {
   status: statuss[0],
   origin: originss[0],
@@ -23,24 +22,23 @@ export const debugProfil = {
   premium: false,
 };
 
-
 const defaultState = {
-  // status: statuss[2],
-  // origin: originss[0],
-  // budget: budgetss[1],
-  // skills: [skill[0], skill[2]],
+  status: statuss[2],
+  origin: originss[0],
+  budget: budgetss[1],
+  skills: [skill[0], skill[2]],
+  bonus: 0,
+  score: 3,
+  time: 300,
+  premium: true,
+  // status: {},
+  // origin: {},
+  // budget: {},
+  // skills: [],
   // bonus: 0,
-  // score: 3,
+  // score: 5,
   // time: 300,
   // premium: false,
-  status: {},
-  origin: {},
-  budget: {},
-  skills: [],
-  bonus: 0,
-  score: 5,
-  time: 300,
-  premium: false,
 };
 
 export function profilReducer(state = defaultState, action) {

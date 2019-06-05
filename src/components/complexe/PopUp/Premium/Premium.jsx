@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Button } from 'components/basic';
 import './Premium.scss';
 
+import close from 'assets/img/icons/icon_close.svg';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class Premium extends Component {
@@ -32,7 +33,9 @@ class Premium extends Component {
         ** Vraiment beaucoup de temps
         </p>
         <Button onClick={this.purchasePremium} text="Souscrire" />
-        <button className="arrow" onClick={this.cancel}>X</button>
+        <button className="arrow" onClick={this.cancel}>
+          <img src={close} alt="close popup" />
+        </button>
       </div>
     );
   }

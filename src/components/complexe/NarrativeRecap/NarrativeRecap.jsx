@@ -4,6 +4,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './NarrativeRecap.scss';
 
+import scroll from 'assets/img/icons/icon_scroll.svg';
+import premium from 'assets/img/icons/premium_white.svg';
+import visit from 'assets/img/icons/icon_visites_white.svg';
+import question from 'assets/img/icons/icon_question_white.svg';
+import adventureac from 'assets/img/icons/icon_adventure_white.svg';
+import adventureref from 'assets/img/icons/icon_adventure_white.svg';
+import test from 'assets/img/icons/icon_question_white.svg';
+
 class NarrativeRecap extends Component {
   static propTypes = {
     recap: PropTypes.object,
@@ -17,6 +25,7 @@ class NarrativeRecap extends Component {
 
   constructor(props) {
     super(props);
+    // console.log(props);
     this.state = {
       flat: props.recap.actualFlat,
       visitsAccepted: props.recap.visitsAccepted,
@@ -32,66 +41,94 @@ class NarrativeRecap extends Component {
       flat, visitsAccepted, questionsAccepted, adventuresAccepted, adventuresRejected,
     } = this.state;
 
-    console.log(visitsAccepted);
-    console.log(questionsAccepted);
     console.log(adventuresAccepted);
-    console.log(adventuresRejected);
-
     const visitList = visitsAccepted.map(visit => <li>{visit.visit_recap}</li>);
     const questionList = questionsAccepted.map(question => <li>{question.question_recap}</li>);
-    const adventureAcceptedList = adventuresAccepted.map(adventure => <li>{adventure.adventure_first_choice_recap}</li>);
-    const adventureRejectedList = adventuresRejected.map(adventure => <li>{adventure.adventure_second_choice_recap}</li>);
+    const adventureAcceptedList = adventuresAccepted.map(adventure => <li>{adventure.adventure_second_choice_recap}</li>);
+    const adventureRejectedList = adventuresRejected.map(adventure => <li>{adventure.adventure_first_choice_recap}</li>);
 
     return (
       <div className="recap--narrative">
-        <p>
+        <header>
           Pour vivre
-          <span className="lowercase">{` ${profil.status.title} `}</span>
+          <span className="lowercase strong">{` ${profil.status.title} `}</span>
           dans un(e)
-          <span className="lowercase">{` ${flat.flat.ad_title} `}</span>
+          <span className="lowercase strong">{` ${flat.flat.ad_title} `}</span>
           de
-          <span className="lowercase">{` ${flat.flat.ad_size} `}</span>
-          m²
-          {` ${flat.visit.visit_recap} `}
+          <span className="lowercase strong">
+            {` ${flat.flat.ad_size} `}
+            m²
+          </span>
+
+          <span className="lowercase strong">{` ${flat.visit.visit_recap}`}</span>
           , vous avez :
-        </p>
+        </header>
 
-        <ul>
+        <img className="scroll" src={scroll} alt="" />
+
+        <div id="content">
+
           {profil.premium && (
-            <li>
-              Souscrit à l’option premium
-            </li>
+            <section>
+              <div className="hr">
+                <img src={premium} alt="" />
+              </div>
+              <ul>
+                <li>
+                  Souscrit à l’option premium
+                </li>
+              </ul>
+            </section>
           )}
-          {visitsAccepted.length > 0 && (
-            <li>
-              Déposé un dossier pour un loyer
-              {' '}
-              <ul>{ visitList }</ul>
-            </li>
-          )}
-          {questionsAccepted.length > 0 && (
-            <li>
-              Déposé un dossier pour un loyer
-              {' '}
-              <ul>{ questionList }</ul>
-            </li>
-          )}
-          {adventuresAccepted.length > 0 && (
-            <li>
-              Refusé
-              {' '}
-              <ul>{ adventureAcceptedList }</ul>
-            </li>
-          )}
-          {adventuresRejected.length > 0 && (
-            <li>
-              mais êtes allé jusqu'à
-              {' '}
-              <ul>{ adventureRejectedList }</ul>
-            </li>
-          )}
-        </ul>
 
+          {visitsAccepted.length > 0 && (
+            <section>
+              <div className="hr">
+                <img src={visit} alt="" />
+              </div>
+              <ul>
+                Déposé un dossier pour un loyer
+                {' '}
+                { visitList }
+              </ul>
+            </section>
+          )}
+
+          {questionsAccepted.length > 0 && (
+            <section>
+              <div className="hr">
+                <img src={question} alt="" />
+              </div>
+              <ul>{ questionList }</ul>
+            </section>
+          )}
+
+          {adventuresAccepted.length > 0 && (
+            <section>
+              <div className="hr">
+                <img src={adventureac} alt="" />
+              </div>
+              <ul>
+                Refusé
+                {' '}
+                { adventureAcceptedList }
+              </ul>
+            </section>
+          )}
+
+          {adventuresRejected.length > 0 && (
+            <section>
+              <div className="hr">
+                <img src={adventureref} alt="" />
+              </div>
+              <ul>
+                mais êtes allé jusqu'à
+                {' '}
+                { adventureRejectedList }
+              </ul>
+            </section>
+          )}
+        </div>
       </div>
     );
   }

@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 45 45" style="enable-background:new 0 0 45 45;" xml:space="preserve">
-<title>icon_star</title>
-<desc>Created with Sketch.</desc>
-<g id="UI">
-	<g id="HUTTE_UI-kit_atomes" transform="translate(-100.000000, -810.000000)">
-		<path  fill="#fff" id="icon_star" d="M122.5,849.7l-13,4.2c-0.5,0.2-1.1-0.1-1.2-0.6c0-0.1,0-0.2,0-0.3l0-13.7l-8-11.1c-0.3-0.4-0.2-1,0.2-1.4
-			c0.1-0.1,0.2-0.1,0.3-0.1l13-4.3l8.1-11c0.3-0.4,0.9-0.5,1.4-0.2c0.1,0.1,0.2,0.1,0.2,0.2l8.1,11l13,4.3c0.5,0.2,0.8,0.7,0.6,1.2
-			c0,0.1-0.1,0.2-0.1,0.3l-8,11.1l0,13.7c0,0.5-0.4,1-1,1c-0.1,0-0.2,0-0.3,0L122.5,849.7z"/>
-	</g>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="45px" height="45px" viewBox="0 0 45 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_star</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="element/profile/rating-blue" fill="#FFFFFF" stroke="#000000">
+            <path d="M22.5,40.0349096 L10.6887269,44.028583 C9.90394704,44.2939358 9.05264633,43.872857 8.78729353,43.0880772 C8.73542255,42.934669 8.70873575,42.7738733 8.70826934,42.6119336 L8.67044658,29.4796634 L1.33122064,18.7903111 C0.862313877,18.1073631 1.03582857,17.1736004 1.71877655,16.7046936 C1.82995298,16.6283607 1.9509156,16.5673693 2.07839425,16.5233682 L13.9442493,12.4276948 L21.2684927,1.89517349 C21.7414593,1.21503078 22.6762391,1.04708136 23.3563818,1.52004795 C23.502718,1.62180916 23.6297461,1.74883727 23.7315073,1.89517349 L31.0557507,12.4276948 L42.9216058,16.5233682 C43.704697,16.7936636 44.1204002,17.6476022 43.8501048,18.4306934 C43.8061037,18.5581721 43.7451122,18.6791347 43.6687794,18.7903111 L36.3295534,29.4796634 L36.2917307,42.6119336 C36.2893447,43.4403573 35.6158404,44.1099932 34.7874167,44.1076072 C34.625477,44.1071408 34.4646814,44.080454 34.3112731,44.028583 L22.5,40.0349096 Z" id="icon_star"></path>
+        </g>
+    </g>
 </svg>

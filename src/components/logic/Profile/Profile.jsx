@@ -47,7 +47,6 @@ class Header extends Component {
     const {
       budget, origin, status, score, premium,
     } = profil;
-    console.log(profil);
 
     return (
       <div id="profile" className="layout--profile">

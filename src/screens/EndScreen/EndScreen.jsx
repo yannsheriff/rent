@@ -3,12 +3,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { NounouService } from '../../services/NounouService';
-import { SocrateService } from '../../services/SocrateService';
 import './EndScreen.scss';
 
+import premium from 'assets/img/icons/premium_white.svg';
+
 // components
+import { Button } from 'components/basic';
 import { NarrativeRecap, Chrono } from 'components/complexe';
+import { SocrateService } from '../../services/SocrateService';
+import { NounouService } from '../../services/NounouService';
 // import Header from 'components/logic/Header/Header';
 
 class App extends Component {
@@ -97,16 +100,22 @@ class App extends Component {
     const adventureChoice = Math.floor(adventureChoiceStats.accept / adventureChoiceStats.total * 100);
     return (
       <div className={`App main-layout end fade ${step.end === 'win' ? 'victory' : 'loose'}`}>
-        <div className="container">
+        <div id="header" className="layout--header">
           <Chrono />
-
+        </div>
+        <div className="container">
           <h1>
-            {step.end === 'win' ? 'Victoire !' : 'Défaite...' }
+            {step.end === 'win' ? 'Victoire !' : 'Défaite' }
           </h1>
+          <h2>
+            {step.end === 'win' ? 'Vous avez trouvé un appartement !' : 'Vous n\'avez pas trouvé d\'appartement à temps...' }
+          </h2>
+          <img className="main-illu" src={premium} alt="" />
+
           <NarrativeRecap profil={profil} recap={narrativeRecap} />
 
 
-          <div className="end-recap">
+          {/* <div className="end-recap">
             Pour vivre dans un appartement
             vous avez visité {` ${totalVisits} `} apparts en {Math.floor(step.finalTime)} secondes.
             <ul>
@@ -132,7 +141,12 @@ class App extends Component {
             </div>
             )
             }
-          </div>
+          </div> */}
+        </div>
+
+        <div id="footer" className="layout--footer">
+          <Button text="Rejouer" />
+          <Button text="Statistiques" />
         </div>
       </div>
     );
