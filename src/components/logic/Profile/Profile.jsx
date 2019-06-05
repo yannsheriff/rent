@@ -24,7 +24,6 @@ class Header extends Component {
     this.score = React.createRef();
   }
 
-
   componentDidUpdate(prevProps) {
     if (this.props.profil !== prevProps.profil) {
       if (this.props.profil.status !== prevProps.profil.status) {
