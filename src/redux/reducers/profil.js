@@ -25,22 +25,22 @@ export const debugProfil = {
 
 
 const defaultState = {
-  status: statuss[0],
-  origin: originss[0],
-  budget: budgetss[1],
-  skills: [skill[0], skill[2]],
-  bonus: 0,
-  score: 3,
-  time: 300,
-  premium: false,
-  // status: {},
-  // origin: {},
-  // budget: {},
-  // skills: [],
+  // status: statuss[0],
+  // origin: originss[0],
+  // budget: budgetss[1],
+  // skills: [skill[0], skill[2]],
   // bonus: 0,
-  // score: 5,
+  // score: 3,
   // time: 300,
   // premium: false,
+  status: {},
+  origin: {},
+  budget: {},
+  skills: [],
+  bonus: 0,
+  score: 5,
+  time: 300,
+  premium: false,
 };
 
 export function profilReducer(state = defaultState, action) {
