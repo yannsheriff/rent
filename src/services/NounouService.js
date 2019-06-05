@@ -10,10 +10,14 @@ let instance = null;
 class NounouServices {
   constructor() {
     this.totalSeenAds = 0;
-    this.visits = [];
-    this.adventure = [];
-    this.visitedFlatIDs = [];
-    this.actualVisit = 'Avec une tache de sang';
+    this.visitsAccepted = [];
+    this.questionsAccepted = [];
+    this.adventuresRejected = [];
+    this.adventuresAccepted = [];
+    // this.visitedFlatIDs = [];
+    this.actualVisit = {
+      visit_recap: 'Avec une tache de sang',
+    };
     this.actualFlat = {};
 
     if (!instance) {
@@ -22,17 +26,18 @@ class NounouServices {
     return instance;
   }
 
-  // DELETE CARD THAT HAS BEEN ALREADY SEEN
-
   saveAd(ad) {
     this.totalSeenAds += 1;
     this.actualFlat = ad;
-    this.visitedFlatIDs.push(ad.id);
     EthanService.removeData('ad', ad.id);
   }
 
-  saveAdventure(adventure) {
-    // sauvegarder les choix ici
+  saveAdventure(adventure, choice) {
+    if (choice) {
+      this.adventuresAccepted.push(adventure);
+    } else {
+      this.adventuresRejected.push(adventure);
+    }
     EthanService.removeData('adventure', adventure.id);
   }
 
@@ -40,19 +45,24 @@ class NounouServices {
     EthanService.removeData('event', event.id);
   }
 
-  saveQuestion(question) {
+  saveQuestion(question, choice) {
+    if (choice) {
+      this.questionsAccepted.push(question);
+    }
     EthanService.removeData('question', question.id);
   }
 
   saveVisit(visit) {
-    this.visits.push(visit.visit_recap);
+    if (visit.visit_quality === 'bad') {
+      this.visitsAccepted.push(visit);
+    }
     this.actualVisit = visit;
     EthanService.removeData('visit', visit.id);
   }
 
-  getVisitedFlat() {
-    return this.visitedFlatIDs;
-  }
+  // getVisitedFlat() {
+  //   return this.visitedFlatIDs;
+  // }
 
   getRecap() {
     return {
@@ -60,8 +70,11 @@ class NounouServices {
         visit: this.actualVisit,
         flat: this.actualFlat,
       },
+      visitsAccepted: this.visitsAccepted,
+      questionsAccepted: this.questionsAccepted,
+      adventuresRejected: this.adventuresRejected,
+      adventuresAccepted: this.adventuresAccepted,
       totalSeenAds: this.totalSeenAds,
-      visits: this.visits,
     };
   }
 }

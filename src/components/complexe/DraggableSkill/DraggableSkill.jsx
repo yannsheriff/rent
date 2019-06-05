@@ -82,14 +82,14 @@ class DraggableSkill extends Component {
 
   render() {
     const { content } = this.props;
-    const { posX, posY } = this.state;
-
+    const { posX, posY, bounce } = this.state;
     return (
       <div
-        id="draggable-skill"
         onTouchStart={this.dragStart}
         onTouchMove={this.drag}
         onTouchEnd={this.dragEnd}
+        // className={`${bounce ? 'bounce' : ''} draggable-skill`}
+        className="draggable-skill"
         style={{ transform: `translate(${posX}px, ${posY}px)`, backgroundImage: `url(${content.img})` }}
         ref={this.skill}
       />

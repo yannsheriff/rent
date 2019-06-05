@@ -12,11 +12,12 @@ class Wheel extends Component {
       items: [],
     };
     this.ref = [];
-    this.size = 120; // size of the circles
-    this.margin = 20; // margin between circles
+    this.size = 80; // size of the circles
+    this.margin = 30; // margin between circles
     this.requestStop = false; // if stop requested
-    this.itemsLength = 8; // number of items
-    this.timing = 2.5; // speed
+    this.itemsLength = 5; // number of items
+    this.timing = 2; // speed
+    this.height = 200;
   }
 
   // Create ref for top component
@@ -94,7 +95,7 @@ class Wheel extends Component {
   }
 
   stop = () => {
-    const center = window.innerWidth / 2 - 60;
+    const center = -this.height / 2 + this.size / 2;
     const total = this.size + this.margin;
     const middle = Math.floor(this.itemsLength / 2);
     const { onDataSelection } = this.props;
@@ -114,7 +115,7 @@ class Wheel extends Component {
   render() {
     const { items } = this.state;
     return (
-      <div id="wheel" className="profile-generation--wheel">
+      <div id="wheel" className="profile-generation--wheel" style={{ width: this.size, height: this.height }}>
         {items}
       </div>
     );

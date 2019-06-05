@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import lmstpBanner from 'assets/img/intro.gif';
+import { Button } from 'components/basic';
 import './Intro.scss';
 
 class Intro extends Component {
@@ -24,7 +25,7 @@ class Intro extends Component {
               Saurez-vous faire les bons choix pour ne pas finir à la rue ?
             </p>
           </div>
-          <button className="btn" onClick={() => next()}> Relever le défi </button>
+          <Button onClick={() => next()} text="Relever le défi" />
         </div>
       </div>
     );

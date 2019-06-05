@@ -4,9 +4,10 @@
 /* eslint-disable no-lonely-if */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import PropTypes, { number } from 'prop-types';
 import './DataHandler.scss';
 import { NounouService } from 'services/NounouService';
+import { SocrateService } from 'services/SocrateService';
 import {
   updateStatus, updateBudget, updateOrigin, updateBonus, updateTimer,
 } from 'redux/actions/profil';
@@ -18,6 +19,7 @@ import { endGame, displayPopUp, changeStep } from 'redux/actions/steps';
 import {
   Ads, Adventure, Event, Question, Skill, Visit, Narration, Transition,
 } from 'components/card-template';
+import { getRandomWithProba } from 'vendors/probability';
 import StackHandler from '../StackHandler/StackHandler';
 
 
@@ -26,16 +28,13 @@ import StackHandler from '../StackHandler/StackHandler';
 let EthanService = {};
 EthanPromise.then((ethan) => { EthanService = ethan; });
 
-function getRandomArbitrary(min, max) {
-  return Math.round(Math.random() * ((max - 1) - min) + min);
-}
-
 class DataHandler extends Component {
   static propTypes = {
     step: PropTypes.string,
     profil: PropTypes.object,
     next: PropTypes.func,
     fail: PropTypes.func,
+    round: PropTypes.number,
     endGame: PropTypes.func,
     updateStatus: PropTypes.func,
     updateBudget: PropTypes.func,
@@ -49,6 +48,7 @@ class DataHandler extends Component {
   static defaultProps = {
     step: '',
     profil: {},
+    round: 0,
     endGame: () => {},
     next: () => {},
     fail: () => {},
@@ -67,6 +67,7 @@ class DataHandler extends Component {
       data: {},
       card: {},
       isNarration: false,
+      needQuestion: false,
       didWin: false,
     };
 
@@ -78,29 +79,29 @@ class DataHandler extends Component {
   //  Initialisation des components
   //
   componentWillMount() {
-    const { step } = this.props;
+    const { step, round } = this.props;
 
     if (EthanService.ad) {
       const data = this.getCardData(step);
-      const card = this.returnActualComponent(data, step, true);
+      const card = this.returnActualComponent(data, step, true, round);
       this.setState({ data, card });
     } else {
       EthanPromise.then((ethan) => {
         EthanService = ethan;
         const data = this.getCardData(step);
-        const card = this.returnActualComponent(data, step, true);
+        const card = this.returnActualComponent(data, step, true, round);
         this.setState({ data, card });
       });
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const { step, profil } = nextProps;
+    const { step, profil, round } = nextProps;
     const { profil: oldProfil } = this.props;
     const { isNarration } = this.state;
     if (!isNarration && profil.premium === oldProfil.premium) {
       const data = this.getCardData(step);
-      const card = this.returnActualComponent(data, step, true);
+      const card = this.returnActualComponent(data, step, true, round);
       this.setState({ data, card }, () => {
         // si c'est un evenement on veux appliquer directement la modification
         if (step === 'event') {
@@ -163,16 +164,17 @@ class DataHandler extends Component {
   // Cette fonction return le composant qui met en forme les donnée
   // elle prend en entrée, les données de contenu ainsi que la step actuel
   //
-  returnActualComponent = (data, step, isNewStep = false) => {
+  returnActualComponent = (data, step, isNewStep = false, round) => {
     const childProps = { data: data.content, next: this.nextCard };
     const { changeStep, profil } = this.props;
     const payload = [];
 
     if (isNewStep && (
-      step === 'visit' || step === 'adventure')
+      step === 'visit' || step === 'adventure' || (step === 'ads' && round === 0))
     ) {
       if (step === 'visit') { changeStep('transition transition--visit'); }
       if (step === 'adventure') { changeStep('transition transition--adventure'); }
+      if (step === 'ads' && round === 0) { changeStep('transition transition--ads'); }
       payload.push(<Transition data={step} />);
     }
     switch (step) {
@@ -314,25 +316,42 @@ class DataHandler extends Component {
   // AD : Cette fonction s'occupe de du choix fait a partir d'une Ad
   //
   handleAd(choice) {
-    const { next, profil, popup } = this.props;
-    const { data } = this.state;
-
-    if (choice) {
-      if (data.content.ad_source === 'premium' && !profil.premium) {
-        popup('premium');
-        setTimeout(() => this.stackHandler.rerollCard(), 150);
-      } else {
-        NounouService.saveAd(data.content);
-        next();
-      }
+    const {
+      next, fail, profil, popup,
+    } = this.props;
+    const { data, isNarration } = this.state;
+    if (isNarration) {
+      this.setState({ isNarration: false }, () => fail());
     } else {
-      let newData = {};
-      do {
-        newData = this.getCardData('ads');
-      } while (JSON.stringify(newData) === JSON.stringify(data));
+      if (choice) {
+        // check si le profil est premium
+        if (data.content.ad_source === 'premium' && !profil.premium) {
+          popup('premium');
+          setTimeout(() => this.stackHandler.rerollCard(), 150);
+        } else {
+          // check si le profil a le bon budget
+          if (profil.budget.value < data.content.ad_budget) {
+            const card = ([
+              <Narration
+                data="Cet appartement n'est clairement pas dans votre budget."
+                title="Hors de prix"
+              />,
+            ]);
+            this.setState({ card, isNarration: true });
+          } else {
+            NounouService.saveAd(data.content);
+            next();
+          }
+        }
+      } else {
+        let newData = {};
+        do {
+          newData = this.getCardData('ads');
+        } while (JSON.stringify(newData) === JSON.stringify(data));
 
-      const card = this.returnActualComponent(newData, 'ads');
-      this.setState({ data: newData, card });
+        const card = this.returnActualComponent(newData, 'ads');
+        this.setState({ data: newData, card });
+      }
     }
   }
 
@@ -340,27 +359,50 @@ class DataHandler extends Component {
   // VISIT : Cette fonction s'occupe de du choix fait a partir d'une Visite
   //
   handleVisit(choice) {
-    const { next, fail, round } = this.props;
-    const { data, isNarration } = this.state;
-    const rand = getRandomArbitrary(0, 10);
+    const {
+      next, fail, profil,
+    } = this.props;
+    const { data, isNarration, needQuestion } = this.state;
     // dossier refusé donc retour aux annonces
     if (isNarration) {
-      this.setState({ isNarration: false }, () => fail());
+      this.setState({ isNarration: false }, () => fail(needQuestion));
     } else {
-      // carte visite
+      // carte visite - accepter la visite
       NounouService.saveVisit(data.content.visit);
+      SocrateService.saveChoice(data.content.visit, choice);
       if (choice) {
-        if (round === 0 || rand === 0) {
+        // refus si l'appartement visité a une note trop haute sauf si l'utilisateur est premium
+        if (NounouService.actualFlat.ad_rate >= profil.score + 0.5 && !profil.premium) {
           const card = ([
             <Narration
               data={data.content.reject.reject_narration}
               title={data.content.reject.reject_title}
             />,
           ]);
-          this.setState({ card, isNarration: true });
+          this.setState({ card, isNarration: true, needQuestion: true });
         } else {
-          next();
+          const interval = parseFloat((NounouService.actualFlat.ad_rate - profil.score).toFixed(1));
+          // si l'utilisateur est à 0.5 points de la note de l'appart on tente la dernière chance
+          if (interval < 0.5 && interval > 0 && !profil.premium) {
+            // on tire au sort une proba
+            const lastChance = getRandomWithProba(interval);
+            if (lastChance) {
+              next();
+            } else {
+              const card = ([
+                <Narration
+                  data={data.content.reject.reject_narration}
+                  title={data.content.reject.reject_title}
+                />,
+              ]);
+              this.setState({ card, isNarration: true, needQuestion: true });
+            }
+          // sinon tout est ok
+          } else {
+            next();
+          }
         }
+      // refuser la visit
       } else {
         fail();
       }
@@ -376,7 +418,8 @@ class DataHandler extends Component {
     if (isNarration) {
       this.setState({ isNarration: false }, () => fail());
     } else {
-      NounouService.saveAdventure(data.content);
+      NounouService.saveAdventure(data.content, choice);
+      SocrateService.saveChoice(data.content, choice);
       if (choice) {
         next();
       } else {
@@ -393,10 +436,10 @@ class DataHandler extends Component {
   // SKILLS : Cette fonction s'occupe du choix fait a partir d'un skill
   //
   handleSkill(choice) {
-    const { endGame } = this.props;
+    const { endGame, fail, updateTimer } = this.props;
     const { data, isNarration, didWin } = this.state;
     if (isNarration) {
-      endGame(didWin ? 'win' : 'loose');
+      didWin ? endGame('win') : this.setState({ isNarration: false }, () => fail());
     } else {
       if (choice) {
         const card = ([
@@ -408,6 +451,8 @@ class DataHandler extends Component {
         ]);
         this.setState({ card, isNarration: true, didWin: true });
       } else {
+        // on enleve du temps et on retourne aux annonces
+        updateTimer(-90);
         const card = ([
           <Narration
             data={data.content.content.adventure_defeat}
@@ -428,7 +473,8 @@ class DataHandler extends Component {
     if (isNarration) {
       this.setState({ isNarration: false }, () => next());
     } else {
-      NounouService.saveQuestion(data.content);
+      NounouService.saveQuestion(data.content, choice);
+      SocrateService.saveChoice(data.content, choice);
       const content = choice ? data.content.question_accept_narration : data.content.question_refuse_narration;
       const title = choice ? data.content.question_accept : data.content.question_refuse;
       const update = this.returnProfilUpdate();

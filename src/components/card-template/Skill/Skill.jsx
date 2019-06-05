@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Skill.scss';
 import { DraggableSkill } from 'components/complexe';
+import { MozartService } from 'services/MozartService';
 
 class Skill extends Component {
   static propTypes = {
@@ -60,6 +61,7 @@ class Skill extends Component {
 
   chooseSkill = (skill) => {
     const { data, next } = this.props;
+    MozartService.interaction('skill');
     if (skill === data.content.adventure_skill) {
       next(true);
     } else {
@@ -73,7 +75,6 @@ class Skill extends Component {
     const { receptaclePos, receptacleIsHovered, receptacleIsSelected } = this.state;
     const classes = `${receptacleIsHovered ? 'hover' : ''} ${receptacleIsSelected ? 'selected' : ''}`;
     let skills = [];
-
 
     skills = profil.skills.map((element, index) => (
       <div key={element.id}>

@@ -26,7 +26,7 @@ class WheelItem extends Component {
 
   calculatePos = (index) => {
     const { size, margin } = this.props;
-    return index * (size + margin);
+    return index * (size / 2 + margin);
   };
 
   calculateTiming = (index, timing) => {
@@ -37,12 +37,12 @@ class WheelItem extends Component {
   start = () => {
     const { size, margin } = this.props;
     setTimeout(() => {
-      this.setState({ pos: -(size + margin) });
+      this.setState({ pos: -(size * 2 + margin) });
     }, 50);
   }
 
   stop = (pos, selected = false) => {
-    this.setState({ pos, ease: 'ease-out', opacity: selected ? 1 : 0.15 });
+    this.setState({ pos: pos + 50, ease: 'ease-out', opacity: selected ? 1 : 0.15 });
   }
 
 
@@ -62,7 +62,7 @@ class WheelItem extends Component {
       </p>
     );
     const style = {
-      transform: `translateX(${pos}px)`,
+      transform: `translateY(${-pos + 50}px)`,
       transition: `${timing}ms ${ease}`,
       width: size,
       height: size,

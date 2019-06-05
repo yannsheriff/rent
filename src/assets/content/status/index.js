@@ -7,6 +7,7 @@ import couple from './img/couple-empty.svg';
 
 export default [
   {
+    id: 1,
     title: 'Seul',
     picto: solo,
     pictoLight: soloLight,
@@ -14,6 +15,7 @@ export default [
     ref: 'single',
   },
   {
+    id: 2,
     title: 'En couple',
     picto: couple,
     pictoLight: coupleLight,
@@ -21,6 +23,7 @@ export default [
     ref: 'couple',
   },
   {
+    id: 3,
     title: 'En collocation',
     picto: coloc,
     pictoLight: colocLight,

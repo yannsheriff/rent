@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable import/prefer-default-export */
 // import { ACTION } from '../actions/';
 
@@ -11,17 +12,25 @@ import budgetss from '../../assets/content/budget';
 import skill from '../../assets/content/skills';
 
 
+export const debugProfil = {
+  status: statuss[0],
+  origin: originss[0],
+  budget: budgetss[2],
+  skills: [skill[0], skill[2]],
+  bonus: 0,
+  score: 3,
+  time: 300,
+  premium: false,
+};
+
+
 const defaultState = {
   status: {},
   origin: {},
   budget: {},
   skills: [],
-  // status: statuss[0],
-  // origin: originss[0],
-  // budget: budgetss[0],
-  // skills: [skill[0], skill[2]],
   bonus: 0,
-  score: 0,
+  score: 5,
   time: 300,
   premium: false,
 };
@@ -30,7 +39,7 @@ export function profilReducer(state = defaultState, action) {
   switch (action.type) {
     case UPDATE_STATUS: {
       const newStatus = action.payload;
-      const newScore = ((((newStatus.value + state.origin.value + state.budget.value) * 2 + state.bonus) * 5) / 21).toFixed(1);
+      const newScore = parseFloat(((((newStatus.value + state.origin.value + state.budget.value) * 2 + state.bonus) * 5) / 21).toFixed(1));
       return {
         ...state,
         status: newStatus,
@@ -40,7 +49,7 @@ export function profilReducer(state = defaultState, action) {
 
     case UPDATE_BUDGET: {
       const newBudget = action.payload;
-      const newScore = ((((state.status.value + state.origin.value + newBudget.value) * 2 + state.bonus) * 5) / 21).toFixed(1);
+      const newScore = parseFloat(((((state.status.value + state.origin.value + newBudget.value) * 2 + state.bonus) * 5) / 21).toFixed(1));
       return {
         ...state,
         budget: newBudget,
@@ -50,7 +59,7 @@ export function profilReducer(state = defaultState, action) {
 
     case UPDATE_ORIGIN: {
       const newOrigin = action.payload;
-      const newScore = ((((state.status.value + newOrigin.value + state.budget.value) * 2 + state.bonus) * 5) / 21).toFixed(1);
+      const newScore = parseFloat(((((state.status.value + newOrigin.value + state.budget.value) * 2 + state.bonus) * 5) / 21).toFixed(1));
       return {
         ...state,
         origin: newOrigin,
@@ -60,7 +69,7 @@ export function profilReducer(state = defaultState, action) {
 
     case UPDATE_BONUS: {
       const newBonus = state.bonus + action.payload;
-      const newScore = ((((state.status.value + state.origin.value + state.budget.value) * 2 + newBonus) * 5) / 21).toFixed(1);
+      const newScore = parseFloat(((((state.status.value + state.origin.value + state.budget.value) * 2 + newBonus) * 5) / 21).toFixed(1));
       return {
         ...state,
         bonus: newBonus,

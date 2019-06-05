@@ -5,9 +5,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './ProfileGeneration.scss';
 import { Wheel } from 'components/complexe';
+import { MozartService } from 'services/MozartService';
 import allstatus from 'assets/content/status';
 import allorigins from 'assets/content/origins';
 import allbudget from 'assets/content/budget';
+import { Button } from 'components/basic';
+import { TweenMax, Elastic } from 'gsap';
 import { updateStatus, updateBudget, updateOrigin } from '../../../redux/actions/profil';
 
 class ProfileGeneration extends Component {
@@ -29,137 +32,139 @@ class ProfileGeneration extends Component {
     super(props);
     this.state = {
       wheelIsTurning: true,
-      wheelData: allstatus,
-      allowClick: true,
-      step: 'status',
+      allowClick: false,
+      step: 'situation',
+      title: '???',
     };
   }
 
   componentDidMount = () => {
     this.wheel.start();
+    setTimeout(() => { this.wheel1.start(); }, 150);
+    setTimeout(() => { this.wheel2.start(); }, 300);
+
+    this.wheelSound = MozartService.loopSound('wheel');
+    this.wheelSound.play();
   }
 
-  nextStep = () => {
-    const { step, wheelIsTurning, allowClick } = this.state;
+  stopWheel = () => {
+    const { wheelIsTurning, allowClick } = this.state;
     const { next } = this.props;
 
-    this.setState({ allowClick: false });
+    this.setState({ allowClick: false, wheelIsTurning: false });
 
-    if (allowClick) {
-      // premier click arrête la roue
-      if (wheelIsTurning) {
-        this.wheel.select();
+
+    // premier click arrête la roue
+    this.wheel.select();
+    // MozartService.interaction('wheel1');
+    // // console.log('TCL: slow ->  this.wheelSound', this.wheelSound._rate);
+    // const slow = setInterval(() => {
+    //   if (this.wheelSound._rate > 0.4) {
+    //     this.wheelSound.rate(this.wheelSound._rate - 0.07);
+    //   } else {
+    //     this.wheelSound.stop();
+    //     clearInterval(slow);
+    //   }
+    // }, 100);
+
+    setTimeout(() => {
+      this.wheel1.select();
+
+      setTimeout(() => {
+        this.wheel2.select();
+
         setTimeout(() => {
           this.setState({
-            wheelIsTurning: false,
             allowClick: true,
           });
-        }, 500); // la durée de la roue
-      }
-
-      // deuxième click change la step et start la roue
-      if (!wheelIsTurning) {
-        this.setState({ wheelIsTurning: true });
-        switch (step) {
-        // when status selection is over
-          case 'status':
-            this.setState({
-              step: 'origin',
-              wheelData: allorigins,
-              allowClick: true,
-            }, () => { this.wheel.start(); });
-            break;
-
-            // when origin selection is over
-          case 'origin':
-            this.setState({
-              step: 'budget',
-              wheelData: allbudget,
-              allowClick: true,
-            }, () => { this.wheel.start(); });
-            break;
-
-            // when origin selection is over next
-          case 'budget':
-            next();
-            break;
-
-          default:
-            return '';
-        }
-      }
-    }
+        }, 500);
+      }, 2000);
+    }, 2000);
   }
 
-  dataIsSelected = (data) => {
+  dataIsSelected = (data, step) => {
     const { updateStatus, updateOrigin, updateBudget } = this.props;
-    const { step } = this.state;
     switch (step) {
       case 'status':
         updateStatus(data);
+        this.setState({ title: data.title }, () => { this.anime(); });
         break;
       case 'origin':
         updateOrigin(data);
+        this.setState({ step: 'origine', title: data.title }, () => { this.anime(); });
         break;
       case 'budget':
         updateBudget(data);
+        this.setState({ step: 'budget', title: data.title }, () => { this.anime(); });
         break;
       default:
         return '';
     }
   }
 
+  anime = () => {
+    const letter = document.querySelectorAll('.letter');
+    const time = 350 / letter.length;
+    letter.forEach((el, index) => {
+      setTimeout(() => {
+        el.classList.add('show');
+      }, index * time + time);
+    });
+  }
+
   render() {
     const {
-      wheelData, step, wheelIsTurning,
+      step, wheelIsTurning, allowClick, title,
     } = this.state;
-    const { profil } = this.props;
-    // const {
-    //   budget, origin, status,
-    // } = profil;
+    const {
+      next,
+    } = this.props;
+    const splited = title.split('').map((el, index) => (<span key={el + index} className={`letter ${el === ' ' ? 'blank' : ''}`}>{el}</span>));
+
     return (
-      <div className="intro" onClick={() => this.nextStep()}>
+      <div className="intro" onClick={allowClick ? next : () => {}}>
         <div className="profile-generation--container">
           <div className="profile-generation--title">
             <h1>Votre profil</h1>
           </div>
-          <Wheel
-            data={wheelData}
-            fieldToShow={step === 'origin' ? 'flag' : 'picto'} // string or svg
-            img={step !== 'origin'} // if is img
-            onDataSelection={this.dataIsSelected}
-            onRef={(ref) => { this.wheel = ref; }}
-          />
+
+          <div className="wheel-container">
+            <Wheel
+              data={allstatus}
+              fieldToShow="picto" // string or svg
+              img="status" // if is img
+              onDataSelection={(data) => { this.dataIsSelected(data, 'status'); }}
+              onRef={(ref) => { this.wheel = ref; }}
+            />
+            <Wheel
+              data={allorigins}
+              fieldToShow="flag" // string or svg
+              onDataSelection={data => this.dataIsSelected(data, 'origin')}
+              onRef={(ref) => { this.wheel1 = ref; }}
+            />
+            <Wheel
+              data={allbudget}
+              fieldToShow="picto" // string or svg
+              img="budget" // if is img
+              onDataSelection={data => this.dataIsSelected(data, 'budget')}
+              onRef={(ref) => { this.wheel2 = ref; }}
+            />
+          </div>
+          {!wheelIsTurning
+          && (
           <div className="profile-generation--status">
-            {step === 'status' && <h2>situation</h2>}
-            {step === 'origin' && <h2>origine</h2>}
-            {step === 'budget' && <h2>budget</h2>}
+            <h2>{step}</h2>
             <span className="profile-generation--status-main">
-              {step === 'status' ? <h1>{profil.status.title}</h1> : ''}
-              {step === 'origin' ? <h1>{profil.origin.title}</h1> : ''}
-              {step === 'budget' ? <h1>{profil.budget.title}</h1> : ''}
+              <h1>{splited}</h1>
             </span>
           </div>
-          <div className="profile-generation--recap">
-            <ul>
-              <li className={profil.status.title && 'valid'}>
-                {profil.status.title
-                && <img src={profil.status.pictoLight} alt="" />}
-              </li>
-              <li className={profil.origin.title && 'valid'}>
-                <div><span>{profil.origin.flag}</span></div>
-              </li>
-              <li className={profil.budget.title && 'valid'}>
-                {profil.budget.title
-                && <img src={profil.budget.pictoLight} alt="" />}
-              </li>
-            </ul>
-          </div>
-          <p className="intro--info">
-            Toucher pour l'écran pour
-            {' '}
-            {wheelIsTurning ? 'arrêter la roue' : 'continuer'}
-          </p>
+          )}
+          {wheelIsTurning && <Button onClick={this.stopWheel} text="arreter la roue" />}
+          {allowClick
+            && (
+            <p className="intro--info">Toucher pour continuer</p>
+            )
+          }
         </div>
       </div>
     );

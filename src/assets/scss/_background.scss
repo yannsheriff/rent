@@ -1,11 +1,13 @@
 .ads,
 .intro,
 .profil,
-.recap {
+.recap,
+.victory {
   background-color: $blue;
 }
 
 .visit,
+.launch,
 .question {
   background-color: $orange;
 }
@@ -19,4 +21,8 @@
 
 .skill {
   background-color: $dark-orange;
+}
+
+.loose {
+  background-color: black;
 }

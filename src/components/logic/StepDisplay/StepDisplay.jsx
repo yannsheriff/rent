@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './StepDisplay.scss';
 import { changeStep } from 'redux/actions/steps';
+import { getRandomArbitrary } from 'vendors/random';
 
 // components
 
@@ -38,20 +39,31 @@ class StepDisplay extends Component {
   returnNextStep = (next) => {
     const { actualStep } = this.state;
     switch (actualStep) {
-      case 'ads':
-        return next ? 'visit' : 'visit';
+      case 'ads': {
+        const isEvent = this.eventHappen();
+        return next ? 'visit' : isEvent;
+      }
 
-      case 'visit':
-        return next ? 'adventure' : 'ads';
+      case 'visit': {
+        const isEvent = this.eventHappen();
+        return next ? 'adventure' : isEvent;
+      }
 
-      case 'adventure':
-        return next ? 'skill' : 'question';
+      case 'adventure': {
+        const isEvent = this.eventHappen();
+        return next ? 'skill' : isEvent;
+      }
 
-      case 'question':
-        return next ? 'event' : 'event';
+      case 'question': {
+        const isEvent = this.eventHappen();
+        return next ? 'ads' : isEvent;
+      }
 
       case 'event':
         return next ? 'ads' : 'ads';
+
+      case 'skill':
+        return next ? 'question' : 'question';
 
       default:
         return 'ads';
@@ -60,28 +72,42 @@ class StepDisplay extends Component {
 
   nextStep = () => {
     const { round } = this.state;
-    const nextStep = this.returnNextStep(true);
     const { changeStep } = this.props;
-    changeStep(nextStep);
+
+    const nextStep = this.returnNextStep(true);
     const addRound = nextStep === 'ads' ? 1 : 0;
 
+    changeStep(nextStep);
+    this.setState({
+      actualStep: nextStep,
+      round: round + addRound,
+    });
+    console.log('TCL: StepDisplay -> nextStep ->  round + addRound', round + addRound);
+  }
+
+  failStep = (needQuestion) => {
+    const { round } = this.state;
+    const { changeStep } = this.props;
+
+    let nextStep = '';
+    if (!needQuestion) {
+      nextStep = this.returnNextStep(false);
+    } else {
+      nextStep = 'question';
+    }
+    const addRound = nextStep === 'ads' ? 1 : 0;
+
+    changeStep(nextStep);
     this.setState({
       actualStep: nextStep,
       round: round + addRound,
     });
   }
 
-  failStep = () => {
-    const { round } = this.state;
-    const nextStep = this.returnNextStep(false);
-    const { changeStep } = this.props;
-    changeStep(nextStep);
-    const addRound = nextStep === 'ads' ? 1 : 0;
-
-    this.setState({
-      actualStep: nextStep,
-      round: round + addRound,
-    });
+  eventHappen = () => {
+    const rand = getRandomArbitrary(0, 2);
+    const fail = rand === 0 ? 'event' : 'ads';
+    return fail;
   }
 
   render() {

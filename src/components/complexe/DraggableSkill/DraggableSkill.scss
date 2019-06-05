@@ -1,7 +1,27 @@
-#draggable-skill {
+.draggable-skill {
     min-height: 12vh;
     height: 12vh;
     width: 12vh;
     background-size: cover;
     background-repeat: no-repeat; 
 }
+
+.bounce {
+    animation: pulse 1.5s ease-in infinite normal;
+}
+
+@keyframes pulse {
+    0% {
+        margin-bottom: 0px;
+    }
+    20% {
+        margin-bottom: 6px;
+    }
+    40% {
+        margin-bottom: 0px;
+    }
+    100% {
+        margin-bottom: 0px;
+    }
+  }
+  

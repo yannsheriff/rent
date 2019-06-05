@@ -63,13 +63,13 @@ class StackHandler extends Component {
     });
   })
 
-  playEnterTransition() {
+  playEnterTransition = () => {
     this.setState({ show: true }, () => {
       setTimeout(() => { this.setState({ transition: true }); }, 200);
     });
   }
 
-  nextCard(choice) {
+  nextCard = (choice) => {
     const { content, reject, accept } = this.props;
     const { actualCard } = this.state;
     const isLastCard = content.length === actualCard + 1;
@@ -105,6 +105,23 @@ class StackHandler extends Component {
     const displayChoice = !isNarration && isLastCard;
     const isCardLocked = step === 'skill' && !isNarration;
 
+    let cardTemplate = (
+      <div className="loading">
+        <div className="lds-ring">
+          <div />
+          <div />
+          <div />
+          <div />
+        </div>
+
+      </div>
+    );
+
+    if (content[actualCard]) {
+      cardTemplate = React.cloneElement(content[actualCard],
+        { forceCardSwipe: this.ref ? this.ref.forceCardSwipe : () => {} });
+    }
+
     return (
       <div id="stackHandler">
         <div className="background-card--placeholder">
@@ -122,7 +139,7 @@ class StackHandler extends Component {
             isLocked={isCardLocked}
             onRef={(ref) => { this.ref = ref; }}
           >
-            {content[actualCard]}
+            {cardTemplate}
           </Card>
         </div>
       </CSSTransition>

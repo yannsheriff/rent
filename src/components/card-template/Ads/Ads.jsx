@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import './Ads.scss';
-import views from 'assets/img/icons/icon_visites.svg';
+
 
 /* ILLUSTRATIONS */
 
-import small1 from 'assets/img/ads/ads_small_1.gif';
-import small2 from 'assets/img/ads/ads_small_2.gif';
-import small3 from 'assets/img/ads/ads_small_3.gif';
-import medium1 from 'assets/img/ads/ads_medium_1.gif';
-import medium2 from 'assets/img/ads/ads_medium_2.gif';
-import medium3 from 'assets/img/ads/ads_medium_3.gif';
-import big1 from 'assets/img/ads/ads_big_1.gif';
-import big2 from 'assets/img/ads/ads_big_2.gif';
-import big3 from 'assets/img/ads/ads_big_3.gif';
+import views from 'assets/img/icons/icon_star_black.svg';
+import size from 'assets/img/icons/icon_surface.svg';
+
+import {
+  small1, small2, small3, medium1, medium2, medium3, big1, big2, big3,
+} from 'assets/img/ads';
 
 import tipi from 'assets/img/ads/ads_tipi.gif';
 import yourte from 'assets/img/ads/ads_yourte.gif';
@@ -75,7 +73,7 @@ class Ads extends Component {
         </g>
       </svg>
     );
-    const { data } = this.props;
+    const { data, profil } = this.props;
     return (
       <div className={`card--content card--ads ${data.ad_source === 'premium' ? 'premium' : ''}`}>
         <h2 className="card--type">Annonce</h2>
@@ -88,11 +86,6 @@ class Ads extends Component {
             <div>
               <div>
                 <p>
-                  <span className="ads--size">
-                    {data.ad_size}
-                    {' '}
-              m²
-                  </span>
                   <span className="ads--price">
                     {data.ad_budget === 1 && '€' }
                     {data.ad_budget === 2 && '€€' }
@@ -104,15 +97,26 @@ class Ads extends Component {
           </div>
         </div>
 
-        {data.ad_source === 'agency'
+        <div className="ads--header">
+          {data.ad_source === 'agency'
         && <h3 className="card--tag blue">Agence immobilière</h3>
         }
-        {data.ad_source === 'individual'
+          {data.ad_source === 'individual'
         && <h3 className="card--tag blue">Particulier</h3>
         }
-        {data.ad_source === 'premium'
+          {data.ad_source === 'premium'
         && <h3 className="card--tag">Premium</h3>
         }
+          <div>
+            <span className="ads--size">
+              {data.ad_size}
+              {' '}
+              m
+            </span>
+            <img src={size} alt="views-icon" />
+          </div>
+        </div>
+
         <h1>
           {data.ad_title}
         </h1>
@@ -120,12 +124,10 @@ class Ads extends Component {
         <div className="ads--views">
           <img src={views} alt="views-icon" />
           <p>
+            dossier recommandé :
             {' '}
-            vu par
-            {' '}
-            {data.ad_views}
-            {' '}
-            personnes
+            {data.ad_rate}
+            {/* <span className={`${profil.score < data.ad_rate ? 'unavailable' : 'available'}`}>{data.ad_rate}</span> */}
           </p>
         </div>
       </div>
@@ -133,4 +135,14 @@ class Ads extends Component {
   }
 }
 
-export default Ads;
+/* ===============================================================
+  ======================= REDUX CONNECTION =======================
+  ================================================================ */
+
+const mapStateToProps = state => ({ profil: state.profilReducer });
+
+const componentContainer = connect(
+  mapStateToProps,
+)(Ads);
+
+export default componentContainer;

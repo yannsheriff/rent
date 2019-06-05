@@ -1,13 +1,14 @@
 /* eslint-disable import/prefer-default-export */
 import {
-  DID_SET_UP, CHANGE_STEP, END_GAME, DISPLAY_POP_UP, HIDE_POP_UP,
+  DID_SET_UP, CHANGE_STEP, END_GAME, DISPLAY_POP_UP, HIDE_POP_UP, SET_FINAL_TIME,
 } from '../actions/steps';
 
 const defaultState = {
   isSetUp: false,
   step: 'ads',
   gameIsOver: false,
-  victory: false,
+  victory: undefined,
+  finalTime: false,
   popup: false,
 };
 
@@ -30,6 +31,13 @@ export function stepReducer(state = defaultState, action) {
         ...state,
         gameIsOver: true,
         end: action.payload,
+        victory: action.payload === 'win',
+      };
+
+    case SET_FINAL_TIME:
+      return {
+        ...state,
+        finalTime: action.payload,
       };
 
     case DISPLAY_POP_UP:

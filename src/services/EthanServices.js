@@ -3,6 +3,8 @@
 /* eslint-disable class-methods-use-this */
 
 import * as contentful from 'contentful';
+import { getRandomArbitrary } from 'vendors/random';
+import { NounouService } from 'services/NounouService';
 
 class EthanServices {
   constructor(data) {
@@ -59,16 +61,18 @@ class EthanServices {
   }
 
   getAds = (profile) => {
-    const filtered = this.ad.filter(item => (item.ad_budget <= profile.budget.value));
-    const rand = getRandomArbitrary(0, filtered.length);
-    const ad = filtered[rand];
+    // const filtered = this.ad.filter(item => (item.ad_budget <= profile.budget.value));
+    // const ad = filtered[rand];
+    const rand = getRandomArbitrary(0, this.ad.length);
+    const ad = this.ad[rand];
     return ad;
   };
 
   getVisit = () => {
-    const visitRand = getRandomArbitrary(0, this.visit.length);
+    const matchingVisits = this.visit.filter(visit => visit.visit_source === NounouService.actualFlat.ad_source);
+    const visitRand = getRandomArbitrary(0, matchingVisits.length);
     const rejectRand = getRandomArbitrary(0, this.reject.length);
-    const visit = this.visit[visitRand];
+    const visit = matchingVisits[visitRand];
     const reject = this.reject[rejectRand];
     const payload = {
       visit,
@@ -160,7 +164,3 @@ async function initSingletton() {
 }
 
 export const EthanPromise = initSingletton();
-
-function getRandomArbitrary(min, max) {
-  return Math.round(Math.random() * ((max - 1) - min) + min);
-}
