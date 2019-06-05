@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  height: 100%;
+  height: 90%;
 
   &--rate {
     display: flex;
@@ -27,21 +27,55 @@
         width: 100%;
 
         .score {
-          font-family: fivo_sans_modernextra_black;
-          font-size: 25px;
           color: $blue;
+
+          strong {
+            font-family: fivo_sans_modernextra_black;
+            font-size: 25px;
+
+          }
         }
       }
     }
 
     .small {
       width: 7%;
-    }
+      transform: rotate(-27deg) translate(-10px, 10px);
+      -webkit-transform: rotate(-27deg) translate(-10px, 10px);
+      -moz-transform: rotate(-27deg) translate(-10px, 10px);
+      -ms-transform: rotate(-27deg) translate(-10px, 10px);
+      -o-transform: rotate(-27deg) translate(-10px, 10px);
+}   
+
+
+    .medium ~ .small {
+      transform: rotate(27deg) translate(10px, 10px);
+      -webkit-transform: rotate(27deg) translate(10px, 10px);
+      -moz-transform: rotate(27deg) translate(10px, 10px);
+      -ms-transform: rotate(27deg) translate(10px, 10px);
+      -o-transform: rotate(27deg) translate(10px, 10px);
+}
+
+
     .medium {
       width: 15%;
-    }
+      transform: rotate(-18deg);
+      -webkit-transform: rotate(-18deg);
+      -moz-transform: rotate(-18deg);
+      -ms-transform: rotate(-18deg);
+      -o-transform: rotate(-18deg);
+}
+
+    .big ~ .medium {
+      transform: rotate(18deg);
+      -webkit-transform: rotate(18deg);
+      -moz-transform: rotate(18deg);
+      -ms-transform: rotate(18deg);
+      -o-transform: rotate(18deg);
+}
+
     .big {
-      width: 25%;
+      width: 38%;
     }
   }
 

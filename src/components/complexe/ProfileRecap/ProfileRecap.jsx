@@ -114,7 +114,9 @@ class ProfileRecap extends Component {
           <div className="star big">
             <div>
               <span className="score">
-                { score }
+                <strong>{ score }</strong>
+                {' '}
+                / 5
               </span>
             </div>
             <Star />
