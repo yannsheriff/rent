@@ -86,8 +86,8 @@ class ProfileGeneration extends Component {
             allowClick: true,
           });
         }, 500);
-      }, 2000);
-    }, 2000);
+      }, 500);
+    }, 500);
   }
 
   dataIsSelected = (data, step) => {
