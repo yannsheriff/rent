@@ -124,7 +124,7 @@ class Ads extends Component {
         <div className="ads--views">
           <img src={views} alt="views-icon" />
           <p>
-            dossier recommandé :
+            Dossier recommandé :
             {' '}
             {data.ad_rate}
             {/* <span className={`${profil.score < data.ad_rate ? 'unavailable' : 'available'}`}>{data.ad_rate}</span> */}

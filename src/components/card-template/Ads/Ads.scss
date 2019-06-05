@@ -5,7 +5,7 @@
     display: block;
   }
   &--pricetag {
-    width: 100px;
+    width: 80px;
     #element_price {
       fill: $blue;
     }
@@ -19,8 +19,8 @@
 
   &--info {
     position: absolute;
-    top: 3vw;
-    right: 3vw;
+    top: 7vw;
+    right: 5vw;
 
     > div {
       position: relative;
@@ -89,8 +89,8 @@
     margin-top: 5%;
     img {
       vertical-align: middle;
-      max-width: 15px;
-      margin-right: 5px;
+      max-width: 20px;
+      margin-right: 12px;
     }
     p {
       display: inline-block;
