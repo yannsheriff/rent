@@ -139,7 +139,7 @@ class ProfileGeneration extends Component {
           <div className="wheel-container">
             <Wheel
               data={allstatus}
-              fieldToShow="picto" // string or svg
+              fieldToShow="pictoLight" // string or svg
               img="status" // if is img
               onDataSelection={(data) => { this.dataIsSelected(data, 'status'); }}
               onRef={(ref) => { this.wheel = ref; }}
@@ -152,7 +152,7 @@ class ProfileGeneration extends Component {
             />
             <Wheel
               data={allbudget}
-              fieldToShow="picto" // string or svg
+              fieldToShow="pictoLight" // string or svg
               img="budget" // if is img
               onDataSelection={data => this.dataIsSelected(data, 'budget')}
               onRef={(ref) => { this.wheel2 = ref; }}
