@@ -7,7 +7,7 @@ let instance = null;
 class SocrateServices {
   constructor() {
     // this.apiUrl = 'http://vps.yannischerif.com:4000/api';
-    this.apiUrl = 'http://localhost:4000/api';
+    // this.apiUrl = 'http://localhost:4000/api';
 
     if (!instance) {
       instance = this;
@@ -17,15 +17,19 @@ class SocrateServices {
 
   async saveChoice(card, choice) {
     const Url = `${this.apiUrl}/card/${card.id}`;
-    const response = await axios({
-      crossdomain: true,
-      method: 'post',
-      url: Url,
-      data: {
-        choose: choice,
-      },
-    });
-    console.log(response);
+    try {
+      const response = await axios({
+        crossdomain: true,
+        method: 'post',
+        url: Url,
+        data: {
+          choose: choice,
+        },
+      });
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   async sendRecap({

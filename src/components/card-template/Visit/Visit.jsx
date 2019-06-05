@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import './Visit.scss';
+import trueStroy from 'assets/img/true-story.svg';
 
 /* ILLUSTRATIONS */
 
@@ -34,10 +35,13 @@ class Visit extends Component {
     return (
       <div className="card--content card--visit">
         <h2 className="card--type">Visite</h2>
-        {/* <img className="card--illu" src={this.returnIllu(data.visit.visit_quality)} alt="" /> */}
-        {data.visit.visit_story === 'true'
-        && <h3 className="card--tag white">Histoire vraie</h3>
-        }
+        <div className="card--illu--container">
+          {/* <img className="card--illu" src={this.returnIllu(data.visit.visit_quality)} alt="" /> */}
+          {data.visit.visit_story === 'true'
+            && <img className="true-story" src={trueStroy} alt="histoire vrai" />
+          }
+        </div>
+
         <h1>{ data.visit.visit_title }</h1>
         <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.visit.visit_description) }} />
       </div>

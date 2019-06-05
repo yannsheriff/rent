@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import './Skill.scss';
 import { DraggableSkill } from 'components/complexe';
 import { MozartService } from 'services/MozartService';
+import skillTarget from 'assets/img/skillTarget.svg';
 
 class Skill extends Component {
   static propTypes = {
@@ -80,6 +81,7 @@ class Skill extends Component {
       <div key={element.id}>
         <DraggableSkill
           target={receptaclePos || {}}
+          dragAnimation={index === 0}
           content={element}
           onTargetHover={this.targetIsHovered}
           onValidation={() => { this.skillValidation(index); }}
@@ -97,11 +99,12 @@ class Skill extends Component {
           <p>Une de vos capacités peut peut-être vous aider à vous tirer de cette situation…  </p>
         </div>
         <div className={`receptacle ${classes}`} ref={this.assignBounding}>
-          {receptaclePos && (
+          {/* {receptaclePos && (
           <svg>
             <circle cx="50%" cy="50%" r={receptaclePos.width - receptaclePos.width / 100 * 50} />
           </svg>
-          )}
+          )} */}
+          <img src={skillTarget} alt="" />
         </div>
         <div className="skills-container">
           {skills}

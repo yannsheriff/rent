@@ -4,6 +4,7 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import './Adventure.scss';
 import lottie from 'lottie-web';
 import animations from 'assets/animation';
+import trueStroy from 'assets/img/true-story.svg';
 
 /* ILLUSTRATIONS */
 
@@ -52,7 +53,13 @@ class Adventure extends Component {
     return (
       <div className="card--content card--adventure">
         <h2 className="card--type">Péripétie</h2>
-        {/* <img className="card--illu" src={ads} alt="" /> */}
+        <div className="card--illu--container">
+          {/* <img className="card--illu" src={ads} alt="" /> */}
+          {data.adventure_story
+            && <img className="true-story" src={trueStroy} alt="histoire vrai" />
+          }
+        </div>
+
         <div className="animation" ref={this.animationContainer} />
         <h1>{ data.adventure_title }</h1>
         <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.adventure_narration) }} />

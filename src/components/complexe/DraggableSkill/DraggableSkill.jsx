@@ -25,17 +25,25 @@ class DraggableSkill extends Component {
     this.state = {
       posX: 0,
       posY: 0,
+      isDragging: false,
     };
+    this.userDidDrag = false;
     this.isValidated = false;
     this.skill = React.createRef();
   }
 
   componentDidMount() {
     this.skillBounding = this.skill.current.getBoundingClientRect();
+    setTimeout(() => {
+      if (!this.userDidDrag) {
+        this.setState({ bounce: true });
+      }
+    }, 2500);
   }
 
   dragStart = (e) => {
     this.skill.current.classList.remove('transition');
+    this.userDidDrag = true;
     this.firstTouch = { x: e.touches[0].clientX, y: e.touches[0].clientY };
   }
 
@@ -58,7 +66,9 @@ class DraggableSkill extends Component {
       }
       this.isValidated = false;
     }
-    this.setState({ posX: translateX, posY: translateY });
+    this.setState({
+      posX: translateX, posY: translateY, isDragging: true, bounce: false,
+    });
   }
 
   dragEnd = () => {
@@ -75,21 +85,22 @@ class DraggableSkill extends Component {
         onValidation();
       });
     } else {
-      this.setState({ posX: 0, posY: 0 });
+      this.setState({ posX: 0, posY: 0, isDragging: false });
       this.isValidated = false;
     }
   }
 
   render() {
-    const { content } = this.props;
-    const { posX, posY, bounce } = this.state;
+    const { content, dragAnimation } = this.props;
+    const {
+      posX, posY, isDragging, bounce,
+    } = this.state;
     return (
       <div
         onTouchStart={this.dragStart}
         onTouchMove={this.drag}
         onTouchEnd={this.dragEnd}
-        // className={`${bounce ? 'bounce' : ''} draggable-skill`}
-        className="draggable-skill"
+        className={`${!isDragging && bounce && dragAnimation ? 'drag' : ''} draggable-skill`}
         style={{ transform: `translate(${posX}px, ${posY}px)`, backgroundImage: `url(${content.img})` }}
         ref={this.skill}
       />

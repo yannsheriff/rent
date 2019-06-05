@@ -34,11 +34,12 @@ class ProfileGeneration extends Component {
       wheelIsTurning: true,
       allowClick: false,
       step: 'situation',
-      title: '???',
+      title: '? ? ?',
     };
   }
 
   componentDidMount = () => {
+    this.anime();
     this.wheel.start();
     setTimeout(() => { this.wheel1.start(); }, 150);
     setTimeout(() => { this.wheel2.start(); }, 300);
@@ -132,8 +133,14 @@ class ProfileGeneration extends Component {
     return (
       <div className="intro" onClick={allowClick ? next : () => {}}>
         <div className="profile-generation--container">
-          <div className="profile-generation--title">
+          {/* <div className="profile-generation--title">
             <h1>Votre profil</h1>
+          </div> */}
+          <div className="profile-generation--status">
+            <h2>{step}</h2>
+            <span className="profile-generation--status-main">
+              <h1>{splited}</h1>
+            </span>
           </div>
 
           <div className="wheel-container">
@@ -158,21 +165,13 @@ class ProfileGeneration extends Component {
               onRef={(ref) => { this.wheel2 = ref; }}
             />
           </div>
-          {!wheelIsTurning
-          && (
-          <div className="profile-generation--status">
-            <h2>{step}</h2>
-            <span className="profile-generation--status-main">
-              <h1>{splited}</h1>
-            </span>
-          </div>
-          )}
-          {wheelIsTurning && <Button onClick={this.stopWheel} text="Arreter la roue" />}
-          {allowClick
+
+          <Button onClick={this.stopWheel} disabled={!wheelIsTurning && !allowClick} text={allowClick ? 'Continuer' : 'Arreter la roue'} />
+          {/* {allowClick
             && (
             <p className="intro--info">Toucher pour continuer</p>
             )
-          }
+          } */}
         </div>
       </div>
     );
