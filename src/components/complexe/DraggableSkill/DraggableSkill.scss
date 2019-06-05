@@ -1,4 +1,5 @@
 .draggable-skill {
+    position: relative;
     min-height: 12vh;
     height: 12vh;
     width: 12vh;
@@ -6,22 +7,39 @@
     background-repeat: no-repeat; 
 }
 
-.bounce {
-    animation: pulse 1.5s ease-in infinite normal;
+.drag {
+    animation: drag 5s ease infinite ;
+    -webkit-animation: drag 5s ease infinite ;
 }
-
-@keyframes pulse {
+ 
+@keyframes drag {
     0% {
-        margin-bottom: 0px;
-    }
+        transform: translate(0);
+        -webkit-transform: translate(0);
+        -moz-transform: translate(0);
+        -ms-transform: translate(0);
+        -o-transform: translate(0);
+}
+    10% {
+        transform: translate(10px, -40px);
+        -webkit-transform: translate(10px, -40px);
+        -moz-transform: translate(10px, -40px);
+        -ms-transform: translate(10px, -40px);
+        -o-transform: translate(10px, -40px);
+}
     20% {
-        margin-bottom: 6px;
-    }
-    40% {
-        margin-bottom: 0px;
-    }
+        transform: translate(0);
+        -webkit-transform: translate(0);
+        -moz-transform: translate(0);
+        -ms-transform: translate(0);
+        -o-transform: translate(0);
+}
     100% {
-        margin-bottom: 0px;
+        transform: translate(0);
+        -webkit-transform: translate(0);
+        -moz-transform: translate(0);
+        -ms-transform: translate(0);
+        -o-transform: translate(0);
     }
   }
   
