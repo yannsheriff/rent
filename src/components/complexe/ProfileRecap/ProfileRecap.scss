@@ -1,47 +1,143 @@
 @import 'assets/scss/index.scss';
 
+
 .profile-recap {
-  height: 100%;
+
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
-  height: 100%;
+  height: 90%;
+
+  .star {
+    transition: .3s ease 1s;
+    -webkit-transition: .3s ease 1s;
+    -moz-transition: .3s ease 1s;
+    -ms-transition: .3s ease 1s;
+    -o-transition: .3s ease 1s;
+}
 
   &--rate {
+    opacity: 0;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     justify-content: center;
+    padding-top: 10%;
 
     .star {
       position: relative;
       width: auto;
 
-      >div {
+      svg {
+        height: 100%;
+        width: 100%;
+      }
+
+      div > div, div > span {
         position: absolute;
         display: flex;
         align-items: center;
         justify-content: center;
         height: 100%;
         width: 100%;
+      }
 
-        .score {
+      .score {
+        color: $blue;
+
+        strong {
           font-family: fivo_sans_modernextra_black;
           font-size: 25px;
-          color: $blue;
+
         }
       }
     }
 
     .small {
       width: 7%;
-    }
+      transform: rotate(0) translate(550%, -100%);
+      -webkit-transform: rotate(0) translate(550%, -100%);
+      -moz-transform: rotate(0) translate(550%, -100%);
+      -ms-transform: rotate(0) translate(550%, -100%);
+      -o-transform: rotate(0) translate(550%, -100%);
+    }   
+
+
+    .medium ~ .small {
+      transform: rotate(0) translate(-550%, -100%);
+      -webkit-transform: rotate(0) translate(-550%, -100%);
+      -moz-transform: rotate(0) translate(-550%, -100%);
+      -ms-transform: rotate(0) translate(-550%, -100%);
+      -o-transform: rotate(0) translate(-550%, -100%);
+    } 
+
+
     .medium {
       width: 15%;
+      transform: rotate(0) translate(150%, -100%);
+      -webkit-transform: rotate(0) translate(150%, -100%);
+      -moz-transform: rotate(0) translate(150%, -100%);
+      -ms-transform: rotate(0) translate(150%, -100%);
+      -o-transform: rotate(0) translate(150%, -100%);
     }
+
+    .big ~ .medium {
+      transform: rotate(0) translate(-150%, -100%);
+      -webkit-transform: rotate(0) translate(-150%, -100%);
+      -moz-transform: rotate(0) translate(-150%, -100%);
+      -ms-transform: rotate(0) translate(-150%, -100%);
+      -o-transform: rotate(0) translate(-150%, -100%);
+    }
+
     .big {
-      width: 25%;
+      position: relative;
+      width: 38%;
+      z-index: 1;
+    }
+
+    &.open  {
+
+      .small {
+        width: 7%;
+        transform: rotate(-27deg) translate(-10px, 10px);
+        -webkit-transform: rotate(-27deg) translate(-10px, 10px);
+        -moz-transform: rotate(-27deg) translate(-10px, 10px);
+        -ms-transform: rotate(-27deg) translate(-10px, 10px);
+        -o-transform: rotate(-27deg) translate(-10px, 10px);
+        transition: .3s ease;
+        -webkit-transition: .3s ease;
+        -moz-transition: .3s ease;
+        -ms-transition: .3s ease;
+        -o-transition: .3s ease;
+}   
+  
+  
+      .medium ~ .small {
+        transform: rotate(27deg) translate(10px, 10px);
+        -webkit-transform: rotate(27deg) translate(10px, 10px);
+        -moz-transform: rotate(27deg) translate(10px, 10px);
+        -ms-transform: rotate(27deg) translate(10px, 10px);
+        -o-transform: rotate(27deg) translate(10px, 10px);
+  }
+  
+  
+      .medium {
+        width: 15%;
+        transform: rotate(-18deg) translate(0,0);
+        -webkit-transform: rotate(-18deg) translate(0,0);
+        -moz-transform: rotate(-18deg) translate(0,0);
+        -ms-transform: rotate(-18deg) translate(0,0);
+        -o-transform: rotate(-18deg) translate(0,0);
+}
+  
+      .big ~ .medium {
+        transform: rotate(18deg) translate(0,0);
+        -webkit-transform: rotate(18deg) translate(0,0);
+        -moz-transform: rotate(18deg) translate(0,0);
+        -ms-transform: rotate(18deg) translate(0,0);
+        -o-transform: rotate(18deg) translate(0,0);
+}
     }
   }
 
@@ -49,6 +145,8 @@
     text-align: center;
     color: white;
     font-family: fivo_sans_modernregularbold;
+    padding-top: 5%;
+    padding-bottom: 5%;
   }
 
   h1 {
@@ -61,10 +159,20 @@
   h2 {
     font-size: 30px;
     font-family: fivo_sans_modernextra_black;
+    opacity: 0;
     color: white;
+    padding-top: 25%;
+    padding-bottom: 10%;
   }
 
   .lowercase {
     text-transform: lowercase;
   }
+
+  .open  {
+    animation: fadeIn .5s ease .1s 1 forwards;
+    -webkit-animation: fadeIn .5s ease .1s 1 forwards;
+  }
 }
+
+

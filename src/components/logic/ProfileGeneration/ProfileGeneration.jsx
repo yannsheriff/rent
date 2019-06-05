@@ -44,7 +44,22 @@ class ProfileGeneration extends Component {
     setTimeout(() => { this.wheel2.start(); }, 300);
 
     this.wheelSound = MozartService.loopSound('wheel');
+    this.wheelSound1 = MozartService.loopSound('wheel');
+    this.wheelSound2 = MozartService.loopSound('wheel');
     this.wheelSound.play();
+    this.wheelSound1.play();
+    this.wheelSound2.play();
+  }
+
+  fadeWheelSound = (wheelSoud) => {
+    const slow = setInterval(() => {
+      if (wheelSoud._rate > 0.4) {
+        wheelSoud.rate(wheelSoud._rate - 0.13);
+      } else {
+        wheelSoud.stop();
+        clearInterval(slow);
+      }
+    }, 100);
   }
 
   stopWheel = () => {
@@ -56,30 +71,23 @@ class ProfileGeneration extends Component {
 
     // premier click arrête la roue
     this.wheel.select();
-    // MozartService.interaction('wheel1');
-    // // console.log('TCL: slow ->  this.wheelSound', this.wheelSound._rate);
-    // const slow = setInterval(() => {
-    //   if (this.wheelSound._rate > 0.4) {
-    //     this.wheelSound.rate(this.wheelSound._rate - 0.07);
-    //   } else {
-    //     this.wheelSound.stop();
-    //     clearInterval(slow);
-    //   }
-    // }, 100);
+    this.fadeWheelSound(this.wheelSound);
 
     setTimeout(() => {
       this.wheel1.select();
+      this.fadeWheelSound(this.wheelSound1);
 
       setTimeout(() => {
         this.wheel2.select();
+        this.fadeWheelSound(this.wheelSound2);
 
         setTimeout(() => {
           this.setState({
             allowClick: true,
           });
         }, 500);
-      }, 2000);
-    }, 2000);
+      }, 500);
+    }, 500);
   }
 
   dataIsSelected = (data, step) => {
