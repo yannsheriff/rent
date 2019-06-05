@@ -25,7 +25,7 @@ export const debugProfil = {
 
 
 const defaultState = {
-  status: statuss[2],
+  status: statuss[0],
   origin: originss[0],
   budget: budgetss[1],
   skills: [skill[0], skill[2]],

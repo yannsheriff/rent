@@ -53,6 +53,9 @@ class Adventure extends Component {
       <div className="card--content card--adventure">
         <h2 className="card--type">Péripétie</h2>
         {/* <img className="card--illu" src={ads} alt="" /> */}
+        {data.adventure_story
+        && <h3 className="card--tag white">Histoire vraie</h3>
+        }
         <div className="animation" ref={this.animationContainer} />
         <h1>{ data.adventure_title }</h1>
         <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.adventure_narration) }} />
