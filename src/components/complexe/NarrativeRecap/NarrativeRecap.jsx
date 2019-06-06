@@ -1,3 +1,7 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react/forbid-prop-types */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable max-len */
 /* eslint-disable react/prefer-stateless-function */
 /* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
@@ -5,11 +9,9 @@ import PropTypes from 'prop-types';
 import './NarrativeRecap.scss';
 
 import {
-  scroll, premium, visit, question, adventureac, adventureref, 
+  scroll, premium, visit, question, adventureac, adventureref,
   instagram, facebook, twitter,
 } from 'assets/img/icons';
-
-import test from 'assets/img/icons/icon_question_white.svg';
 
 class NarrativeRecap extends Component {
   static propTypes = {
@@ -39,7 +41,6 @@ class NarrativeRecap extends Component {
       flat, visitsAccepted, questionsAccepted, adventuresAccepted, adventuresRejected,
     } = this.state;
 
-    console.log(adventuresAccepted);
     const visitList = visitsAccepted.map(visit => <li>{visit.visit_recap}</li>);
     const questionList = questionsAccepted.map(question => <li>{question.question_recap}</li>);
     const adventureAcceptedList = adventuresAccepted.map(adventure => <li>{adventure.adventure_second_choice_recap}</li>);
@@ -120,8 +121,7 @@ class NarrativeRecap extends Component {
                 <img src={adventureref} alt="" />
               </div>
               <ul>
-                Mais êtes allé jusqu'à
-                {' '}
+                {'Mais êtes allé jusqu\'à '}
                 { adventureRejectedList }
               </ul>
             </section>
