@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './EndScreen.scss';
+import lottie from 'lottie-web';
 
 import premium from 'assets/img/icons/premium_white.svg';
 
@@ -13,6 +14,12 @@ import { NarrativeRecap, Chrono } from 'components/complexe';
 import { SocrateService } from '../../services/SocrateService';
 import { NounouService } from '../../services/NounouService';
 // import Header from 'components/logic/Header/Header';
+
+/* LOTTIES */
+import animVictory from 'assets/animation/end/end_loose.json';
+import animLoose from 'assets/animation/end/end_loose.json';
+
+console.log(animLoose);
 
 class App extends Component {
   static propTypes = {
@@ -28,6 +35,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     const recap = NounouService.getRecap();
+    this.animationContainer = React.createRef();
     this.state = {
       narrativeRecap: {},
       flat: recap.actualFlat,
@@ -46,6 +54,22 @@ class App extends Component {
 
   componentDidMount() {
     this.handleDataOnMount(this.props);
+
+    const { step } = this.props;
+    let anim = '';
+    if (step.end === 'win') {
+      anim = animVictory;
+    } else {
+      anim = animLoose;
+    }
+
+    lottie.loadAnimation({
+      container: this.animationContainer.current, // the dom element that will contain the animation
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      animationData: anim, // the path to the animation json
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -110,7 +134,8 @@ class App extends Component {
           <h2>
             {step.end === 'win' ? 'Vous avez trouvé un appartement !' : 'Vous n\'avez pas trouvé d\'appartement à temps...' }
           </h2>
-          <img className="main-illu" src={premium} alt="" />
+          <div className="animation" ref={this.animationContainer} />
+          {/* <img className="main-illu" src={premium} alt="" /> */}
 
           <NarrativeRecap profil={profil} recap={narrativeRecap} />
 
