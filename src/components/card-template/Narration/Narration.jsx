@@ -5,22 +5,29 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import PropTypes from 'prop-types';
 import './Narration.scss';
 import lottie from 'lottie-web';
+
+/* LOTTIES */
+import rejects from 'assets/animation/reject';
+import defeats from 'assets/animation/defeat';
 import animations from 'assets/animation';
 
 import skills from 'assets/content/skills';
 import reject from 'assets/img/visit/reject.svg';
+
 
 class Narration extends Component {
   static propTypes = {
     title: PropTypes.string,
     winningSkill: PropTypes.string,
     type: PropTypes.string,
+    defeatType: PropTypes.string,
   };
 
   static defaultProps = {
     title: '',
     winningSkill: '',
     type: '',
+    defeatType: '',
   };
 
   constructor(props) {
@@ -29,24 +36,21 @@ class Narration extends Component {
   }
 
   componentDidMount() {
-    if (this.props.animation) {
-      const anim = this.findAnimation();
-      lottie.loadAnimation({
-        container: this.animationContainer.current, // the dom element that will contain the animation
-        renderer: 'svg',
-        loop: true,
-        autoplay: true,
-        animationData: anim, // the path to the animation json
-      });
-    }
+    const anim = this.getLottie();
+    lottie.loadAnimation({
+      container: this.animationContainer.current, // the dom element that will contain the animation
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      animationData: anim, // the path to the animation json
+    });
   }
 
-  returnSkill = (skill) => {
-    const goodSkill = skills.filter(item => item.id === skill)[0];
-    return goodSkill.title;
-  }
+  /*
+    REMISES EN QUESTION
+  */
 
-  findAnimation() {
+  getQuestion = () => {
     const { animation, animation: { oldProfil, update, choice } } = this.props;
     let isPositive = true;
     if (update.field === 'points') {
@@ -73,25 +77,50 @@ class Narration extends Component {
     }
   }
 
-  getCardContent = (type) => {
+  /*
+    DEFAITE DES PERIPETIES
+  */
+
+  getDefeatType = () => {
+    const { defeatType } = this.props;
+    switch (defeatType) {
+      case 'prison': return defeats.defeatPrison;
+      case 'sex': return defeats.defeatSex;
+      case 'province': return defeats.defeatProvince;
+      // case 'surnaturel': return defeats.rejectAds;
+      case 'hopital': return defeats.defeatHopital;
+      case 'banqueroute': return defeats.defeatBanqueroute;
+      case 'rue': return defeats.defeatRue;
+      default: return '';
+    }
+  }
+
+  /*
+    SKILLS
+  */
+
+  returnSkill = (skill) => {
+    const goodSkill = skills.filter(item => item.id === skill)[0];
+    return goodSkill.title;
+  }
+
+  getLottie = () => {
+    const {
+      data, type,
+    } = this.props;
     switch (type) {
-      case 'reject_ad':
-        return '';
-
-      case 'reject_visit':
-        return '';
-
-      case 'narration_question':
-        return '';
-
-      case 'narration_adventure':
-        return '';
-
-      case 'winning_skill':
-        return '';
-
-      case 'loosing_skill':
-        return '';
+      case 'reject-ads': return rejects.rejectAds;
+      case 'reject-visit': return '';
+      case 'narration-question': {
+        const animQuestion = this.getQuestion();
+        return animQuestion;
+      }
+      case 'narration-adventure': return '';
+      case 'winning-skill': return '';
+      case 'loosing-skill': {
+        const animDefeat = this.getDefeatType();
+        return animDefeat;
+      }
 
       default:
         return '';
@@ -102,22 +131,20 @@ class Narration extends Component {
     const {
       data, title, animation, winningSkill, type,
     } = this.props;
-
-    console.log(data);
     return (
       <div id="narration">
         <div className="narration--container">
-          {!animation
+          {/* {!animation
           && (
           <>
             <span className="narration--quote">”</span>
-            {/* <img src={reject} alt="reject" /> */}
           </>
           )
-          }
+          } */}
           <div className="animation" ref={this.animationContainer} />
           <h1 className="card--title">{ title }</h1>
-          {winningSkill
+
+          {type === 'winning-skill'
           && (
           <div>
             Grace à votre capacité

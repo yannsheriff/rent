@@ -1,13 +1,16 @@
+/* eslint-disable import/no-unresolved */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import './Ads.scss';
 
-
 /* ILLUSTRATIONS */
-
 import views from 'assets/img/icons/icon_star_black.svg';
 import size from 'assets/img/icons/icon_surface.svg';
+
+import poor from 'assets/content/budget/img/icon_profile_budget_poor.svg';
+import regular from 'assets/content/budget/img/icon_profile_budget_regular.svg';
+import rich from 'assets/content/budget/img/icon_profile_budget_rich.svg';
 
 import {
   small1, small2, small3, medium1, medium2, medium3, big1, big2, big3,
@@ -88,9 +91,9 @@ class Ads extends Component {
               <div>
                 <p>
                   <span className="ads--price">
-                    {data.ad_budget === 1 && '€' }
-                    {data.ad_budget === 2 && '€€' }
-                    {data.ad_budget === 3 && '€€€' }
+                    {data.ad_budget === 1 && <img src={poor} alt="poor" />}
+                    {data.ad_budget === 2 && <img src={regular} alt="regular" /> }
+                    {data.ad_budget === 3 && <img src={rich} alt="rich" /> }
                   </span>
                 </p>
               </div>

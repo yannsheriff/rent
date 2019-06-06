@@ -8,7 +8,6 @@ import lottie from 'lottie-web';
 import './Transition.scss';
 
 /* LOTTIES */
-
 import transitions from 'assets/animation/transition';
 
 class Transition extends Component {
