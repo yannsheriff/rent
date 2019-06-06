@@ -335,6 +335,7 @@ class DataHandler extends Component {
               <Narration
                 data="Cet appartement n'est clairement pas dans votre budget."
                 title="Hors de prix"
+                type="reject-ads"
               />,
             ]);
             this.setState({ card, isNarration: true });
@@ -377,6 +378,7 @@ class DataHandler extends Component {
             <Narration
               data={data.content.reject.reject_narration}
               title={data.content.reject.reject_title}
+              type="reject-visit"
             />,
           ]);
           this.setState({ card, isNarration: true, needQuestion: true });
@@ -393,6 +395,7 @@ class DataHandler extends Component {
                 <Narration
                   data={data.content.reject.reject_narration}
                   title={data.content.reject.reject_title}
+                  type="reject-visit"
                 />,
               ]);
               this.setState({ card, isNarration: true, needQuestion: true });
@@ -423,10 +426,12 @@ class DataHandler extends Component {
       if (choice) {
         next();
       } else {
-        const card = ([<Narration
-          data={data.content.adventure_back}
-          title={data.content.adventure_second_choice}
-        />]);
+        const card = ([
+          <Narration
+            type="narration-adventure"
+            data={data.content.adventure_back}
+            title={data.content.adventure_second_choice}
+          />]);
         this.setState({ card, isNarration: true });
       }
     }
@@ -444,6 +449,7 @@ class DataHandler extends Component {
       if (choice) {
         const card = ([
           <Narration
+            type="winning_skill"
             data={data.content.content.adventure_victory}
             title={data.content.content.adventure_first_choice}
             winningSkill={data.content.content.adventure_skill}
@@ -455,6 +461,7 @@ class DataHandler extends Component {
         updateTimer(-90);
         const card = ([
           <Narration
+            type="loosing_skill"
             data={data.content.content.adventure_defeat}
             title={data.content.content.adventure_first_choice}
           />,
@@ -479,6 +486,7 @@ class DataHandler extends Component {
       const title = choice ? data.content.question_accept : data.content.question_refuse;
       const update = this.returnProfilUpdate();
       const card = ([<Narration
+        type="narration_question"
         data={content}
         animation={{ oldProfil: profil, update, choice }}
         title={title}

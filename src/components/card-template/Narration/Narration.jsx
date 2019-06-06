@@ -8,17 +8,19 @@ import lottie from 'lottie-web';
 import animations from 'assets/animation';
 
 import skills from 'assets/content/skills';
-
+import reject from 'assets/img/visit/reject.svg';
 
 class Narration extends Component {
   static propTypes = {
     title: PropTypes.string,
     winningSkill: PropTypes.string,
+    type: PropTypes.string,
   };
 
   static defaultProps = {
     title: '',
     winningSkill: '',
+    type: '',
   };
 
   constructor(props) {
@@ -39,7 +41,7 @@ class Narration extends Component {
     }
   }
 
-  returnSkill(skill) {
+  returnSkill = (skill) => {
     const goodSkill = skills.filter(item => item.id === skill)[0];
     return goodSkill.title;
   }
@@ -71,15 +73,47 @@ class Narration extends Component {
     }
   }
 
+  getCardContent = (type) => {
+    switch (type) {
+      case 'reject_ad':
+        return '';
+
+      case 'reject_visit':
+        return '';
+
+      case 'narration_question':
+        return '';
+
+      case 'narration_adventure':
+        return '';
+
+      case 'winning_skill':
+        return '';
+
+      case 'loosing_skill':
+        return '';
+
+      default:
+        return '';
+    }
+  }
+
   render() {
     const {
-      data, title, animation, winningSkill,
+      data, title, animation, winningSkill, type,
     } = this.props;
+
+    console.log(data);
     return (
       <div id="narration">
         <div className="narration--container">
           {!animation
-          && <span className="narration--quote">”</span>
+          && (
+          <>
+            <span className="narration--quote">”</span>
+            {/* <img src={reject} alt="reject" /> */}
+          </>
+          )
           }
           <div className="animation" ref={this.animationContainer} />
           <h1 className="card--title">{ title }</h1>
@@ -94,7 +128,7 @@ class Narration extends Component {
           )
           }
           {/* temporaire pour tester */}
-          {typeof (data) === 'string' && <div>{data}</div>} 
+          {typeof (data) === 'string' && <div>{data}</div>}
           <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data) }} />
         </div>
       </div>

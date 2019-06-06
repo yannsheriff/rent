@@ -16,11 +16,15 @@
     }
 
     section {
-        &:first-of-type {
-            .hr {
-                img {
-                    max-width: 20px;
-                }
+        .premium {
+            img {
+                max-width: 20px;
+            }
+        }
+
+        .rotate {
+            img {
+                transform: rotate(180deg);
             }
         }
 

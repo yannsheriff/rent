@@ -8,7 +8,7 @@ import scroll from 'assets/img/icons/icon_scroll.svg';
 import premium from 'assets/img/icons/premium_white.svg';
 import visit from 'assets/img/icons/icon_visites_white.svg';
 import question from 'assets/img/icons/icon_question_white.svg';
-import adventureac from 'assets/img/icons/icon_adventure_white.svg';
+import adventureac from 'assets/img/icons/icon_question_white.svg';
 import adventureref from 'assets/img/icons/icon_adventure_white.svg';
 import test from 'assets/img/icons/icon_question_white.svg';
 
@@ -70,7 +70,7 @@ class NarrativeRecap extends Component {
 
           {profil.premium && (
             <section>
-              <div className="hr">
+              <div className="hr premium">
                 <img src={premium} alt="" />
               </div>
               <ul>
@@ -105,7 +105,7 @@ class NarrativeRecap extends Component {
 
           {adventuresAccepted.length > 0 && (
             <section>
-              <div className="hr">
+              <div className="hr rotate">
                 <img src={adventureac} alt="" />
               </div>
               <ul>
@@ -122,7 +122,7 @@ class NarrativeRecap extends Component {
                 <img src={adventureref} alt="" />
               </div>
               <ul>
-                mais êtes allé jusqu'à
+                Mais êtes allé jusqu'à
                 {' '}
                 { adventureRejectedList }
               </ul>

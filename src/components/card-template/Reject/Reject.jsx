@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import './Reject.scss';
 
-
 class Reject extends Component {
   static propTypes = {
     data: PropTypes.object,

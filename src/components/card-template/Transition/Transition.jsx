@@ -7,13 +7,9 @@ import { changeStep } from 'redux/actions/steps';
 import lottie from 'lottie-web';
 import './Transition.scss';
 
-/* ILLUSTRATIONS */
+/* LOTTIES */
 
-import animations from 'assets/animation';
-
-import ads from 'assets/img/transition/transition.gif';
-import visit from 'assets/img/transition/transition.gif';
-import adventure from 'assets/img/transition/transition.gif';
+import transitions from 'assets/animation/transition';
 
 class Transition extends Component {
   static propTypes = {
@@ -32,12 +28,13 @@ class Transition extends Component {
   }
 
   componentDidMount() {
+    const anim = this.getLottie();
     lottie.loadAnimation({
       container: this.animationContainer.current, // the dom element that will contain the animation
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      animationData: animations.transition, // the path to the animation json
+      animationData: anim, // the path to the animation json
     });
 
     const timeoutOnCard = new Promise(((resolve, reject) => {
@@ -62,15 +59,15 @@ class Transition extends Component {
     this.resolveUnmountPromise(false);
   }
 
-  getIllu() {
+  getLottie = () => {
     const { data } = this.props;
     switch (data) {
       case 'ads':
-        return ads;
+        return transitions.transitionAds;
       case 'visit':
-        return visit;
+        return transitions.transitionVisit;
       case 'adventure':
-        return adventure;
+        return transitions.transitionAdventure;
       default:
         return null;
     }
@@ -78,12 +75,10 @@ class Transition extends Component {
 
   render() {
     const { data } = this.props;
-    const illu = this.getIllu();
     return (
       <div className="transition--card">
         {' '}
         <div className="transition--illu" ref={this.animationContainer} />
-        {/* <img className="transition--illu" src={illu} alt="" /> */}
         <h1 className="card--title transition--title">
           {(data === 'visit') && 'Le coeur battant, vous vous rendez à la visite...'}
           {(data === 'adventure') && 'Dernier entretien, vous croisez les doigts'}

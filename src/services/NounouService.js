@@ -44,7 +44,7 @@ class NounouServices {
       { question_recap: 'Dû aller racheter des vêtements pour vous faire bien voir' },
     ];
     this.adventuresRejected = [
-      { adventure_first_choice_recap: 'divertir le propriétaire' },
+      { adventure_first_choice_recap: 'divertir le propriétaire pour avoir un loyer' },
     ];
     this.adventuresAccepted = [
       { adventure_second_choice_recap: 'pousser un couple dans les escaliers' },
