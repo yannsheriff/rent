@@ -2,12 +2,14 @@
 
 #narration {
     position: relative;
-    text-align: center;
-
+    text-align: left;
     .narration {
         &--quote {
-            font-size: 50px;
-            font-family: fivo_sans_modernextra_black;
+            text-align: center;
+            >span {
+                font-size: 5em;
+                font-family: fivo_sans_modernextra_black;
+            }
         }
     }
 }

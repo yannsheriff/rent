@@ -6,7 +6,7 @@ import {
 const defaultState = {
   isSetUp: true,
   step: 'ads',
-  gameIsOver: false,
+  gameIsOver: true,
   victory: undefined,
   finalTime: false,
   popup: false,

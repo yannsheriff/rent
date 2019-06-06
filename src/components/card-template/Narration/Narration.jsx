@@ -121,9 +121,7 @@ class Narration extends Component {
         const animDefeat = this.getDefeatType();
         return animDefeat;
       }
-
-      default:
-        return '';
+      default: return '';
     }
   }
 
@@ -134,13 +132,9 @@ class Narration extends Component {
     return (
       <div id="narration">
         <div className="narration--container">
-          {/* {!animation
-          && (
-          <>
-            <span className="narration--quote">”</span>
-          </>
-          )
-          } */}
+          {(type === 'narration-adventure' || type === 'winning-skill')
+          && (<div className="narration--quote"><span>”</span></div>)
+          }
           <div className="animation" ref={this.animationContainer} />
           <h1 className="card--title">{ title }</h1>
 

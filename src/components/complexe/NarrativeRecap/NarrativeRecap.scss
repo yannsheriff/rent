@@ -74,6 +74,50 @@
         }
     }
 
+    .cto {
+        margin: 5vh auto;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+            text-align: left;
+        }        
+        .underline {
+            text-decoration: underline;
+        }
+        .chevron {
+            margin: 0;
+            width: 20px;
+            transform: rotate(-90deg)
+        }
+    }
+
+    &--share {
+        margin: 5vh auto;
+        ul {
+            margin: 5vh auto;
+            display: flex;
+            justify-content: space-around;
+            li {
+                width: auto;
+
+                img {
+                    width: 100%;
+                    max-width: 35px;
+                }
+            }
+        }
+    }
+
+    &--about {
+        margin: 5vh auto;
+        h1 {
+            text-align: left !important;
+        }
+    }
+
     .scroll {
         margin: 5vh auto;
         max-width: 20px;

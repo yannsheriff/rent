@@ -4,12 +4,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './NarrativeRecap.scss';
 
-import scroll from 'assets/img/icons/icon_scroll.svg';
-import premium from 'assets/img/icons/premium_white.svg';
-import visit from 'assets/img/icons/icon_visites_white.svg';
-import question from 'assets/img/icons/icon_question_white.svg';
-import adventureac from 'assets/img/icons/icon_question_white.svg';
-import adventureref from 'assets/img/icons/icon_adventure_white.svg';
+import {
+  scroll, premium, visit, question, adventureac, adventureref, 
+  instagram, facebook, twitter,
+} from 'assets/img/icons';
+
 import test from 'assets/img/icons/icon_question_white.svg';
 
 class NarrativeRecap extends Component {
@@ -25,7 +24,6 @@ class NarrativeRecap extends Component {
 
   constructor(props) {
     super(props);
-    // console.log(props);
     this.state = {
       flat: props.recap.actualFlat,
       visitsAccepted: props.recap.visitsAccepted,
@@ -128,6 +126,33 @@ class NarrativeRecap extends Component {
               </ul>
             </section>
           )}
+
+          <div className="recap--narrative--share">
+            <div className="cto">
+              <h2 className="underline">Partager mon score</h2>
+              <img className="chevron" src={scroll} alt="" />
+            </div>
+            <ul>
+              <li>
+                <img src={instagram} alt="share instagram" />
+              </li>
+              <li>
+                <img src={facebook} alt="share facebook" />
+              </li>
+              <li>
+                <img src={twitter} alt="share twitter" />
+              </li>
+            </ul>
+          </div>
+
+          <div className="recap--narrative--about">
+            <h1>à propos</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, eum ipsam ut architecto sit error deleniti aspernatur minima perferendis vitae laboriosam illum nobis eaque possimus quia officiis excepturi molestiae nostrum?</p>
+            <div className="cto">
+              <h2 className="underline">en savoir plus</h2>
+              <img className="chevron" src={scroll} alt="" />
+            </div>
+          </div>
         </div>
       </div>
     );
