@@ -11,13 +11,13 @@ import premium from 'assets/img/icons/premium_white.svg';
 // components
 import { Button } from 'components/basic';
 import { NarrativeRecap, Chrono, StatsRecap } from 'components/complexe';
+import animVictory from 'assets/animation/end/end_loose.json';
+import animLoose from 'assets/animation/end/end_loose.json';
 import { SocrateService } from '../../services/SocrateService';
 import { NounouService } from '../../services/NounouService';
 // import Header from 'components/logic/Header/Header';
 
 /* LOTTIES */
-import animVictory from 'assets/animation/end/end_loose.json';
-import animLoose from 'assets/animation/end/end_loose.json';
 
 console.log(animLoose);
 
@@ -41,6 +41,7 @@ class App extends Component {
       flat: recap.actualFlat,
       totalVisits: recap.totalSeenAds,
       generalRecap: false,
+      choiceRecap: false,
       visitChoiceStats: {},
       adventureChoiceStats: {},
       showStats: false,
@@ -54,7 +55,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.handleDataOnMount(this.props);
+    setTimeout(() => this.handleDataOnMount(this.props), 1000);
+
 
     const { step } = this.props;
     let anim = '';
@@ -78,37 +80,43 @@ class App extends Component {
   }
 
   handleDataOnMount = (props) => {
+    console.log('handleDataOnMount');
+
     const { step, profil } = props;
-    if (step.victory !== undefined && step.finalTime && !this.generateData) {
-      this.generateData = true;
-      const recap = NounouService.getRecap();
-      const formatedSkills = profil.skills.map(element => element.id);
-      this.generalRecap(step.finalTime, step.victory, recap.totalSeenAds, formatedSkills, profil);
-      this.choiceRecap(recap);
-    }
+    // if (step.victory !== undefined && step.finalTime && !this.generateData) {
+    this.generateData = true;
+    const recap = NounouService.getRecap();
+    console.log('TCL: App -> handleDataOnMount -> recap', recap);
+    this.setState({ narrativeRecap: recap });
+    const formatedSkills = profil.skills.map(element => element.id);
+    this.generalRecap(step.finalTime, step.victory, recap.totalSeenAds, formatedSkills, profil);
+    this.choiceRecap(recap);
+    // }
   }
 
   async generalRecap(time, win, ads, skills, profil) {
-    await SocrateService.sendRecap({
-      time,
-      isVictory: win,
-      totalFlat: ads,
-      skills,
-      origin: profil.origin.id,
-      budget: profil.budget.id,
-      status: profil.status.id,
-      score: profil.score,
-    });
+    // await SocrateService.sendRecap({
+    //   time,
+    //   isVictory: win,
+    //   totalFlat: ads,
+    //   skills,
+    //   origin: profil.origin.id,
+    //   budget: profil.budget.id,
+    //   status: profil.status.id,
+    //   score: profil.score,
+    // });
     const recaps = await SocrateService.getGeneralRecap();
     this.setState({ generalRecap: recaps.data.data });
   }
 
   async choiceRecap(recap) {
-    const { data: visitResponse } = await SocrateService.getCardStat(recap.actualFlat.visit.id);
-    const visit = { ...visitResponse.data, ...recap.actualFlat.visit };
-    const { data: adventureResponse } = await SocrateService.getCardStat(recap.adventure.id);
-    const adventure = { ...adventureResponse.data, ...recap.adventure };
-    this.setState({ visitChoiceStats: visit, adventureChoiceStats: adventure });
+    const { data: visitResponse } = await SocrateService.getCardStat(recap.actualFlat.visit.visit.id);
+    const visit = { ...visitResponse.data, ...recap.actualFlat.visit.visit };
+    const { data: questionResponse } = await SocrateService.getCardStat(recap.questionsAccepted[0].id);
+    const question = { ...questionResponse.data, ...recap.questionsAccepted[0] };
+    const { data: adventureResponse } = await SocrateService.getCardStat(recap.adventuresAccepted[0].id);
+    const adventure = { ...adventureResponse.data, ...recap.adventuresAccepted[0] };
+    this.setState({ choiceRecap: { visit, adventure, question } });
   }
 
   render() {
@@ -116,13 +124,10 @@ class App extends Component {
       step, profil,
     } = this.props;
     const {
-      flat, totalVisits, generalRecap, visitChoiceStats, adventureChoiceStats,
+      generalRecap, choiceRecap,
       narrativeRecap, showStats,
     } = this.state;
 
-    const winPercent = Math.floor(generalRecap.totalWins / generalRecap.totalGames * 100);
-    const visitChoice = Math.floor(visitChoiceStats.accept / visitChoiceStats.total * 100);
-    const adventureChoice = Math.floor(adventureChoiceStats.accept / adventureChoiceStats.total * 100);
     return (
       <div className={`App main-layout end fade ${step.end === 'win' ? 'victory' : 'loose'}`}>
         <div id="header" className="layout--header">
@@ -139,7 +144,7 @@ class App extends Component {
           {/* <img className="main-illu" src={premium} alt="" /> */}
 
           <NarrativeRecap profil={profil} recap={narrativeRecap} />
-          { showStats && <StatsRecap /> }
+          { showStats && <StatsRecap recapData={{ generalRecap, choiceRecap, time: step.finalTime }} /> }
 
 
           {/* <div className="end-recap">

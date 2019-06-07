@@ -35,6 +35,16 @@ class NarrativeRecap extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      flat: nextProps.recap.actualFlat,
+      visitsAccepted: nextProps.recap.visitsAccepted,
+      questionsAccepted: nextProps.recap.questionsAccepted,
+      adventuresAccepted: nextProps.recap.adventuresAccepted,
+      adventuresRejected: nextProps.recap.adventuresRejected,
+    });
+  }
+
   render() {
     const { profil } = this.props;
     const {

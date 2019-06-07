@@ -19,3 +19,10 @@ export function humanizeMonth(secNum) {
 
   return { month, days, hours };
 }
+
+export function secondsToMonth(secNum) {
+  const monthInSec = 6 * 31 * 24 * 60 * 60;
+  const left = secNum * monthInSec / 300;
+  const month = (left / 2678400).toFixed(1);
+  return month;
+}
