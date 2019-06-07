@@ -19,8 +19,6 @@ import { NounouService } from '../../services/NounouService';
 
 /* LOTTIES */
 
-console.log(animLoose);
-
 class App extends Component {
   static propTypes = {
     step: PropTypes.object,

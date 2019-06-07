@@ -6,6 +6,7 @@ import event_good from './anim_event_good.json';
 import question_bad from './anim_reassement_badjson.json';
 import question_good from './anim_reassement_good.json';
 import question from './anim_reassessment.json';
+import skill_win from './anim_skill_win.json';
 import jauge from './jauge.json';
 
 export default {
@@ -17,5 +18,6 @@ export default {
   question_bad,
   question_good,
   question,
+  skill_win,
   jauge,
 };

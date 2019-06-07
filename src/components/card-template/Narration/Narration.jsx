@@ -87,7 +87,7 @@ class Narration extends Component {
       case 'prison': return defeats.defeatPrison;
       case 'sex': return defeats.defeatSex;
       case 'province': return defeats.defeatProvince;
-      // case 'surnaturel': return defeats.rejectAds;
+      case 'surnaturel': return defeats.defeatSurnaturel;
       case 'hopital': return defeats.defeatHopital;
       case 'banqueroute': return defeats.defeatBanqueroute;
       case 'rue': return defeats.defeatRue;
@@ -110,13 +110,13 @@ class Narration extends Component {
     } = this.props;
     switch (type) {
       case 'reject-ads': return rejects.rejectAds;
-      case 'reject-visit': return '';
+      case 'reject-visit': return rejects.rejectVisit;
       case 'narration-question': {
         const animQuestion = this.getQuestion();
         return animQuestion;
       }
       case 'narration-adventure': return '';
-      case 'winning-skill': return '';
+      case 'winning-skill': return animations.skill_win;
       case 'loosing-skill': {
         const animDefeat = this.getDefeatType();
         return animDefeat;
@@ -132,7 +132,7 @@ class Narration extends Component {
     return (
       <div id="narration">
         <div className="narration--container">
-          {(type === 'narration-adventure' || type === 'winning-skill')
+          {(type === 'narration-adventure')
           && (<div className="narration--quote"><span>”</span></div>)
           }
           <div className="animation" ref={this.animationContainer} />

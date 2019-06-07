@@ -46,7 +46,6 @@ class Visit extends Component {
         <h2 className="card--type">Visite</h2>
         <div className="card--illu--container">
           <div className="animation" ref={this.animationContainer} />
-          {/* <img className="card--illu" src={this.returnIllu(data.visit.visit_quality)} alt="" /> */}
           {data.visit.visit_story === 'true'
             && <img className="true-story" src={trueStroy} alt="histoire vrai" />
           }

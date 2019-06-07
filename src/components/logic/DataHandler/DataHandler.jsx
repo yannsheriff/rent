@@ -441,12 +441,13 @@ class DataHandler extends Component {
   // SKILLS : Cette fonction s'occupe du choix fait a partir d'un skill
   //
   handleSkill(choice) {
-    const { endGame, fail, updateTimer } = this.props;
+    const { endGame, fail, updateTimer, changeStep } = this.props;
     const { data, isNarration, didWin } = this.state;
     if (isNarration) {
       didWin ? endGame('win') : this.setState({ isNarration: false }, () => fail());
     } else {
       if (choice) {
+        changeStep('skill win');
         const card = ([
           <Narration
             type="winning-skill"
