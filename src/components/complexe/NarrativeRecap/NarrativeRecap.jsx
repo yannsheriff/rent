@@ -1,16 +1,17 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react/forbid-prop-types */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable max-len */
 /* eslint-disable react/prefer-stateless-function */
 /* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './NarrativeRecap.scss';
 
-import scroll from 'assets/img/icons/icon_scroll.svg';
-import premium from 'assets/img/icons/premium_white.svg';
-import visit from 'assets/img/icons/icon_visites_white.svg';
-import question from 'assets/img/icons/icon_question_white.svg';
-import adventureac from 'assets/img/icons/icon_adventure_white.svg';
-import adventureref from 'assets/img/icons/icon_adventure_white.svg';
-import test from 'assets/img/icons/icon_question_white.svg';
+import {
+  scroll, premium, visit, question, adventureac, adventureref,
+  instagram, facebook, twitter,
+} from 'assets/img/icons';
 
 class NarrativeRecap extends Component {
   static propTypes = {
@@ -25,7 +26,6 @@ class NarrativeRecap extends Component {
 
   constructor(props) {
     super(props);
-    // console.log(props);
     this.state = {
       flat: props.recap.actualFlat,
       visitsAccepted: props.recap.visitsAccepted,
@@ -41,7 +41,6 @@ class NarrativeRecap extends Component {
       flat, visitsAccepted, questionsAccepted, adventuresAccepted, adventuresRejected,
     } = this.state;
 
-    console.log(adventuresAccepted);
     const visitList = visitsAccepted.map(visit => <li>{visit.visit_recap}</li>);
     const questionList = questionsAccepted.map(question => <li>{question.question_recap}</li>);
     const adventureAcceptedList = adventuresAccepted.map(adventure => <li>{adventure.adventure_second_choice_recap}</li>);
@@ -70,7 +69,7 @@ class NarrativeRecap extends Component {
 
           {profil.premium && (
             <section>
-              <div className="hr">
+              <div className="hr premium">
                 <img src={premium} alt="" />
               </div>
               <ul>
@@ -105,7 +104,7 @@ class NarrativeRecap extends Component {
 
           {adventuresAccepted.length > 0 && (
             <section>
-              <div className="hr">
+              <div className="hr rotate">
                 <img src={adventureac} alt="" />
               </div>
               <ul>
@@ -122,12 +121,38 @@ class NarrativeRecap extends Component {
                 <img src={adventureref} alt="" />
               </div>
               <ul>
-                mais êtes allé jusqu'à
-                {' '}
+                {'Mais êtes allé jusqu\'à '}
                 { adventureRejectedList }
               </ul>
             </section>
           )}
+
+          <div className="recap--narrative--share">
+            <div className="cto">
+              <h2 className="underline">Partager mon score</h2>
+              <img className="chevron" src={scroll} alt="" />
+            </div>
+            <ul>
+              <li>
+                <img src={instagram} alt="share instagram" />
+              </li>
+              <li>
+                <img src={facebook} alt="share facebook" />
+              </li>
+              <li>
+                <img src={twitter} alt="share twitter" />
+              </li>
+            </ul>
+          </div>
+
+          <div className="recap--narrative--about">
+            <h1>à propos</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, eum ipsam ut architecto sit error deleniti aspernatur minima perferendis vitae laboriosam illum nobis eaque possimus quia officiis excepturi molestiae nostrum?</p>
+            <div className="cto">
+              <h2 className="underline">en savoir plus</h2>
+              <img className="chevron" src={scroll} alt="" />
+            </div>
+          </div>
         </div>
       </div>
     );

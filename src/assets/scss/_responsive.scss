@@ -1,0 +1,18 @@
+// * IPHONE XL
+
+// au dessus de 800px
+@media screen and (min-height: 800px) {
+    .card--choice {
+        font-size: 1.2em;
+    }
+}
+
+// en dessous de 570px
+@media screen and (max-height: 570px) {
+    .card--illu--container {
+        max-height: 100px;
+    }
+    .card .animation {
+        width: 80%;
+     }
+}

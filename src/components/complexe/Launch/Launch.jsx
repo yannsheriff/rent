@@ -16,12 +16,12 @@ function Launch(props) {
           <img className="intro--banner" src={lmstpBanner} alt="rent-banner" />
           <h1>Dernier check up.</h1>
           <p>
-           Une fois la partie lancé, vous n'aurez que 5 minutes pour dégoter un appartement ! Autant dire que vous avez peu de chance de reussir..
-           Vous etes prets ?
+           Une fois la partie lancée, vous n'aurez que 5 minutes pour dégoter un appartement !
+           Serez-vous à la hauteur ?
           </p>
         </div>
 
-        <Button onClick={() => next()} text="C'est moi le plus fort." />
+        <Button onClick={() => next()} text="C'est parti !" />
       </div>
     </div>
   );

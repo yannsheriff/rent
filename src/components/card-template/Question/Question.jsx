@@ -6,7 +6,6 @@ import './Question.scss';
 import lottie from 'lottie-web';
 import animations from 'assets/animation';
 
-
 class Question extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +27,6 @@ class Question extends Component {
     return (
       <div className="card--content card--question">
         <h2 className="card--type">Remise en question</h2>
-        {/* <img className="card--illu" src={question} alt="" /> */}
         <div className="card--illu--container">
           <div className="animation card--illu" ref={this.animationContainer} />
         </div>

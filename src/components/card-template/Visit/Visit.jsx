@@ -2,31 +2,40 @@
 import React, { Component } from 'react';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import './Visit.scss';
+import lottie from 'lottie-web';
+
+/* LOTTIES */
+import visits from 'assets/animation/visit/';
 import trueStroy from 'assets/img/true-story.svg';
-
-/* ILLUSTRATIONS */
-
-// import good from 'assets/img/visit/';
-// import ok from 'assets/img/visit/';
-// import bad from 'assets/img/visit/';
 
 class Visit extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.animationContainer = React.createRef();
   }
 
-  returnIllu(quality) {
-    switch (quality) {
+  componentDidMount() {
+    const anim = this.getLottie();
+    lottie.loadAnimation({
+      container: this.animationContainer.current, // the dom element that will contain the animation
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      animationData: anim, // the path to the animation json
+    });
+  }
+
+  getLottie = () => {
+    const { data } = this.props;
+    switch (data.visit.visit_quality) {
       case 'good':
-        return this.good;
+        return visits.visitGood;
       case 'ok':
-        return this.ok;
+        return visits.visitOk;
       case 'bad':
-        return this.bad;
+        return visits.visitOk;
       default:
-        return this.ok;
+        return visits.visitOk;
     }
   }
 
@@ -36,6 +45,7 @@ class Visit extends Component {
       <div className="card--content card--visit">
         <h2 className="card--type">Visite</h2>
         <div className="card--illu--container">
+          <div className="animation" ref={this.animationContainer} />
           {/* <img className="card--illu" src={this.returnIllu(data.visit.visit_quality)} alt="" /> */}
           {data.visit.visit_story === 'true'
             && <img className="true-story" src={trueStroy} alt="histoire vrai" />
