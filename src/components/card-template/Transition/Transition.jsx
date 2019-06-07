@@ -47,7 +47,7 @@ class Transition extends Component {
     Promise.race([timeoutOnCard, unmountPromise]).then((next) => {
       if (next) {
         // eslint-disable-next-line react/destructuring-assignment
-        this.props.forceCardSwipe('left');
+        // this.props.forceCardSwipe('left');
       }
     });
   }

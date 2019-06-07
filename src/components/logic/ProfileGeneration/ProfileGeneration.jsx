@@ -165,7 +165,7 @@ class ProfileGeneration extends Component {
             />
           </div>
 
-          <Button onClick={this.stopWheel} disabled={!wheelIsTurning && !allowClick} text={allowClick ? 'Continuer' : 'Arreter la roue'} />
+          <Button onClick={this.stopWheel} disabled={!wheelIsTurning && !allowClick} text={allowClick ? 'Continuer' : 'Arrêter la roue'} />
           {/* {allowClick
             && (
             <p className="intro--info">Toucher pour continuer</p>

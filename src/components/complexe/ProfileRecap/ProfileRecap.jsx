@@ -100,8 +100,7 @@ class ProfileRecap extends Component {
             <div>
               <span className="score">
                 <strong>{ score }</strong>
-                {' '}
-                / 5
+                /5
               </span>
             </div>
             <Star />
