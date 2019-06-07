@@ -37,7 +37,7 @@ class Transition extends Component {
     });
 
     const timeoutOnCard = new Promise(((resolve, reject) => {
-      setTimeout(() => { resolve(true); }, 3000, false);
+      setTimeout(() => { resolve(true); }, 4000, false);
     }));
 
     const unmountPromise = new Promise((resolve) => {
@@ -47,7 +47,7 @@ class Transition extends Component {
     Promise.race([timeoutOnCard, unmountPromise]).then((next) => {
       if (next) {
         // eslint-disable-next-line react/destructuring-assignment
-        // this.props.forceCardSwipe('left');
+        this.props.forceCardSwipe('left');
       }
     });
   }
