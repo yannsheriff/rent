@@ -108,12 +108,22 @@ class App extends Component {
   }
 
   async choiceRecap(recap) {
-    const { data: visitResponse } = await SocrateService.getCardStat(recap.actualFlat.visit.visit.id);
-    const visit = { ...visitResponse.data, ...recap.actualFlat.visit.visit };
-    const { data: questionResponse } = await SocrateService.getCardStat(recap.questionsAccepted[0].id);
-    const question = { ...questionResponse.data, ...recap.questionsAccepted[0] };
-    const { data: adventureResponse } = await SocrateService.getCardStat(recap.adventuresAccepted[0].id);
-    const adventure = { ...adventureResponse.data, ...recap.adventuresAccepted[0] };
+    let visit = {};
+    let question = {};
+    let adventure = {};
+
+    if (recap.actualFlat.visit) {
+      const { data: visitResponse } = await SocrateService.getCardStat(recap.actualFlat.visit.id);
+      visit = { ...visitResponse.data, ...recap.actualFlat.visit };
+    }
+    if (recap.questionsAccepted[0]) {
+      const { data: questionResponse } = await SocrateService.getCardStat(recap.questionsAccepted[0].id);
+      question = { ...questionResponse.data, ...recap.questionsAccepted[0] };
+    }
+    if (recap.adventuresAccepted[0]) {
+      const { data: adventureResponse } = await SocrateService.getCardStat(recap.adventuresAccepted[0].id);
+      adventure = { ...adventureResponse.data, ...recap.adventuresAccepted[0] };
+    }
     this.setState({ choiceRecap: { visit, adventure, question } });
   }
 
@@ -143,35 +153,6 @@ class App extends Component {
 
           <NarrativeRecap profil={profil} recap={narrativeRecap} />
           { showStats && <StatsRecap recapData={{ generalRecap, choiceRecap, time: step.finalTime }} /> }
-
-
-          {/* <div className="end-recap">
-            Pour vivre dans un appartement
-            vous avez visité {` ${totalVisits} `} apparts en {Math.floor(step.finalTime)} secondes.
-            <ul>
-              <li />
-            </ul>
-
-            { generalRecap
-            && (
-            <div>
-              <h2>Users data : </h2>
-              <p> le pourcentage de victoire est de {winPercent} %.</p>
-              <p> les joueurs visitent en moyenne {Math.floor(generalRecap.avgFlat)} appartements.</p>
-              <p> Le temps moyen d'une partie est de {Math.floor(generalRecap.avgTime)} secondes.</p>
-            </div>
-            )
-            }
-            { visitChoiceStats && adventureChoiceStats
-            && (
-            <div>
-              <h2>Your choices : </h2>
-              <p> Comme  {visitChoice}% des utilisateurs vous avez pris un appartement {` ${flat.visit.visit_recap} `}</p>
-              <p> Comme  {adventureChoice}% des utilisateurs vous avez ...</p>
-            </div>
-            )
-            }
-          </div> */}
         </div>
 
         <div id="footer" className="layout--footer">
