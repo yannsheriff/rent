@@ -1,7 +1,11 @@
+import { debugProfil } from 'redux/reducers/profil';
 import { EthanPromise } from './EthanServices';
 
 let EthanService = {};
-EthanPromise.then((ethan) => { EthanService = ethan; });
+EthanPromise.then((ethan) => {
+  EthanService = ethan;
+  // NounouService.debugFillService();
+});
 
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable class-methods-use-this */
@@ -47,6 +51,16 @@ class NounouServices {
       instance = this;
     }
     return instance;
+  }
+
+  debugFillService() {
+    this.totalSeenAds = 4;
+    this.visitsAccepted = [{ ...EthanService.get('visit', debugProfil), visit_recap: 'miteux' }];
+    this.questionsAccepted = [{ ...EthanService.get('question', debugProfil), question_recap: 'Abandonné Fluffy, votre adorable toutou' }];
+    this.adventuresRejected = [{ ...EthanService.get('adventure', debugProfil), adventure_first_choice_recap: 'Tuer une petite vieille' }];
+    this.adventuresAccepted = [{ ...EthanService.get('adventure', debugProfil), adventure_second_choice_recap: 'pousser un couple dans les escaliers' }];
+    this.actualVisit = EthanService.get('visit', debugProfil);
+    this.actualFlat = EthanService.get('ads', debugProfil);
   }
 
   saveAd(ad) {
