@@ -49,7 +49,7 @@ des utilisateurs choisissent la capacité
       <div className="scroll">
         <div className="wrapper">
           <h3>
-      Vous avez trouvé un appartement en
+      Vous avez essayer de trouvé un appartement pendant
             {' '}
             <strong>
               {secondsToMonth(time)}
@@ -69,9 +69,12 @@ des utilisateurs choisissent la capacité
 
           <h4>Les joueurs ont accepté : </h4>
 
-          <StatBar legend={choiceRecap.adventure.adventure_second_choice_recap} percent={choiceRecap.adventure.reject * 100 / choiceRecap.adventure.total} />
-          <StatBar legend={choiceRecap.question.question_recap} percent={choiceRecap.question.reject * 100 / choiceRecap.question.total} />
-          <StatBar legend={choiceRecap.visit.visit_recap} percent={choiceRecap.visit.reject * 100 / choiceRecap.visit.total} />
+          { choiceRecap.adventure
+          && <StatBar legend={choiceRecap.adventure.adventure_second_choice_recap} percent={choiceRecap.adventure.reject * 100 / choiceRecap.adventure.total} />}
+          { choiceRecap.question
+          && <StatBar legend={choiceRecap.question.question_recap} percent={choiceRecap.question.reject * 100 / choiceRecap.question.total} />}
+          { choiceRecap.visit
+          && <StatBar legend={choiceRecap.visit.visit_recap} percent={choiceRecap.visit.reject * 100 / choiceRecap.visit.total} />}
           {skill}
         </div>
       </div>

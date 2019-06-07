@@ -48,8 +48,9 @@ class App extends Component {
   }
 
   componentWillMount() {
+    const { step } = this.props;
     const recap = NounouService.getRecap();
-    this.setState({ narrativeRecap: recap });
+    this.setState({ narrativeRecap: { ...recap, win: step.end === 'win' } });
     this.generateData = false;
   }
 
@@ -83,7 +84,7 @@ class App extends Component {
     // if (step.victory !== undefined && step.finalTime && !this.generateData) {
     this.generateData = true;
     const recap = NounouService.getRecap();
-    this.setState({ narrativeRecap: recap });
+    this.setState({ narrativeRecap: { ...recap, win: step.end === 'win' } });
     const formatedSkills = profil.skills.map(element => element.id);
     this.generalRecap(step.finalTime, step.victory, recap.totalSeenAds, formatedSkills, profil);
     this.choiceRecap(recap);
@@ -93,16 +94,16 @@ class App extends Component {
   async generalRecap(time, win, ads, skills, profil) {
     if (!this.sendRecap) {
       this.sendRecap = true;
-      await SocrateService.sendRecap({
-        time,
-        isVictory: win,
-        totalFlat: ads,
-        skills,
-        origin: profil.origin.id,
-        budget: profil.budget.id,
-        status: profil.status.id,
-        score: profil.score,
-      });
+      // await SocrateService.sendRecap({
+      //   time,
+      //   isVictory: win,
+      //   totalFlat: ads,
+      //   skills,
+      //   origin: profil.origin.id,
+      //   budget: profil.budget.id,
+      //   status: profil.status.id,
+      //   score: profil.score,
+      // });
     }
 
     const recaps = await SocrateService.getGeneralRecap();
