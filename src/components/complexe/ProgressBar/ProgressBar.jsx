@@ -20,8 +20,9 @@ class ProgressBar extends Component {
   constructor(props) {
     super(props);
     this.animationContainer = React.createRef();
-
-    this.actualFrame = 31;
+    this.actualFrame = 0;
+    this.counterVisit = 0; // step 'visite' par 2 fois par la boucle
+    this.counterAdventure = 0; // step 'adventure' par 2 fois par la boucle
   }
 
 
@@ -33,37 +34,48 @@ class ProgressBar extends Component {
       autoplay: false,
       animationData: animations.jauge, // the path to the animation json
     });
-
-    this.anim.goToAndStop(31, true);
+    this.anim.goToAndStop(0, true);
     this.anim.setDirection(0);
   }
 
   getStepPourcent = () => {
     const { step } = this.props;
     switch (step.step) {
+      case 'ads':
+      case 'transition transition--ads':
+        return 0;
+
       case 'question':
       case 'event':
-      case 'ads':
-        if (this.anim) { this.anim.playSegments([this.actualFrame, 31]); }
-        this.actualFrame = 31;
+        if (this.anim) { this.anim.playSegments([this.actualFrame, 1], true); }
+        this.actualFrame = 1;
         return 0; // %
 
       case 'visit':
-      case 'transition transition--visit':
-        this.anim.playSegments([this.actualFrame, 15]);
-        this.actualFrame = 15;
+        if (this.counterVisit === 1) {
+          this.anim.playSegments([this.actualFrame, 50], true);
+          this.actualFrame = 50;
+          this.counterVisit = 0;
+        }
+        this.counterVisit = 1;
         return 25; // %
 
       case 'adventure':
-      case 'transition transition--adventure':
-        this.anim.playSegments([this.actualFrame, 10]);
-        this.actualFrame = 10;
+        if (this.counterAdventure === 1) {
+          this.anim.playSegments([this.actualFrame, 100], true);
+          this.actualFrame = 100;
+          this.counterAdventure = 0;
+        }
+        this.counterAdventure = 1;
         return 50; // %
 
       case 'skill':
-        this.anim.playSegments([this.actualFrame, 5]);
-        this.actualFrame = 5;
+        this.anim.playSegments([this.actualFrame, 150], true);
+        this.actualFrame = 150;
         return 75; // %
+
+      case 'skill win':
+        return 100; // %
 
       default:
         return null;
