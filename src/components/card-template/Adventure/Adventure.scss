@@ -1,4 +1,7 @@
 .card--adventure {
+  .animation {
+    width: 90%;
+  }
     .card {
       &--type:before {
         content: url("../../../assets/img/icons/icon_adventure.svg");

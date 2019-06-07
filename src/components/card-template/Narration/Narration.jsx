@@ -87,7 +87,7 @@ class Narration extends Component {
       case 'prison': return defeats.defeatPrison;
       case 'sex': return defeats.defeatSex;
       case 'province': return defeats.defeatProvince;
-      // case 'surnaturel': return defeats.rejectAds;
+      case 'surnaturel': return defeats.defeatSurnaturel;
       case 'hopital': return defeats.defeatHopital;
       case 'banqueroute': return defeats.defeatBanqueroute;
       case 'rue': return defeats.defeatRue;

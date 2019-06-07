@@ -4,6 +4,7 @@ import defeatPrison from './defeat_prison.json';
 import defeatProvince from './defeat_province.json';
 import defeatRue from './defeat_rue.json';
 import defeatSex from './defeat_sex.json';
+import defeatSurnaturel from './defeat_surnaturel.json';
 
 export default {
   defeatBanqueroute,
@@ -12,4 +13,5 @@ export default {
   defeatProvince,
   defeatRue,
   defeatSex,
+  defeatSurnaturel,
 };

@@ -82,7 +82,6 @@ class StepDisplay extends Component {
       actualStep: nextStep,
       round: round + addRound,
     });
-    console.log('TCL: StepDisplay -> nextStep ->  round + addRound', round + addRound);
   }
 
   failStep = (needQuestion) => {

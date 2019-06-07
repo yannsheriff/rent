@@ -2,6 +2,10 @@
 
 .card--visit {
   .card {
+    &--illu--container {
+      max-height: 130px;
+      margin: 5% 0;
+    }
     &--type:before {
       content: url("../../../assets/img/icons/icon_visites.svg");
     }

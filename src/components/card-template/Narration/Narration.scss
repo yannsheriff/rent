@@ -4,6 +4,9 @@
     position: relative;
     text-align: left;
     .narration {
+        &--container {
+            height: 100%;
+        }
         &--quote {
             text-align: center;
             >span {
