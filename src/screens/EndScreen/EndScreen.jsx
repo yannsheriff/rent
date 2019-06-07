@@ -34,6 +34,7 @@ class App extends Component {
     super(props);
     const recap = NounouService.getRecap();
     this.animationContainer = React.createRef();
+    this.sendRecap = false;
     this.state = {
       narrativeRecap: {},
       flat: recap.actualFlat,
@@ -78,13 +79,10 @@ class App extends Component {
   }
 
   handleDataOnMount = (props) => {
-    console.log('handleDataOnMount');
-
     const { step, profil } = props;
     // if (step.victory !== undefined && step.finalTime && !this.generateData) {
     this.generateData = true;
     const recap = NounouService.getRecap();
-    console.log('TCL: App -> handleDataOnMount -> recap', recap);
     this.setState({ narrativeRecap: recap });
     const formatedSkills = profil.skills.map(element => element.id);
     this.generalRecap(step.finalTime, step.victory, recap.totalSeenAds, formatedSkills, profil);
@@ -93,16 +91,20 @@ class App extends Component {
   }
 
   async generalRecap(time, win, ads, skills, profil) {
-    // await SocrateService.sendRecap({
-    //   time,
-    //   isVictory: win,
-    //   totalFlat: ads,
-    //   skills,
-    //   origin: profil.origin.id,
-    //   budget: profil.budget.id,
-    //   status: profil.status.id,
-    //   score: profil.score,
-    // });
+    if (!this.sendRecap) {
+      this.sendRecap = true;
+      await SocrateService.sendRecap({
+        time,
+        isVictory: win,
+        totalFlat: ads,
+        skills,
+        origin: profil.origin.id,
+        budget: profil.budget.id,
+        status: profil.status.id,
+        score: profil.score,
+      });
+    }
+
     const recaps = await SocrateService.getGeneralRecap();
     this.setState({ generalRecap: recaps.data.data });
   }
