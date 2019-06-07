@@ -6,7 +6,7 @@ let instance = null;
 
 class SocrateServices {
   constructor() {
-    // this.apiUrl = 'http://vps.yannischerif.com:4000/api';
+    this.apiUrl = 'http://vps.yannischerif.com:4000/api';
     // this.apiUrl = 'http://localhost:4000/api';
 
     if (!instance) {
