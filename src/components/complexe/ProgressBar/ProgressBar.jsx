@@ -21,8 +21,9 @@ class ProgressBar extends Component {
     super(props);
     this.animationContainer = React.createRef();
     this.actualFrame = 0;
-    this.counterVisit = 0; // step 'visite' par 2 fois par la boucle
-    this.counterAdventure = 0; // step 'adventure' par 2 fois par la boucle
+    this.playAd = false;
+    this.playVisit = false; // step 'visite' par 2 fois par la boucle
+    this.playAdventure = false; // step 'adventure' par 2 fois par la boucle
   }
 
 
@@ -34,6 +35,7 @@ class ProgressBar extends Component {
       autoplay: false,
       animationData: animations.jauge, // the path to the animation json
     });
+    this.anim.setSpeed(1.5);
     this.anim.goToAndStop(0, true);
     this.anim.setDirection(0);
   }
@@ -41,40 +43,43 @@ class ProgressBar extends Component {
   getStepPourcent = () => {
     const { step } = this.props;
     switch (step.step) {
-      case 'ads':
-      case 'transition transition--ads':
-        return 0;
-
+      // case 'transition transition--ads':
       case 'question':
       case 'event':
         if (this.anim) { this.anim.playSegments([this.actualFrame, 1], true); }
         this.actualFrame = 1;
         return 0; // %
 
+      case 'ads':
+        if (this.playAd) {
+          this.anim.playSegments([this.actualFrame, 0], true);
+          this.actualFrame = 0;
+          this.playAd = false;
+        }
+        return 0; // %
+
       case 'visit':
-        if (this.counterVisit === 1) {
+        if (this.playVisit) {
           this.anim.playSegments([this.actualFrame, 50], true);
           this.actualFrame = 50;
-          this.counterVisit = 0;
+          this.playVisit = false;
+          this.playAd = true;
         }
-        this.counterVisit = 1;
-        return 25; // %
+        this.playVisit = true;
+        return 33; // %
 
       case 'adventure':
-        if (this.counterAdventure === 1) {
+        if (this.playAdventure) {
           this.anim.playSegments([this.actualFrame, 100], true);
           this.actualFrame = 100;
-          this.counterAdventure = 0;
+          this.playAdventure = false;
         }
-        this.counterAdventure = 1;
-        return 50; // %
-
-      case 'skill':
-        this.anim.playSegments([this.actualFrame, 150], true);
-        this.actualFrame = 150;
-        return 75; // %
+        this.playAdventure = true;
+        return 66; // %
 
       case 'skill win':
+        this.anim.playSegments([this.actualFrame, 100], true);
+        this.actualFrame = 100;
         return 100; // %
 
       default:
