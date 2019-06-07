@@ -94,16 +94,16 @@ class App extends Component {
   async generalRecap(time, win, ads, skills, profil) {
     if (!this.sendRecap) {
       this.sendRecap = true;
-      // await SocrateService.sendRecap({
-      //   time,
-      //   isVictory: win,
-      //   totalFlat: ads,
-      //   skills,
-      //   origin: profil.origin.id,
-      //   budget: profil.budget.id,
-      //   status: profil.status.id,
-      //   score: profil.score,
-      // });
+      await SocrateService.sendRecap({
+        time,
+        isVictory: win,
+        totalFlat: ads,
+        skills,
+        origin: profil.origin.id,
+        budget: profil.budget.id,
+        status: profil.status.id,
+        score: profil.score,
+      });
     }
 
     const recaps = await SocrateService.getGeneralRecap();
