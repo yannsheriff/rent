@@ -10,6 +10,7 @@ import PopUp from './PopUp/PopUp';
 import ProgressBar from './ProgressBar/ProgressBar';
 import Wheel from './Wheel/Wheel';
 import Launch from './Launch/Launch';
+import StatsRecap from './StatsRecap/StatsRecap';
 
 export {
   Intro,
@@ -24,4 +25,5 @@ export {
   ProgressBar,
   Wheel,
   Launch,
+  StatsRecap,
 };

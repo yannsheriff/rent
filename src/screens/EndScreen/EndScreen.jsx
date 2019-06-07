@@ -9,7 +9,7 @@ import premium from 'assets/img/icons/premium_white.svg';
 
 // components
 import { Button } from 'components/basic';
-import { NarrativeRecap, Chrono } from 'components/complexe';
+import { NarrativeRecap, Chrono, StatsRecap } from 'components/complexe';
 import { SocrateService } from '../../services/SocrateService';
 import { NounouService } from '../../services/NounouService';
 // import Header from 'components/logic/Header/Header';
@@ -35,6 +35,7 @@ class App extends Component {
       generalRecap: false,
       visitChoiceStats: {},
       adventureChoiceStats: {},
+      showStats: false,
     };
   }
 
@@ -92,7 +93,7 @@ class App extends Component {
     } = this.props;
     const {
       flat, totalVisits, generalRecap, visitChoiceStats, adventureChoiceStats,
-      narrativeRecap,
+      narrativeRecap, showStats,
     } = this.state;
 
     const winPercent = Math.floor(generalRecap.totalWins / generalRecap.totalGames * 100);
@@ -113,6 +114,7 @@ class App extends Component {
           <img className="main-illu" src={premium} alt="" />
 
           <NarrativeRecap profil={profil} recap={narrativeRecap} />
+          { showStats && <StatsRecap /> }
 
 
           {/* <div className="end-recap">
@@ -146,7 +148,7 @@ class App extends Component {
 
         <div id="footer" className="layout--footer">
           <Button text="Rejouer" />
-          <Button text="Statistiques" />
+          <Button text="Statistiques" onClick={() => { this.setState({ showStats: true }); }} />
         </div>
       </div>
     );
