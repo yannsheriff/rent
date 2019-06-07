@@ -32,6 +32,7 @@ class NarrativeRecap extends Component {
       questionsAccepted: props.recap.questionsAccepted,
       adventuresAccepted: props.recap.adventuresAccepted,
       adventuresRejected: props.recap.adventuresRejected,
+      win: props.recap.win,
     };
   }
 
@@ -42,13 +43,14 @@ class NarrativeRecap extends Component {
       questionsAccepted: nextProps.recap.questionsAccepted,
       adventuresAccepted: nextProps.recap.adventuresAccepted,
       adventuresRejected: nextProps.recap.adventuresRejected,
+      win: nextProps.recap.win,
     });
   }
 
   render() {
     const { profil } = this.props;
     const {
-      flat, visitsAccepted, questionsAccepted, adventuresAccepted, adventuresRejected,
+      flat, visitsAccepted, questionsAccepted, adventuresAccepted, adventuresRejected, win,
     } = this.state;
 
     const visitList = visitsAccepted.map(visit => <li>{visit.visit_recap}</li>);
@@ -59,7 +61,9 @@ class NarrativeRecap extends Component {
     return (
       <div className="recap--narrative">
         <header>
-          Pour vivre
+          Pour
+          {win ? ' ' : ' essayer de '}
+          vivre
           <span className="lowercase strong">{` ${profil.status.title} `}</span>
           dans un(e)
           <span className="lowercase strong">{` ${flat.flat.ad_title} `}</span>
