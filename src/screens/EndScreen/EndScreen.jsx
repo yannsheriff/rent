@@ -19,8 +19,6 @@ import { NounouService } from '../../services/NounouService';
 import animVictory from 'assets/animation/end/end_loose.json';
 import animLoose from 'assets/animation/end/end_loose.json';
 
-console.log(animLoose);
-
 class App extends Component {
   static propTypes = {
     step: PropTypes.object,

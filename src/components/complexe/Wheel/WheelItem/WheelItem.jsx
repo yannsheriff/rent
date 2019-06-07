@@ -66,6 +66,7 @@ class WheelItem extends Component {
       transition: `${timing}ms ${ease}`,
       width: size,
       height: size,
+      boxSizing: 'border-box',
       backgroundColor: img ? 'transparent' : 'white',
       border: img ? 'transparent' : '1px solid black',
       opacity,

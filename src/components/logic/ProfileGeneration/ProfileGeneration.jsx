@@ -69,7 +69,6 @@ class ProfileGeneration extends Component {
 
     this.setState({ allowClick: false, wheelIsTurning: false });
 
-
     // premier click arrête la roue
     this.wheel.select();
     this.fadeWheelSound(this.wheelSound);
@@ -113,7 +112,7 @@ class ProfileGeneration extends Component {
 
   anime = () => {
     const letter = document.querySelectorAll('.letter');
-    const time = 350 / letter.length;
+    const time = 300 / letter.length;
     letter.forEach((el, index) => {
       setTimeout(() => {
         el.classList.add('show');
