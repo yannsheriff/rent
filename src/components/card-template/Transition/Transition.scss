@@ -1,13 +1,17 @@
 .transition--card {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 
   .transition--illu {
+    margin-top: 25%;
     display: block;
   }
 
   .transition--title {
       color: white;
+      font-size: 1.7em;
+      margin: 0;
+      margin-bottom: 6%;
   }
 }
