@@ -9,6 +9,8 @@ import question from './anim_reassessment.json';
 import skill_win from './anim_skill_win.json';
 import jauge from './jauge.json';
 import premium_overlay from './anim_premium_suscribe_overlay.json';
+import tuto from './EcranTutoriel.json';
+
 
 export default {
   budget_up,
@@ -22,4 +24,5 @@ export default {
   skill_win,
   jauge,
   premium_overlay,
+  tuto,
 };
