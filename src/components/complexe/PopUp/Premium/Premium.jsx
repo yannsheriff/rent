@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getPremium, updateTimer } from 'redux/actions/profil';
 import { connect } from 'react-redux';
+import lottie from 'lottie-web';
 import { Button } from 'components/basic';
 import './Premium.scss';
 
@@ -13,30 +14,34 @@ class Premium extends Component {
   }
 
   purchasePremium = () => {
-    const { premium, updateTime, hide } = this.props;
+    const {
+      premium, updateTime, hide, playAnimation,
+    } = this.props;
     premium();
     updateTime(-60);
-    hide();
+    playAnimation();
   }
 
 
   render() {
     return (
-      <div className="premium--content">
-        <img src="" alt="" />
-        <h1>Bien réservé aux clients Premium</h1>
-        <p>Souscrivez* dès à présent** à l'abonnement Premium pour accéder aux annonces de qualité supérieure.</p>
-        <p className="premium--condition">
+      <>
+        <div className="premium--content">
+          <img src="" alt="" />
+          <h1>Bien réservé aux clients Premium</h1>
+          <p>Souscrivez* dès à présent** à l'abonnement Premium pour accéder aux annonces de qualité supérieure.</p>
+          <p className="premium--condition">
         * La création du statut prend du temps
-          {' '}
-          <br />
+            {' '}
+            <br />
         ** Vraiment beaucoup de temps
-        </p>
-        <Button onClick={this.purchasePremium} text="Souscrire" />
-        <button className="arrow" onClick={this.cancel}>
-          <img src={close} alt="close popup" />
-        </button>
-      </div>
+          </p>
+          <Button onClick={this.purchasePremium} text="Souscrire" />
+          <button className="arrow" onClick={this.cancel} type="button">
+            <img src={close} alt="close popup" />
+          </button>
+        </div>
+      </>
     );
   }
 }
