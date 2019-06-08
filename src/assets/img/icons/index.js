@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 import adventure from './icon_adventure.svg';
 import close from './icon_close.svg';
+import closeWhite from './icon_close_white.svg';
 import scroll from './icon_scroll.svg';
 import premium from './premium_white.svg';
 import visit from './icon_visites_white.svg';
@@ -23,4 +24,5 @@ export {
   instagram,
   facebook,
   twitter,
+  closeWhite,
 };

@@ -19,6 +19,14 @@
     top: 0;
     left: 0;
 
+    & > img {
+        position: absolute;
+        top: 5%;
+        right: 5%;
+        height: 5%;
+        // height: 20px;
+    }
+
     .scroll {
         overflow-y: scroll; /* has to be scroll, not auto */
         -webkit-overflow-scrolling: touch;
@@ -94,7 +102,9 @@
             height: 15px;
             width: auto;
             top: -15px;
-        }
+            animation: bouncing 2s ease-in-out infinite;
+            -webkit-animation: bouncing 2s ease-in-out infinite;
+}
 
     }
 }
@@ -105,3 +115,35 @@
     }
 }
 
+
+@keyframes bouncing {
+
+    0% {
+        transform: translateY(0) ;
+        -webkit-transform: translateY(0) ;
+        -moz-transform: translateY(0) ;
+        -ms-transform: translateY(0) ;
+        -o-transform: translateY(0) ;
+    }
+    20% {
+        transform: translateY(10px) ;
+        -webkit-transform: translateY(10px) ;
+        -moz-transform: translateY(10px) ;
+        -ms-transform: translateY(10px) ;
+        -o-transform: translateY(10px) ;
+}
+    40% {
+        transform: translateY(0) ;
+        -webkit-transform: translateY(0) ;
+        -moz-transform: translateY(0) ;
+        -ms-transform: translateY(0) ;
+        -o-transform: translateY(0) ;
+    }
+    100% {
+        transform: translateY(0) ;
+        -webkit-transform: translateY(0) ;
+        -moz-transform: translateY(0) ;
+        -ms-transform: translateY(0) ;
+        -o-transform: translateY(0) ;
+    }
+  }

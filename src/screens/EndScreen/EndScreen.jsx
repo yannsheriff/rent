@@ -94,16 +94,16 @@ class App extends Component {
   async generalRecap(time, win, ads, skills, profil) {
     if (!this.sendRecap) {
       this.sendRecap = true;
-      await SocrateService.sendRecap({
-        time,
-        isVictory: win,
-        totalFlat: ads,
-        skills,
-        origin: profil.origin.id,
-        budget: profil.budget.id,
-        status: profil.status.id,
-        score: profil.score,
-      });
+      // await SocrateService.sendRecap({
+      //   time,
+      //   isVictory: win,
+      //   totalFlat: ads,
+      //   skills,
+      //   origin: profil.origin.id,
+      //   budget: profil.budget.id,
+      //   status: profil.status.id,
+      //   score: profil.score,
+      // });
     }
 
     const recaps = await SocrateService.getGeneralRecap();
@@ -155,7 +155,13 @@ class App extends Component {
           {/* <img className="main-illu" src={premium} alt="" /> */}
 
           <NarrativeRecap profil={profil} recap={narrativeRecap} />
-          { showStats && <StatsRecap recapData={{ generalRecap, choiceRecap, time: step.finalTime }} /> }
+          { showStats
+            && (
+            <StatsRecap
+              recapData={{ generalRecap, choiceRecap, time: step.finalTime }}
+              onClose={() => { this.setState({ showStats: false }); }}
+            />
+            )}
         </div>
 
         <div id="footer" className="layout--footer">

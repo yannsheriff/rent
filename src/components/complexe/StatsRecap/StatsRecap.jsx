@@ -6,11 +6,11 @@ import { secondsToMonth } from 'vendors/humanize';
 import { StatBar } from 'components/simple';
 import { Button } from 'components/basic';
 import skillsData from 'assets/content/skills';
-import { scroll } from 'assets/img/icons';
+import { scroll, closeWhite } from 'assets/img/icons';
 
 
 function StatsRecap(props) {
-  console.log(props);
+  const { onClose } = props;
   const { generalRecap, choiceRecap, time } = props.recapData;
 
   // const winPercent = Math.floor(generalRecap.totalWins / generalRecap.totalGames * 100);
@@ -46,6 +46,7 @@ des utilisateurs choisissent la capacité
 
   return (
     <div className="statsRecap">
+      <img src={closeWhite} alt="close stats" onClick={() => onClose()} />
       <div className="scroll">
         <div className="wrapper">
           <h3>
