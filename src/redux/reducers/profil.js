@@ -5,6 +5,9 @@
 import {
   UPDATE_STATUS, UPDATE_BUDGET, UPDATE_ORIGIN, UPDATE_BONUS, UPDATE_SKILLS, GET_PREMIUM, UPDATE_TIME,
 } from '../actions/profil';
+import {
+  REPLAY,
+} from '../actions/steps';
 
 import statuss from '../../assets/content/status';
 import originss from '../../assets/content/origins';
@@ -94,6 +97,10 @@ export function profilReducer(state = debugProfil, action) {
         ...state,
         premium: true,
       };
+    }
+
+    case REPLAY: {
+      return defaultState;
     }
 
     default:

@@ -1,6 +1,7 @@
 export const DID_SET_UP = 'DID_SET_UP';
 export const CHANGE_STEP = 'CHANGE_STEP';
 export const END_GAME = 'END_GAME';
+export const REPLAY = 'REPLAY';
 export const DISPLAY_POP_UP = 'DISPLAY_POP_UP';
 export const HIDE_POP_UP = 'HIDE_POP_UP';
 export const SET_FINAL_TIME = 'SET_FINAL_TIME';
@@ -39,5 +40,10 @@ export function setFinalTime(payload) {
   return {
     type: SET_FINAL_TIME,
     payload,
+  };
+}
+export function replay() {
+  return {
+    type: REPLAY,
   };
 }

@@ -7,6 +7,7 @@ import './EndScreen.scss';
 import lottie from 'lottie-web';
 
 import premium from 'assets/img/icons/premium_white.svg';
+import { replay } from 'redux/actions/steps';
 
 // components
 import { Button } from 'components/basic';
@@ -132,7 +133,7 @@ class App extends Component {
 
   render() {
     const {
-      step, profil,
+      step, profil, replay,
     } = this.props;
     const {
       generalRecap, choiceRecap,
@@ -168,7 +169,7 @@ class App extends Component {
 
         <div id="footer" className="layout--footer">
           <div className="button-container">
-            <Button text="Rejouer" />
+            <Button text="Rejouer" onClick={() => { replay(); }} />
           </div>
           <div className="button-container">
             <Button text="Statistiques" onClick={() => { this.setState({ showStats: true }); }} />
@@ -188,6 +189,15 @@ const mapStateToProps = state => ({
   profil: state.profilReducer,
 });
 
-const componentContainer = connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  replay: () => {
+    dispatch(replay());
+  },
+});
+
+const componentContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);
 
 export default componentContainer;

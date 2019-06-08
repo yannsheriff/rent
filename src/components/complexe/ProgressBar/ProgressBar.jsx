@@ -27,6 +27,9 @@ class ProgressBar extends Component {
   }
 
 
+  componentWillMount() {}
+
+
   componentDidMount() {
     this.anim = lottie.loadAnimation({
       container: this.animationContainer.current, // the dom element that will contain the animation
@@ -39,6 +42,8 @@ class ProgressBar extends Component {
     this.anim.goToAndStop(0, true);
     this.anim.setDirection(0);
   }
+
+  componentWillUnmount() {}
 
   getStepPourcent = () => {
     const { step } = this.props;

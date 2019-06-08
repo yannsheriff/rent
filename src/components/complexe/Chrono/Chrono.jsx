@@ -52,7 +52,9 @@ class Chrono extends Component {
 
   componentWillUnmount() {
     const { timeToSet } = this.props;
-    timeToSet(this.secondPassed);
+    if (timeToSet) {
+      timeToSet(this.secondPassed);
+    }
     clearInterval(this.chrono);
   }
 
