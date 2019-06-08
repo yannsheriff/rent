@@ -142,11 +142,14 @@
   }
 
   &--text p {
+    opacity: 0;
     text-align: center;
     color: white;
     font-family: fivo_sans_modernregularbold;
     padding-top: 5%;
     padding-bottom: 5%;
+    animation: fadeIn .5s ease .2s 1 forwards;
+    -webkit-animation: fadeIn .5s ease .2s 1 forwards;
   }
 
   h1 {
@@ -161,6 +164,7 @@
     font-family: fivo_sans_modernextra_black;
     opacity: 0;
     color: white;
+    text-transform: initial;
     padding-top: 25%;
     padding-bottom: 10%;
   }

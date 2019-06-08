@@ -18,15 +18,26 @@ class ProfileRecap extends Component {
     this.state = {
       canNext: false,
       open: false,
+      grade: 0,
     };
   }
 
   componentDidMount() {
+    const { profil: { score } } = this.props;
     setTimeout(() => {
-      this.setState({ canNext: true }, () => {
-        setTimeout(() => { this.setState({ open: true }); }, 1000);
+      this.setState({ open: true }, () => {
+        let grade = 0;
+        const anim = setInterval(() => {
+          if (grade <= score) {
+            grade = Math.round((grade + 0.1) * 10) / 10;
+            this.setState({ grade: grade.toFixed(1) });
+          } else {
+            clearInterval(anim);
+            this.setState({ canNext: true });
+          }
+        }, 50);
       });
-    }, 600);
+    }, 500);
   }
 
   nextStep = () => {
@@ -38,11 +49,9 @@ class ProfileRecap extends Component {
   }
 
   render() {
-    const { canNext, open } = this.state;
+    const { canNext, open, grade } = this.state;
     const { profil } = this.props;
-    const {
-      score,
-    } = profil;
+
 
     const Star = props => (
       <div {...props}>
@@ -91,15 +100,15 @@ class ProfileRecap extends Component {
           Un instant, nous calculons la note de votre dossier d’après votre profil..
           </p>
         </div>
-        {canNext
+        {open
         && (
-        <div className={`profile-recap--rate ${canNext ? 'open' : ''} `}>
+        <div className={`profile-recap--rate ${open ? 'open' : ''} `}>
           <Star className="star small" />
           <Star className="star medium" />
           <div className="star big">
             <div>
               <span className="score">
-                <strong>{ score }</strong>
+                <strong>{ grade }</strong>
                 /5
               </span>
             </div>
@@ -114,7 +123,7 @@ class ProfileRecap extends Component {
 
         {canNext
             && (
-            <p className="intro--info">Toucher pour continuer</p>
+            <p className={`intro--info ${canNext ? 'open' : ''}`}>Toucher pour continuer</p>
             )
         }
       </div>
