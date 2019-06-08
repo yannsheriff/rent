@@ -132,6 +132,9 @@ class Narration extends Component {
     return (
       <div id="narration">
         <div className="narration--container">
+          {type === 'loosing-skill'
+          && (<h3 className="loosing-skill"> Vous avez perdu un mois..</h3>)
+          }
           {(type === 'narration-adventure')
           && (<div className="narration--quote"><span>”</span></div>)
           }
