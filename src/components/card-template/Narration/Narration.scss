@@ -9,9 +9,14 @@
         }
         &--quote {
             text-align: center;
+            height: 25%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             >span {
                 font-size: 5em;
                 font-family: fivo_sans_modernextra_black;
+                margin-bottom: -15px;
             }
         }
     }
