@@ -11,7 +11,9 @@ import { scroll, closeWhite } from 'assets/img/icons';
 
 function StatsRecap(props) {
   const { onClose } = props;
-  const { generalRecap, choiceRecap, time } = props.recapData;
+  const {
+    generalRecap, choiceRecap, time, win,
+  } = props.recapData;
 
   // const winPercent = Math.floor(generalRecap.totalWins / generalRecap.totalGames * 100);
   // const visitChoice = Math.floor(visitChoiceStats.accept / visitChoiceStats.total * 100);
@@ -49,24 +51,31 @@ des utilisateurs choisissent la capacité
       <img src={closeWhite} alt="close stats" onClick={() => onClose()} />
       <div className="scroll">
         <div className="wrapper">
-          <h3>
-      Vous avez essayer de trouvé un appartement pendant
-            {' '}
-            <strong>
-              {secondsToMonth(time)}
-              {' '}
-           mois !
-            </strong>
-          </h3>
-          <h3>
-      La moyenne est de
-            {' '}
-            <strong>
-              { secondsToMonth(generalRecap.avgTime)}
-              {' '}
-      mois.
-            </strong>
-          </h3>
+          { win && (
+            <>
+              <h3>
+                {' '}
+                Vous avez trouvé un appartement en
+                <strong>
+                  {secondsToMonth(time)}
+                  mois !
+                </strong>
+              </h3>
+              <h3>
+                La moyenne est de
+                <strong>
+                  { secondsToMonth(generalRecap.avgTime)}
+                  {' '}
+                  mois.
+                </strong>
+              </h3>
+            </>
+          )}
+
+          { !win && (
+            <h3> vous avez échoué à trouver un appartement en moins de 6 mois </h3>
+          )}
+
 
           <h4>Les joueurs ont accepté : </h4>
 

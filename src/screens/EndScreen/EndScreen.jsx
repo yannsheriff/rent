@@ -158,7 +158,9 @@ class App extends Component {
           { showStats
             && (
             <StatsRecap
-              recapData={{ generalRecap, choiceRecap, time: step.finalTime }}
+              recapData={{
+                generalRecap, choiceRecap, time: step.finalTime, win: step.end === 'win',
+              }}
               onClose={() => { this.setState({ showStats: false }); }}
             />
             )}

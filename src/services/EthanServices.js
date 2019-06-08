@@ -5,6 +5,7 @@
 import * as contentful from 'contentful';
 import { getRandomArbitrary } from 'vendors/random';
 import { NounouService } from 'services/NounouService';
+// import offline from 'vendors/offline';
 
 class EthanServices {
   constructor(data) {
@@ -131,6 +132,9 @@ async function initData() {
   const list = ['ad', 'adventure', 'reject', 'event', 'question', 'visit'];
   const data = [];
   let promiseResolved = 0;
+
+  // const isOnline = await offline({ url: 'www.google.fr', timeout: 3000 });
+
   return new Promise((resolve) => {
     for (let i = 0; i < list.length; i += 1) {
       client
@@ -142,6 +146,7 @@ async function initData() {
             table.push(data);
           });
           data[list[i]] = table;
+          // localStorage.setItem(`contentful-${list[i]}`, JSON.stringify(table));
           promiseResolved++;
 
           if (promiseResolved === list.length) {
