@@ -11,7 +11,7 @@ import premium from 'assets/img/icons/premium_white.svg';
 // components
 import { Button } from 'components/basic';
 import { NarrativeRecap, Chrono, StatsRecap } from 'components/complexe';
-import animVictory from 'assets/animation/end/end_loose.json';
+import animVictory from 'assets/animation/end/end_win.json';
 import animLoose from 'assets/animation/end/end_loose.json';
 import { SocrateService } from '../../services/SocrateService';
 import { NounouService } from '../../services/NounouService';
