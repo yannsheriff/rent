@@ -12,6 +12,11 @@
     overflow: auto;
     color: white;
 
+    &::-webkit-scrollbar { 
+      display: none; 
+    }
+    // hide scroll
+
     .animation {
       position: relative;
       margin: 0 auto;
