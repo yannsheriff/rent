@@ -29,6 +29,12 @@
 
   .layout--footer {
     display: flex;
+    justify-content: space-around;
+
+    .button-container {
+      width: 35vw;
+      max-width: 40vw;
+    }
   }
 }
 

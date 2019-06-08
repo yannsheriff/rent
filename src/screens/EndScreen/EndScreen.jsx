@@ -94,16 +94,16 @@ class App extends Component {
   async generalRecap(time, win, ads, skills, profil) {
     if (!this.sendRecap) {
       this.sendRecap = true;
-      // await SocrateService.sendRecap({
-      //   time,
-      //   isVictory: win,
-      //   totalFlat: ads,
-      //   skills,
-      //   origin: profil.origin.id,
-      //   budget: profil.budget.id,
-      //   status: profil.status.id,
-      //   score: profil.score,
-      // });
+      await SocrateService.sendRecap({
+        time,
+        isVictory: win,
+        totalFlat: ads,
+        skills,
+        origin: profil.origin.id,
+        budget: profil.budget.id,
+        status: profil.status.id,
+        score: profil.score,
+      });
     }
 
     const recaps = await SocrateService.getGeneralRecap();
@@ -165,8 +165,12 @@ class App extends Component {
         </div>
 
         <div id="footer" className="layout--footer">
-          <Button text="Rejouer" />
-          <Button text="Statistiques" onClick={() => { this.setState({ showStats: true }); }} />
+          <div className="button-container">
+            <Button text="Rejouer" />
+          </div>
+          <div className="button-container">
+            <Button text="Statistiques" onClick={() => { this.setState({ showStats: true }); }} />
+          </div>
         </div>
       </div>
     );
