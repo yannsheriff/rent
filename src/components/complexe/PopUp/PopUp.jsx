@@ -72,7 +72,7 @@ class PopUp extends Component {
     return (
       <>
         {/* <div className="animation-stars fade" ref={this.animationStarsContainer} /> */}
-        <div className={`${anim ? 'show' : ''} animation-stars`} ref={this.animationStarsContainer} />
+        <div id="popup" className={`${anim ? 'show' : ''} animation-stars`} ref={this.animationStarsContainer} />
         <div id="premium--pop-up" className="fade">
           <CSSTransition in={show} timeout={500} classNames="trans-popup">
             <div className="premium--container">
