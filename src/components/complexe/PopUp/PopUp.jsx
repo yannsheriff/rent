@@ -47,11 +47,13 @@ class PopUp extends Component {
   }
 
   playAnimationPremium = () => {
-    this.setState({ anim: true });
-    setTimeout(() => { this.stars.play(); }, 500);
-    setTimeout(() => { this.setState({ anim: false }); }, 1000);
-    setTimeout(() => { this.setState({ show: false }); }, 1500);
-    setTimeout(() => { this.hidePopUp(); }, 1700);
+    this.setState({ anim: true }, () => {
+      this.stars.play();
+      this.stars.addEventListener('complete', () => {
+        this.setState({ anim: false, show: false });
+        this.hidePopUp();
+      });
+    });
   }
 
   returnPopUp() {

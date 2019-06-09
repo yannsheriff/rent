@@ -10,6 +10,7 @@ import skill_win from './anim_skill_win.json';
 import jauge from './jauge.json';
 import premium_overlay from './anim_premium_suscribe_overlay.json';
 import tuto from './EcranTutoriel.json';
+import premiumMedal from './annonce_premiumMedaille.json';
 
 
 export default {
@@ -25,4 +26,5 @@ export default {
   jauge,
   premium_overlay,
   tuto,
+  premiumMedal,
 };
