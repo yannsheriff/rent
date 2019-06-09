@@ -9,6 +9,7 @@ import lottie from 'lottie-web';
 /* LOTTIES */
 import rejects from 'assets/animation/reject';
 import defeats from 'assets/animation/defeat';
+import statuschange from 'assets/animation/status_change';
 import animations from 'assets/animation';
 
 import skills from 'assets/content/skills';
@@ -59,20 +60,20 @@ class Narration extends Component {
       isPositive = oldProfil[update.field].value < update.value.value || update.value > 0;
     }
     switch (update.field) {
-      // case 'points':
-      //   return isPositive && choice ? animations.question_good : animations.question_bad;
+      case 'points':
+        return isPositive && choice ? animations.question_good : animations.question_bad;
 
-      // case 'origin':
-      //   return oldProfil.origin < update.value ? animations.question_good : animations.question_bad;
+      case 'origin':
+        return oldProfil.origin < update.value ? animations.question_good : animations.question_bad;
 
-      // case 'status':
-      //   return oldProfil.status < update.value ? animations.question_good : animations.question_bad;
+      case 'status':
+        // return oldProfil.status < update.value ? animations.question_good : animations.question_bad;
+        return statuschange[`${oldProfil.status.ref}_${update.value.ref}`];
 
-      // case 'budget':
-      //   return oldProfil.budget < update.value ? animations.question_good : animations.question_bad;
+      case 'budget':
+        return oldProfil.budget < update.value ? animations.question_good : animations.question_bad;
 
       default:
-        // return '';
         return isPositive && choice ? animations.question_good : animations.question_bad;
     }
   }

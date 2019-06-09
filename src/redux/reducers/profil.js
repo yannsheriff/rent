@@ -15,7 +15,7 @@ import budgetss from '../../assets/content/budget';
 import skill from '../../assets/content/skills';
 
 export const debugProfil = {
-  status: statuss[1],
+  status: statuss[0],
   origin: originss[8],
   budget: budgetss[2],
   skills: [skill[0], skill[2]],
