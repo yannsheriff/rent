@@ -33,7 +33,7 @@ class Visit extends Component {
       case 'ok':
         return visits.visitOk;
       case 'bad':
-        return visits.visitOk;
+        return visits.visitBad;
       default:
         return visits.visitOk;
     }

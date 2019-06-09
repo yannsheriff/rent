@@ -47,7 +47,6 @@ class ProgressBar extends Component {
 
   getStepPourcent = () => {
     const { step } = this.props;
-    console.log(step.step);
     switch (step.step) {
       // case 'transition transition--ads':
       case 'question':
