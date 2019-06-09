@@ -25,6 +25,29 @@ class Event extends Component {
     }
   }
 
+  getIndication() {
+    const { animation: { oldProfil, update } } = this.props;
+    let isPositive = false;
+    switch (update.field) {
+      case 'status':
+        return `Vous cherchez désormais ${update.value.title}`;
+
+      case 'budget':
+        return `Vous avez désormais un budget ${update.value.title}`;
+
+      case 'points':
+        isPositive = update.value > 0;
+        return isPositive ? 'Votre note de dossier augmente !' : 'Votre note de dossier diminue...';
+
+      case 'time':
+        isPositive = update.value > 0;
+        return isPositive ? 'Cela vous fait gagner 2 semaines !' : 'Cela vous fait perdre 2 semaines...';
+
+      default:
+        return '';
+    }
+  }
+
   findAnimation() {
     const { animation: { oldProfil, update } } = this.props;
     let isPositive = false;
@@ -55,7 +78,12 @@ class Event extends Component {
         <div className="animation height--120" ref={this.animationContainer} />
         {/* <img className="card--illu" src={ads} alt="" /> */}
         <h1>{data.event_title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.event_narration) }} />
+        <div className="grow" dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.event_narration) }} />
+        <div className="indication">
+          <span className="card--choice">
+            { this.getIndication() }
+          </span>
+        </div>
       </div>
     );
   }

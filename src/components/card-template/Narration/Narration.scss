@@ -6,6 +6,9 @@
     .narration {
         &--container {
             height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
         &--quote {
             text-align: center;
@@ -19,6 +22,10 @@
                 margin-bottom: -15px;
             }
         }
+    }
+
+    .bold {
+        font-family: fivo_sans_modernregularbold;
     }
 
     h3.loosing-skill {

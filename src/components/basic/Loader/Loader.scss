@@ -2,7 +2,7 @@
 
 #loader {
     height: 4px;
-    border: 1px solid white;
+    border: 1px solid black;
     background: transparent;
     border-radius: 5px;
     padding: 2px;
@@ -11,7 +11,7 @@
     .loader--fill {
         width: auto;
         height: 100%;
-        background: white;
+        background: black;
         border-radius: 5px 0 0 5px;
         position: relative;
         transition: width 0.5s ease-in-out;

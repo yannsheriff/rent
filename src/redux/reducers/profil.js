@@ -15,9 +15,9 @@ import budgetss from '../../assets/content/budget';
 import skill from '../../assets/content/skills';
 
 export const debugProfil = {
-  status: statuss[0],
+  status: statuss[2],
   origin: originss[8],
-  budget: budgetss[0],
+  budget: budgetss[2],
   skills: [skill[0], skill[2]],
   bonus: 0,
   score: 3,
@@ -36,7 +36,7 @@ const defaultState = {
   premium: false,
 };
 
-export function profilReducer(state = debugProfil, action) {
+export function profilReducer(state = defaultState, action) {
   switch (action.type) {
     case UPDATE_STATUS: {
       const newStatus = action.payload;

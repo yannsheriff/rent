@@ -22,6 +22,7 @@ class Narration extends Component {
     winningSkill: PropTypes.string,
     type: PropTypes.string,
     defeatType: PropTypes.string,
+    choice: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -29,6 +30,7 @@ class Narration extends Component {
     winningSkill: '',
     type: '',
     defeatType: '',
+    choice: false,
   };
 
   constructor(props) {
@@ -52,7 +54,7 @@ class Narration extends Component {
   */
 
   getQuestion = () => {
-    const { animation, animation: { oldProfil, update, choice } } = this.props;
+    const { animation: { oldProfil, update, choice } } = this.props;
     let isPositive = true;
     if (update.field === 'points') {
       isPositive = oldProfil[update.field] < update.value || update.value > 0;
@@ -124,24 +126,47 @@ class Narration extends Component {
     }
   }
 
-  getIndication = () => {
-    const { type } = this.props;
-    switch (type) {
-      case 'reject-ads': return 'Votre budget n\'est pas suffisant !';
-      case 'reject-visit': return rejects.rejectVisit;
-      case 'narration-question': {
-        const animQuestion = this.getQuestion();
-        return animQuestion;
-      }
-      case 'narration-adventure': return '';
-      case 'winning-skill': return animations.skill_win;
-      case 'loosing-skill': {
-        const animDefeat = this.getDefeatType();
-        return animDefeat;
-      }
-      default: return '';
+  getQuestionIndication() {
+    const { animation: { oldProfil, update } } = this.props;
+    let isPositive = false;
+    switch (update.field) {
+      case 'status':
+        return `Vous cherchez désormais ${update.value.title}`;
+
+      case 'budget':
+        return `Vous avez désormais un budget ${update.value.title}`;
+
+      case 'points':
+        isPositive = update.value > 0;
+        return isPositive ? 'Votre note de dossier augmente !' : 'Votre note de dossier diminue...';
+
+      case 'time':
+        isPositive = update.value > 0;
+        return isPositive ? 'Vous gagnez 2 semaines !' : 'Vous perdez 2 semaines...';
+
+      default:
+        return '';
     }
   }
+
+  getIndication = () => {
+    const { type, choice } = this.props;
+    switch (type) {
+      case 'reject-ads': return 'Votre budget n\'est pas suffisant !';
+      case 'reject-visit': return 'Votre note de dossier est trop basse !';
+      case 'narration-question': {
+        if (choice) {
+          const indication = this.getQuestionIndication();
+          return indication;
+        }
+        return '';
+      }
+      case 'narration-adventure': return '';
+      case 'winning-skill': return '';
+      case 'loosing-skill': { return 'Cela vous fait perdre 1 mois...'; }
+      default: return '';
+    }
+  };
 
   render() {
     const {
@@ -151,29 +176,35 @@ class Narration extends Component {
       <div id="narration">
         <div className="narration--container">
           {type === 'loosing-skill'
-          && (<h3 className="loosing-skill"> Vous avez perdu un mois..</h3>)
+          && (<h3 className="loosing-skill">Vous n'avez pas dû utiliser la bonne capacité...</h3>)
           }
           {(type === 'narration-adventure')
           && (<div className="narration--quote height--120"><span>”</span></div>)
           }
-          <div className={`animation ${type === 'loosing-skill' ? 'height--120' : 'height--150'}`} ref={this.animationContainer} />
+          {(type !== 'narration-adventure')
+          && (<div className={`animation ${type === 'loosing-skill' ? 'height--120' : 'height--150'}`} ref={this.animationContainer} />)
+          }
           <h1 className="card--title">{ title }</h1>
 
           {type === 'winning-skill'
           && (
           <div>
-            Grace à votre capacité
+            <span className="bold">Grace à votre capacité</span>
             {' '}
             { this.returnSkill(winningSkill) }
             {', '}
           </div>
           )
           }
-          {/* temporaire pour tester */}
-          {typeof (data) === 'string' && <div>{data}</div>}
-          <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data) }} />
 
-          {/* <p className="card--choice">{ this.getIndication() }</p> */}
+          {typeof (data) === 'string' && <div className="grow">{data}</div>}
+          <div className="grow" dangerouslySetInnerHTML={{ __html: documentToHtmlString(data) }} />
+
+          <div className="indication">
+            <span className="card--choice">
+              { this.getIndication() }
+            </span>
+          </div>
         </div>
       </div>
     );
