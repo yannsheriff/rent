@@ -66,3 +66,8 @@ class MozartServices {
 }
 
 export const MozartService = new MozartServices();
+
+
+window.onblur = () => {
+  MozartService.mainSound.pause();
+};
