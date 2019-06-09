@@ -106,11 +106,28 @@ class Narration extends Component {
   }
 
   getLottie = () => {
-    const {
-      data, type,
-    } = this.props;
+    const { type } = this.props;
     switch (type) {
       case 'reject-ads': return rejects.rejectAds;
+      case 'reject-visit': return rejects.rejectVisit;
+      case 'narration-question': {
+        const animQuestion = this.getQuestion();
+        return animQuestion;
+      }
+      case 'narration-adventure': return '';
+      case 'winning-skill': return animations.skill_win;
+      case 'loosing-skill': {
+        const animDefeat = this.getDefeatType();
+        return animDefeat;
+      }
+      default: return '';
+    }
+  }
+
+  getIndication = () => {
+    const { type } = this.props;
+    switch (type) {
+      case 'reject-ads': return 'Votre budget n\'est pas suffisant !';
       case 'reject-visit': return rejects.rejectVisit;
       case 'narration-question': {
         const animQuestion = this.getQuestion();
@@ -137,7 +154,7 @@ class Narration extends Component {
           && (<h3 className="loosing-skill"> Vous avez perdu un mois..</h3>)
           }
           {(type === 'narration-adventure')
-          && (<div className="narration--quote"><span>”</span></div>)
+          && (<div className="narration--quote height--120"><span>”</span></div>)
           }
           <div className={`animation ${type === 'loosing-skill' ? 'height--120' : 'height--150'}`} ref={this.animationContainer} />
           <h1 className="card--title">{ title }</h1>
@@ -155,6 +172,8 @@ class Narration extends Component {
           {/* temporaire pour tester */}
           {typeof (data) === 'string' && <div>{data}</div>}
           <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data) }} />
+
+          {/* <p className="card--choice">{ this.getIndication() }</p> */}
         </div>
       </div>
     );
