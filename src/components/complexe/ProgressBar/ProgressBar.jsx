@@ -59,7 +59,7 @@ class ProgressBar extends Component {
       case 'ads':
       {
         if (this.playAd) {
-          this.anim.playSegments([this.actualFrame, 0], true);
+          if (this.anim) { this.anim.playSegments([this.actualFrame, 0], true); }
           this.actualFrame = 0;
           this.playAd = false;
         }
@@ -68,7 +68,7 @@ class ProgressBar extends Component {
 
       case 'visit': {
         if (this.playVisit) {
-          this.anim.playSegments([this.actualFrame, 50], true);
+          if (this.anim) { this.anim.playSegments([this.actualFrame, 50], true); }
           this.actualFrame = 50;
           this.playVisit = false;
           this.playAd = true;
@@ -81,7 +81,7 @@ class ProgressBar extends Component {
       case 'adventure':
       {
         if (this.playAdventure) {
-          this.anim.playSegments([this.actualFrame, 100], true);
+          if (this.anim) { this.anim.playSegments([this.actualFrame, 100], true); }
           this.actualFrame = 100;
           this.playAdventure = false;
           return 66; // %
@@ -92,7 +92,7 @@ class ProgressBar extends Component {
 
       case 'skill win':
       {
-        this.anim.playSegments([this.actualFrame, 100], true);
+        if (this.anim) { this.anim.playSegments([this.actualFrame, 100], true); }
         this.actualFrame = 100;
         return 100; // %
       }
