@@ -163,6 +163,7 @@ class App extends Component {
                 generalRecap, choiceRecap, time: step.finalTime, win: step.end === 'win',
               }}
               onClose={() => { this.setState({ showStats: false }); }}
+              onReplay={() => { replay(); }}
             />
             )}
         </div>
