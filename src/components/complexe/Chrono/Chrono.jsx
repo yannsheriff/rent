@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import './Chrono.scss';
 import { humanizeMonth } from 'vendors/humanize';
+import { MozartService } from 'services/MozartService';
 
 class Chrono extends Component {
   static propTypes = {
@@ -22,6 +23,8 @@ class Chrono extends Component {
     this.timer = props.time;
     this.initialTimer = props.time;
     this.month = 6;
+    this.soundStep = 0;
+    this.actualPhase = 1;
   }
 
   componentDidMount() {
@@ -37,6 +40,13 @@ class Chrono extends Component {
       const monthInSec = this.month * 31 * 24 * 60 * 60;
       const leftMonthInSec = seconds * monthInSec / this.initialTimer;
       this.setState({ month: leftMonthInSec });
+      const phaseSize = this.initialTimer / 5;
+
+      if (seconds < this.initialTimer - phaseSize * this.actualPhase) {
+        MozartService.accelerateMainSound(1 + this.actualPhase / 10);
+        this.actualPhase += 1;
+      }
+
       if (sub <= 0) { this.endGame(); }
     }, 100);
   }
