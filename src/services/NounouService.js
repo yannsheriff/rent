@@ -101,6 +101,30 @@ class NounouServices {
   //   return this.visitedFlatIDs;
   // }
 
+  log() {
+    this.totalSeenAds = 0;
+    console.log('== NOUNOU SERVICE LOGS ==');
+    console.log('=====================================================');
+    console.log('TCL: NounouServices -> log -> this.totalSeenAds', this.totalSeenAds);
+    console.log('TCL: NounouServices -> log -> this.visitsAccepted', this.visitsAccepted);
+    console.log('TCL: NounouServices -> log -> this.questionsAccepted', this.questionsAccepted);
+    console.log('TCL: NounouServices -> log -> this.adventuresRejected', this.adventuresRejected);
+    console.log('TCL: NounouServices -> log -> this.adventuresAccepted', this.adventuresAccepted);
+    console.log('TCL: NounouServices -> log -> this.actualVisit', this.actualVisit);
+    console.log('TCL: NounouServices -> log -> this.actualFlat', this.actualFlat);
+    console.log('=====================================================');
+  }
+
+  flush() {
+    this.totalSeenAds = 0;
+    this.visitsAccepted = [];
+    this.questionsAccepted = [];
+    this.adventuresRejected = [];
+    this.adventuresAccepted = [];
+    this.actualVisit = {};
+    this.actualFlat = {};
+  }
+
   getRecap() {
     return {
       actualFlat: {

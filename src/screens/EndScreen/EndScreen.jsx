@@ -80,6 +80,10 @@ class App extends Component {
     this.handleDataOnMount(nextProps);
   }
 
+  componentWillUnmount() {
+    NounouService.flush();
+  }
+
   handleDataOnMount = (props) => {
     const { step, profil } = props;
     // if (step.victory !== undefined && step.finalTime && !this.generateData) {
@@ -110,6 +114,7 @@ class App extends Component {
     const recaps = await SocrateService.getGeneralRecap();
     this.setState({ generalRecap: recaps.data.data });
   }
+
 
   async choiceRecap(recap) {
     let visit = {};
