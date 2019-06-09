@@ -84,17 +84,6 @@
     }
   }
 
-  .animation {
-    position: relative;
-    margin: 0 auto;
-  }
-
-  .animation--small {
-    margin: 5% auto;
-    max-height: 100px;
-    height: 100%;
-  }
-
   &--type {
     display: flex;
     justify-content: space-between;
@@ -115,6 +104,8 @@
     }
   }
 
+  /* ILLUSTRATION SIZE */
+
   &--illu {
     position: relative;
     display: block;
@@ -123,12 +114,34 @@
     max-height: 100%;
   }
   
-  &--illu--container {
-    max-height: 25%;
+  &--illu--container,
+  .animation {
     height: 100%;
     position: relative;
     display: flex;
     align-items: center;
+    margin: 0 auto;
+  }
+
+  .height {
+    &--80 {
+      max-height: 100px;
+    }
+    &--120 {
+      max-height: 140px;
+    }
+    &--150 {
+      max-height: 170px;
+    }
+    &--180 {
+      max-height: 200px;
+    }
+  }
+
+  .animation--small {
+    // margin: 5% auto;
+    // max-height: 100px;
+    // height: 100%;
   }
   
 

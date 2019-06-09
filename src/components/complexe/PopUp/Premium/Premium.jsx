@@ -43,7 +43,7 @@ render() {
   return (
     <>
       <div className="premium--content">
-        <div className="animation" ref={this.animationContainer} />
+        <div className="animation height--80" ref={this.animationContainer} />
         <h1>Bien réservé aux clients Premium</h1>
         <p>Souscrivez* dès à présent** à l'abonnement Premium pour accéder aux annonces de qualité supérieure.</p>
         <p className="premium--condition">

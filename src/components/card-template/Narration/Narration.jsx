@@ -139,7 +139,7 @@ class Narration extends Component {
           {(type === 'narration-adventure')
           && (<div className="narration--quote"><span>”</span></div>)
           }
-          <div className="animation" ref={this.animationContainer} />
+          <div className={`animation ${type === 'loosing-skill' ? 'height--120' : 'height--150'}`} ref={this.animationContainer} />
           <h1 className="card--title">{ title }</h1>
 
           {type === 'winning-skill'
