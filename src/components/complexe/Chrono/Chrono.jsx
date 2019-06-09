@@ -69,7 +69,7 @@ class Chrono extends Component {
     const { month } = this.state;
     const date = humanizeMonth(month);
     return (
-      <div className={`chrono fade ${date.month === '04' ? 'urgent' : ''}`}>
+      <div className={`chrono fade ${date.month === '00' ? 'urgent' : ''}`}>
         <div>
           <span className="chrono--nb">{ date.month }</span>
           <p className="chrono--text">MOIS</p>

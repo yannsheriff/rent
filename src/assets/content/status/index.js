@@ -11,7 +11,7 @@ import coupleWheel from './img/wheel_situation-couple.svg';
 export default [
   {
     id: 1,
-    title: 'Seul',
+    title: 'Solo',
     picto: solo,
     pictoLight: soloLight,
     pictoWheel: soloWheel,
