@@ -52,7 +52,7 @@ class Event extends Component {
     return (
       <div className="card--content card--event">
         <h2 className="card--type">évènement</h2>
-        <div className="animation" ref={this.animationContainer} />
+        <div className="animation height--120" ref={this.animationContainer} />
         {/* <img className="card--illu" src={ads} alt="" /> */}
         <h1>{data.event_title}</h1>
         <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.event_narration) }} />
