@@ -10,7 +10,7 @@ import { scroll, closeWhite } from 'assets/img/icons';
 
 
 function StatsRecap(props) {
-  const { onClose } = props;
+  const { onClose, onReplay } = props;
   const {
     generalRecap, choiceRecap, time, win,
   } = props.recapData;
@@ -90,7 +90,7 @@ des utilisateurs choisissent la capacité
       </div>
       <div id="footer" className="layout--footer">
         <img src={scroll} />
-        <Button text="Rejouer" />
+        <Button text="Rejouer" onClick={() => { onReplay(); }} />
       </div>
     </div>
 
