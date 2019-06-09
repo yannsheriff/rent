@@ -9,10 +9,18 @@
 
 // en dessous de 570px
 @media screen and (max-height: 570px) {
-    .card--illu--container {
-        max-height: 85px;
-    }
-    // .card .animation {
-    //     width: 80%;
-    //  }
+    .height {
+        &--80 {
+          max-height: 80px;
+        }
+        &--120 {
+          max-height: 120px;
+        }
+        &--150 {
+          max-height: 150px;
+        }
+        &--180 {
+          max-height: 180px;
+        }
+      }
 }

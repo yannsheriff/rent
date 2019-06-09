@@ -157,7 +157,7 @@ class App extends Component {
           <h2>
             {step.end === 'win' ? 'Vous avez trouvé un appartement !' : 'Vous n\'avez pas trouvé d\'appartement à temps...' }
           </h2>
-          <div className="animation" ref={this.animationContainer} />
+          <div className="animation height--180" ref={this.animationContainer} />
           {/* <img className="main-illu" src={premium} alt="" /> */}
 
           <NarrativeRecap profil={profil} recap={narrativeRecap} />

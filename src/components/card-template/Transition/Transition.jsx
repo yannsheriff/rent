@@ -77,7 +77,7 @@ class Transition extends Component {
     return (
       <div className="transition--card">
         {' '}
-        <div className="transition--illu" ref={this.animationContainer} />
+        <div className="transition--illu height--180" ref={this.animationContainer} />
         <h1 className="card--title transition--title">
           {(data === 'visit') && 'Le coeur battant, vous vous rendez à la visite...'}
           {(data === 'adventure') && 'Dernier entretien, vous croisez les doigts'}
