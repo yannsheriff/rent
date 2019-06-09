@@ -47,6 +47,7 @@ class ProgressBar extends Component {
 
   getStepPourcent = () => {
     const { step } = this.props;
+    console.log(step.step);
     switch (step.step) {
       // case 'transition transition--ads':
       case 'question':
@@ -56,36 +57,45 @@ class ProgressBar extends Component {
         return 0; // %
 
       case 'ads':
+      {
         if (this.playAd) {
           this.anim.playSegments([this.actualFrame, 0], true);
           this.actualFrame = 0;
           this.playAd = false;
         }
         return 0; // %
+      }
 
-      case 'visit':
+      case 'visit': {
         if (this.playVisit) {
           this.anim.playSegments([this.actualFrame, 50], true);
           this.actualFrame = 50;
           this.playVisit = false;
           this.playAd = true;
+          return 33; // %
         }
         this.playVisit = true;
-        return 33; // %
+        return 0; // %
+      }
 
       case 'adventure':
+      {
         if (this.playAdventure) {
           this.anim.playSegments([this.actualFrame, 100], true);
           this.actualFrame = 100;
           this.playAdventure = false;
+          return 66; // %
         }
         this.playAdventure = true;
-        return 66; // %
+        return 33; // %
+      }
 
       case 'skill win':
+      {
         this.anim.playSegments([this.actualFrame, 100], true);
         this.actualFrame = 100;
         return 100; // %
+      }
 
       default:
         return null;

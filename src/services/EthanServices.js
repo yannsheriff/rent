@@ -70,17 +70,15 @@ class EthanServices {
   };
 
   getVisit = () => {
-    // const matchingVisits = this.visit.filter(visit => visit.visit_source === NounouService.actualFlat.ad_source);
-    const visitRand = getRandomArbitrary(0, this.visit.length);
+    const matchingVisits = this.visit.filter(visit => visit.visit_source === NounouService.actualFlat.ad_source);
+    const visitRand = getRandomArbitrary(0, matchingVisits.length);
     const rejectRand = getRandomArbitrary(0, this.reject.length);
-    const visit = this.visit[visitRand];
+    const visit = matchingVisits[visitRand];
     const reject = this.reject[rejectRand];
     const payload = {
       visit,
       reject,
     };
-    // supprimer visit[rand] de this.visit
-    // trier en fonction de agence ou particulier
     return payload;
   };
 
