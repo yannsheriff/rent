@@ -142,10 +142,10 @@ class App extends Component {
 
     return (
       <div className={`App main-layout end fade ${step.end === 'win' ? 'victory' : 'loose'}`}>
-        <div id="header" className="layout--header">
-          <Chrono />
-        </div>
         <div className="container">
+          <div id="header" className="layout--header">
+            <Chrono />
+          </div>
           <h1>
             {step.end === 'win' ? 'Victoire !' : 'Défaite' }
           </h1>
