@@ -46,6 +46,13 @@
     
 }
 
+.end #loader {
+    border: 1px solid white;
+    .loader--fill {
+        background: white ;
+    }
+}
+
 .loose .loader--empty {
     background-color: $blue;
 }
