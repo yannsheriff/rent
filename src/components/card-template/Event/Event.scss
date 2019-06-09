@@ -5,6 +5,7 @@
     }
     &--type:after {
       content: url("../../../assets/img/icons/icon_event.svg");
+      transform: scaleX(-1);
     }
   }
 }
