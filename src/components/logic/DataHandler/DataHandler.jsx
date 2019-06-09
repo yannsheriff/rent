@@ -490,6 +490,7 @@ class DataHandler extends Component {
       const card = ([<Narration
         type="narration-question"
         data={content}
+        choice={choice}
         animation={{ oldProfil: profil, update, choice }}
         title={title}
       />]);
