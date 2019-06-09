@@ -48,7 +48,7 @@
 
         strong {
           font-family: fivo_sans_modernextra_black;
-          font-size: 25px;
+          font-size: 30px;
 
         }
       }
@@ -176,6 +176,10 @@
   .open  {
     animation: fadeIn .5s ease .1s 1 forwards;
     -webkit-animation: fadeIn .5s ease .1s 1 forwards;
+  }
+
+  .intro--info {
+    opacity: 0;
   }
 }
 
