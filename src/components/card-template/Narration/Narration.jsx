@@ -133,7 +133,8 @@ class Narration extends Component {
     switch (update.field) {
       case 'status': return (
         <p>
-            Vous cherchez désormais
+          Vous cherchez désormais
+          {' '}
           <p className="lowercase">{update.value.title}</p>
         </p>
       );
@@ -142,6 +143,7 @@ class Narration extends Component {
         return (
           <span>
             Vous avez désormais un budget
+            {' '}
             <span className="lowercase">{update.value.title}</span>
           </span>
         );
