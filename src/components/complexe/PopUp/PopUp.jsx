@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { hidePopUp } from 'redux/actions/steps';
 import { CSSTransition } from 'react-transition-group';
+import { MozartService } from 'services/MozartService';
 import lottie from 'lottie-web';
 
 /* LOTTIES */
@@ -48,6 +49,7 @@ class PopUp extends Component {
 
   playAnimationPremium = () => {
     this.setState({ anim: true }, () => {
+      MozartService.interaction('premium');
       this.stars.play();
       this.stars.addEventListener('complete', () => {
         this.setState({ anim: false, show: false });

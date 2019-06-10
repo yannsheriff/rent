@@ -16,6 +16,7 @@ import animVictory from 'assets/animation/end/end_win.json';
 import animLoose from 'assets/animation/end/end_loose.json';
 import { SocrateService } from '../../services/SocrateService';
 import { NounouService } from '../../services/NounouService';
+import { MozartService } from '../../services/MozartService';
 // import Header from 'components/logic/Header/Header';
 
 /* LOTTIES */
@@ -56,10 +57,15 @@ class App extends Component {
   }
 
   componentDidMount() {
+    const { step } = this.props;
     setTimeout(() => this.handleDataOnMount(this.props), 1000);
 
+    if (step.end === 'win') {
+      MozartService.interaction('victory');
+    } else {
+      MozartService.interaction('loose', 0.2);
+    }
 
-    const { step } = this.props;
     let anim = '';
     if (step.end === 'win') {
       anim = animVictory;

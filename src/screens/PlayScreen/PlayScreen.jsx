@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { MozartService } from 'services/MozartService';
 import Fade from '@material-ui/core/Fade';
 import './PlayScreen.scss';
 
@@ -11,6 +12,14 @@ import StepDisplay from 'components/logic/StepDisplay/StepDisplay';
 import PopUp from 'components/complexe/PopUp/PopUp';
 
 class PlayScreen extends Component {
+  componentDidMount() {
+    MozartService.playMainSound();
+  }
+
+  componentWillUnmount() {
+    MozartService.stopMainSound();
+  }
+
   render() {
     const { step } = this.props;
     return (

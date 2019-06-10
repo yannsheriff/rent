@@ -147,11 +147,13 @@
   &--border {
     box-sizing: border-box;
     height: 100%;
-    border-radius: 22px;
-    -moz-border-radius: 22px;
-    -webkit-border-radius: 22px;
+    border-radius: 18px;
+    -moz-border-radius: 18px;
+    -webkit-border-radius: 18px;
+    -ms-border-radius: 18px;
+    -o-border-radius: 18px;
     border: 1px solid $black;
-  }
+}
 
   &--content {
     display: flex;

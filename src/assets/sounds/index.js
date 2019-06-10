@@ -5,6 +5,10 @@ import wheel from './wheel.wav';
 import wheel1 from './wheel_1.wav';
 import success from './success.wav';
 import wheelRunning from './wheel_running.wav';
+import premium from './premium.mp3';
+import elevator from './elevator.mp3';
+import victory from './victory.mp3';
+import loose from './loose.mp3';
 
 export const interaction = {
   swipe,
@@ -13,6 +17,10 @@ export const interaction = {
   wheel,
   wheel1,
   success,
+  premium,
+  elevator,
+  victory,
+  loose,
 };
 
 export const loop = {
