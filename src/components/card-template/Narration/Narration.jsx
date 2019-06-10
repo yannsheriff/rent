@@ -131,11 +131,20 @@ class Narration extends Component {
     const { animation: { oldProfil, update } } = this.props;
     let isPositive = false;
     switch (update.field) {
-      case 'status':
-        return `Vous cherchez désormais ${update.value.title}`;
+      case 'status': return (
+        <p>
+            Vous cherchez désormais
+          <p className="lowercase">{update.value.title}</p>
+        </p>
+      );
 
       case 'budget':
-        return `Vous avez désormais un budget ${update.value.title}`;
+        return (
+          <span>
+            Vous avez désormais un budget
+            <span className="lowercase">{update.value.title}</span>
+          </span>
+        );
 
       case 'points':
         isPositive = update.value > 0;
@@ -201,8 +210,8 @@ class Narration extends Component {
           {typeof (data) === 'string' && <div className="grow">{data}</div>}
           <div className="grow card--text" dangerouslySetInnerHTML={{ __html: documentToHtmlString(data) }} />
 
-          <div className="indication">
-            <span className="card--choice">
+          <div className="indication card--choice">
+            <span>
               { this.getIndication() }
             </span>
           </div>
