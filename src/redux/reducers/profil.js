@@ -36,7 +36,7 @@ const defaultState = {
   premium: false,
 };
 
-export function profilReducer(state = debugProfil, action) {
+export function profilReducer(state = defaultState, action) {
   switch (action.type) {
     case UPDATE_STATUS: {
       const newStatus = action.payload;
