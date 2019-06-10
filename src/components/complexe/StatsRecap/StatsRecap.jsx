@@ -20,7 +20,8 @@ function StatsRecap(props) {
   console.log(win);
 
   const winPercent = Math.floor(generalRecap.totalWins / generalRecap.totalGames * 100);
-  console.log(winPercent);
+  const loosePercent = 100 - winPercent;
+  console.log(loosePercent);
   // const visitChoice = Math.floor(visitChoiceStats.accept / visitChoiceStats.total * 100);
   // const adventureChoice = Math.floor(adventureChoiceStats.accept / adventureChoiceStats.total * 100);
 
@@ -89,7 +90,15 @@ function StatsRecap(props) {
           )}
 
           { !win && (
-            <h3> vous avez échoué à trouver un appartement en moins de 6 mois </h3>
+            <h3>
+                Vous avez échoué à trouver un appartement en moins de 6 mois. Mais rassurez-vous, comme vous
+              <strong>
+                {loosePercent}
+                %
+              </strong>
+              {' '}
+                des joueurs n’ont pas réussi non plus !
+            </h3>
           )}
 
 
