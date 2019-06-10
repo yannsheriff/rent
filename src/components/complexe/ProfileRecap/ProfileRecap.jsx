@@ -28,7 +28,7 @@ class ProfileRecap extends Component {
       this.setState({ open: true }, () => {
         let grade = 0;
         const anim = setInterval(() => {
-          if (grade <= score) {
+          if (grade < score) {
             grade = Math.round((grade + 0.1) * 10) / 10;
             this.setState({ grade: grade.toFixed(1) });
           } else {
@@ -51,7 +51,6 @@ class ProfileRecap extends Component {
   render() {
     const { canNext, open, grade } = this.state;
     const { profil } = this.props;
-
 
     const Star = props => (
       <div {...props}>

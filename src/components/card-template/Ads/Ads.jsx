@@ -124,7 +124,7 @@ class Ads extends Component {
         <h1>
           {data.ad_title}
         </h1>
-        <p dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.ad_description) }} />
+        <p className="card--text" dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.ad_description) }} />
         <div className="ads--views">
           <img src={views} alt="views-icon" />
           <p>

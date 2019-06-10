@@ -52,7 +52,7 @@ class Visit extends Component {
         </div>
 
         <h1>{ data.visit.visit_title }</h1>
-        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.visit.visit_description) }} />
+        <div className="card--text" dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.visit.visit_description) }} />
       </div>
     );
   }

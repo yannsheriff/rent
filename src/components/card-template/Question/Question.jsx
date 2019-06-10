@@ -29,6 +29,7 @@ class Question extends Component {
         <h2 className="card--type">Remise en question</h2>
         <div className="animation height--120" ref={this.animationContainer} />
         <div
+          className="card--text"
           dangerouslySetInnerHTML={
                 { __html: documentToHtmlString(data.question_narration) }
               }

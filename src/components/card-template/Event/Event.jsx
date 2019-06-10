@@ -53,8 +53,9 @@ class Event extends Component {
     let isPositive = false;
     switch (update.field) {
       case 'origin':
-        isPositive = oldProfil[update.field] < update.value.value || update.value > 0;
-        return isPositive ? animations.event_good : animations.event_bad;
+        return '';
+        //   isPositive = oldProfil[update.field] < update.value.value || update.value > 0;
+        //   return isPositive ? animations.event_good : animations.event_bad;
 
       case 'status':
         isPositive = oldProfil[update.field] < update.value.value || update.value > 0;
@@ -78,7 +79,7 @@ class Event extends Component {
         <div className="animation height--120" ref={this.animationContainer} />
         {/* <img className="card--illu" src={ads} alt="" /> */}
         <h1>{data.event_title}</h1>
-        <div className="grow" dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.event_narration) }} />
+        <div className="grow card--text" dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.event_narration) }} />
         <div className="indication">
           <span className="card--choice">
             { this.getIndication() }
