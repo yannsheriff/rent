@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-state */
 /* eslint-disable class-methods-use-this */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { Component } from 'react';
