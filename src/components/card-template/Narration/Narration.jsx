@@ -64,17 +64,25 @@ class Narration extends Component {
     }
     switch (update.field) {
       case 'points':
-        return isPositive && choice ? animations.question_good : animations.question_bad;
+        if (choice) {
+          return isPositive ? animations.question_good : animations.question_bad;
+        }
+        return isPositive ? animations.question_bad : animations.question_good;
 
-      case 'origin':
-        return oldProfil.origin < update.value ? animations.question_good : animations.question_bad;
+        // case 'origin':
+        //   return oldProfil.origin < update.value ? animations.question_good : animations.question_bad;
 
       case 'status':
-        // return oldProfil.status < update.value ? animations.question_good : animations.question_bad;
-        return statuschange[`${oldProfil.status.ref}_${update.value.ref}`];
+        if (choice) {
+          return statuschange[`${oldProfil.status.ref}_${update.value.ref}`];
+        }
+        return oldProfil.status < update.value ? animations.question_good : animations.question_bad;
 
       case 'budget':
-        return budgetchange[`${oldProfil.budget.ref}_${update.value.ref}`];
+        if (choice) {
+          return budgetchange[`${oldProfil.budget.ref}_${update.value.ref}`];
+        }
+        return oldProfil.budget < update.value ? animations.question_good : animations.question_bad;
 
       default:
         return isPositive && choice ? animations.question_good : animations.question_bad;
@@ -132,11 +140,11 @@ class Narration extends Component {
     let isPositive = false;
     switch (update.field) {
       case 'status': return (
-        <p>
+        <span>
           Vous cherchez désormais
           {' '}
-          <p className="lowercase">{update.value.title}</p>
-        </p>
+          <span className="lowercase">{update.value.title}</span>
+        </span>
       );
 
       case 'budget':
@@ -175,7 +183,7 @@ class Narration extends Component {
       }
       case 'narration-adventure': return '';
       case 'winning-skill': return '';
-      case 'loosing-skill': { return 'Cela vous fait perdre 1 mois...'; }
+      case 'loosing-skill': { return 'Vous n\'avez pas dû utiliser la bonne capacité... Vous perdez 1 mois.'; }
       default: return '';
     }
   };
@@ -187,9 +195,9 @@ class Narration extends Component {
     return (
       <div id="narration">
         <div className="narration--container">
-          {type === 'loosing-skill'
+          {/* {type === 'loosing-skill'
           && (<h3 className="loosing-skill">Vous n'avez pas dû utiliser la bonne capacité...</h3>)
-          }
+          } */}
           {(type === 'narration-adventure')
           && (<div className="narration--quote height--120"><span>”</span></div>)
           }

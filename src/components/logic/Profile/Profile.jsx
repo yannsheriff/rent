@@ -56,7 +56,7 @@ class Header extends Component {
             <p className="card--choice">{score}</p>
           </div>
           <div ref={this.status} className={`profile--items status ${premium ? 'premium' : ''}`}>
-            <div className="round">
+            <div>
               <img src={status.picto} alt="situation pictogram" />
             </div>
           </div>

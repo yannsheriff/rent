@@ -14,6 +14,7 @@ function StatsRecap(props) {
   const {
     generalRecap, choiceRecap, time, win,
   } = props.recapData;
+  console.log(generalRecap);
 
   // const winPercent = Math.floor(generalRecap.totalWins / generalRecap.totalGames * 100);
   // const visitChoice = Math.floor(visitChoiceStats.accept / visitChoiceStats.total * 100);
@@ -54,10 +55,11 @@ des utilisateurs choisissent la capacité
           { win && (
             <>
               <h3>
-                {' '}
                 Vous avez trouvé un appartement en
+                {' '}
                 <strong>
                   {secondsToMonth(time)}
+                  {' '}
                   mois !
                 </strong>
               </h3>

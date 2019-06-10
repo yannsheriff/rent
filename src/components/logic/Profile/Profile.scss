@@ -26,7 +26,7 @@
       .round {
         height: 100%;
         width: 100%;
-        overflow: hidden;
+        // overflow: hidden;
         border-radius: 50%;
         background: white;
         border: solid 1px black;
@@ -67,8 +67,7 @@
     }
 
     .status .round img {
-      position: relative;
-      top: 10px;
+      // position: relative;
     }
 
     .status {
