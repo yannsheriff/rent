@@ -183,8 +183,8 @@ class App extends Component {
           <div className="button-container">
             <Button text="Rejouer" onClick={() => { replay(); }} />
           </div>
-          <div className="button-container">
-            <Button text="Statistiques" onClick={() => { this.setState({ showStats: true }); }} />
+          <div className={`button-container ${generalRecap ? '' : 'unactive'} `}>
+            <Button text="Statistiques" onClick={() => { if (generalRecap) { this.setState({ showStats: true }); } }} />
           </div>
         </div>
       </div>
