@@ -4,7 +4,7 @@ import { EthanPromise } from './EthanServices';
 let EthanService = {};
 EthanPromise.then((ethan) => {
   EthanService = ethan;
-  // NounouService.debugFillService();
+  NounouService.debugFillService();
 });
 
 /* eslint-disable import/prefer-default-export */
@@ -57,7 +57,7 @@ class NounouServices {
     this.totalSeenAds = 4;
     this.visitsAccepted = [{ ...EthanService.get('visit', debugProfil), visit_recap: 'miteux' }];
     this.questionsAccepted = [{ ...EthanService.get('question', debugProfil), question_recap: 'Abandonné Fluffy, votre adorable toutou' }];
-    this.adventuresRejected = [{ ...EthanService.get('adventure', debugProfil), adventure_first_choice_recap: 'Tuer une petite vieille' }];
+    this.adventuresRejected = [{ ...EthanService.get('adventure', debugProfil), adventure_first_choice_recap: 'jouer votre logement à la roulette russe' }];
     this.adventuresAccepted = [{ ...EthanService.get('adventure', debugProfil), adventure_second_choice_recap: 'pousser un couple dans les escaliers' }];
     this.actualVisit = EthanService.get('visit', debugProfil);
     this.actualFlat = EthanService.get('ads', debugProfil);

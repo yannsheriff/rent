@@ -12,7 +12,6 @@ import premium_overlay from './anim_premium_suscribe_overlay.json';
 import tuto from './EcranTutoriel.json';
 import premiumMedal from './annonce_premiumMedaille.json';
 
-
 export default {
   budget_up,
   status_single,

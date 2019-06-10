@@ -15,8 +15,12 @@ function StatsRecap(props) {
     generalRecap, choiceRecap, time, win,
   } = props.recapData;
   console.log(generalRecap);
+  console.log(choiceRecap);
+  console.log(time);
+  console.log(win);
 
-  // const winPercent = Math.floor(generalRecap.totalWins / generalRecap.totalGames * 100);
+  const winPercent = Math.floor(generalRecap.totalWins / generalRecap.totalGames * 100);
+  console.log(winPercent);
   // const visitChoice = Math.floor(visitChoiceStats.accept / visitChoiceStats.total * 100);
   // const adventureChoice = Math.floor(adventureChoiceStats.accept / adventureChoiceStats.total * 100);
 
@@ -35,13 +39,13 @@ function StatsRecap(props) {
     <div className="skill-data">
       <h5>
         {Math.floor(element.count * 100 / generalRecap.totalGames)}
-%
+        %
       </h5>
       <p>
-des utilisateurs choisissent la capacité
+        des utilisateurs choisissent la capacité
         {' '}
         <strong>{element.title}</strong>
-.
+        .
       </p>
     </div>
   ));
@@ -55,21 +59,31 @@ des utilisateurs choisissent la capacité
           { win && (
             <>
               <h3>
-                Vous avez trouvé un appartement en
+                Félicitations, comme
+                {' '}
+                <strong>
+                  {winPercent}
+                  % des joueurs, vous avez trouvé un appartement à temps !
+                </strong>
+              </h3>
+              <h3>
+                Vous avez mis
                 {' '}
                 <strong>
                   {secondsToMonth(time)}
                   {' '}
-                  mois !
+                  mois
+                  {' '}
                 </strong>
-              </h3>
-              <h3>
-                La moyenne est de
+                contre
                 <strong>
+                  {' '}
                   { secondsToMonth(generalRecap.avgTime)}
                   {' '}
-                  mois.
+                  mois
+                  {' '}
                 </strong>
+                en moyenne.
               </h3>
             </>
           )}
@@ -79,14 +93,14 @@ des utilisateurs choisissent la capacité
           )}
 
 
-          <h4>Les joueurs ont accepté : </h4>
+          <h4>Les joueurs ont : </h4>
 
           { choiceRecap.adventure
-          && <StatBar legend={choiceRecap.adventure.adventure_second_choice_recap} percent={choiceRecap.adventure.reject * 100 / choiceRecap.adventure.total} />}
+          && <StatBar legend={`Accepté de ${choiceRecap.adventure.adventure_second_choice_recap}`} percent={choiceRecap.adventure.reject * 100 / choiceRecap.adventure.total} />}
           { choiceRecap.question
           && <StatBar legend={choiceRecap.question.question_recap} percent={choiceRecap.question.reject * 100 / choiceRecap.question.total} />}
           { choiceRecap.visit
-          && <StatBar legend={choiceRecap.visit.visit_recap} percent={choiceRecap.visit.reject * 100 / choiceRecap.visit.total} />}
+          && <StatBar legend={`Déposé un dossier pour un logement ${choiceRecap.visit.visit_recap}`} percent={choiceRecap.visit.reject * 100 / choiceRecap.visit.total} />}
           {skill}
         </div>
       </div>

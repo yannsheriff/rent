@@ -60,7 +60,7 @@ class SocrateServices {
       });
       console.log(response);
     } else {
-      console.log('FUCK');
+      console.log('error');
 
       console.log(time, isVictory, totalFlat, skills, origin, budget, status, score);
     }

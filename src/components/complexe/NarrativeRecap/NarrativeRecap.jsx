@@ -116,27 +116,26 @@ class NarrativeRecap extends Component {
             </section>
           )}
 
+          {adventuresRejected.length > 0 && (
+          <section>
+            <div className="hr">
+              <img src={adventureref} alt="" />
+            </div>
+            <ul>
+              {'Refusé de '}
+              { adventureRejectedList }
+            </ul>
+          </section>
+          )}
+
           {adventuresAccepted.length > 0 && (
             <section>
               <div className="hr rotate">
                 <img src={adventureac} alt="" />
               </div>
               <ul>
-                Refusé
-                {' '}
+                {'Mais avez été jusqu\'à '}
                 { adventureAcceptedList }
-              </ul>
-            </section>
-          )}
-
-          {adventuresRejected.length > 0 && (
-            <section>
-              <div className="hr">
-                <img src={adventureref} alt="" />
-              </div>
-              <ul>
-                {'Mais êtes allé jusqu\'à '}
-                { adventureRejectedList }
               </ul>
             </section>
           )}
