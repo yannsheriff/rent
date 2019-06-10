@@ -18,7 +18,7 @@ export default [
   },
   {
     id: 'chance',
-    title: 'Petit Chanceux',
+    title: 'Bonne Fortune',
     img: svg.chance,
   },
   {

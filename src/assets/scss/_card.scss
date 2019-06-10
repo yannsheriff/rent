@@ -233,6 +233,11 @@
       -ms-transform: scale(1.3);
       -o-transform: scale(1.3);
     }
+
+    &.right, 
+    &.left {
+      padding: 0 2%;
+    }
   }
 }
 

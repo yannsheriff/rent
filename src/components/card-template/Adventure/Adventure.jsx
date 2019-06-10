@@ -37,7 +37,7 @@ class Adventure extends Component {
           }
         </div>
         <h1>{ data.adventure_title }</h1>
-        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.adventure_narration) }} />
+        <div className="card--text" dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.adventure_narration) }} />
       </div>
     );
   }

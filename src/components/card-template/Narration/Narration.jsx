@@ -10,6 +10,7 @@ import lottie from 'lottie-web';
 import rejects from 'assets/animation/reject';
 import defeats from 'assets/animation/defeat';
 import statuschange from 'assets/animation/status_change';
+import budgetchange from 'assets/animation/budget_change';
 import animations from 'assets/animation';
 
 import skills from 'assets/content/skills';
@@ -73,7 +74,7 @@ class Narration extends Component {
         return statuschange[`${oldProfil.status.ref}_${update.value.ref}`];
 
       case 'budget':
-        return oldProfil.budget < update.value ? animations.question_good : animations.question_bad;
+        return budgetchange[`${oldProfil.budget.ref}_${update.value.ref}`];
 
       default:
         return isPositive && choice ? animations.question_good : animations.question_bad;
@@ -198,7 +199,7 @@ class Narration extends Component {
           }
 
           {typeof (data) === 'string' && <div className="grow">{data}</div>}
-          <div className="grow" dangerouslySetInnerHTML={{ __html: documentToHtmlString(data) }} />
+          <div className="grow card--text" dangerouslySetInnerHTML={{ __html: documentToHtmlString(data) }} />
 
           <div className="indication">
             <span className="card--choice">

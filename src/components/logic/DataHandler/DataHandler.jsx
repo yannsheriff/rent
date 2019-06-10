@@ -333,7 +333,7 @@ class DataHandler extends Component {
           if (profil.budget.value < data.content.ad_budget) {
             const card = ([
               <Narration
-                data="Cet appartement n'est clairement pas dans votre budget."
+                data="Ce bien n'est clairement pas à votre portée ! Vous devriez vous concentrer sur les annonces avec des loyers plus abordables..."
                 title="Hors de prix"
                 type="reject-ads"
               />,
@@ -441,7 +441,9 @@ class DataHandler extends Component {
   // SKILLS : Cette fonction s'occupe du choix fait a partir d'un skill
   //
   handleSkill(choice) {
-    const { endGame, fail, updateTimer, changeStep } = this.props;
+    const {
+      endGame, fail, updateTimer, changeStep,
+    } = this.props;
     const { data, isNarration, didWin } = this.state;
     if (isNarration) {
       didWin ? endGame('win') : this.setState({ isNarration: false }, () => fail());

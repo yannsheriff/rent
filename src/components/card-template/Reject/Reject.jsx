@@ -23,8 +23,8 @@ class Reject extends Component {
     return (
       <div id="reject">
         <p>Reject</p>
-        <div dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.reject_narration) }} />
-        <button onClick={next}>next</button>
+        <div className="card--text" dangerouslySetInnerHTML={{ __html: documentToHtmlString(data.reject_narration) }} />
+        <button type="button" onClick={next}>next</button>
       </div>
     );
   }
