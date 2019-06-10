@@ -8,7 +8,7 @@ import richWheel from './img/icon_wheel_budget-eleve.svg';
 export default [
   {
     id: 1,
-    title: 'Modeste',
+    title: 'modeste',
     picto: poor,
     pictoLight: poor,
     pictoWheel: poorWheel,
@@ -17,7 +17,7 @@ export default [
   },
   {
     id: 2,
-    title: 'Moyen',
+    title: 'moyen',
     picto: regular,
     pictoLight: regular,
     pictoWheel: regularWheel,
@@ -26,7 +26,7 @@ export default [
   },
   {
     id: 3,
-    title: 'Élevé',
+    title: 'élevé',
     picto: rich,
     pictoLight: rich,
     pictoWheel: richWheel,
