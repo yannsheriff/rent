@@ -19,12 +19,14 @@
   h1 {
     opacity: 0;
     color: white;
-    font-size: 2.3em;
+    font-size: 2.6em;
     animation: fadeIn .5s ease .1s 1 forwards;
     -webkit-animation: fadeIn .5s ease .1s 1 forwards;
 }
 
   p {
+    font-family: fivo_sans_modernregular;
+    font-size: 1.2em;
     opacity: 0;
     color: white;
     animation: fadeIn .5s ease .2s 1 forwards;
