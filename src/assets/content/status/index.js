@@ -11,7 +11,7 @@ import coupleWheel from './img/wheel_situation-couple.svg';
 export default [
   {
     id: 1,
-    title: 'Solo',
+    title: 'solo',
     picto: solo,
     pictoLight: soloLight,
     pictoWheel: soloWheel,
@@ -20,7 +20,7 @@ export default [
   },
   {
     id: 2,
-    title: 'En couple',
+    title: 'en couple',
     picto: couple,
     pictoLight: coupleLight,
     pictoWheel: coupleWheel,
@@ -29,7 +29,7 @@ export default [
   },
   {
     id: 3,
-    title: 'En collocation',
+    title: 'en collocation',
     picto: coloc,
     pictoLight: colocLight,
     pictoWheel: colocWheel,
