@@ -9,8 +9,8 @@ import lottie from 'lottie-web';
 /* LOTTIES */
 import rejects from 'assets/animation/reject';
 import defeats from 'assets/animation/defeat';
-import statuschange from 'assets/animation/status_change';
-import budgetchange from 'assets/animation/budget_change';
+import statuschange from 'assets/animation/status_change_question';
+import budgetchange from 'assets/animation/budget_change_question';
 import animations from 'assets/animation';
 
 import skills from 'assets/content/skills';

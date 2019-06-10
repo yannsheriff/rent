@@ -5,6 +5,8 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 import './Event.scss';
 import lottie from 'lottie-web';
 import animations from 'assets/animation';
+import statuschange from 'assets/animation/status_change_event';
+import budgetchange from 'assets/animation/budget_change_event';
 
 class Event extends Component {
   constructor(props) {
@@ -58,12 +60,10 @@ class Event extends Component {
         //   return isPositive ? animations.event_good : animations.event_bad;
 
       case 'status':
-        isPositive = oldProfil[update.field] < update.value.value || update.value > 0;
-        return isPositive ? animations.event_good : animations.event_bad;
+        return statuschange[`${oldProfil.status.ref}_${update.value.ref}`];
 
       case 'budget':
-        isPositive = oldProfil[update.field].value < update.value.value || update.value > 0;
-        return isPositive ? animations.event_good : animations.event_bad;
+        return budgetchange[`${oldProfil.budget.ref}_${update.value.ref}`];
 
       default:
         isPositive = oldProfil[update.field] < update.value || update.value > 0;

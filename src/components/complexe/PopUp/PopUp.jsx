@@ -60,6 +60,7 @@ class PopUp extends Component {
 
   returnPopUp() {
     const { step } = this.props;
+    console.log(step);
     switch (step.popup) {
       case 'premium':
         return <Premium playAnimation={this.playAnimationPremium} hide={this.hidePopUp} />;
@@ -73,8 +74,7 @@ class PopUp extends Component {
     const component = this.returnPopUp();
     return (
       <>
-        {/* <div className="animation-stars fade" ref={this.animationStarsContainer} /> */}
-        <div id="popup" className={`${anim ? 'show' : ''} animation-stars`} ref={this.animationStarsContainer} />
+        <div id="popup" className={`${anim ? 'show' : 'hide'} animation-stars`} ref={this.animationStarsContainer} />
         <div id="premium--pop-up" className="fade">
           <CSSTransition in={show} timeout={500} classNames="trans-popup">
             <div className="premium--container">

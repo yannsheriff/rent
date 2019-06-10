@@ -4,8 +4,8 @@ import {
 } from '../actions/steps';
 
 const defaultState = {
-  isSetUp: false,
-  step: 'ads',
+  isSetUp: true,
+  step: 'event',
   gameIsOver: false,
   victory: undefined,
   finalTime: false,
