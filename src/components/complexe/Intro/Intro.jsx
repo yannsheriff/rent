@@ -26,8 +26,7 @@ Loue-moi
 si tu peux !
             </h1>
             <p>
-              Vous avez 6 mois pour trouver un appartement à Paris !
-              Saurez-vous faire les bons choix pour ne pas finir à la rue ?
+            Louer un appartement en ville peut être un véritable parcours du combattant. Saurez-vous faire les bons choix pour ne pas finir à la rue ?
             </p>
           </div>
           <Button onClick={() => next()} text="Relever le défi" />

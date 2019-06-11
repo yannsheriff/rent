@@ -24,7 +24,7 @@ export default [
   },
   {
     id: 3,
-    title: 'en collocation',
+    title: 'en colocation',
     picto: coloc,
     pictoWheel: colocWheel,
     value: 1,

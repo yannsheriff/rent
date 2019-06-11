@@ -33,10 +33,10 @@ class Launch extends Component {
         <div className="content">
           <div>
             <div className="animation" ref={this.animationContainer} />
-            <h1>Dernier check up.</h1>
+            <h1>Comment jouer ?</h1>
             <p>
-             Une fois la partie lancée, vous n'aurez que 5 minutes pour dégoter un appartement !
-             Serez-vous à la hauteur ?
+            À vous de prendre les bonnes décisions. Mentir ou être honnête ? Faites vos choix en swipant les cartes à gauche ou à droite. La seule chose qui compte ? Trouver un appartement en moins de 6 mois.
+
             </p>
           </div>
 

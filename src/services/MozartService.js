@@ -19,7 +19,7 @@ class MozartServices {
     this.mainSound = new Howl({
       src: interaction.elevator,
       loop: true,
-      volume: 0.1,
+      volume: 0.25,
     });
 
     if (!instance) {
