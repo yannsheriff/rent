@@ -19,7 +19,7 @@ class Intro extends Component {
           <div>
 
             <img className="intro--banner" src={lmstpBanner} alt="rent-banner" />
-            <h1>Loue moi si tu peux !</h1>
+            <h1>Loue-moi si tu peux !</h1>
             <p>
               Vous avez 6 mois pour trouver un appartement à Paris !
               Saurez-vous faire les bons choix pour ne pas finir à la rue ?
