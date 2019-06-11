@@ -4,11 +4,20 @@
   height: 100%;
   .intro--banner {
     opacity: 0;
+    display: block;
     width: 100%;
     height: auto;
     animation: fadeIn .5s ease 1 forwards;
     -webkit-animation: fadeIn .5s ease 1 forwards;
-}
+
+  }
+
+  @media screen and (max-height: $small) {
+    .intro--banner {
+      width: 70%;
+      margin: 0 auto;
+    }
+  }
 
   .content {
     display: flex;
@@ -16,13 +25,14 @@
     justify-content: space-between;
     height: 100%;
   }
+
   h1 {
     opacity: 0;
     color: white;
     font-size: 2.6em;
     animation: fadeIn .5s ease .1s 1 forwards;
     -webkit-animation: fadeIn .5s ease .1s 1 forwards;
-}
+  }
 
   p {
     font-family: fivo_sans_modernregular;
@@ -31,7 +41,16 @@
     color: white;
     animation: fadeIn .5s ease .2s 1 forwards;
     -webkit-animation: fadeIn .5s ease .2s 1 forwards;
-}
+  }
+  @media screen and (max-height: $small) {
+    h1 {
+      font-size: 2em;
+    }
+
+    p {
+      font-size: 1em;
+    }
+  }
 
   .btn {
     opacity: 0;

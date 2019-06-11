@@ -40,6 +40,13 @@ p,
     line-height: 1.25;
 }
 
+@media screen and (max-height: $small) {
+    p,
+    .card--text {
+        font-size : 14px;
+    }
+}
+
 .card--tag {
     text-transform: lowercase;
     font-family: fivo_sans_modernregularbold;

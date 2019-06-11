@@ -181,6 +181,15 @@
   .intro--info {
     opacity: 0;
   }
+
+  @media screen and (max-height: $small) {
+    .big {
+      width: 30%;
+    }
+    .profile-recap--rate .star .score strong { font-size: 20px }
+
+    h2 {display: none; }
+  }
 }
 
 

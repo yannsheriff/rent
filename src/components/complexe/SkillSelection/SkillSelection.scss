@@ -1,3 +1,5 @@
+@import 'assets/scss/_responsive.scss';
+
 .skills-selection {
     position: relative;
     display: flex;
@@ -43,6 +45,11 @@
             img {
                 max-width: 100px;
                 width: 100%;
+            }
+            @media screen and (max-height: $small) {
+                img {
+                    max-width: 55px;
+                }
             }
         }
     }

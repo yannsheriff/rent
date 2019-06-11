@@ -5,7 +5,7 @@
     display: block;
   }
   &--pricetag {
-    width: 80px;
+    width: calc(11 * var(--vh));
     #element_price {
       fill: $blue;
     }

@@ -1,5 +1,8 @@
 // * IPHONE XL
 
+// * IPHONE SE
+$small: 550px; 
+
 // au dessus de 800px
 @media screen and (min-height: 800px) {
     .card--choice {
@@ -24,3 +27,9 @@
         }
       }
 }
+@media screen and (max-height: $small) {
+  .btn {
+    height: 50px;
+  }
+}
+

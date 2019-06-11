@@ -1,3 +1,5 @@
+@import 'assets/scss/_responsive.scss';
+
 #launch {
   height: 100%;
 
@@ -23,5 +25,11 @@
 
   p {
     color: white;
+  }
+
+  @media screen and (max-height: $small) {
+    .animation {
+      height: 25vh;
+    }
   }
 }
