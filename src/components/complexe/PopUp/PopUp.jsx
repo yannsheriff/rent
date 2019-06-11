@@ -60,7 +60,6 @@ class PopUp extends Component {
 
   returnPopUp() {
     const { step } = this.props;
-    console.log(step);
     switch (step.popup) {
       case 'premium':
         return <Premium playAnimation={this.playAnimationPremium} hide={this.hidePopUp} />;

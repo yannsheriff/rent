@@ -95,6 +95,7 @@ class Narration extends Component {
 
   getDefeatType = () => {
     const { defeatType } = this.props;
+    console.log(defeatType);
     switch (defeatType) {
       case 'prison': return defeats.defeatPrison;
       case 'sex': return defeats.defeatSex;

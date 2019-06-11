@@ -14,10 +14,10 @@ function StatsRecap(props) {
   const {
     generalRecap, choiceRecap, time, win,
   } = props.recapData;
-  console.log(generalRecap);
-  console.log(choiceRecap);
-  console.log(time);
-  console.log(win);
+  // console.log(generalRecap);
+  // console.log(choiceRecap);
+  // console.log(time);
+  // console.log(win);
 
   const winPercent = Math.floor(generalRecap.totalWins / generalRecap.totalGames * 100);
   const loosePercent = 100 - winPercent;
