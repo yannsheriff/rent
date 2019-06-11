@@ -108,7 +108,7 @@ function StatsRecap(props) {
 
           { choiceRecap.adventure
           && <StatBar legend={`Accepté de ${choiceRecap.adventure.adventure_second_choice_recap}`} percent={choiceRecap.adventure.reject * 100 / choiceRecap.adventure.total} />}
-          { choiceRecap.question
+          { choiceRecap.question.question_recap
           && <StatBar legend={choiceRecap.question.question_recap} percent={choiceRecap.question.reject * 100 / choiceRecap.question.total} />}
           { choiceRecap.visit
           && <StatBar legend={`Déposé un dossier pour un logement ${choiceRecap.visit.visit_recap}`} percent={choiceRecap.visit.reject * 100 / choiceRecap.visit.total} />}
