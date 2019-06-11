@@ -116,7 +116,7 @@ function StatsRecap(props) {
         </div>
       </div>
       <div id="footer" className="layout--footer">
-        <img src={scroll} />
+        <img src={scroll} alt="scroll" />
         <Button text="Rejouer" onClick={() => { onReplay(); }} />
       </div>
     </div>

@@ -81,7 +81,7 @@ class Ads extends Component {
       <div className={`card--content card--ads ${data.ad_source === 'premium' ? 'premium' : ''}`}>
         <h2 className="card--type">Annonce</h2>
         <div className="card--illu--container height--80">
-          <img className="card--illu" src={this.returnIllu(data.ad_size_type)} alt="" />
+          <img className="card--illu" src={this.returnIllu(data.ad_size_type)} alt="illustration ads" />
         </div>
 
         <div className="ads--info">

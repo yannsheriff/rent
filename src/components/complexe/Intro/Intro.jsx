@@ -18,16 +18,16 @@ class Intro extends Component {
 
           <div>
 
-            <img className="intro--banner" src={lmstpBanner} alt="rent-banner" />
+            <img className="intro--banner" src={lmstpBanner} alt="loue moi si tu peux home" />
             <h1>
-Loue-moi
+              Loue-moi
               {' '}
               <br />
-si tu peux !
+              si tu peux !
             </h1>
-            <p>
+            <h2>
             Louer un appartement en ville peut être un véritable parcours du combattant. Saurez-vous faire les bons choix pour ne pas finir à la rue ?
-            </p>
+            </h2>
           </div>
           <Button onClick={() => next()} text="Relever le défi" />
         </div>
