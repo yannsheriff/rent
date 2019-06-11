@@ -23,6 +23,13 @@ h1,
     line-height: 1.1em;
     font-weight: 900;
 }
+@media screen and (max-height: $small) {
+    h1, 
+    .card--title,
+    .title {
+        font-size : 1.2em;
+    }
+}
 
 h2,
 .card--type {
