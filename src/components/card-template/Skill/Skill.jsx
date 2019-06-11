@@ -104,7 +104,7 @@ class Skill extends Component {
             <circle cx="50%" cy="50%" r={receptaclePos.width - receptaclePos.width / 100 * 50} />
           </svg>
           )} */}
-          <img src={skillTarget} alt="" />
+          <img src={skillTarget} alt="skill" />
         </div>
         <div className="skills-container">
           {skills}

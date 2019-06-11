@@ -47,7 +47,7 @@ class Visit extends Component {
         <div className="card--illu--container height--120">
           <div className="animation" ref={this.animationContainer} />
           {data.visit.visit_story === 'true'
-            && <img className="true-story" src={trueStroy} alt="histoire vrai" />
+            && <img className="true-story" src={trueStroy} alt="true story" />
           }
         </div>
 

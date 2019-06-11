@@ -77,14 +77,14 @@ class NarrativeRecap extends Component {
           , vous avez :
         </header>
 
-        <img className="scroll" src={scroll} alt="" />
+        <img className="scroll" src={scroll} alt="scroll icon" />
 
         <div id="content">
 
           {profil.premium && (
             <section>
               <div className="hr premium">
-                <img src={premium} alt="" />
+                <img src={premium} alt="premium icon" />
               </div>
               <ul>
                 <li>
@@ -97,7 +97,7 @@ class NarrativeRecap extends Component {
           {visitsAccepted.length > 0 && (
             <section>
               <div className="hr">
-                <img src={visit} alt="" />
+                <img src={visit} alt="visit icon" />
               </div>
               <ul>
                 Déposé un dossier pour un loyer
@@ -110,7 +110,7 @@ class NarrativeRecap extends Component {
           {questionsAccepted.length > 0 && (
             <section>
               <div className="hr">
-                <img src={question} alt="" />
+                <img src={question} alt="question icon" />
               </div>
               <ul>{ questionList }</ul>
             </section>
@@ -119,7 +119,7 @@ class NarrativeRecap extends Component {
           {adventuresRejected.length > 0 && (
           <section>
             <div className="hr">
-              <img src={adventureref} alt="" />
+              <img src={adventureref} alt="adventure rejected icon" />
             </div>
             <ul>
               {'Refusé de '}
@@ -131,7 +131,7 @@ class NarrativeRecap extends Component {
           {adventuresAccepted.length > 0 && (
             <section>
               <div className="hr rotate">
-                <img src={adventureac} alt="" />
+                <img src={adventureac} alt="adventure accepted icon" />
               </div>
               <ul>
                 {'Mais avez été jusqu\'à '}
@@ -143,7 +143,7 @@ class NarrativeRecap extends Component {
           <div className="recap--narrative--share">
             <div className="cto">
               <h2 className="underline">Partager mon score</h2>
-              <img className="chevron" src={scroll} alt="" />
+              <img className="chevron" src={scroll} alt="chevron icon" />
             </div>
             <ul>
               <li>
@@ -163,7 +163,7 @@ class NarrativeRecap extends Component {
             <p>Loue-moi si tu peux ! est un jeu satirique qui parodie la difficulté de se loger en ville. Élèves en master à Gobelins, nous dénonçons les dérives et pratiques abusives qui sont pratiques courantes au sein de la location immobilière.</p>
             <div className="cto">
               <h2 className="underline">en savoir plus</h2>
-              <img className="chevron" src={scroll} alt="" />
+              <img className="chevron" src={scroll} alt="chevron icon" />
             </div>
           </div>
         </div>

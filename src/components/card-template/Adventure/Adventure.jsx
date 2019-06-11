@@ -33,7 +33,7 @@ class Adventure extends Component {
         <h2 className="card--type">Péripétie</h2>
         <div className="animation height--120" ref={this.animationContainer}>
           {data.adventure_story
-            && <img className="true-story" src={trueStroy} alt="histoire vrai" />
+            && <img className="true-story" src={trueStroy} alt="true story" />
           }
         </div>
         <h1>{ data.adventure_title }</h1>

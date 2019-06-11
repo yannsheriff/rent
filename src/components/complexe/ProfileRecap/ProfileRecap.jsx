@@ -82,14 +82,14 @@ class ProfileRecap extends Component {
           <ul>
             <li className={profil.status.title && 'valid'}>
               {profil.status.title
-                 && <img src={profil.status.pictoWheel} alt="" />}
+                 && <img src={profil.status.pictoWheel} alt="status wheel" />}
             </li>
             <li className={profil.origin.title && 'valid'}>
               <div><span>{profil.origin.flag}</span></div>
             </li>
             <li className={profil.budget.title && 'valid'}>
               {profil.budget.title
-                 && <img src={profil.budget.pictoWheel} alt="" />}
+                 && <img src={profil.budget.pictoWheel} alt="budget wheel" />}
             </li>
           </ul>
         </div>

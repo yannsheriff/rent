@@ -79,7 +79,7 @@ class SkillSelection extends Component {
           : this.selectSkill(skill);
       }}
     >
-      <img src={skill.img} alt="" />
+      <img src={skill.img} alt={skill.title} />
       <h3>{skill.title}</h3>
     </div>
   )

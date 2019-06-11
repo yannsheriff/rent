@@ -34,9 +34,11 @@
     -webkit-animation: fadeIn .5s ease .1s 1 forwards;
   }
 
-  p {
+  h2 {
     font-family: fivo_sans_modernregular;
     font-size: 1.2em;
+    text-transform: initial;
+    text-align: left;
     opacity: 0;
     color: white;
     animation: fadeIn .5s ease .2s 1 forwards;
