@@ -4,7 +4,7 @@ import { EthanPromise } from './EthanServices';
 let EthanService = {};
 EthanPromise.then((ethan) => {
   EthanService = ethan;
-  NounouService.debugFillService();
+  // NounouService.debugFillService();
 });
 
 /* eslint-disable import/prefer-default-export */

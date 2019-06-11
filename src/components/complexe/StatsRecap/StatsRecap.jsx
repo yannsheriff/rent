@@ -93,6 +93,7 @@ function StatsRecap(props) {
             <h3>
                 Vous avez échoué à trouver un appartement en moins de 6 mois. Mais rassurez-vous, comme vous
               <strong>
+                {' '}
                 {loosePercent}
                 %
               </strong>
