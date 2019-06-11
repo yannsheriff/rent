@@ -160,7 +160,7 @@ class NarrativeRecap extends Component {
 
           <div className="recap--narrative--about">
             <h1>à propos</h1>
-            <p>Loue-moi si tu peux ! est un jeu satirique qui parodie la difficulté de se loger en ville. Élèves en master à Gobelins, nous dénonçons les dérives et pratiques abusives qui sont pratiques courantes au sein de la location immobilière.</p>
+            <p>Loue-moi si tu peux ! est un jeu satirique qui parodie la difficulté de se loger en grande ville. Élèves en Master Design et Management de l’Innovation Interactive à Gobelins, nous dénonçons les dérives et pratiques abusives qui sont courantes au sein de la location immobilière.</p>
             <div className="cto">
               <h2 className="underline">en savoir plus</h2>
               <img className="chevron" src={scroll} alt="chevron icon" />

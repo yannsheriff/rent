@@ -177,6 +177,14 @@
     }
   }
 
+  @media screen and (max-height: $small) {
+    .indication {
+      > span {
+        display: none
+      }
+    }
+}
+
   &--choice-container {
     height: 8vh;
     text-align: center;

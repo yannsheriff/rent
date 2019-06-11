@@ -14,6 +14,7 @@ import PopUp from 'components/complexe/PopUp/PopUp';
 class PlayScreen extends Component {
   componentDidMount() {
     MozartService.playMainSound();
+    console.log('BIG FAT LOG');
   }
 
   componentWillUnmount() {
