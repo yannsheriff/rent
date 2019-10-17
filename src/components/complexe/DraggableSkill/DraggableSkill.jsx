@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable no-unused-expressions */
 import React, { Component } from 'react';
@@ -28,6 +29,7 @@ class DraggableSkill extends Component {
       isDragging: false,
     };
     this.userDidDrag = false;
+    this.dragDidStart = false;
     this.isValidated = false;
     this.skill = React.createRef();
   }
@@ -41,40 +43,47 @@ class DraggableSkill extends Component {
     }, 2500);
   }
 
-  dragStart = (e) => {
+  dragStart = (e, isDesktop = false) => {
+    this.dragDidStart = true;
     this.skill.current.classList.remove('transition');
+    const x = isDesktop ? e.clientX : e.touches[0].clientX;
+    const y = isDesktop ? e.clientY : e.touches[0].clientY;
     this.userDidDrag = true;
-    this.firstTouch = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    this.firstTouch = { x, y };
   }
 
-  drag = (e) => {
+  drag = (e, isDesktop = false) => {
     const { target, onTargetHover } = this.props;
-    const { clientY, clientX } = e.touches[0];
-    const translateX = clientX - this.firstTouch.x;
-    const translateY = clientY - this.firstTouch.y;
-    if (
-      clientX > target.x && clientX < target.x + target.width
-      && clientY > target.y && clientY < target.y + target.width
-    ) {
-      if (!this.isValidated) {
-        onTargetHover(true);
+    if (this.dragDidStart) {
+      const clientX = isDesktop ? e.clientX : e.touches[0].clientX;
+      const clientY = isDesktop ? e.clientY : e.touches[0].clientY;
+      const translateX = clientX - this.firstTouch.x;
+      const translateY = clientY - this.firstTouch.y;
+      if (
+        clientX > target.x && clientX < target.x + target.width
+        && clientY > target.y && clientY < target.y + target.width
+      ) {
+        if (!this.isValidated) {
+          onTargetHover(true);
+        }
+        this.isValidated = true;
+      } else {
+        if (this.isValidated) {
+          onTargetHover(false);
+        }
+        this.isValidated = false;
       }
-      this.isValidated = true;
-    } else {
-      if (this.isValidated) {
-        onTargetHover(false);
-      }
-      this.isValidated = false;
+      this.setState({
+        posX: translateX, posY: translateY, isDragging: true, bounce: false,
+      });
     }
-    this.setState({
-      posX: translateX, posY: translateY, isDragging: true, bounce: false,
-    });
   }
 
   dragEnd = () => {
     const { target, onValidation } = this.props;
     const { x, y, width } = this.skillBounding;
     this.skill.current.classList.add('transition');
+    this.dragDidStart = false;
 
     if (this.isValidated) {
       const targetX = target.x + target.width / 2;
@@ -98,8 +107,11 @@ class DraggableSkill extends Component {
     return (
       <div
         onTouchStart={this.dragStart}
+        onMouseDown={e => this.dragStart(e, true)}
         onTouchMove={this.drag}
+        onMouseMove={e => this.drag(e, true)}
         onTouchEnd={this.dragEnd}
+        onMouseUp={this.dragEnd}
         className={`${!isDragging && bounce && dragAnimation ? 'drag' : ''} draggable-skill`}
         style={{ transform: `translate(${posX}px, ${posY}px)`, backgroundImage: `url(${content.img})` }}
         ref={this.skill}
