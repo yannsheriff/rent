@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable no-unused-expressions */
 import PropTypes from 'prop-types';
@@ -33,6 +35,7 @@ class Card extends Component {
       cardPosX: 0,
       cardPosY: 0,
     };
+    this.dragDidStart = false;
     this.lastTouch = 0;
     this.isValidated = false;
     this.card = React.createRef();
@@ -52,21 +55,25 @@ class Card extends Component {
     }
   }
 
-  dragStart = (e) => {
+  dragStart = (e, isDesktop = false) => {
+    const x = isDesktop ? e.clientX : e.touches[0].clientX;
+    const y = isDesktop ? e.clientY : e.touches[0].clientY;
     const { isLocked } = this.props;
     if (!isLocked) {
       // remove transition de carte
+      this.dragDidStart = true;
       this.card.current.classList.remove('smooth');
-      this.firstTouch = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      this.firstTouch = { x, y };
     }
   }
 
-  drag = (e) => {
+  drag = (e, isDesktop = false) => {
     const { isLocked } = this.props;
-
-    if (!isLocked) {
-      const translateX = e.touches[0].clientX - this.firstTouch.x;
-      const translateY = e.touches[0].clientY - this.firstTouch.y;
+    if (!isLocked && this.dragDidStart) {
+      const x = isDesktop ? e.clientX : e.touches[0].clientX;
+      const y = isDesktop ? e.clientY : e.touches[0].clientY;
+      const translateX = x - this.firstTouch.x;
+      const translateY = y - this.firstTouch.y;
 
       if (translateX > 20) {
         this.isValidated = 'right';
@@ -76,13 +83,15 @@ class Card extends Component {
         this.isValidated = false;
       }
 
-      this.lastTouch = e.touches[0].clientX;
+      this.lastTouch = x;
       this.setState({ cardPosX: translateX, cardPosY: translateY });
     }
   }
 
   dragEnd = () => {
     const { swipRight, swipLeft, isLocked } = this.props;
+    this.dragDidStart = false;
+
     if (!isLocked) {
       // add transition de carte
       this.card.current.classList.add('smooth');
@@ -91,17 +100,21 @@ class Card extends Component {
         MozartService.interaction('swipe');
         this.setState({ cardPosX: 400, cardPosY: 100 });
         setTimeout(() => {
-          swipRight
-            ? swipRight()
-            : console.warn('need swipRight to be a function');
+          if (swipRight) {
+            swipRight();
+          } else {
+            console.warn('need swipRight to be a function');
+          }
         }, 200);
       } else if (this.isValidated === 'left') {
         MozartService.interaction('swipe');
         this.setState({ cardPosX: -400, cardPosY: 100 });
         setTimeout(() => {
-          swipLeft
-            ? swipLeft()
-            : console.warn('need swipLeft to be a function');
+          if (swipLeft) {
+            swipLeft();
+          } else {
+            console.warn('need swipLeft to be a function');
+          }
         }, 200);
       } else {
         this.setState({ cardPosX: 0, cardPosY: 0 });
@@ -128,19 +141,19 @@ class Card extends Component {
   }
 
   render() {
-    const {
-      // data
-      // eslint-disable-next-line react/prop-types
-      children, leftChoice, rightChoice,
-    } = this.props;
+    // eslint-disable-next-line react/prop-types
+    const { children, leftChoice, rightChoice } = this.props;
     const { cardPosX, cardPosY } = this.state;
     const onPressProps = leftChoice && rightChoice ? {} : { onClick: () => this.forceCardSwipe('right') };
     return (
       <div
         className="card card--main"
         onTouchStart={this.dragStart}
+        onMouseDown={e => this.dragStart(e, true)}
         onTouchMove={this.drag}
+        onMouseMove={e => this.drag(e, true)}
         onTouchEnd={this.dragEnd}
+        onMouseUp={this.dragEnd}
         style={{ transform: `translate(${cardPosX}px, ${cardPosY}px)` }}
         ref={this.card}
         {...onPressProps}
