@@ -17,39 +17,40 @@ function App(props) {
   const { isSetUp, gameIsOver } = props.step;
   return (
     <Router className="app">
-      <Switch>
-        <Route exact path="/" render={() => <Redirect to="/setup" />} />
-
-        <Route
-          exact
-          path="/setup"
-          render={() => (isSetUp ? <Redirect to="/play" /> : <Setup />)
+      <div id="app-container">
+        <div id="app-wrapper">
+          <Switch>
+            <Route exact path="/" render={() => <Redirect to="/setup" />} />
+            <Route
+              exact
+              path="/setup"
+              render={() => (isSetUp ? <Redirect to="/play" /> : <Setup />)
+              }
+            />
+            <Route
+              exact
+              path="/play"
+              render={() => {
+                if (!gameIsOver) {
+                  return isSetUp ? <PlayScreen /> : <Redirect to="/setup" />;
+                }
+                return <EndScreen />;
+              }
             }
-        />
-
-        <Route
-          exact
-          path="/play"
-          render={() => {
-            if (!gameIsOver) {
-              return isSetUp ? <PlayScreen /> : <Redirect to="/setup" />;
-            }
-            return <EndScreen />;
-          }
-          }
-        />
-
-        <Route
-          exact
-          path="/end"
-          render={() => (gameIsOver
-            ? (<EndScreen />)
-            : (<Redirect to="/setup" />)
-          )
-            }
-        />
-        <Redirect to="/setup" />
-      </Switch>
+            />
+            <Route
+              exact
+              path="/end"
+              render={() => (gameIsOver
+                ? (<EndScreen />)
+                : (<Redirect to="/setup" />)
+              )
+              }
+            />
+            <Redirect to="/setup" />
+          </Switch>
+        </div>
+      </div>
     </Router>
   );
 }

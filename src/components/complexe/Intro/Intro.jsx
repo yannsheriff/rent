@@ -17,7 +17,6 @@ class Intro extends Component {
         <div className="content">
 
           <div>
-
             <img className="intro--banner" src={lmstpBanner} alt="loue moi si tu peux home" />
             <h1>
               Loue-moi
