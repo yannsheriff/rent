@@ -25,6 +25,8 @@ export const debugProfil = {
   premium: false,
 };
 
+// const defaultState = debugProfil;
+
 const defaultState = {
   status: {},
   origin: {},

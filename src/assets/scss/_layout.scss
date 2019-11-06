@@ -29,14 +29,17 @@
 }
 
 .layout--profile,
-.layout--header {
-  box-sizing: border-box;
-  padding: 0 8vw;
-  height: 10vh;
-}
-
+.layout--header,
 .layout--steps {
   box-sizing: border-box;
   padding: 0 8vw;
+}
+
+.layout--profile,
+.layout--header {
+  height: 10%;
+}
+
+.layout--steps {
   flex: 1;
 }

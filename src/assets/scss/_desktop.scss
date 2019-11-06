@@ -1,7 +1,17 @@
+$mobile-width: 330px;
+$mobile-height: 621px;
+$mobile-margin: 20px;
+
+
 @media (min-width: 640px) {
+
+  //
+  // APP CONTAINER
+  //
+
   #app-wrapper {
-    width: 330px;
-    height: 621px;
+    width: $mobile-width;
+    height: $mobile-height;
   }
 
   .App {
@@ -13,20 +23,35 @@
     overflow: hidden;
   }
 
+  //
+  // GLOBAL CHANGE
+  //
+
   .setup, .slide, .end {
-    padding: 20px;
+    padding: $mobile-margin;
   }
+
+  .layout--profile,
+  .layout--header,
+  .layout--steps {
+    box-sizing: border-box;
+    padding: 0 $mobile-margin;
+  }
+
+  //
+  // SETUP
+  //
 
   .setup {
     #slider {
-      width: 330px;
-      height: 621px;
+      width: $mobile-width;
+      height: $mobile-height;
     }
 
     .slide {
-      padding: 20px;
+      padding: $mobile-margin;
       width: 100%;
-      max-height: 621px;
+      max-height: $mobile-height;
 
       .profile-generation--recap ul li {
         height: auto;
@@ -37,10 +62,24 @@
         padding-top: 25px;
         box-sizing: border-box;
       }
+      #launch .animation {
+        height: 70%;
+      }
     }
   }
 
-  #launch .animation {
-    height: 70%;
+  //
+  // PLAY 
+  //
+
+  .animation-stars {
+    width: $mobile-width;
+    height: $mobile-height;
+  }
+
+  #premium--pop-up {
+    position: absolute;
+    width: $mobile-width;
+    height: $mobile-height;
   }
 }
