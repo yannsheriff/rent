@@ -29,7 +29,7 @@
   &--container {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     height: 100%;
   }
@@ -44,6 +44,7 @@
   }
 
   &--status {
+    padding-top: 35px;
     width: 100%;
     h2 {
       color: white;

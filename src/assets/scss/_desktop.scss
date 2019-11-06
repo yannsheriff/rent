@@ -1,0 +1,46 @@
+@media (min-width: 640px) {
+  #app-wrapper {
+    width: 330px;
+    height: 621px;
+  }
+
+  .App {
+    height: 100%;
+    width: 100%;
+    border-radius: 30px;
+    border: 1px solid black;
+    box-shadow: 0px 0px 0px 10px #3b3b3b;
+    overflow: hidden;
+  }
+
+  .setup, .slide, .end {
+    padding: 20px;
+  }
+
+  .setup {
+    #slider {
+      width: 330px;
+      height: 621px;
+    }
+
+    .slide {
+      padding: 20px;
+      width: 100%;
+      max-height: 621px;
+
+      .profile-generation--recap ul li {
+        height: auto;
+        width: 70px;
+      }
+
+      .intro {
+        padding-top: 25px;
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  #launch .animation {
+    height: 70%;
+  }
+}
