@@ -46,19 +46,15 @@ class StackHandler extends Component {
     }
   }
 
-  componentWillUnmount() {
-    if (this.props.onRef) {
-      this.props.onRef(this);
-    }
-  }
-
   rerollCard = () => {
     this.ref.animatedResetPosition();
   }
 
   resetCardStack = async () => new Promise((resolve) => {
     this.setState({ show: false, transition: false, cardIsRotate: false }, () => {
-      this.ref.resetPosition();
+      if (this.ref) {
+        this.ref.resetPosition();
+      }
       resolve();
     });
   })

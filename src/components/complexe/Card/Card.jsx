@@ -3,11 +3,11 @@
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable no-unused-expressions */
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { MozartService } from 'services/MozartService';
 import './Card.scss';
 
-class Card extends Component {
+class Card extends PureComponent {
   static propTypes = {
     data: PropTypes.string,
     swipRight: PropTypes.func,
@@ -51,7 +51,7 @@ class Card extends Component {
   componentWillUnmount() {
     const { onRef } = this.props;
     if (onRef) {
-      onRef(this);
+      onRef(false);
     }
   }
 
