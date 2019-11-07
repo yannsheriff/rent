@@ -2,12 +2,18 @@ $mobile-width: 330px;
 $mobile-height: 621px;
 $mobile-margin: 20px;
 
-
 @media (min-width: 640px) {
 
   //
-  // APP CONTAINER
+  // APP
   //
+
+
+  #app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
   #app-wrapper {
     width: $mobile-width;

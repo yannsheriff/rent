@@ -10,11 +10,11 @@ import animations from 'assets/animation';
 
 class ProgressBar extends Component {
   static propTypes = {
-    step: PropTypes.string,
+    step: PropTypes.object,
   }
 
   static defaultProps = {
-    step: '',
+    step: {},
   }
 
   constructor(props) {

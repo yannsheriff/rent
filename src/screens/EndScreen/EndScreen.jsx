@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import './EndScreen.scss';
 import lottie from 'lottie-web';
 
-import premium from 'assets/img/icons/premium_white.svg';
 import { replay } from 'redux/actions/steps';
 
 // components
@@ -165,7 +164,6 @@ class App extends Component {
             {step.end === 'win' ? 'Vous avez trouvé un appartement !' : 'Vous n\'avez pas trouvé d\'appartement à temps...' }
           </h2>
           <div className="animation height--180" ref={this.animationContainer} />
-          {/* <img className="main-illu" src={premium} alt="" /> */}
 
           <NarrativeRecap profil={profil} recap={narrativeRecap} />
           { showStats
