@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { MozartService } from 'services/MozartService';
 import Fade from '@material-ui/core/Fade';
@@ -11,7 +11,7 @@ import Profile from 'components/logic/Profile/Profile';
 import StepDisplay from 'components/logic/StepDisplay/StepDisplay';
 import PopUp from 'components/complexe/PopUp/PopUp';
 
-class PlayScreen extends Component {
+class PlayScreen extends PureComponent {
   componentDidMount() {
     MozartService.playMainSound();
   }
