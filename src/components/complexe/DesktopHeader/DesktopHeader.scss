@@ -1,0 +1,46 @@
+@import 'assets/scss/index.scss';
+
+.desktop-header {
+  position: absolute;
+  top: 3vw;
+  width: 100%;
+  z-index: 0;
+  box-sizing: border-box;
+
+  &--container {
+    padding: 0 3vw;
+    display: flex;
+    justify-content: space-between;
+
+    .gobelins-logo {
+      width: auto;
+      height: 40px;
+    }
+
+    #lmstp {
+      width: 100%;
+      max-width: calc((100vw - 350px) / 2);
+      display: flex;
+      align-items: center;
+
+      >div {display: inline-block;
+        width: 35px;
+        height: 35px;
+        border-radius: 10px;
+        padding: 5px;
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      h1 {
+        margin: 0 0 0 10px;
+        display: inline-block;
+        vertical-align: middle;
+        color: white;
+      }
+    }
+  }
+}

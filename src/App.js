@@ -9,15 +9,20 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Setup from './screens/Setup/Setup';
 import PlayScreen from './screens/PlayScreen/PlayScreen';
 import EndScreen from './screens/EndScreen/EndScreen';
+import DesktopHeader from './components/complexe/DesktopHeader/DesktopHeader';
+import QRCode from './components/complexe/QRCode/QRCode';
 
 function App(props) {
   const vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 
   const { isSetUp, gameIsOver } = props.step;
+
   return (
     <Router className="app">
       <div id="app-container">
+        <DesktopHeader />
+        <QRCode />
         <div id="app-wrapper">
           <Switch>
             <Route exact path="/" render={() => <Redirect to="/setup" />} />

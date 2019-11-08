@@ -1,0 +1,53 @@
+@import 'assets/scss/index.scss';
+
+.qr-code {
+  position: absolute;
+  left: 10vw; // calculer ici 
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  &--wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 225px;
+    height: 225px;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: #3B3B3B;
+    border-radius: 4px;
+    z-index: 1;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 225px;
+      height: 225px;
+      opacity: 0.5;
+      background: #3B3B3B;
+      transform: rotate(-5deg);
+      border-radius: 4px;
+      z-index: -1;
+    }
+  }
+
+  &--container {
+    text-align: center;
+
+    img {
+      height: auto;
+      max-width: 115px;
+    }
+    
+    span {
+      text-align: left;
+      margin-top: 10px;
+      display: block;
+      color: white;
+    }
+  }
+}

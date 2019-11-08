@@ -2,12 +2,18 @@ $mobile-width: 330px;
 $mobile-height: 621px;
 $mobile-margin: 20px;
 
+@media (max-width: 640px) {
+  #desktop-header {
+    display: none;
+  }
+}
+
+
 @media (min-width: 640px) {
 
   //
   // APP
   //
-
 
   #app-container {
     display: flex;
