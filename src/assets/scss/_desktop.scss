@@ -3,8 +3,8 @@ $mobile-height: 621px;
 $mobile-margin: 20px;
 
 @media (max-width: 640px) {
-  #desktop-header {
-    display: none;
+  #desktop-header, #lmstp-description, .qr-code {
+    display: none !important;
   }
 }
 
@@ -33,6 +33,34 @@ $mobile-margin: 20px;
     border: 1px solid black;
     box-shadow: 0px 0px 0px 10px #3b3b3b;
     overflow: hidden;
+  }
+
+  #lmstp-description {
+    position: absolute;
+    right: 10vw; // calculer ici 
+    height: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    max-width: 270px;
+    font-family: fivo_sans_modernregular;
+    font-size: 1em;
+    line-height: 1.2em;
+    text-transform: none;
+    text-transform: initial;
+    text-align: left;
+    color: white;
+
+    a {
+      color: white;
+    }
+
+    span {
+      display: block;
+      padding-top: 20px;
+      font-size: 0.8em;
+
+    }
   }
 
   //

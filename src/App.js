@@ -55,6 +55,31 @@ function App(props) {
             <Redirect to="/setup" />
           </Switch>
         </div>
+        {/* TEMPORAIRE */}
+        <aside id="lmstp-description">
+          <div>
+            Loue-moi si tu peux ! est un jeu satirique
+            qui parodie la difficulté de se loger en grande agglomération.
+
+            Élèves en Master Design et Management de l’Innovation Interactive à
+            {' '}
+            <a href="https://www.gobelins.fr/" rel="noopener noreferrer" target="_blank">Gobelins</a>
+            , nous dénonçons les dérives et pratiques abusives qui sont courantes au sein de la location immobilière.
+
+            <span>
+              Un projet réalisé par
+              {' '}
+              <a href="https://www.gobelins.fr/" rel="noopener noreferrer" target="_blank">Audren</a>
+              {', '}
+              <a href="https://www.gobelins.fr/" rel="noopener noreferrer" target="_blank">Martin</a>
+              {', '}
+              <a href="https://www.gobelins.fr/" rel="noopener noreferrer" target="_blank">Noémie</a>
+              {'& '}
+              <a href="https://www.gobelins.fr/" rel="noopener noreferrer" target="_blank">Yann</a>
+              .
+            </span>
+          </div>
+        </aside>
       </div>
     </Router>
   );

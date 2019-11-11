@@ -25,18 +25,18 @@ export const debugProfil = {
   premium: false,
 };
 
-// const defaultState = debugProfil;
+const defaultState = debugProfil;
 
-const defaultState = {
-  status: {},
-  origin: {},
-  budget: {},
-  skills: [],
-  bonus: 0,
-  score: 5,
-  time: 300,
-  premium: false,
-};
+// const defaultState = {
+//   status: {},
+//   origin: {},
+//   budget: {},
+//   skills: [],
+//   bonus: 0,
+//   score: 5,
+//   time: 300,
+//   premium: false,
+// };
 
 export function profilReducer(state = defaultState, action) {
   switch (action.type) {
