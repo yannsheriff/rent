@@ -166,17 +166,25 @@
 
   .grow {
     flex-grow: 1;
-  } 
+  }
 
   .indication {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
     > span {
+      display: block;
+    }
+  }
+
+  .indication,
+  .indication > span {
       text-align: center;
       text-transform: initial;
       height: auto;
-      display: block;
       position: relative;
       padding-bottom: 5%;
-    }
   }
 
   @media screen and (max-height: $small) {
