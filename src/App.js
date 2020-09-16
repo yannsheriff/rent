@@ -58,7 +58,7 @@ function App(props) {
         {/* TEMPORAIRE */}
         <aside id="lmstp-description">
           <div>
-            Loue-moi si tu peux ! est un jeu satirique
+            <strong>Loue-moi si tu peux !</strong> est un jeu satirique
             qui parodie la difficulté de se loger en grande agglomération.
 
             Élèves en Master Design et Management de l’Innovation Interactive à
@@ -74,7 +74,7 @@ function App(props) {
               <a href="https://www.gobelins.fr/" rel="noopener noreferrer" target="_blank">Martin</a>
               {', '}
               <a href="https://www.gobelins.fr/" rel="noopener noreferrer" target="_blank">Noémie</a>
-              {'& '}
+              {' & '}
               <a href="https://www.gobelins.fr/" rel="noopener noreferrer" target="_blank">Yann</a>
               .
             </span>

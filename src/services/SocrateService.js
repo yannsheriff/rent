@@ -27,7 +27,7 @@ class SocrateServices {
           choose: choice,
         },
       });
-      console.log(response);
+      // console.log(response);
     } catch (e) {
       console.log(e);
     }
@@ -58,11 +58,9 @@ class SocrateServices {
           score,
         },
       });
-      console.log(response);
+      // console.log(response);
     } else {
       console.log('error');
-
-      console.log(time, isVictory, totalFlat, skills, origin, budget, status, score);
     }
   }
 

@@ -21,7 +21,7 @@ function StatsRecap(props) {
 
   const winPercent = Math.floor(generalRecap.totalWins / generalRecap.totalGames * 100);
   const loosePercent = 100 - winPercent;
-  console.log(loosePercent);
+  // console.log(loosePercent);
   // const visitChoice = Math.floor(visitChoiceStats.accept / visitChoiceStats.total * 100);
   // const adventureChoice = Math.floor(adventureChoiceStats.accept / adventureChoiceStats.total * 100);
 
