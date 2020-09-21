@@ -134,7 +134,7 @@ class NarrativeRecap extends Component {
                 <img src={adventureac} alt="adventure accepted icon" />
               </div>
               <ul>
-                {'Mais avez été jusqu\'à '}
+                {'Et avez été jusqu\'à '}
                 { adventureAcceptedList }
               </ul>
             </section>
