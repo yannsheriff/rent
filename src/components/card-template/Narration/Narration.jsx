@@ -206,23 +206,22 @@ class Narration extends Component {
           }
           <h1 className="card--title">{ title }</h1>
 
-          {type === 'winning-skill'
-          && (
-          <span className="bold">Grace à votre capacité
-            {' '}
-            { this.returnSkill(winningSkill) }
-            {', '}
-          </span>
-          )
-          }
-
-          {typeof (data) === 'string' && <div className="grow">{data}</div>}
-          <div className="grow card--text" dangerouslySetInnerHTML={{ __html: documentToHtmlString(data) }} />
-
-          <div className="indication card--choice">
-            <span>
-              { this.getIndication() }
+          <div className="grow card--text" >
+            {type === 'winning-skill'
+            && (
+            <span className="bold">Grace à votre capacité
+              {' '}
+              { this.returnSkill(winningSkill) }
+              {', '}
             </span>
+            )
+            }
+
+            {typeof (data) === 'string' && <div className="grow">{data}</div>}
+            <span dangerouslySetInnerHTML={{ __html: documentToHtmlString(data) }} />
+          </div>
+          <div className="indication card--choice">
+            { this.getIndication() }
           </div>
         </div>
       </div>
