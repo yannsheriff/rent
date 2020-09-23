@@ -206,10 +206,11 @@ class Narration extends Component {
           }
           <h1 className="card--title">{ title }</h1>
 
-          <div className="grow card--text" >
+          <div className="grow card--text">
             {type === 'winning-skill'
             && (
-            <span className="bold">Grace à votre capacité
+            <span className="bold">
+              Grace à votre capacité
               {' '}
               { this.returnSkill(winningSkill) }
               {', '}
