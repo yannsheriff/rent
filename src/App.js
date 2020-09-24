@@ -58,24 +58,26 @@ function App(props) {
         {/* TEMPORAIRE */}
         <aside id="lmstp-description">
           <div>
-            <strong>Loue-moi si tu peux !</strong> est un jeu satirique
+            <strong>Loue-moi si tu peux !</strong>
+            {' '}
+            est un jeu satirique
             qui parodie la difficulté de se loger en grande agglomération.
 
             Élèves en Master Design et Management de l’Innovation Interactive à
             {' '}
             <a href="https://www.gobelins.fr/" rel="noopener noreferrer" target="_blank">Gobelins</a>
-            , nous dénonçons les dérives et pratiques abusives qui sont courantes au sein de la location immobilière.
+            , nous dénonçons les dérives et pratiques abusives dans le milieu immobilier.
 
             <span>
               Un projet réalisé par
               {' '}
-              <a href="https://www.gobelins.fr/" rel="noopener noreferrer" target="_blank">Audren</a>
+              <a href="https://www.linkedin.com/in/audren-mauplot" rel="noopener noreferrer" target="_blank">Audren Mauplot</a>
               {', '}
-              <a href="https://www.gobelins.fr/" rel="noopener noreferrer" target="_blank">Martin</a>
+              <a href="https://www.instagram.com/martinjouvet/" rel="noopener noreferrer" target="_blank">Martin Jouvet</a>
               {', '}
-              <a href="https://www.gobelins.fr/" rel="noopener noreferrer" target="_blank">Noémie</a>
+              <a href="https://www.noemie-ey.fr/" rel="noopener noreferrer" target="_blank">Noémie Ey</a>
               {' & '}
-              <a href="https://www.gobelins.fr/" rel="noopener noreferrer" target="_blank">Yann</a>
+              <a href="http://www.yannischerif.com/" rel="noopener noreferrer" target="_blank">Yann Chérif</a>
               .
             </span>
           </div>
