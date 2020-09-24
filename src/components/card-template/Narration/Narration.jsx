@@ -210,7 +210,7 @@ class Narration extends Component {
             {type === 'winning-skill'
             && (
             <span className="bold">
-              Grace à votre capacité
+              Grâce à votre capacité
               {' '}
               { this.returnSkill(winningSkill) }
               {', '}
