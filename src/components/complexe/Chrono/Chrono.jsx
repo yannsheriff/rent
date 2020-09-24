@@ -47,7 +47,7 @@ class Chrono extends Component {
         this.actualPhase += 1;
       }
 
-      if (sub <= 0) { this.endGame(); }
+      if (sub <= 0) { this.stopTimer(); }
     }, 100);
   }
 
@@ -68,8 +68,7 @@ class Chrono extends Component {
     clearInterval(this.chrono);
   }
 
-
-  endGame = () => {
+  stopTimer = () => {
     const { didExpire } = this.props;
     clearInterval(this.chrono);
     didExpire('chrono');

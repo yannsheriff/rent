@@ -449,6 +449,7 @@ class DataHandler extends Component {
       didWin ? endGame('win') : this.setState({ isNarration: false }, () => fail());
     } else {
       if (choice) {
+        // stop timer here
         changeStep('skill win');
         const card = ([
           <Narration
