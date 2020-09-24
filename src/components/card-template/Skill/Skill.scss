@@ -2,14 +2,17 @@
 .skill {
     color: white;
 
-    p, span {
-        color: white;
-        display: inline;
-    }
+    .card {
+        p,
+        span {
+            color: white;
+            display: inline;
+        }
 
-    .card--title {
-        color: white;
-        text-align: center;
+        .card--title {
+            color: white;
+            text-align: center;
+        }
     }
 
     &.container {
@@ -44,16 +47,16 @@
         min-height: 15vh;
         width: 15vh;
         position: relative;
-        border-radius: 50% ;
-        -webkit-border-radius: 50% ;
-        -moz-border-radius: 50% ;
-        -ms-border-radius: 50% ;
-        -o-border-radius: 50% ;
-        transition: .3s ease;
-        -webkit-transition: .3s ease;
-        -moz-transition: .3s ease;
-        -ms-transition: .3s ease;
-        -o-transition: .3s ease;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        transition: 0.3s ease;
+        -webkit-transition: 0.3s ease;
+        -moz-transition: 0.3s ease;
+        -ms-transition: 0.3s ease;
+        -o-transition: 0.3s ease;
 
         img {
             position: absolute;
@@ -63,7 +66,7 @@
             height: 110%;
             animation: spin 25s linear infinite;
             -webkit-animation: spin 25s linear infinite;
-}
+        }
 
         circle {
             stroke-width: 6; /* control the dashes width */
@@ -90,12 +93,12 @@
             -moz-transform: scale(0.8);
             -ms-transform: scale(0.8);
             -o-transform: scale(0.8);
-}
+        }
     }
 }
 
-@keyframes spin { 
-    100% { 
-      transform: rotateZ(360deg); 
+@keyframes spin {
+    100% {
+        transform: rotateZ(360deg);
     }
-  }
+}
