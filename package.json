@@ -8,7 +8,7 @@
     "axios": "^0.18.0",
     "contentful": "^7.6.0",
     "flickity": "^2.2.0",
-    "gsap": "^2.1.2",
+    "gsap": "^3.6.0",
     "howler": "^2.1.2",
     "lottie-web": "^5.5.2",
     "moment": "^2.24.0",
