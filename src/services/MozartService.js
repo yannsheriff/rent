@@ -1,8 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable class-methods-use-this */
-import { Howl, Howler } from 'howler';
-import { interaction, loop } from 'assets/sounds';
-import { setTimeout } from 'timers';
+import { Howl, Howler } from "howler";
+import { interaction, loop } from "assets/sounds";
 
 let instance = null;
 
@@ -33,15 +32,18 @@ class MozartServices {
       volume ? this[name].volume(volume).play() : this[name].play();
     } else {
       console.error(`The sound ${name} doesn't exist maybe it's a typo ;)`);
-      console.error('If you want to add a sound put it in assets sounds and call is name');
+      console.error(
+        "If you want to add a sound put it in assets sounds and call is name"
+      );
     }
   }
 
-  loopSound = name => new Howl({
-    src: [loop[name]],
-    loop: true,
-    volume: 0.2,
-  })
+  loopSound = (name) =>
+    new Howl({
+      src: [loop[name]],
+      loop: true,
+      volume: 0.2,
+    });
 
   playMainSound() {
     this.mainSound.play();
@@ -58,15 +60,15 @@ class MozartServices {
     }, 600);
   }
 
-
   stopMainSound() {
     this.mainSound.fade(0.1, 0, 500);
-    setTimeout(() => { this.mainSound.stop(); }, 500);
+    setTimeout(() => {
+      this.mainSound.stop();
+    }, 500);
   }
 }
 
 export const MozartService = new MozartServices();
-
 
 window.onblur = () => {
   MozartService.mainSound.pause();

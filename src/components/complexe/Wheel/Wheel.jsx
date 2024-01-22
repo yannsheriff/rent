@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import React, { Component } from 'react';
 import './Wheel.scss';
-import { stringify } from 'querystring';
+import queryString  from 'query-string';
 import WheelItem from './WheelItem/WheelItem';
 
 class Wheel extends Component {
@@ -29,7 +29,7 @@ class Wheel extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (stringify(nextProps.data) !== stringify(this.state.data)) {
+    if (queryString.stringify(nextProps.data) !== queryString.stringify(this.state.data)) {
       this.setState({
         data: nextProps.data,
         fieldToShow: nextProps.fieldToShow,
